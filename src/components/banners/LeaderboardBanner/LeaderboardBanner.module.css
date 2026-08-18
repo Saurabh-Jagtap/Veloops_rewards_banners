@@ -1,31 +1,56 @@
 .banner {
   width: 100%;
-  min-height: 430px;
+  height: 430px;
+  min-height: 410px;
+  max-height: 450px;
 
-  box-sizing: border-box;
-
-  padding: var(--space-8);
+  padding: 0;
 
   overflow: hidden;
 
   border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 28px;
+  border-radius: var(--radius-banner);
 
   background: var(--color-surface);
 }
 
 .content {
-  display: grid;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
 
-  grid-template-columns:
-    minmax(0, 0.92fr)
-    minmax(0, 1.08fr);
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
 
   align-items: center;
-
   gap: var(--space-8);
 
-  min-height: 100%;
+  padding: var(--space-8);
+}
+
+@media (max-width: 900px) {
+  .banner {
+    height: auto;
+    min-height: 410px;
+    max-height: none;
+  }
+
+  .content {
+    height: auto;
+    min-height: 410px;
+
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .banner {
+    min-height: 330px;
+  }
+
+  .content {
+    min-height: 330px;
+  }
 }
 
 .copy {
@@ -217,9 +242,26 @@
   stroke-linecap: round;
   stroke-linejoin: round;
 
-  filter: drop-shadow(
-    0 0 8px rgba(243, 204, 110, 0.15)
-  );
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+
+  animation:
+    drawLeaderboardGraph
+    1.6s
+    var(--ease-standard)
+    0.25s
+    forwards;
+
+  filter:
+    drop-shadow(
+      0 0 8px rgba(243, 204, 110, 0.15)
+    );
+}
+
+@keyframes drawLeaderboardGraph {
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 .chartPoint {
@@ -228,45 +270,37 @@
   stroke: #fff2c8;
   stroke-width: 2;
 
+  opacity: 0;
+
+  animation:
+    chartPointAppear
+    0.45s
+    ease-out
+    1.65s
+    forwards;
+
   filter:
     drop-shadow(
       0 0 8px rgba(243, 204, 110, 0.5)
     );
 }
 
+@keyframes chartPointAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+    transform-origin: center;
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+    transform-origin: center;
+  }
+}
+
 .chartPointGlow {
   fill: rgba(243, 204, 110, 0.14);
-}
-
-.chartLine {
-  position: absolute;
-  left: 0;
-  right: 0;
-
-  height: 1px;
-
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.08),
-    transparent
-  );
-}
-
-.chartLine:nth-child(1) {
-  top: 15%;
-}
-
-.chartLine:nth-child(2) {
-  top: 38%;
-}
-
-.chartLine:nth-child(3) {
-  top: 61%;
-}
-
-.chartLine:nth-child(4) {
-  top: 84%;
 }
 
 .podium {
@@ -442,17 +476,6 @@
   font-weight: 600;
 }
 
-.rank1 .avatar {
-  border-color: var(--color-gold-light);
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(243, 204, 110, 0.28),
-      rgba(217, 169, 58, 0.08)
-    );
-}
-
 .trophy {
   position: absolute;
 
@@ -461,24 +484,43 @@
 
   z-index: 5;
 
-  transform: translateX(-50%);
+  animation:
+    trophyFloat
+    4s
+    ease-in-out
+    infinite;
+}
+
+@keyframes trophyFloat {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(-5px);
+  }
 }
 
 .trophyAura {
-  position: absolute;
+  animation:
+    trophyAuraPulse
+    4s
+    ease-in-out
+    infinite;
+}
 
-  inset: -20px;
+@keyframes trophyAuraPulse {
+  0%,
+  100% {
+    opacity: 0.65;
+    transform: scale(0.96);
+  }
 
-  border-radius: 50%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(243, 204, 110, 0.16),
-      transparent 68%
-    );
-
-  filter: blur(4px);
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
 }
 
 .trophyBase {
@@ -686,41 +728,14 @@
   outline-offset: 3px;
 }
 
-.rankings {
-  position: absolute;
-  right: var(--space-5);
-  bottom: var(--space-5);
-
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-
-  width: min(320px, 70%);
+.cta svg {
+  transition:
+    transform 180ms ease;
 }
 
-.ranking {
-  display: grid;
-  grid-template-columns: 36px 40px 1fr auto;
-  align-items: center;
-
-  gap: var(--space-2);
-
-  padding: var(--space-3);
-
-  border: 1px solid var(--color-border);
-  border-radius: 12px;
-
-  background: rgba(22, 24, 39, 0.8);
-
-  color: var(--color-text-secondary);
+.cta:hover svg {
+  transform: translateX(3px);
 }
-
-.ranking strong {
-  color: var(--color-gold-light);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-}
-
 
 @media (max-width: 900px) {
   .content {
@@ -740,7 +755,8 @@
   }
 
   .visual {
-    min-height: 260px;
+    height: 280px;
+    min-height: 280px;
   }
 
   .chart {
@@ -797,6 +813,45 @@
     height: 50px;
   }
 
+@keyframes podiumRise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.podiumColumn {
+  animation:
+    podiumRise
+    0.7s
+    var(--ease-standard)
+    forwards;
+
+  opacity: 0;
+
+  transition:
+    transform 180ms ease,
+    filter 180ms ease;
+}
+
+.podiumColumn:hover {
+  transform: translateY(-5px);
+  filter: brightness(1.08);
+}
+
+.rank1:hover {
+  filter:
+    brightness(1.08)
+    drop-shadow(
+      0 0 12px rgba(243, 204, 110, 0.12)
+    );
+}
+
   .risingIndicator {
     left: 14px;
     bottom: 16px;
@@ -815,5 +870,33 @@
 
   .sparkleTwo {
     right: 20%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chartPath,
+  .chartPoint,
+  .trophy,
+  .trophyAura,
+  .podiumColumn {
+    animation: none;
+  }
+
+  .chartPath {
+    stroke-dashoffset: 0;
+  }
+
+  .chartPoint {
+    opacity: 1;
+  }
+
+  .podiumColumn {
+    opacity: 1;
+  }
+
+  .cta,
+  .cta svg,
+  .podiumColumn {
+    transition: none;
   }
 }
