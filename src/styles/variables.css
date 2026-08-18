@@ -1,0 +1,83 @@
+:root {
+  /* =========================
+     Colors
+     ========================= */
+
+  --color-bg: #161827;
+
+  --color-surface: #1d2038;
+  --color-surface-elevated: #242850;
+  --color-surface-soft: #2b3060;
+
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-strong: rgba(255, 255, 255, 0.14);
+
+  --color-text-primary: #f7f8fc;
+  --color-text-secondary: #aeb3c7;
+  --color-text-muted: #777d97;
+
+  --color-gold: #d9a93a;
+  --color-gold-light: #f3cc6e;
+  --color-gold-soft: rgba(243, 204, 110, 0.14);
+
+  --color-blue: #6f8cff;
+  --color-blue-light: #91a6ff;
+  --color-blue-soft: rgba(111, 140, 255, 0.14);
+
+  --color-purple: #8c7eea;
+  --color-purple-light: #afa4f2;
+  --color-purple-soft: rgba(140, 126, 234, 0.14);
+
+  --color-silver: #c7ccda;
+
+  /* =========================
+     Typography
+     ========================= */
+
+  --font-display: "Sora", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* =========================
+     Radius
+     ========================= */
+
+  --radius-banner: 28px;
+  --radius-card: 18px;
+  --radius-button: 12px;
+  --radius-pill: 999px;
+
+  /* =========================
+     Shadows
+     ========================= */
+
+  --shadow-banner:
+    0 24px 60px rgba(0, 0, 0, 0.28);
+
+  --shadow-card:
+    0 12px 30px rgba(0, 0, 0, 0.18);
+
+  /* =========================
+     Spacing
+     ========================= */
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 32px;
+  --space-8: 40px;
+  --space-9: 48px;
+
+  /* =========================
+     Motion
+     ========================= */
+
+  --duration-fast: 180ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+
+  --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
