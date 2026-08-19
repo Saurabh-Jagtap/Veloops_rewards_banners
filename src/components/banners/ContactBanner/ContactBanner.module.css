@@ -293,6 +293,14 @@
         inset 0 1px 0 rgba(255, 255, 255, 0.09);
 }
 
+@media (hover: none) {
+  .visual:hover .supportCard {
+    transform:
+      translateX(-50%)
+      rotate(-1.2deg);
+  }
+}
+
 .supportHeader {
   display: flex;
 
@@ -371,13 +379,8 @@
 }
 
 .agentAvatar svg {
-  width: 31px;
-  height: 31px;
-}
-
-.agentAvatar svg {
-    width: 29px;
-    height: 29px;
+  width: 29px;
+  height: 29px;
 }
 
 .agentInfo strong {
@@ -665,6 +668,7 @@
     rgba(198, 203, 221, 0.28);
 
   transform:
+    translateX(50%)
     translateY(-2px);
 
   box-shadow:
@@ -751,83 +755,330 @@
   }
 }
 
-@media (max-width: 560px) {
-  .visual {
-    height: 300px;
+/* ==================================================
+   RESPONSIVE — TABLET
+================================================== */
+
+@media (max-width: 900px) {
+  .banner {
+    height: auto;
+    min-height: 410px;
+    max-height: none;
   }
 
+  .content {
+    grid-template-columns: 1fr;
+    gap: 24px;
+
+    padding: 26px;
+  }
+
+  .copy {
+    max-width: 620px;
+  }
+
+  .visual {
+    height: 330px;
+  }
+}
+
+/* ==================================================
+   RESPONSIVE — MOBILE
+================================================== */
+
+@media (max-width: 560px) {
+  .banner {
+    height: auto;
+    min-height: 0;
+    max-height: none;
+
+    border-radius: 20px;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+
+    padding: 20px;
+  }
+
+  /* ------------------------------------------
+     COPY
+  ------------------------------------------ */
+
+  .copy {
+    width: 100%;
+    max-width: none;
+  }
+
+  .eyebrow {
+    margin-bottom: 10px;
+
+    font-size: 0.64rem;
+  }
+
+  .copy h2 {
+    font-size: clamp(1.95rem, 9vw, 2.4rem);
+
+    line-height: 1.04;
+    letter-spacing: -0.04em;
+  }
+
+  .copy p {
+    max-width: none;
+
+    margin-top: 13px;
+
+    font-size: 0.86rem;
+    line-height: 1.55;
+  }
+
+  .email {
+    max-width: 100%;
+
+    margin-top: 12px;
+
+    font-size: 0.58rem;
+  }
+
+  .cta {
+    width: 100%;
+
+    min-height: 46px;
+
+    margin-top: 15px;
+  }
+
+  /* ------------------------------------------
+     VISUAL CANVAS
+  ------------------------------------------ */
+
+  .visual {
+    width: 100%;
+    height: 285px;
+
+    border-radius: 18px;
+  }
+
+  /* ------------------------------------------
+     SUPPORT CARD
+  ------------------------------------------ */
+
   .supportCard {
-    top: 20px;
+    top: 18px;
 
-    width: 74%;
+    width: 82%;
 
-    padding: 15px;
+    padding: 13px 14px 12px;
+
+    border-radius: 16px;
+  }
+
+  .supportHeader {
+    font-size: 0.48rem;
+  }
+
+  .status {
+    gap: 5px;
+
+    font-size: 0.47rem;
+  }
+
+  .statusDot {
+    width: 5px;
+    height: 5px;
   }
 
   .agent {
     gap: 10px;
 
-    margin-top: 18px;
+    margin-top: 16px;
   }
 
   .agentAvatar {
-    width: 50px;
-    height: 50px;
+    width: 46px;
+    height: 46px;
 
-    border-radius: 14px;
+    border-radius: 13px;
   }
 
   .agentAvatar svg {
-    width: 23px;
-    height: 23px;
+    width: 21px;
+    height: 21px;
   }
 
   .agentInfo strong {
-    font-size: 0.76rem;
+    font-size: 0.72rem;
   }
 
   .agentInfo span {
-    font-size: 0.55rem;
+    margin-top: 3px;
+
+    font-size: 0.52rem;
+  }
+
+  .supportLine {
+    gap: 5px;
+
+    margin-top: 16px;
+  }
+
+  .supportLine span {
+    height: 3px;
+  }
+
+  /* ------------------------------------------
+     FLOATING MESSAGES
+  ------------------------------------------ */
+
+  .message {
+    gap: 7px;
+
+    padding: 7px 9px;
+
+    border-radius: 10px;
+  }
+
+  .messageIcon {
+    width: 23px;
+    height: 23px;
+
+    border-radius: 7px;
+  }
+
+  .messageIcon svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .message span {
+    font-size: 0.43rem;
+  }
+
+  .message strong {
+    margin-top: 2px;
+
+    font-size: 0.51rem;
   }
 
   .messageOne {
-    top: 136px;
+    top: 125px;
     left: 4%;
   }
 
   .messageTwo {
-    top: 178px;
+    top: 163px;
     right: 4%;
   }
 
-  .message {
-    padding: 7px 9px;
-  }
-
-  .messageIcon {
-    width: 25px;
-    height: 25px;
-  }
-
-  .messageIcon svg {
-    width: 13px;
-    height: 13px;
-  }
-
-  .message strong {
-    font-size: 0.53rem;
-  }
+  /* ------------------------------------------
+     EMAIL DESTINATION
+  ------------------------------------------ */
 
   .emailCard {
+    right: 50%;
     bottom: 12px;
 
-    width: 68%;
+    width: 72%;
+
+    padding: 8px 10px;
+
+    gap: 8px;
+
+    transform: translateX(50%);
+
+    border-radius: 11px;
+  }
+
+  .emailIcon {
+    width: 27px;
+    height: 27px;
+
+    border-radius: 8px;
+  }
+
+  .emailIcon svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .emailCard span {
+    font-size: 0.43rem;
   }
 
   .emailCard strong {
     max-width: 150px;
 
-    font-size: 0.48rem;
+    margin-top: 2px;
+
+    font-size: 0.47rem;
+  }
+
+  /* ------------------------------------------
+     DECORATION
+  ------------------------------------------ */
+
+  .sparkleOne {
+    top: 14%;
+    left: 7%;
+  }
+
+  .sparkleTwo {
+    top: 12%;
+    right: 8%;
+  }
+}
+
+/* ==================================================
+   RESPONSIVE — VERY SMALL PHONES
+================================================== */
+
+@media (max-width: 380px) {
+  .content {
+    padding: 16px;
+  }
+
+  .visual {
+    height: 270px;
+  }
+
+  .supportCard {
+    width: 84%;
+    padding: 12px;
+  }
+
+  .messageOne {
+    left: 2%;
+  }
+
+  .messageTwo {
+    right: 2%;
+  }
+
+  .message {
+    padding: 6px 8px;
+  }
+
+  .emailCard {
+    width: 78%;
+  }
+
+  .emailCard strong {
+    max-width: 125px;
+  }
+}
+
+/* ==================================================
+   TOUCH DEVICES
+================================================== */
+
+@media (hover: none) {
+  .visual:hover .supportCard {
+    transform:
+      translateX(-50%)
+      rotate(-1.2deg);
   }
 }
 
