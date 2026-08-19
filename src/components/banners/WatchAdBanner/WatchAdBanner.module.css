@@ -1,0 +1,1192 @@
+.banner {
+  width: 100%;
+  height: 430px;
+  min-height: 410px;
+  max-height: 450px;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: var(--radius-banner);
+
+  background: var(--color-surface);
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+
+  display: grid;
+  grid-template-columns:
+    minmax(0, 0.92fr)
+    minmax(0, 1.08fr);
+
+  align-items: center;
+
+  gap: var(--space-8);
+
+  padding: var(--space-8);
+}
+
+.copy {
+  max-width: 560px;
+}
+
+.eyebrow {
+  display: inline-flex;
+
+  margin-bottom: var(--space-4);
+
+  color: var(--color-blue-light);
+
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.copy h2 {
+  margin: 0;
+
+  color: var(--color-text-primary);
+
+  font-family: var(--font-display);
+
+  font-size: clamp(2rem, 4vw, 3.5rem);
+
+  line-height: 1.05;
+
+  letter-spacing: -0.04em;
+}
+
+.copy p {
+  max-width: 520px;
+
+  margin: var(--space-5) 0 0;
+
+  color: var(--color-text-secondary);
+
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.note {
+  max-width: 470px !important;
+
+  margin-top: var(--space-3) !important;
+
+  color: var(--color-text-muted) !important;
+
+  font-size: 0.7rem !important;
+  line-height: 1.5 !important;
+}
+
+.cta {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  min-height: 48px;
+
+  margin-top: var(--space-6);
+
+  padding: 0 18px;
+
+  border: 1px solid rgba(145, 166, 255, 0.3);
+  border-radius: var(--radius-button);
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--color-blue-light),
+      var(--color-blue)
+    );
+
+  color: #15182a;
+
+  font-size: 0.9rem;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform var(--duration-fast) var(--ease-standard),
+    box-shadow var(--duration-fast) var(--ease-standard);
+}
+
+.cta:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 25px rgba(111, 140, 255, 0.2);
+}
+
+.cta:focus-visible {
+  outline: 2px solid var(--color-blue-light);
+  outline-offset: 3px;
+}
+
+.cta svg {
+  transition:
+    transform 180ms ease;
+}
+
+.cta:hover svg {
+  transform: translateX(3px);
+}
+
+.visual {
+  position: relative;
+
+  width: 100%;
+  height: 330px;
+
+  overflow: hidden;
+  isolation: isolate;
+
+  border: 1px solid rgba(111, 140, 255, 0.1);
+  border-radius: var(--radius-card);
+
+  background:
+    radial-gradient(
+      circle at 48% 40%,
+      rgba(111, 140, 255, 0.18),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 82% 80%,
+      rgba(243, 204, 110, 0.08),
+      transparent 30%
+    ),
+    linear-gradient(
+      145deg,
+      #252a49,
+      #20233f 55%,
+      #1c1f38
+    );
+}
+
+.visualGlow {
+  position: absolute;
+
+  top: 4%;
+  left: 28%;
+
+  width: 300px;
+  height: 230px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(111, 140, 255, 0.12);
+
+  filter: blur(55px);
+
+  pointer-events: none;
+}
+
+.visualGlowSecondary {
+  position: absolute;
+
+  right: -5%;
+  bottom: -25%;
+
+  width: 250px;
+  height: 180px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(243, 204, 110, 0.07);
+
+  filter: blur(60px);
+
+  pointer-events: none;
+}
+
+/* --------------------------------------------------
+   Decorative elements
+-------------------------------------------------- */
+
+.sparkle {
+  position: absolute;
+
+  z-index: 7;
+
+  width: 14px;
+  height: 14px;
+
+  opacity: 0.7;
+
+  pointer-events: none;
+}
+
+.sparkleOne {
+  top: 18%;
+  left: 17%;
+
+  color: var(--color-blue-light);
+}
+
+.sparkleTwo {
+  top: 16%;
+  right: 24%;
+
+  width: 11px;
+  height: 11px;
+
+  color: var(--color-gold-light);
+}
+
+/* --------------------------------------------------
+   Advertisement player
+-------------------------------------------------- */
+
+.adScreen {
+  position: absolute;
+
+  top: 28px;
+  left: 50%;
+
+  z-index: 3;
+
+  width: min(350px, 62%);
+
+  aspect-ratio: 16 / 10;
+
+  transform: translateX(-50%) rotate(-2deg);
+
+  overflow: hidden;
+
+  border: 1px solid rgba(145, 166, 255, 0.3);
+  border-radius: 17px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #2c4fa0,
+      #182350
+    );
+
+  box-shadow:
+    0 24px 45px rgba(0, 0, 0, 0.3),
+    0 0 35px rgba(111, 140, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.adHeader {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 10px 12px;
+
+  color: rgba(255, 255, 255, 0.6);
+
+  font-family: var(--font-mono);
+  font-size: 0.52rem;
+
+  letter-spacing: 0.04em;
+}
+
+.adDot {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: var(--color-gold-light);
+
+  box-shadow:
+    0 0 8px rgba(243, 204, 110, 0.4);
+}
+
+.adContent {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  height: calc(100% - 48px);
+}
+
+.playButton {
+  display: grid;
+
+  place-items: center;
+
+  width: 64px;
+  height: 64px;
+
+  padding: 0;
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.1);
+
+  color: white;
+
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.18);
+
+  cursor: pointer;
+
+  transition:
+    transform 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.playButton {
+  display: grid;
+
+  place-items: center;
+
+  width: 64px;
+  height: 64px;
+
+  padding: 0;
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.1);
+
+  color: white;
+
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.18);
+
+  cursor: pointer;
+
+  transition:
+    transform 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.playButton:hover:not(:disabled) {
+  transform: scale(1.07);
+
+  background:
+    rgba(255, 255, 255, 0.16);
+
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.24);
+}
+
+.playButton:focus-visible {
+  outline: 2px solid var(--color-blue-light);
+  outline-offset: 4px;
+}
+
+.playButton:disabled {
+  cursor: default;
+}
+
+.playingIndicator {
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content: center;
+
+  gap: 4px;
+
+  height: 20px;
+}
+
+.playingIndicator span {
+  width: 4px;
+
+  border-radius: 999px;
+
+  background: currentColor;
+
+  animation:
+    soundWave
+    0.8s
+    ease-in-out
+    infinite alternate;
+}
+
+.playingIndicator span:nth-child(1) {
+  height: 10px;
+
+  animation-delay: -0.2s;
+}
+
+.playingIndicator span:nth-child(2) {
+  height: 19px;
+}
+
+.playingIndicator span:nth-child(3) {
+  height: 13px;
+
+  animation-delay: -0.1s;
+}
+
+@keyframes soundWave {
+  from {
+    transform: scaleY(0.55);
+    opacity: 0.55;
+  }
+
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+.adMessage {
+  margin-top: 13px;
+
+  color: rgba(255, 255, 255, 0.82);
+
+  font-family: var(--font-mono);
+
+  font-size: 0.62rem;
+  font-weight: 600;
+
+  letter-spacing: 0.08em;
+}
+
+.adProgress {
+  position: absolute;
+
+  right: 14px;
+  bottom: 12px;
+  left: 14px;
+
+  height: 3px;
+
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  background:
+    rgba(255, 255, 255, 0.12);
+}
+
+.adProgress span {
+  display: block;
+
+  width: 0;
+  height: 100%;
+
+  border-radius: inherit;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--color-blue-light),
+      var(--color-gold-light)
+    );
+
+  transition: width 180ms linear;
+}
+
+.isPlaying .adProgress span {
+  width: 100%;
+
+  transition:
+    width 3s linear;
+}
+
+.adScreen {
+  transition:
+    transform 500ms var(--ease-standard),
+    box-shadow 500ms ease;
+}
+
+.isPlaying .adScreen {
+  animation: none;
+
+  transform:
+    translateX(-50%)
+    rotate(-1deg)
+    scale(1.015);
+
+  box-shadow:
+    0 28px 55px rgba(0, 0, 0, 0.34),
+    0 0 45px rgba(111, 140, 255, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+/* --------------------------------------------------
+   Completed state
+-------------------------------------------------- */
+
+.completedCard {
+  position: absolute;
+
+  top: 174px;
+  left: 15%;
+
+  z-index: 6;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 9px 12px;
+
+  border: 1px solid rgba(111, 140, 255, 0.2);
+  border-radius: 12px;
+
+  background:
+    rgba(22, 24, 39, 0.78);
+
+  backdrop-filter: blur(12px);
+
+  box-shadow:
+    0 12px 25px rgba(0, 0, 0, 0.18);
+
+  opacity: 0;
+
+  transform:
+    translateY(8px)
+    scale(0.96);
+
+  pointer-events: none;
+
+  transition:
+    opacity 350ms ease,
+    transform 350ms var(--ease-standard);
+}
+
+.isCompleted .completedCard {
+  opacity: 1;
+
+  transform:
+    translateY(0)
+    scale(1);
+}
+
+.isCompleted .completedIcon {
+  animation:
+    completedCheck
+    450ms
+    var(--ease-standard);
+}
+
+@keyframes completedCheck {
+  0% {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+
+  60% {
+    transform: scale(1.12);
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.completedIcon {
+  display: grid;
+
+  place-items: center;
+
+  width: 27px;
+  height: 27px;
+
+  border-radius: 8px;
+
+  background:
+    rgba(111, 140, 255, 0.14);
+
+  color: var(--color-blue-light);
+}
+
+.completedIcon svg {
+  width: 15px;
+  height: 15px;
+
+  stroke-width: 2.5;
+}
+
+.completedLabel {
+  display: block;
+
+  color: var(--color-text-muted);
+
+  font-size: 0.52rem;
+
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.completedCard strong {
+  display: block;
+
+  margin-top: 2px;
+
+  color: var(--color-text-primary);
+
+  font-family: var(--font-mono);
+
+  font-size: 0.62rem;
+}
+
+/* --------------------------------------------------
+   Reward coins
+-------------------------------------------------- */
+
+.coins {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 5;
+
+  pointer-events: none;
+}
+
+.coin {
+  position: absolute;
+
+  display: grid;
+
+  place-items: center;
+
+  width: 38px;
+  height: 38px;
+
+  border: 1px solid rgba(243, 204, 110, 0.35);
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(243, 204, 110, 0.28),
+      rgba(185, 133, 43, 0.12)
+    );
+
+  color: var(--color-gold-light);
+
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.coin svg {
+  width: 18px;
+  height: 18px;
+}
+
+.coinOne {
+  top: 108px;
+  right: 23%;
+
+  transform: rotate(-8deg);
+}
+
+.coinTwo {
+  top: 158px;
+  right: 15%;
+
+  width: 31px;
+  height: 31px;
+
+  transform: rotate(7deg);
+}
+
+.coinThree {
+  right: 9%;
+  bottom: 78px;
+
+  width: 26px;
+  height: 26px;
+
+  transform: rotate(-5deg);
+}
+
+.coinTwo svg {
+  width: 15px;
+  height: 15px;
+}
+
+.coinThree svg {
+  width: 13px;
+  height: 13px;
+}
+
+.coin {
+  transition:
+    transform 800ms var(--ease-standard),
+    opacity 400ms ease,
+    box-shadow 400ms ease;
+}
+
+.isCompleted .coinOne {
+  transform:
+    translate(
+      105px,
+      105px
+    )
+    scale(0.72)
+    rotate(180deg);
+
+  opacity: 0;
+}
+
+.isCompleted .coinTwo {
+  transform:
+    translate(
+      62px,
+      68px
+    )
+    scale(0.68)
+    rotate(-180deg);
+
+  opacity: 0;
+}
+
+.isCompleted .coinThree {
+  transform:
+    translate(
+      24px,
+      40px
+    )
+    scale(0.6)
+    rotate(180deg);
+
+  opacity: 0;
+}
+
+.isCompleted .wallet {
+  animation:
+    rewardArrive
+    650ms
+    var(--ease-standard)
+    650ms both;
+}
+
+@keyframes rewardArrive {
+  0% {
+    transform: scale(1);
+    box-shadow:
+      0 12px 25px rgba(0, 0, 0, 0.18);
+  }
+
+  45% {
+    transform: scale(1.06);
+
+    box-shadow:
+      0 12px 25px rgba(0, 0, 0, 0.18),
+      0 0 25px rgba(243, 204, 110, 0.18);
+  }
+
+  100% {
+    transform: scale(1);
+
+    box-shadow:
+      0 12px 25px rgba(0, 0, 0, 0.18);
+  }
+}
+
+/* --------------------------------------------------
+   Reward destination
+-------------------------------------------------- */
+
+.wallet {
+  position: absolute;
+
+  right: 25px;
+  bottom: 24px;
+
+  z-index: 8;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  min-width: 126px;
+
+  padding: 10px 13px;
+
+  border: 1px solid rgba(243, 204, 110, 0.24);
+  border-radius: 14px;
+
+  background:
+    rgba(22, 24, 39, 0.8);
+
+  backdrop-filter: blur(12px);
+
+  box-shadow:
+    0 12px 25px rgba(0, 0, 0, 0.18);
+}
+
+.walletIcon {
+  display: grid;
+
+  place-items: center;
+
+  width: 34px;
+  height: 34px;
+
+  flex-shrink: 0;
+
+  border-radius: 9px;
+
+  background:
+    rgba(243, 204, 110, 0.12);
+
+  color: var(--color-gold-light);
+}
+
+.walletIcon svg {
+  width: 17px;
+  height: 17px;
+}
+
+.walletLabel {
+  display: block;
+
+  color: var(--color-text-muted);
+
+  font-size: 0.55rem;
+}
+
+.wallet strong {
+  display: block;
+
+  margin-top: 2px;
+
+  color: var(--color-gold-light);
+
+  font-family: var(--font-mono);
+
+  font-size: 0.78rem;
+}
+
+/* --------------------------------------------------
+   Watch → Complete → Earn
+-------------------------------------------------- */
+
+.flow {
+  position: absolute;
+
+  left: 26px;
+  bottom: 28px;
+
+  z-index: 8;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  padding: 7px 9px;
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+
+  background:
+    rgba(22, 24, 39, 0.55);
+
+  backdrop-filter: blur(8px);
+
+  font-family: var(--font-mono);
+
+  font-size: 0.52rem;
+  font-weight: 600;
+
+  letter-spacing: 0.04em;
+}
+
+.flowStep {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 4px;
+
+  color: var(--color-text-muted);
+}
+
+.flowDot {
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: currentColor;
+}
+
+.flowWatch {
+  color: var(--color-blue-light);
+}
+
+.flowComplete {
+  color: var(--color-text-secondary);
+}
+
+.flowEarn {
+  color: var(--color-gold-light);
+}
+
+.flowArrow {
+  color: rgba(255, 255, 255, 0.25);
+
+  font-size: 0.7rem;
+}
+
+.flowStep {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 4px;
+
+  color: var(--color-text-muted);
+
+  transition:
+    color 300ms ease,
+    opacity 300ms ease;
+}
+
+.flowDot {
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: currentColor;
+
+  transition:
+    transform 300ms ease,
+    box-shadow 300ms ease;
+}
+
+.flowActive {
+  color: var(--color-text-primary);
+}
+
+.flowActive .flowDot {
+  transform: scale(1.25);
+
+  box-shadow:
+    0 0 8px currentColor;
+}
+
+.isPlaying .flowWatch {
+  color: var(--color-blue-light);
+}
+
+.isCompleted .flowWatch {
+  color: var(--color-text-secondary);
+}
+
+.isCompleted .flowComplete {
+  color: var(--color-blue-light);
+}
+
+.isCompleted .flowEarn {
+  color: var(--color-gold-light);
+}
+
+.isCompleted .walletIcon {
+  animation:
+    walletGlow
+    1.8s
+    ease-in-out
+    650ms
+    2;
+}
+
+@keyframes walletGlow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 rgba(243, 204, 110, 0);
+  }
+
+  50% {
+    box-shadow:
+      0 0 16px rgba(243, 204, 110, 0.22);
+  }
+}
+
+.adScreen {
+  animation:
+    adScreenEnter
+    700ms
+    var(--ease-standard)
+    both;
+}
+
+.completedCard {
+  animation:
+    none;
+}
+
+@keyframes adScreenEnter {
+  from {
+    opacity: 0;
+    transform:
+      translateX(-50%)
+      translateY(12px)
+      rotate(-2deg);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translateX(-50%)
+      translateY(0)
+      rotate(-2deg);
+  }
+}
+
+@media (max-width: 900px) {
+  .content {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .visual {
+    height: 330px;
+  }
+}
+
+@media (max-width: 560px) {
+  .visual {
+    height: 280px;
+  }
+
+  .adScreen {
+    top: 24px;
+
+    width: min(300px, 68%);
+  }
+
+  .completedCard {
+    top: 146px;
+    left: 9%;
+
+    padding: 7px 9px;
+  }
+
+  .completedIcon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .completedCard strong {
+    font-size: 0.56rem;
+  }
+
+  .coinOne {
+    top: 95px;
+    right: 19%;
+  }
+
+  .coinTwo {
+    top: 142px;
+    right: 10%;
+  }
+
+  .coinThree {
+    right: 6%;
+    bottom: 68px;
+  }
+
+  .wallet {
+    right: 14px;
+    bottom: 16px;
+
+    min-width: 112px;
+
+    padding: 8px 10px;
+  }
+
+  .walletIcon {
+    width: 29px;
+    height: 29px;
+  }
+
+  .wallet strong {
+    font-size: 0.68rem;
+  }
+
+  .flow {
+    left: 14px;
+    bottom: 17px;
+
+    gap: 4px;
+
+    padding: 6px 7px;
+
+    font-size: 0.45rem;
+  }
+
+  .flowArrow {
+    font-size: 0.6rem;
+  }
+
+  .sparkleOne {
+    left: 11%;
+  }
+
+  .sparkleTwo {
+    right: 17%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .adScreen,
+  .playButton,
+  .playingIndicator span,
+  .completedCard,
+  .completedIcon,
+  .coin,
+  .wallet,
+  .walletIcon,
+  .flowStep,
+  .flowDot {
+    animation: none !important;
+
+    transition: none !important;
+  }
+
+  .adProgress span {
+    transition: none;
+  }
+
+  .isPlaying .adProgress span {
+    width: 100%;
+  }
+
+  .completedCard {
+    opacity: 1;
+    transform: none;
+  }
+
+  .coin {
+    opacity: 0;
+  }
+
+  .wallet {
+    transform: none;
+  }
+}
