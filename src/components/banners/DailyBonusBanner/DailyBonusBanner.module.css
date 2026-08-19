@@ -1,0 +1,1286 @@
+/* ==================================================
+   DAILY BONUS BANNER
+================================================== */
+
+.banner {
+    width: 100%;
+    min-height: 410px;
+    max-height: 450px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: var(--radius-banner);
+
+    background: var(--color-surface);
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 0.92fr) minmax(0, 1.08fr);
+
+    align-items: center;
+
+    gap: var(--space-8);
+
+    padding: var(--space-8);
+}
+
+/* ==================================================
+   LEFT COPY
+================================================== */
+
+.copy {
+    max-width: 570px;
+}
+
+.eyebrow {
+    display: inline-flex;
+
+    margin-bottom: var(--space-4);
+
+    color: #e6c260;
+
+    font-family: var(--font-mono);
+
+    font-size: 0.75rem;
+    font-weight: 600;
+
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.copy h2 {
+    margin: 0;
+
+    color: var(--color-text-primary);
+
+    font-family: var(--font-display);
+
+    font-size: clamp(2rem, 4vw, 3.5rem);
+
+    line-height: 1.04;
+
+    letter-spacing: -0.045em;
+}
+
+.copy p {
+    max-width: 570px;
+
+    margin: var(--space-5) 0 0;
+
+    color: var(--color-text-secondary);
+
+    font-size: 1rem;
+
+    line-height: 1.7;
+}
+
+/* ==================================================
+   STREAK
+================================================== */
+
+.streak {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: var(--space-4);
+
+    color: #c0b88f;
+
+    font-family: var(--font-mono);
+
+    font-size: 0.66rem;
+
+    letter-spacing: 0.025em;
+}
+
+.streakDot {
+    width: 6px;
+    height: 6px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #e6c260;
+
+    box-shadow:
+        0 0 9px rgba(230, 194, 96, 0.4);
+}
+
+/* ==================================================
+   CTA
+================================================== */
+
+.cta {
+    display: inline-flex;
+
+    width: fit-content;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    min-height: 48px;
+
+    margin-top: var(--space-5);
+
+    padding: 0 20px;
+
+    border: 1px solid rgba(230, 194, 96, 0.32);
+    border-radius: var(--radius-button);
+
+    background:
+        linear-gradient(135deg,
+            #f0c95e,
+            #d8a936);
+
+    color: #171827;
+
+    font-size: 0.9rem;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition:
+        transform 180ms ease,
+        box-shadow 180ms ease;
+}
+
+.cta:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 28px rgba(230, 194, 96, 0.18);
+}
+
+.cta:focus-visible {
+    outline: 2px solid #f0c95e;
+
+    outline-offset: 3px;
+}
+
+.cta svg {
+    transition: transform 180ms ease;
+}
+
+.cta:hover svg {
+    transform: translateX(3px);
+}
+
+/* ==================================================
+   RIGHT VISUAL CONTAINER
+================================================== */
+
+.visual {
+    position: relative;
+
+    width: 100%;
+    height: 330px;
+
+    overflow: hidden;
+    isolation: isolate;
+
+    border: 1px solid rgba(230, 194, 96, 0.15);
+    border-radius: var(--radius-card);
+
+    background:
+        radial-gradient(circle at 50% 34%,
+            rgba(230, 194, 96, 0.1),
+            transparent 32%),
+        radial-gradient(circle at 14% 80%,
+            rgba(111, 140, 255, 0.045),
+            transparent 30%),
+        radial-gradient(circle at 88% 78%,
+            rgba(230, 194, 96, 0.045),
+            transparent 28%),
+        linear-gradient(145deg,
+            #292b46,
+            #23263f 55%,
+            #1f2239);
+}
+
+/* ==================================================
+   BACKGROUND
+================================================== */
+
+.visualGlow {
+    position: absolute;
+
+    top: -60px;
+    left: 32%;
+
+    width: 340px;
+    height: 240px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(230, 194, 96, 0.065);
+
+    filter: blur(65px);
+
+    pointer-events: none;
+}
+
+.orb {
+    position: absolute;
+
+    border: 1px solid rgba(230, 194, 96, 0.06);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+.orbOne {
+    top: -125px;
+    right: -75px;
+
+    width: 250px;
+    height: 250px;
+}
+
+.orbTwo {
+    bottom: -155px;
+    left: -90px;
+
+    width: 280px;
+    height: 280px;
+
+    border-color:
+        rgba(111, 140, 255, 0.05);
+}
+
+.sparkle {
+    position: absolute;
+
+    z-index: 2;
+
+    opacity: 0.5;
+}
+
+.sparkleOne {
+    top: 16%;
+    left: 10%;
+
+    color: #e6c260;
+}
+
+.sparkleTwo {
+    top: 21%;
+    right: 10%;
+
+    color: #aebeff;
+}
+
+/* ==================================================
+   VISUAL HEADER
+================================================== */
+
+.visualHeader {
+    position: absolute;
+
+    top: 18px;
+    left: 20px;
+    right: 20px;
+
+    z-index: 10;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+}
+
+.visualLabel {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    color: #aeb4c9;
+
+    font-family: var(--font-mono);
+
+    font-size: 0.56rem;
+    font-weight: 600;
+
+    letter-spacing: 0.045em;
+}
+
+.visualLabel svg {
+    color: #e6c260;
+}
+
+.dayCounter {
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 5px 8px;
+
+    border: 1px solid rgba(230, 194, 96, 0.18);
+    border-radius: 7px;
+
+    background:
+        rgba(230, 194, 96, 0.045);
+
+    color: #e6c260;
+
+    font-family: var(--font-mono);
+
+    font-size: 0.53rem;
+    font-weight: 600;
+
+    letter-spacing: 0.045em;
+}
+
+/* ==================================================
+   REWARD CARD
+================================================== */
+
+.rewardCard {
+    position: absolute;
+
+    top: 34px;
+    left: 50%;
+
+    z-index: 5;
+
+    display: flex;
+
+    width: 275px;
+    height: 182px;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    transform: translateX(-50%);
+
+    border: 1px solid rgba(230, 194, 96, 0.28);
+    border-radius: 19px;
+
+    background:
+        linear-gradient(145deg,
+            rgba(66, 63, 76, 0.97),
+            rgba(29, 32, 52, 0.99));
+
+    box-shadow:
+        0 24px 50px rgba(0, 0, 0, 0.3),
+        0 0 40px rgba(230, 194, 96, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.rewardGlow {
+    position: absolute;
+
+    top: 0;
+    left: 50%;
+
+    width: 145px;
+    height: 90px;
+
+    transform: translateX(-50%);
+
+    border-radius: 50%;
+
+    background:
+        rgba(230, 194, 96, 0.085);
+
+    filter: blur(28px);
+
+    pointer-events: none;
+}
+
+/* ==================================================
+   GIFT
+================================================== */
+
+.giftBox {
+    position: relative;
+
+    display: grid;
+
+    place-items: center;
+
+    width: 68px;
+    height: 68px;
+
+    border: 1px solid rgba(230, 194, 96, 0.32);
+    border-radius: 17px;
+
+    background:
+        linear-gradient(145deg,
+            rgba(230, 194, 96, 0.19),
+            rgba(230, 194, 96, 0.055));
+
+    color: #efc85d;
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.rewardLabel {
+    margin-top: 9px;
+
+    color: #9298ad;
+
+    font-family: var(--font-mono);
+
+    font-size: 0.5rem;
+    font-weight: 600;
+
+    letter-spacing: 0.06em;
+}
+
+.rewardAmount {
+    margin-top: 3px;
+
+    color: #f3f3f6;
+
+    font-family: var(--font-mono);
+
+    font-size: 1.4rem;
+    font-weight: 700;
+
+    line-height: 1;
+
+    letter-spacing: -0.03em;
+}
+
+.rewardAmount span {
+    color: #e6c260;
+
+    font-size: 0.62rem;
+
+    letter-spacing: 0.03em;
+}
+
+.available {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    margin-top: 8px;
+
+    padding: 5px 9px;
+
+    border: 1px solid rgba(230, 194, 96, 0.16);
+    border-radius: 7px;
+
+    background:
+        rgba(230, 194, 96, 0.06);
+
+    color: #b9af8b;
+
+    font-family: var(--font-mono);
+
+    font-size: 0.44rem;
+
+    letter-spacing: 0.05em;
+}
+
+.availableDot {
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: #e6c260;
+
+    box-shadow:
+        0 0 8px rgba(230, 194, 96, 0.4);
+}
+
+/* ==================================================
+   SEVEN DAY TIMELINE
+================================================== */
+
+.progressSection {
+    position: absolute;
+
+    left: 50%;
+    bottom: 27px;
+
+    z-index: 8;
+
+    width: 82%;
+
+    transform: translateX(-50%);
+}
+
+/*
+  IMPORTANT:
+  The timeline is now completely below
+  the reward card.
+*/
+
+.progressTrack {
+    position: absolute;
+
+    top: 13px;
+    left: 7%;
+
+    width: 86%;
+    height: 2px;
+
+    border-radius: 999px;
+
+    background:
+        rgba(180, 185, 202, 0.14);
+}
+
+.progressFill {
+    width: 66%;
+
+    height: 100%;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(90deg,
+            rgba(230, 194, 96, 0.3),
+            #e6c260);
+
+    box-shadow:
+        0 0 8px rgba(230, 194, 96, 0.12);
+}
+
+.days {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(7, 1fr);
+
+    align-items: start;
+
+    gap: 4px;
+}
+
+.day {
+    display: flex;
+
+    min-width: 0;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 4px;
+}
+
+.dayNode {
+    position: relative;
+
+    display: grid;
+
+    place-items: center;
+
+    width: 23px;
+    height: 23px;
+
+    border: 1px solid rgba(180, 185, 202, 0.17);
+    border-radius: 50%;
+
+    background: #20233b;
+
+    color: #8f95aa;
+}
+
+.dayName {
+    color: #7e8499;
+
+    font-family: var(--font-mono);
+
+    font-size: 0.43rem;
+
+    font-weight: 600;
+}
+
+.dayNumber {
+    color: #676d82;
+
+    font-family: var(--font-mono);
+
+    font-size: 0.39rem;
+}
+
+/* Completed */
+
+.completed .dayNode {
+    border-color:
+        rgba(230, 194, 96, 0.35);
+
+    background:
+        rgba(230, 194, 96, 0.12);
+
+    color: #e6c260;
+}
+
+.completed .dayName {
+    color: #a9a58e;
+}
+
+/* Today */
+
+.today .dayNode {
+    width: 29px;
+    height: 29px;
+
+    margin-top: -2px;
+
+    border-color: #e6c260;
+
+    background:
+        rgba(230, 194, 96, 0.16);
+
+    box-shadow:
+        0 0 18px rgba(230, 194, 96, 0.13);
+}
+
+.today .dayName {
+    color: #e6c260;
+
+    font-weight: 700;
+}
+
+.today .dayNumber {
+    color: #b7a969;
+}
+
+.todayDot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #e6c260;
+
+    box-shadow:
+        0 0 9px rgba(230, 194, 96, 0.5);
+}
+
+/* ==================================================
+   PROGRESS FOOTER
+================================================== */
+
+.progressMeta {
+    position: absolute;
+
+    right: 20px;
+    bottom: 11px;
+    left: 20px;
+
+    z-index: 10;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    color: #747b91;
+
+    font-family: var(--font-mono);
+
+    font-size: 0.47rem;
+
+    letter-spacing: 0.045em;
+}
+
+.progressMeta strong {
+    color: #b7af91;
+
+    font-size: 0.5rem;
+}
+
+/* ==================================================
+   TABLET
+================================================== */
+
+@media (max-width: 900px) {
+    .banner {
+        min-height: 0;
+        max-height: none;
+    }
+
+    .content {
+        grid-template-columns: 1fr;
+
+        gap: var(--space-7);
+
+        padding: var(--space-7);
+    }
+
+    .copy {
+        max-width: 620px;
+    }
+
+    .visual {
+        height: 330px;
+    }
+}
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media (max-width: 560px) {
+    .banner {
+        min-height: 0;
+        max-height: none;
+
+        border-radius: 22px;
+    }
+
+    .content {
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 24px;
+
+        padding: 22px;
+    }
+
+    /* Copy */
+
+    .copy {
+        width: 100%;
+    }
+
+    .eyebrow {
+        margin-bottom: 12px;
+
+        font-size: 0.64rem;
+    }
+
+    .copy h2 {
+        font-size: clamp(2rem, 10vw, 2.5rem);
+
+        line-height: 1.02;
+
+        letter-spacing: -0.04em;
+    }
+
+    .copy p {
+        max-width: none;
+
+        margin-top: 16px;
+
+        font-size: 0.88rem;
+
+        line-height: 1.6;
+    }
+
+    .streak {
+        margin-top: 13px;
+
+        font-size: 0.58rem;
+    }
+
+    .cta {
+        width: 100%;
+
+        min-height: 46px;
+
+        margin-top: 17px;
+
+        font-size: 0.82rem;
+    }
+
+    /* Visual */
+
+    .visual {
+        height: 330px;
+
+        border-radius: 18px;
+    }
+
+    .visualHeader {
+        top: 14px;
+        left: 15px;
+        right: 15px;
+    }
+
+    .visualLabel {
+        gap: 5px;
+
+        font-size: 0.45rem;
+    }
+
+    .visualLabel svg {
+        width: 12px;
+        height: 12px;
+    }
+
+    .dayCounter {
+        padding: 4px 6px;
+
+        font-size: 0.42rem;
+    }
+
+    /* Reward */
+
+    .rewardCard {
+        top: 30px;
+
+        width: 210px;
+        height: 170px;
+
+        border-radius: 16px;
+    }
+
+    .giftBox {
+        width: 62px;
+        height: 62px;
+
+        border-radius: 14px;
+    }
+
+    .giftBox svg {
+        width: 40px;
+        height: 40px;
+    }
+
+    .rewardLabel {
+        margin-top: 8px;
+
+        font-size: 0.42rem;
+    }
+
+    .rewardAmount {
+        font-size: 1.15rem;
+    }
+
+    .rewardAmount span {
+        font-size: 0.54rem;
+    }
+
+    .available {
+        margin-top: 7px;
+
+        padding: 4px 7px;
+
+        font-size: 0.39rem;
+    }
+
+    /* Timeline */
+
+    .progressSection {
+        bottom: 28px;
+
+        width: 91%;
+    }
+
+    .progressTrack {
+        top: 11px;
+
+        left: 6%;
+        width: 88%;
+    }
+
+    .dayNode {
+        width: 22px;
+        height: 22px;
+    }
+
+    .today .dayNode {
+        width: 26px;
+        height: 26px;
+    }
+
+    .dayName {
+        font-size: 0.37rem;
+    }
+
+    .dayNumber {
+        font-size: 0.34rem;
+    }
+
+    .progressMeta {
+        right: 15px;
+        bottom: 14px;
+        left: 15px;
+
+        font-size: 0.4rem;
+    }
+
+    .progressMeta strong {
+        font-size: 0.43rem;
+    }
+
+    .sparkleOne {
+        top: 15%;
+        left: 7%;
+    }
+
+    .sparkleTwo {
+        top: 17%;
+        right: 7%;
+    }
+}
+
+/* ==================================================
+   DAILY BONUS ANIMATION
+================================================== */
+
+/* ------------------------------------------
+   Initial states
+------------------------------------------ */
+
+.rewardCard {
+  opacity: 0;
+
+  transform:
+    translateX(-50%)
+    translateY(18px)
+    scale(0.97);
+
+  transition:
+    opacity 600ms ease,
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.giftBox {
+  transform: scale(0.82);
+
+  transition:
+    transform 550ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.rewardLabel,
+.rewardAmount,
+.available {
+  opacity: 0;
+
+  transform: translateY(6px);
+
+  transition:
+    opacity 400ms ease,
+    transform 400ms ease;
+}
+
+/* ------------------------------------------
+   Timeline
+------------------------------------------ */
+
+.progressTrack {
+  opacity: 0;
+
+  transition:
+    opacity 450ms ease 650ms;
+}
+
+.progressFill {
+  width: 0;
+
+  transition:
+    width 900ms cubic-bezier(0.22, 1, 0.36, 1) 700ms;
+}
+
+.day {
+  opacity: 0;
+
+  transform: translateY(7px);
+
+  transition:
+    opacity 350ms ease,
+    transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.day:nth-child(1) {
+  transition-delay: 700ms;
+}
+
+.day:nth-child(2) {
+  transition-delay: 760ms;
+}
+
+.day:nth-child(3) {
+  transition-delay: 820ms;
+}
+
+.day:nth-child(4) {
+  transition-delay: 880ms;
+}
+
+.day:nth-child(5) {
+  transition-delay: 940ms;
+}
+
+.day:nth-child(6) {
+  transition-delay: 1000ms;
+}
+
+.day:nth-child(7) {
+  transition-delay: 1060ms;
+}
+
+.progressMeta {
+  opacity: 0;
+
+  transform: translateY(6px);
+
+  transition:
+    opacity 450ms ease 1150ms,
+    transform 450ms ease 1150ms;
+}
+
+/* ------------------------------------------
+   Decorative elements
+------------------------------------------ */
+
+.sparkle {
+  opacity: 0;
+
+  transform:
+    scale(0.6)
+    rotate(-15deg);
+
+  transition:
+    opacity 500ms ease 800ms,
+    transform 600ms cubic-bezier(0.22, 1, 0.36, 1) 800ms;
+}
+
+/* ==================================================
+   VISIBLE STATE
+================================================== */
+
+.isVisible .rewardCard {
+  opacity: 1;
+
+  transform:
+    translateX(-50%)
+    translateY(0)
+    scale(1);
+}
+
+.isVisible .giftBox {
+  transform: scale(1);
+}
+
+.isVisible .rewardLabel,
+.isVisible .rewardAmount,
+.isVisible .available {
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+.isVisible .rewardLabel {
+  transition-delay: 250ms;
+}
+
+.isVisible .rewardAmount {
+  transition-delay: 330ms;
+}
+
+.isVisible .available {
+  transition-delay: 410ms;
+}
+
+.isVisible .progressTrack {
+  opacity: 1;
+}
+
+.isVisible .progressFill {
+  width: 66%;
+}
+
+.isVisible .day {
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+.isVisible .progressMeta {
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+.isVisible .sparkle {
+  opacity: 0.5;
+
+  transform:
+    scale(1)
+    rotate(0);
+}
+
+/* ------------------------------------------
+   One-time gift emphasis
+------------------------------------------ */
+
+.isVisible .giftBox {
+  animation:
+    giftReveal 700ms
+    cubic-bezier(0.22, 1, 0.36, 1)
+    650ms
+    both;
+}
+
+@keyframes giftReveal {
+  0% {
+    transform: scale(0.82);
+
+    box-shadow:
+      0 10px 25px rgba(0, 0, 0, 0.16),
+      0 0 0 rgba(230, 194, 96, 0);
+  }
+
+  65% {
+    transform: scale(1.07);
+
+    box-shadow:
+      0 10px 25px rgba(0, 0, 0, 0.16),
+      0 0 24px rgba(230, 194, 96, 0.18);
+  }
+
+  100% {
+    transform: scale(1);
+
+    box-shadow:
+      0 10px 25px rgba(0, 0, 0, 0.16),
+      0 0 0 rgba(230, 194, 96, 0);
+  }
+}
+
+.isVisible .availableDot {
+  animation:
+    availablePulse 2.2s
+    ease-in-out
+    1.5s
+    2;
+}
+
+@keyframes availablePulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 7px rgba(230, 194, 96, 0.35);
+  }
+
+  50% {
+    box-shadow:
+      0 0 14px rgba(230, 194, 96, 0.7);
+  }
+}
+
+.isVisible .today .dayNode {
+  animation:
+    todayRewardPulse 900ms
+    ease-out
+    1.15s
+    both;
+}
+
+@keyframes todayRewardPulse {
+  0% {
+    transform: scale(0.85);
+
+    box-shadow:
+      0 0 0 rgba(230, 194, 96, 0);
+  }
+
+  55% {
+    transform: scale(1.14);
+
+    box-shadow:
+      0 0 20px rgba(230, 194, 96, 0.2);
+  }
+
+  100% {
+    transform: scale(1);
+
+    box-shadow:
+      0 0 18px rgba(230, 194, 96, 0.13);
+  }
+}
+
+.cta {
+  opacity: 0;
+
+  transform: translateY(8px);
+
+  transition:
+    opacity 500ms ease 1100ms,
+    transform 500ms cubic-bezier(0.22, 1, 0.36, 1) 1100ms,
+    box-shadow 180ms ease;
+}
+
+.isVisible .visualGlow {
+  animation:
+    ambientGlow 2.2s
+    ease-out
+    200ms
+    both;
+}
+
+@keyframes ambientGlow {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ==================================================
+   REDUCED MOTION
+================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .rewardCard,
+  .giftBox,
+  .rewardLabel,
+  .rewardAmount,
+  .available,
+  .progressTrack,
+  .progressFill,
+  .day,
+  .progressMeta,
+  .sparkle,
+  .visualGlow {
+    opacity: 1 !important;
+
+    transform: none !important;
+
+    transition: none !important;
+
+    animation: none !important;
+  }
+
+  .rewardCard {
+    transform: translateX(-50%) !important;
+  }
+
+  .progressFill {
+    width: 66% !important;
+  }
+
+  .cta {
+    transition: none;
+  }
+}
