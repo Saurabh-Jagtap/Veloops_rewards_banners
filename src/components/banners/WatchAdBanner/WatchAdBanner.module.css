@@ -1,49 +1,75 @@
 .banner {
   width: 100%;
-  height: 430px;
-  min-height: 410px;
-  max-height: 450px;
+  min-height: 430px;
 
   overflow: hidden;
 
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: var(--radius-banner);
 
-  background: var(--color-surface);
+  background:
+    radial-gradient(circle at 70% 48%,
+      rgba(43, 73, 145, 0.09),
+      transparent 34%),
+    radial-gradient(circle at 22% 55%,
+      rgba(39, 61, 120, 0.05),
+      transparent 32%),
+    linear-gradient(135deg,
+      #0b101b 0%,
+      #0c1220 52%,
+      #0a0e18 100%);
 }
 
 .content {
   width: 100%;
-  height: 100%;
+  min-height: 430px;
 
   display: grid;
   grid-template-columns:
-    minmax(0, 0.92fr)
-    minmax(0, 1.08fr);
+    minmax(330px, 0.8fr) minmax(560px, 1.2fr);
 
   align-items: center;
 
-  gap: var(--space-8);
+  gap: clamp(34px, 4vw, 58px);
 
-  padding: var(--space-8);
+  padding: 34px 46px;
 }
+
+/* =========================================================
+   LEFT CONTENT
+========================================================= */
 
 .copy {
-  max-width: 560px;
+  width: 100%;
+  max-width: 540px;
 }
 
-.eyebrow {
-  display: inline-flex;
+.sectionNumber {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 
-  margin-bottom: var(--space-4);
+  margin-bottom: 22px;
+}
 
+.number {
   color: var(--color-blue-light);
 
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+
+  line-height: 1;
+}
+
+.eyebrow {
+  color: var(--color-blue-light);
+
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
   font-weight: 600;
 
-  letter-spacing: 0.04em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
@@ -54,34 +80,106 @@
 
   font-family: var(--font-display);
 
-  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-size: clamp(2.35rem, 3.45vw, 3.15rem);
+  font-weight: 700;
 
-  line-height: 1.05;
-
-  letter-spacing: -0.04em;
+  line-height: 0.99;
+  letter-spacing: -0.045em;
 }
 
-.copy p {
-  max-width: 520px;
+.copy h2 span {
+  color: var(--color-blue-light);
+}
 
-  margin: var(--space-5) 0 0;
+.description {
+  max-width: 470px;
+
+  margin: 20px 0 0;
 
   color: var(--color-text-secondary);
 
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+/* =========================================================
+   WATCH → COMPLETE → EARN
+========================================================= */
+
+.earningFlow {
+  display: flex;
+  align-items: flex-start;
+
+  margin-top: 24px;
+}
+
+.flowStep {
+  min-width: 58px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+}
+
+.flowIcon {
+  width: 43px;
+  height: 43px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid rgba(111, 140, 255, 0.42);
+  border-radius: 50%;
+
+  background:
+    rgba(17, 25, 50, 0.72);
+
+  color: var(--color-blue-light);
+
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.025),
+    0 0 18px rgba(111, 140, 255, 0.04);
+}
+
+.flowStep:last-child .flowIcon {
+  border-color: rgba(243, 204, 110, 0.5);
+
+  color: var(--color-gold-light);
+
+  background:
+    rgba(49, 39, 20, 0.65);
+}
+
+.flowLabel {
+  margin-top: 9px;
+
+  color: var(--color-text-primary);
+
+  font-size: 0.67rem;
+  font-weight: 600;
+}
+
+.flowSubLabel {
+  margin-top: 2px;
+
+  color: var(--color-text-muted);
+
+  font-size: 0.62rem;
+}
+
+.flowArrow {
+  margin: 17px 10px 0;
+
+  color: rgba(255, 255, 255, 0.35);
+
   font-size: 1rem;
-  line-height: 1.7;
 }
 
-.note {
-  max-width: 470px !important;
-
-  margin-top: var(--space-3) !important;
-
-  color: var(--color-text-muted) !important;
-
-  font-size: 0.7rem !important;
-  line-height: 1.5 !important;
-}
+/* =========================================================
+   CTA
+========================================================= */
 
 .cta {
   display: inline-flex;
@@ -89,41 +187,45 @@
   align-items: center;
   justify-content: center;
 
-  gap: 8px;
+  gap: 9px;
 
-  min-height: 48px;
+  min-height: 45px;
 
-  margin-top: var(--space-6);
+  margin-top: 17px;
 
   padding: 0 18px;
 
-  border: 1px solid rgba(145, 166, 255, 0.3);
+  border: 1px solid rgba(111, 140, 255, 0.28);
   border-radius: var(--radius-button);
 
   background:
-    linear-gradient(
-      135deg,
-      var(--color-blue-light),
-      var(--color-blue)
-    );
+    linear-gradient(135deg,
+      #6f8cff,
+      #4f73df);
 
-  color: #15182a;
+  color: #ffffff;
 
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   font-weight: 700;
 
   cursor: pointer;
 
+  box-shadow:
+    0 8px 22px rgba(70, 105, 220, 0.18);
+
   transition:
-    transform var(--duration-fast) var(--ease-standard),
-    box-shadow var(--duration-fast) var(--ease-standard);
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    filter 180ms ease;
 }
 
 .cta:hover {
   transform: translateY(-2px);
 
+  filter: brightness(1.05);
+
   box-shadow:
-    0 10px 25px rgba(111, 140, 255, 0.2);
+    0 11px 28px rgba(70, 105, 220, 0.28);
 }
 
 .cta:focus-visible {
@@ -132,152 +234,131 @@
 }
 
 .cta svg {
-  transition:
-    transform 180ms ease;
+  transition: transform 180ms ease;
 }
 
 .cta:hover svg {
   transform: translateX(3px);
 }
 
+/* =========================================================
+   RIGHT VISUAL
+========================================================= */
+
 .visual {
   position: relative;
 
   width: 100%;
-  height: 330px;
+  height: 315px;
+
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1.3fr) minmax(205px, 0.7fr);
+
+  gap: 16px;
+
+  padding: 18px;
 
   overflow: hidden;
   isolation: isolate;
 
-  border: 1px solid rgba(111, 140, 255, 0.1);
+  border: 1px solid rgba(111, 140, 255, 0.13);
   border-radius: var(--radius-card);
 
   background:
-    radial-gradient(
-      circle at 48% 40%,
-      rgba(111, 140, 255, 0.18),
-      transparent 34%
-    ),
-    radial-gradient(
-      circle at 82% 80%,
-      rgba(243, 204, 110, 0.08),
-      transparent 30%
-    ),
-    linear-gradient(
-      145deg,
-      #252a49,
-      #20233f 55%,
-      #1c1f38
-    );
+    radial-gradient(circle at 35% 50%,
+      rgba(44, 76, 153, 0.18),
+      transparent 42%),
+    radial-gradient(circle at 80% 70%,
+      rgba(243, 204, 110, 0.055),
+      transparent 30%),
+    linear-gradient(145deg,
+      #111725,
+      #0f1522 55%,
+      #0c111b);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.025);
 }
 
-.visualGlow {
-  position: absolute;
-
-  top: 4%;
-  left: 28%;
-
-  width: 300px;
-  height: 230px;
-
-  border-radius: 50%;
-
-  background:
-    rgba(111, 140, 255, 0.12);
-
-  filter: blur(55px);
-
-  pointer-events: none;
-}
-
+.visualGlow,
 .visualGlowSecondary {
   position: absolute;
 
-  right: -5%;
-  bottom: -25%;
-
-  width: 250px;
-  height: 180px;
+  pointer-events: none;
 
   border-radius: 50%;
 
-  background:
-    rgba(243, 204, 110, 0.07);
-
   filter: blur(60px);
 
-  pointer-events: none;
+  z-index: -1;
 }
 
-/* --------------------------------------------------
-   Decorative elements
--------------------------------------------------- */
+.visualGlow {
+  width: 260px;
+  height: 220px;
 
-.sparkle {
-  position: absolute;
+  top: 10%;
+  left: 22%;
 
-  z-index: 7;
-
-  width: 14px;
-  height: 14px;
-
-  opacity: 0.7;
-
-  pointer-events: none;
+  background:
+    rgba(69, 101, 208, 0.13);
 }
 
-.sparkleOne {
-  top: 18%;
-  left: 17%;
+.visualGlowSecondary {
+  width: 220px;
+  height: 190px;
 
-  color: var(--color-blue-light);
+  right: -5%;
+  bottom: -20%;
+
+  background:
+    rgba(243, 204, 110, 0.08);
 }
 
-.sparkleTwo {
-  top: 16%;
-  right: 24%;
-
-  width: 11px;
-  height: 11px;
-
-  color: var(--color-gold-light);
-}
-
-/* --------------------------------------------------
-   Advertisement player
--------------------------------------------------- */
+/* =========================================================
+   AD SCREEN
+========================================================= */
 
 .adScreen {
-  position: absolute;
+  position: relative;
 
-  top: 28px;
-  left: 50%;
+  min-width: 0;
+  height: 100%;
 
-  z-index: 3;
-
-  width: min(350px, 62%);
-
-  aspect-ratio: 16 / 10;
-
-  transform: translateX(-50%) rotate(-2deg);
+  display: flex;
+  flex-direction: column;
 
   overflow: hidden;
 
-  border: 1px solid rgba(145, 166, 255, 0.3);
-  border-radius: 17px;
+  border: 1px solid rgba(111, 140, 255, 0.28);
+  border-radius: 14px;
 
   background:
-    linear-gradient(
-      145deg,
-      #2c4fa0,
-      #182350
-    );
+    linear-gradient(145deg,
+      #1b3474,
+      #152451 48%,
+      #111936);
 
   box-shadow:
-    0 24px 45px rgba(0, 0, 0, 0.3),
-    0 0 35px rgba(111, 140, 255, 0.1),
+    0 18px 38px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+  transition:
+    box-shadow 300ms ease,
+    transform 300ms ease;
+}
+
+.isPlaying .adScreen {
+  box-shadow:
+    0 20px 42px rgba(0, 0, 0, 0.32),
+    0 0 32px rgba(111, 140, 255, 0.13),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
+
+/* =========================================================
+   AD HEADER
+========================================================= */
 
 .adHeader {
   display: flex;
@@ -285,105 +366,208 @@
   align-items: center;
   justify-content: space-between;
 
-  padding: 10px 12px;
+  padding: 12px 14px;
 
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.68);
 
   font-family: var(--font-mono);
   font-size: 0.52rem;
+  font-weight: 500;
 
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
 }
 
-.adDot {
-  width: 6px;
-  height: 6px;
+.adBadge {
+  padding: 4px 7px;
+
+  border-radius: 5px;
+
+  background:
+    rgba(10, 15, 31, 0.42);
+
+  color: rgba(255, 255, 255, 0.58);
+
+  font-size: 0.44rem;
+}
+
+/* =========================================================
+   AD ARTWORK
+========================================================= */
+
+.adArtwork {
+  position: relative;
+
+  flex: 1;
+
+  display: grid;
+  place-items: center;
+
+  overflow: hidden;
+}
+
+.artworkGlow {
+  position: absolute;
+
+  width: 190px;
+  height: 150px;
 
   border-radius: 50%;
 
-  background: var(--color-gold-light);
+  background:
+    radial-gradient(circle,
+      rgba(91, 133, 255, 0.3),
+      rgba(178, 81, 255, 0.08) 45%,
+      transparent 72%);
 
-  box-shadow:
-    0 0 8px rgba(243, 204, 110, 0.4);
+  filter: blur(16px);
 }
 
-.adContent {
-  display: flex;
+/* =========================================================
+   HEADPHONE ARTWORK
+========================================================= */
 
+.headphones {
+  position: relative;
+
+  width: 170px;
+  height: 125px;
+
+  transform: translateY(4px);
+
+  filter:
+    drop-shadow(0 12px 20px rgba(0, 0, 0, 0.35));
+}
+
+.headphoneBand {
+  position: absolute;
+
+  top: 5px;
+  left: 28px;
+
+  width: 114px;
+  height: 105px;
+
+  border: 5px solid transparent;
+  border-top-color: #9bb5ff;
+
+  border-radius: 60px 60px 0 0;
+
+  transform: rotate(1deg);
+
+  opacity: 0.9;
+}
+
+.headphoneLeft,
+.headphoneRight {
+  position: absolute;
+
+  top: 50px;
+
+  width: 42px;
+  height: 58px;
+
+  border-radius: 15px;
+
+  background:
+    linear-gradient(145deg,
+      #5b8cff,
+      #232c59 55%,
+      #151a36);
+
+  box-shadow:
+    inset 0 0 0 2px rgba(255, 255, 255, 0.12),
+    0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+.headphoneLeft {
+  left: 12px;
+
+  transform: rotate(-9deg);
+}
+
+.headphoneRight {
+  right: 12px;
+
+  transform: rotate(9deg);
+}
+
+.headphoneLeft::after,
+.headphoneRight::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 8px;
+
+  border-radius: 10px;
+
+  background:
+    radial-gradient(circle at 40% 40%,
+      rgba(255, 111, 221, 0.7),
+      rgba(82, 91, 190, 0.5) 45%,
+      rgba(8, 12, 28, 0.8));
+
+  box-shadow:
+    inset 0 0 12px rgba(130, 160, 255, 0.25);
+}
+
+/* =========================================================
+   AD CONTROLS
+========================================================= */
+
+.adControls {
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
   flex-direction: column;
 
   align-items: center;
   justify-content: center;
 
-  height: calc(100% - 48px);
+  pointer-events: none;
 }
 
 .playButton {
+  width: 58px;
+  height: 58px;
+
   display: grid;
-
   place-items: center;
-
-  width: 64px;
-  height: 64px;
 
   padding: 0;
 
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.24);
   border-radius: 50%;
 
   background:
-    rgba(255, 255, 255, 0.1);
+    rgba(34, 49, 94, 0.72);
 
-  color: white;
+  color: #ffffff;
 
   box-shadow:
-    0 10px 25px rgba(0, 0, 0, 0.18);
+    0 10px 28px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
 
   cursor: pointer;
 
-  transition:
-    transform 180ms ease,
-    background 180ms ease,
-    box-shadow 180ms ease;
-}
+  pointer-events: auto;
 
-.playButton {
-  display: grid;
-
-  place-items: center;
-
-  width: 64px;
-  height: 64px;
-
-  padding: 0;
-
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-
-  background:
-    rgba(255, 255, 255, 0.1);
-
-  color: white;
-
-  box-shadow:
-    0 10px 25px rgba(0, 0, 0, 0.18);
-
-  cursor: pointer;
+  backdrop-filter: blur(8px);
 
   transition:
-    transform 180ms ease,
     background 180ms ease,
     box-shadow 180ms ease;
 }
 
 .playButton:hover:not(:disabled) {
-  transform: scale(1.07);
-
   background:
-    rgba(255, 255, 255, 0.16);
+    rgba(61, 83, 151, 0.82);
 
   box-shadow:
-    0 12px 28px rgba(0, 0, 0, 0.24);
+    0 12px 32px rgba(0, 0, 0, 0.36),
+    0 0 20px rgba(111, 140, 255, 0.12);
 }
 
 .playButton:focus-visible {
@@ -395,44 +579,52 @@
   cursor: default;
 }
 
+.adMessage {
+  margin-top: 10px;
+
+  color: rgba(255, 255, 255, 0.82);
+
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  font-weight: 600;
+
+  letter-spacing: 0.09em;
+}
+
 .playingIndicator {
   display: flex;
 
   align-items: flex-end;
-
   justify-content: center;
 
   gap: 4px;
 
-  height: 20px;
+  height: 18px;
 }
 
 .playingIndicator span {
-  width: 4px;
+  width: 3px;
 
   border-radius: 999px;
 
   background: currentColor;
 
   animation:
-    soundWave
-    0.8s
-    ease-in-out
-    infinite alternate;
+    soundWave 0.8s ease-in-out infinite alternate;
 }
 
 .playingIndicator span:nth-child(1) {
-  height: 10px;
+  height: 9px;
 
   animation-delay: -0.2s;
 }
 
 .playingIndicator span:nth-child(2) {
-  height: 19px;
+  height: 17px;
 }
 
 .playingIndicator span:nth-child(3) {
-  height: 13px;
+  height: 12px;
 
   animation-delay: -0.1s;
 }
@@ -449,25 +641,27 @@
   }
 }
 
-.adMessage {
-  margin-top: 13px;
+/* =========================================================
+   VIDEO META / PROGRESS
+========================================================= */
 
-  color: rgba(255, 255, 255, 0.82);
+.videoMeta {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 0 13px 12px;
+
+  color: rgba(255, 255, 255, 0.65);
 
   font-family: var(--font-mono);
-
-  font-size: 0.62rem;
-  font-weight: 600;
-
-  letter-spacing: 0.08em;
+  font-size: 0.46rem;
 }
 
 .adProgress {
-  position: absolute;
-
-  right: 14px;
-  bottom: 12px;
-  left: 14px;
+  flex: 1;
 
   height: 3px;
 
@@ -476,7 +670,7 @@
   border-radius: 999px;
 
   background:
-    rgba(255, 255, 255, 0.12);
+    rgba(255, 255, 255, 0.15);
 }
 
 .adProgress span {
@@ -488,13 +682,12 @@
   border-radius: inherit;
 
   background:
-    linear-gradient(
-      90deg,
-      var(--color-blue-light),
-      var(--color-gold-light)
-    );
+    linear-gradient(90deg,
+      #9ab4ff,
+      var(--color-blue-light));
 
-  transition: width 180ms linear;
+  transition:
+    width 180ms linear;
 }
 
 .isPlaying .adProgress span {
@@ -504,736 +697,736 @@
     width 3s linear;
 }
 
-.adScreen {
-  transition:
-    transform 500ms var(--ease-standard),
-    box-shadow 500ms ease;
-}
+/* =========================================================
+   REWARD PANEL
+========================================================= */
 
-.isPlaying .adScreen {
-  animation: none;
-
-  transform:
-    translateX(-50%)
-    rotate(-1deg)
-    scale(1.015);
-
-  box-shadow:
-    0 28px 55px rgba(0, 0, 0, 0.34),
-    0 0 45px rgba(111, 140, 255, 0.16),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12);
-}
-
-/* --------------------------------------------------
-   Completed state
--------------------------------------------------- */
-
-.completedCard {
-  position: absolute;
-
-  top: 174px;
-  left: 15%;
-
-  z-index: 6;
+.rewardPanel {
+  min-width: 0;
 
   display: flex;
+  flex-direction: column;
 
-  align-items: center;
+  padding: 16px;
 
-  gap: 9px;
-
-  padding: 9px 12px;
-
-  border: 1px solid rgba(111, 140, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 12px;
 
   background:
-    rgba(22, 24, 39, 0.78);
-
-  backdrop-filter: blur(12px);
+    linear-gradient(145deg,
+      rgba(18, 23, 39, 0.94),
+      rgba(13, 17, 29, 0.92));
 
   box-shadow:
-    0 12px 25px rgba(0, 0, 0, 0.18);
-
-  opacity: 0;
-
-  transform:
-    translateY(8px)
-    scale(0.96);
-
-  pointer-events: none;
-
-  transition:
-    opacity 350ms ease,
-    transform 350ms var(--ease-standard);
+    inset 0 1px 0 rgba(255, 255, 255, 0.025);
 }
 
-.isCompleted .completedCard {
-  opacity: 1;
-
-  transform:
-    translateY(0)
-    scale(1);
-}
-
-.isCompleted .completedIcon {
-  animation:
-    completedCheck
-    450ms
-    var(--ease-standard);
-}
-
-@keyframes completedCheck {
-  0% {
-    transform: scale(0.7);
-    opacity: 0;
-  }
-
-  60% {
-    transform: scale(1.12);
-  }
-
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-.completedIcon {
-  display: grid;
-
-  place-items: center;
-
-  width: 27px;
-  height: 27px;
-
-  border-radius: 8px;
-
-  background:
-    rgba(111, 140, 255, 0.14);
-
-  color: var(--color-blue-light);
-}
-
-.completedIcon svg {
-  width: 15px;
-  height: 15px;
-
-  stroke-width: 2.5;
-}
-
-.completedLabel {
-  display: block;
-
-  color: var(--color-text-muted);
-
-  font-size: 0.52rem;
-
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-
-.completedCard strong {
-  display: block;
-
-  margin-top: 2px;
-
-  color: var(--color-text-primary);
+.rewardHeader {
+  color: var(--color-text-secondary);
 
   font-family: var(--font-mono);
+  font-size: 0.58rem;
 
-  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
-/* --------------------------------------------------
-   Reward coins
--------------------------------------------------- */
-
-.coins {
-  position: absolute;
-
-  inset: 0;
-
-  z-index: 5;
-
-  pointer-events: none;
-}
-
-.coin {
-  position: absolute;
-
-  display: grid;
-
-  place-items: center;
-
-  width: 38px;
-  height: 38px;
-
-  border: 1px solid rgba(243, 204, 110, 0.35);
-  border-radius: 50%;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(243, 204, 110, 0.28),
-      rgba(185, 133, 43, 0.12)
-    );
-
-  color: var(--color-gold-light);
-
-  box-shadow:
-    0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.coin svg {
-  width: 18px;
-  height: 18px;
-}
-
-.coinOne {
-  top: 108px;
-  right: 23%;
-
-  transform: rotate(-8deg);
-}
-
-.coinTwo {
-  top: 158px;
-  right: 15%;
-
-  width: 31px;
-  height: 31px;
-
-  transform: rotate(7deg);
-}
-
-.coinThree {
-  right: 9%;
-  bottom: 78px;
-
-  width: 26px;
-  height: 26px;
-
-  transform: rotate(-5deg);
-}
-
-.coinTwo svg {
-  width: 15px;
-  height: 15px;
-}
-
-.coinThree svg {
-  width: 13px;
-  height: 13px;
-}
-
-.coin {
-  transition:
-    transform 800ms var(--ease-standard),
-    opacity 400ms ease,
-    box-shadow 400ms ease;
-}
-
-.isCompleted .coinOne {
-  transform:
-    translate(
-      105px,
-      105px
-    )
-    scale(0.72)
-    rotate(180deg);
-
-  opacity: 0;
-}
-
-.isCompleted .coinTwo {
-  transform:
-    translate(
-      62px,
-      68px
-    )
-    scale(0.68)
-    rotate(-180deg);
-
-  opacity: 0;
-}
-
-.isCompleted .coinThree {
-  transform:
-    translate(
-      24px,
-      40px
-    )
-    scale(0.6)
-    rotate(180deg);
-
-  opacity: 0;
-}
-
-.isCompleted .wallet {
-  animation:
-    rewardArrive
-    650ms
-    var(--ease-standard)
-    650ms both;
-}
-
-@keyframes rewardArrive {
-  0% {
-    transform: scale(1);
-    box-shadow:
-      0 12px 25px rgba(0, 0, 0, 0.18);
-  }
-
-  45% {
-    transform: scale(1.06);
-
-    box-shadow:
-      0 12px 25px rgba(0, 0, 0, 0.18),
-      0 0 25px rgba(243, 204, 110, 0.18);
-  }
-
-  100% {
-    transform: scale(1);
-
-    box-shadow:
-      0 12px 25px rgba(0, 0, 0, 0.18);
-  }
-}
-
-/* --------------------------------------------------
-   Reward destination
--------------------------------------------------- */
-
-.wallet {
-  position: absolute;
-
-  right: 25px;
-  bottom: 24px;
-
-  z-index: 8;
-
+.rewardAmount {
   display: flex;
 
   align-items: center;
 
   gap: 10px;
 
-  min-width: 126px;
-
-  padding: 10px 13px;
-
-  border: 1px solid rgba(243, 204, 110, 0.24);
-  border-radius: 14px;
-
-  background:
-    rgba(22, 24, 39, 0.8);
-
-  backdrop-filter: blur(12px);
-
-  box-shadow:
-    0 12px 25px rgba(0, 0, 0, 0.18);
+  margin-top: 17px;
 }
 
-.walletIcon {
-  display: grid;
+.rewardCoin {
+  width: 31px;
+  height: 31px;
 
+  display: grid;
   place-items: center;
 
-  width: 34px;
-  height: 34px;
-
-  flex-shrink: 0;
-
-  border-radius: 9px;
+  border: 1px solid rgba(243, 204, 110, 0.35);
+  border-radius: 50%;
 
   background:
     rgba(243, 204, 110, 0.12);
 
   color: var(--color-gold-light);
+
+  box-shadow:
+    0 0 16px rgba(243, 204, 110, 0.07);
 }
 
-.walletIcon svg {
-  width: 17px;
-  height: 17px;
-}
-
-.walletLabel {
-  display: block;
-
-  color: var(--color-text-muted);
-
-  font-size: 0.55rem;
-}
-
-.wallet strong {
-  display: block;
-
-  margin-top: 2px;
-
-  color: var(--color-gold-light);
+.rewardAmount strong {
+  color: var(--color-text-primary);
 
   font-family: var(--font-mono);
+  font-size: 1.45rem;
+  font-weight: 700;
 
-  font-size: 0.78rem;
+  letter-spacing: -0.02em;
 }
 
-/* --------------------------------------------------
-   Watch → Complete → Earn
--------------------------------------------------- */
+/* =========================================================
+   COMPLETION STATUS
+========================================================= */
 
-.flow {
-  position: absolute;
-
-  left: 26px;
-  bottom: 28px;
-
-  z-index: 8;
-
+.completedCard {
   display: flex;
 
   align-items: center;
 
-  gap: 7px;
+  gap: 8px;
+
+  margin-top: 20px;
+
+  padding: 10px 11px;
+
+  border: 1px solid rgba(64, 191, 126, 0.18);
+  border-radius: 8px;
+
+  background:
+    rgba(38, 112, 76, 0.1);
+
+  color: #75dca5;
+}
+
+.completedIcon {
+  width: 22px;
+  height: 22px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  background:
+    rgba(76, 211, 139, 0.14);
+
+  color: #72dfa3;
+}
+
+.completedCard strong {
+  flex: 1;
+
+  color: #8ce7b3;
+
+  font-size: 0.62rem;
+  font-weight: 600;
+}
+
+.completedCard>span {
+  color: #59ce91;
+
+  font-size: 0.65rem;
+}
+
+.rewardCredit {
+  margin-top: auto;
+
+  padding-top: 16px;
+
+  color: var(--color-text-muted);
+
+  font-size: 0.58rem;
+  line-height: 1.4;
+}
+
+/* =========================================================
+   BALANCE
+========================================================= */
+
+.balanceCard {
+  position: relative;
+
+  margin-top: 10px;
+
+  padding: 11px;
+
+  border: 1px solid rgba(111, 140, 255, 0.2);
+  border-radius: 8px;
+
+  background:
+    rgba(17, 24, 43, 0.75);
+}
+
+.balanceCard span {
+  display: block;
+
+  color: var(--color-text-muted);
+
+  font-size: 0.52rem;
+}
+
+.balanceCard strong {
+  display: block;
+
+  margin-top: 4px;
+
+  color: var(--color-text-primary);
+
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.balanceArrow {
+  position: absolute;
+
+  top: 50%;
+  right: 9px;
+
+  width: 25px;
+  height: 25px;
+
+  display: grid;
+  place-items: center;
+
+  transform: translateY(-50%);
+
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 6px;
+
+  color: var(--color-text-muted);
+
+  font-size: 0.75rem;
+}
+
+/* =========================================================
+   FLOATING COINS
+========================================================= */
+
+.coinOne {
+  top: 0;
+  right: 34px;
+
+  width: 38px;
+  height: 38px;
+
+  transform: rotate(-12deg);
+}
+
+.coinTwo {
+  top: 43px;
+  right: 5px;
+
+  width: 33px;
+  height: 33px;
+
+  transform: rotate(10deg);
+}
+
+.coinThree {
+  top: 83px;
+  right: 28px;
+
+  width: 28px;
+  height: 28px;
+
+  transform: rotate(-8deg);
+}
+
+.coin {
+  position: absolute;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid rgba(243, 204, 110, 0.45);
+  border-radius: 50%;
+
+  background:
+    linear-gradient(145deg,
+      #f3cf72,
+      #c38f2d);
+
+  color: #6d4a13;
+
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, 0.3),
+    0 0 18px rgba(243, 204, 110, 0.16);
+}
+
+.coin svg {
+  width: 19px;
+  height: 19px;
+}
+
+.coinOne {
+  top: 5px;
+  right: 34px;
+
+  width: 39px;
+  height: 39px;
+
+  transform: rotate(-12deg);
+}
+
+.coinTwo {
+  top: 47px;
+  right: 7px;
+
+  width: 34px;
+  height: 34px;
+
+  transform: rotate(10deg);
+}
+
+.coinThree {
+  top: 87px;
+  right: 31px;
+
+  width: 29px;
+  height: 29px;
+
+  transform: rotate(-8deg);
+}
+
+.coinTwo svg {
+  width: 16px;
+  height: 16px;
+}
+
+.coinThree svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* =========================================================
+   WALLET
+========================================================= */
+
+.wallet {
+  position: absolute;
+
+  right: 20px;
+  bottom: 20px;
+
+  z-index: 4;
+
+  width: 86px;
+  height: 58px;
+
+  border: 1px solid rgba(243, 204, 110, 0.34);
+  border-radius: 11px;
+
+  background:
+    linear-gradient(145deg,
+      #a97b2c,
+      #684918);
+
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.35),
+    0 0 18px rgba(243, 204, 110, 0.08);
+
+  transform: rotate(-2deg);
+  transform-origin: center;
+}
+
+.walletIcon {
+  position: absolute;
+
+  top: 14px;
+  left: 13px;
+
+  color: #f6d16f;
+
+  transition:
+    color 180ms ease,
+    filter 180ms ease;
+}
+
+.walletOpening {
+  position: absolute;
+
+  top: 26px;
+  right: -6px;
+
+  width: 28px;
+  height: 19px;
+
+  border: 1px solid rgba(243, 204, 110, 0.35);
+  border-radius: 6px;
+
+  background:
+    #7d5a1e;
+}
+
+.walletCard {
+  position: absolute;
+
+  left: 50%;
+  bottom: 8px;
+
+  width: 92px;
 
   padding: 7px 9px;
 
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 10px;
+  transform: translateX(-50%);
 
-  background:
-    rgba(22, 24, 39, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 7px;
 
-  backdrop-filter: blur(8px);
-
-  font-family: var(--font-mono);
-
-  font-size: 0.52rem;
-  font-weight: 600;
-
-  letter-spacing: 0.04em;
-}
-
-.flowStep {
-  display: inline-flex;
-
-  align-items: center;
-
-  gap: 4px;
-
-  color: var(--color-text-muted);
-}
-
-.flowDot {
-  width: 5px;
-  height: 5px;
-
-  border-radius: 50%;
-
-  background: currentColor;
-}
-
-.flowWatch {
-  color: var(--color-blue-light);
-}
-
-.flowComplete {
-  color: var(--color-text-secondary);
-}
-
-.flowEarn {
-  color: var(--color-gold-light);
-}
-
-.flowArrow {
-  color: rgba(255, 255, 255, 0.25);
-
-  font-size: 0.7rem;
-}
-
-.flowStep {
-  display: inline-flex;
-
-  align-items: center;
-
-  gap: 4px;
-
-  color: var(--color-text-muted);
-
-  transition:
-    color 300ms ease,
-    opacity 300ms ease;
-}
-
-.flowDot {
-  width: 5px;
-  height: 5px;
-
-  border-radius: 50%;
-
-  background: currentColor;
-
-  transition:
-    transform 300ms ease,
-    box-shadow 300ms ease;
-}
-
-.flowActive {
-  color: var(--color-text-primary);
-}
-
-.flowActive .flowDot {
-  transform: scale(1.25);
+  background: rgba(13, 17, 29, 0.94);
 
   box-shadow:
-    0 0 8px currentColor;
+    0 8px 18px rgba(0, 0, 0, 0.28);
+
+  backdrop-filter: blur(8px);
 }
 
-.isPlaying .flowWatch {
-  color: var(--color-blue-light);
+.walletCard span {
+  display: block;
+
+  color: var(--color-text-muted);
+
+  font-size: 0.46rem;
+  line-height: 1;
 }
 
-.isCompleted .flowWatch {
-  color: var(--color-text-secondary);
-}
+.walletCard strong {
+  display: block;
 
-.isCompleted .flowComplete {
-  color: var(--color-blue-light);
-}
+  margin-top: 4px;
 
-.isCompleted .flowEarn {
   color: var(--color-gold-light);
+
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+
+  white-space: nowrap;
 }
 
-.isCompleted .walletIcon {
+.walletGlowing {
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.35),
+    0 0 28px rgba(243, 204, 110, 0.45);
+}
+
+/* =========================================================
+   PLAYING STATE
+========================================================= */
+
+.isPlaying .rewardCoin {
   animation:
-    walletGlow
-    1.8s
-    ease-in-out
-    650ms
-    2;
+    rewardPulse 1.2s ease-in-out infinite alternate;
 }
 
-@keyframes walletGlow {
-  0%,
-  100% {
-    box-shadow:
-      0 0 0 rgba(243, 204, 110, 0);
-  }
-
-  50% {
-    box-shadow:
-      0 0 16px rgba(243, 204, 110, 0.22);
-  }
-}
-
-.adScreen {
-  animation:
-    adScreenEnter
-    700ms
-    var(--ease-standard)
-    both;
-}
-
-.completedCard {
-  animation:
-    none;
-}
-
-@keyframes adScreenEnter {
+@keyframes rewardPulse {
   from {
-    opacity: 0;
-    transform:
-      translateX(-50%)
-      translateY(12px)
-      rotate(-2deg);
+    box-shadow:
+      0 0 8px rgba(243, 204, 110, 0.04);
   }
 
   to {
-    opacity: 1;
-    transform:
-      translateX(-50%)
-      translateY(0)
-      rotate(-2deg);
+    box-shadow:
+      0 0 18px rgba(243, 204, 110, 0.18);
+  }
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1100px) {
+  .content {
+    grid-template-columns:
+      minmax(280px, 0.8fr) minmax(480px, 1.2fr);
+
+    gap: 28px;
+
+    padding: 32px;
+  }
+
+  .copy h2 {
+    font-size: clamp(2.25rem, 4vw, 3.2rem);
+  }
+
+  .visual {
+    grid-template-columns:
+      minmax(0, 1.25fr) minmax(165px, 0.75fr);
+
+    gap: 14px;
+
+    padding: 17px;
+  }
+
+  .rewardPanel {
+    padding: 13px;
+  }
+
+  .coins {
+    right: -18px;
   }
 }
 
 @media (max-width: 900px) {
   .banner {
     height: auto;
-    min-height: 410px;
-    max-height: 540px;
+
+    min-height: 700px;
   }
 
   .content {
+    min-height: 700px;
+
     grid-template-columns: 1fr;
-    gap: 20px;
-    padding: 26px;
-  }
 
-  .visual {
-    height: 270px;
-    order: -1;
-  }
-}
+    align-items: stretch;
 
-@media (max-width: 560px) {
-  .banner {
-    min-height: 330px;
-    max-height: 520px;
-    height: auto;
-    border-radius: 18px;
-  }
+    gap: 28px;
 
-  .content {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    padding: 20px;
-  }
-
-  .visual {
-    width: 100%;
-    height: 225px;
-    flex-shrink: 0;
+    padding: 30px;
   }
 
   .copy {
-    width: 100%;
-    max-width: none;
+    max-width: 600px;
+  }
+
+  .visual {
+    height: 330px;
+
+    order: 2;
+  }
+}
+
+@media (max-width: 620px) {
+  .banner {
+    min-height: auto;
+
+    border-radius: 20px;
+  }
+
+  .content {
+    min-height: auto;
+
+    gap: 24px;
+
+    padding: 24px 20px;
+  }
+
+  .sectionNumber {
+    margin-bottom: 16px;
+  }
+
+  .number {
+    font-size: 1.1rem;
   }
 
   .eyebrow {
-    margin-bottom: 8px;
-    font-size: 0.68rem;
+    font-size: 0.62rem;
   }
 
   .copy h2 {
-    font-size: 1.8rem;
-    line-height: 1.08;
-    letter-spacing: -0.035em;
+    font-size: clamp(2.15rem, 11vw, 3rem);
+    line-height: 0.98;
   }
 
-  .copy p {
-    margin-top: 10px;
+  .description {
+    margin-top: 16px;
+
     font-size: 0.88rem;
-    line-height: 1.5;
+    line-height: 1.55;
   }
 
-  .note {
-    margin-top: 8px !important;
-    font-size: 0.62rem !important;
+  .earningFlow {
+    margin-top: 20px;
+  }
+
+  .flowIcon {
+    width: 38px;
+    height: 38px;
+  }
+
+  .flowLabel {
+    font-size: 0.61rem;
+  }
+
+  .flowSubLabel {
+    font-size: 0.56rem;
+  }
+
+  .flowArrow {
+    margin-right: 7px;
+    margin-left: 7px;
   }
 
   .cta {
     width: 100%;
-    min-height: 46px;
-    margin-top: 14px;
+
+    margin-top: 20px;
   }
 
-  /* Advertisement player */
-  .adScreen {
-    top: 20px;
-    width: min(270px, 82%);
+  .visual {
+    width: 100%;
+    height: 300px;
+
+    grid-template-columns:
+      minmax(0, 1.35fr) minmax(132px, 0.8fr);
+
+    gap: 10px;
+
+    padding: 12px;
+
+    overflow: visible;
+  }
+
+  .adHeader {
+    padding: 9px 10px;
+
+    font-size: 0.45rem;
+  }
+
+  .adBadge {
+    font-size: 0.38rem;
+  }
+
+  .headphones {
+    transform:
+      translateY(3px) scale(0.78);
   }
 
   .playButton {
-    width: 54px;
-    height: 54px;
+    width: 48px;
+    height: 48px;
   }
 
   .adMessage {
+    font-size: 0.47rem;
+  }
+
+  .videoMeta {
+    padding:
+      0 9px 9px;
+
+    font-size: 0.4rem;
+  }
+
+  .rewardPanel {
+    padding: 10px;
+  }
+
+  .rewardAmount {
+    gap: 6px;
+
     margin-top: 10px;
-    font-size: 0.56rem;
   }
 
-  /* Completion badge */
-  .completedCard {
-    top: 112px;
-    left: 7%;
-    padding: 7px 9px;
-  }
-
-  .completedIcon {
-    width: 23px;
-    height: 23px;
-  }
-
-  .completedCard strong {
-    font-size: 0.56rem;
-  }
-
-  /* Coins */
-  .coinOne {
-    top: 76px;
-    right: 16%;
-  }
-
-  .coinTwo {
-    top: 118px;
-    right: 7%;
-  }
-
-  .coinThree {
-    right: 4%;
-    bottom: 54px;
-  }
-
-  /* Reward wallet */
-  .wallet {
-    right: 12px;
-    bottom: 12px;
-    min-width: 105px;
-    padding: 7px 9px;
-  }
-
-  .walletIcon {
+  .rewardCoin {
     width: 27px;
     height: 27px;
   }
 
-  .walletIcon svg {
-    width: 15px;
-    height: 15px;
+  .rewardAmount strong {
+    font-size: 0.95rem;
   }
 
-  .wallet strong {
-    font-size: 0.65rem;
+  .completedCard {
+    margin-top: 12px;
+
+    padding: 8px;
   }
 
-  /* Watch → Complete → Earn */
-  .flow {
-    left: 12px;
-    bottom: 12px;
-    gap: 4px;
-    padding: 5px 6px;
+  .completedCard strong {
+    font-size: 0.52rem;
+  }
+
+  .rewardCredit {
+    padding-top: 10px;
+
+    font-size: 0.48rem;
+  }
+
+  .balanceCard {
+    margin-top: 7px;
+
+    padding: 8px;
+  }
+
+  .balanceCard span {
     font-size: 0.43rem;
   }
 
-  .flowArrow {
-    font-size: 0.55rem;
+  .balanceCard strong {
+    font-size: 0.64rem;
   }
 
-  .sparkleOne {
-    left: 8%;
+  .balanceArrow {
+    width: 20px;
+    height: 20px;
+
+    right: 6px;
+
+    font-size: 0.62rem;
   }
 
-  .sparkleTwo {
-    right: 12%;
+  .coins {
+    position: absolute;
+
+    top: 32px;
+    right: 25px;
+
+    width: 105px;
+    height: 150px;
+
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  .wallet {
+    right: -7px;
+    bottom: 23px;
+
+    transform:
+      rotate(-2deg) scale(0.78);
+
+    transform-origin: bottom right;
   }
 }
 
+@media (max-width: 430px) {
+  .content {
+    padding: 22px 16px;
+  }
+
+  .visual {
+    height: 270px;
+
+    grid-template-columns:
+      minmax(0, 1.25fr) minmax(118px, 0.75fr);
+
+    padding: 9px;
+  }
+
+  .rewardPanel {
+    padding: 9px;
+  }
+
+  .wallet {
+    display: none;
+  }
+
+  .coins {
+    right: -12px;
+
+    transform: scale(0.6);
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
 @media (prefers-reduced-motion: reduce) {
-  .adScreen,
+
+  .cta,
+  .cta svg,
   .playButton,
   .playingIndicator span,
-  .completedCard,
-  .completedIcon,
-  .coin,
-  .wallet,
-  .walletIcon,
-  .flowStep,
-  .flowDot {
+  .rewardCoin {
     animation: none !important;
 
     transition: none !important;
@@ -1245,18 +1438,5 @@
 
   .isPlaying .adProgress span {
     width: 100%;
-  }
-
-  .completedCard {
-    opacity: 1;
-    transform: none;
-  }
-
-  .coin {
-    opacity: 0;
-  }
-
-  .wallet {
-    transform: none;
   }
 }
