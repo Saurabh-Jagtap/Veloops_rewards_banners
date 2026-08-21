@@ -1,213 +1,238 @@
-"use client";
-
-import { useEffect, useRef, useState } from "react";
-
 import {
-  ArrowUpRight,
   Camera,
   Check,
-  Play,
-  Sparkles,
-  Users,
+  ArrowRight,
+  Gift,
 } from "lucide-react";
-
-import { followData } from "../../../data/follow";
 
 import styles from "./FollowBanner.module.css";
 
-const FollowVisual = () => {
-  const visualRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+type FollowVisualProps = {
+  storyCompleted: boolean;
+  onStoryComplete: () => void;
+};
 
-  useEffect(() => {
-    const element = visualRef.current;
-
-    if (!element) {
-      return;
-    }
-
-    // Respect reduced-motion preferences.
-    if (
-      window.matchMedia(
-        "(prefers-reduced-motion: reduce)",
-      ).matches
-    ) {
-      setIsVisible(true);
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      {
-        threshold: 0.35,
-      },
-    );
-
-    observer.observe(element);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
+const FollowVisual = ({
+  storyCompleted,
+  onStoryComplete,
+}: FollowVisualProps) => {
 
   return (
     <div
-      ref={visualRef}
-      className={`${styles.visual} ${
-        isVisible ? styles.isVisible : ""
-      }`}
-      aria-label="VELOOP Rewards social community"
+      className={styles.visual}
+      aria-label="Instagram campaign dashboard"
     >
+      {/* Ambient background */}
       <div className={styles.visualGlow} />
+      <div className={`${styles.orb} ${styles.orbOne}`} />
+      <div className={`${styles.orb} ${styles.orbTwo}`} />
 
-      <div
-        className={`${styles.orb} ${styles.orbOne}`}
-        aria-hidden="true"
-      />
+      {/* Campaign Header */}
+      <div className={styles.campaignHeader}>
+        <div className={styles.campaignTitle}>
+          <div className={styles.instagramIcon}>
+            <Camera
+              size={13}
+              strokeWidth={2}
+              aria-hidden="true"
+            />
+          </div>
 
-      <div
-        className={`${styles.orb} ${styles.orbTwo}`}
-        aria-hidden="true"
-      />
-
-      <Sparkles
-        className={`${styles.sparkle} ${styles.sparkleOne}`}
-        aria-hidden="true"
-      />
-
-      <Sparkles
-        className={`${styles.sparkle} ${styles.sparkleTwo}`}
-        aria-hidden="true"
-      />
-
-      {/* Hero social profile */}
-      <div className={styles.profileCard}>
-        <div className={styles.profileTop}>
-          <span>SOCIAL COMMUNITY</span>
-
-          <span className={styles.liveIndicator}>
-            <span className={styles.liveDot} />
-            ACTIVE
-          </span>
+          <strong>Instagram Campaign</strong>
         </div>
 
-        <div className={styles.profileIdentity}>
+        <span className={styles.liveBadge}>
+          <span />
+          Live
+        </span>
+      </div>
+
+      {/* Dashboard Body */}
+      <div className={styles.dashboardBody}>
+
+        {/* Profile */}
+        <div className={styles.profilePanel}>
           <div className={styles.profileAvatar}>
             <span>VE</span>
           </div>
 
-          <div className={styles.profileDetails}>
-            <strong>
-              {followData.profile.name}
-            </strong>
+          <strong className={styles.profileName}>
+            VELOOP Rewards
+          </strong>
 
-            <span>
-              {followData.profile.handle}
-            </span>
-          </div>
-        </div>
+          <span className={styles.profileHandle}>
+            @velooprewards
+          </span>
 
-        <div className={styles.followState}>
-          <div className={styles.followCheck}>
+          <p className={styles.profileDescription}>
+            Official updates, giveaways
+            and exclusive offers!
+          </p>
+
+          <button
+            type="button"
+            className={styles.followButton}
+          >
             <Check
               size={13}
               strokeWidth={2.5}
               aria-hidden="true"
             />
+            <span>Following</span>
+            <ArrowRight
+              size={12}
+              aria-hidden="true"
+            />
+          </button>
+        </div>
+
+        {/* Campaign Progress */}
+        <div className={styles.progressPanel}>
+          <div className={styles.progressHeader}>
+            <span>Campaign Progress</span>
+            <strong>
+  {storyCompleted ? "100%" : "80%"}
+</strong>
           </div>
 
-          <span>Following</span>
+          <div className={styles.progressTrack}>
+            <div
+  className={`${styles.progressFill} ${
+    storyCompleted
+      ? styles.progressComplete
+      : ""
+  }`}
+/>
+          </div>
 
-          <ArrowUpRight
-            size={14}
-            aria-hidden="true"
-          />
+          <span className={styles.progressHint}>
+            Complete all steps to earn
+          </span>
+
+          <div className={styles.checklist}>
+            <div className={styles.checkItem}>
+              <span className={styles.checkCircle}>
+                <Check size={10} />
+              </span>
+
+              <span>Follow our page</span>
+
+              <Check
+                className={styles.itemEndCheck}
+                size={13}
+              />
+            </div>
+
+            <div className={styles.checkItem}>
+              <span className={styles.checkCircle}>
+                <Check size={10} />
+              </span>
+
+              <span>Like latest post</span>
+
+              <Check
+                className={styles.itemEndCheck}
+                size={13}
+              />
+            </div>
+
+            <div className={styles.checkItem}>
+              <span className={styles.checkCircle}>
+                <Check size={10} />
+              </span>
+
+              <span>Comment on post</span>
+
+              <span className={styles.stepCount}>
+                2/2
+              </span>
+            </div>
+
+            <button
+  type="button"
+  className={`${styles.checkItem} ${
+    styles.checkItemPending
+  } ${
+    storyCompleted
+      ? styles.checkItemCompleted
+      : ""
+  }`}
+  onClick={onStoryComplete}
+  aria-pressed={storyCompleted}
+>
+  <span
+    className={
+      storyCompleted
+        ? styles.checkCircle
+        : styles.pendingCircle
+    }
+  >
+    {storyCompleted && (
+      <Check
+        size={10}
+        aria-hidden="true"
+      />
+    )}
+  </span>
+
+  <span>Share to story</span>
+
+  <span className={styles.stepCount}>
+    {storyCompleted ? "1/1" : "0/1"}
+  </span>
+</button>
+          </div>
         </div>
 
-        <div className={styles.profileDivider} />
-
-        <div className={styles.profileMessage}>
-          <span>Stay connected for</span>
-
-          <strong>
-            Campaigns · Updates · Rewards
-          </strong>
-        </div>
-      </div>
-
-      {/* Social channels */}
-      <div className={styles.channels}>
+        {/* Reward */}
         <div
-          className={`${styles.channel} ${styles.instagram}`}
-        >
-          <div className={styles.channelIcon}>
-            <Camera
-              size={15}
+  className={`${styles.rewardPanel} ${
+    storyCompleted ? styles.rewardUnlocked : ""
+  }`}
+>
+          <span className={styles.rewardLabel}>
+  {storyCompleted
+    ? "Reward Unlocked"
+    : "Eligible Reward"}
+</span>
+
+          <div className={styles.rewardIcon}>
+            <Gift
+              size={27}
+              strokeWidth={1.8}
               aria-hidden="true"
             />
           </div>
 
-          <div className={styles.channelContent}>
-            <span>Instagram</span>
-            <strong>Follow</strong>
-          </div>
-
-          <ArrowUpRight
-            className={styles.channelArrow}
-            size={13}
-            aria-hidden="true"
-          />
-        </div>
-
-        <div
-          className={`${styles.channel} ${styles.youtube}`}
-        >
-          <div className={styles.channelIcon}>
-            <Play
-              size={14}
-              fill="currentColor"
-              aria-hidden="true"
-            />
-          </div>
-
-          <div className={styles.channelContent}>
-            <span>YouTube</span>
-            <strong>Subscribe</strong>
-          </div>
-
-          <ArrowUpRight
-            className={styles.channelArrow}
-            size={13}
-            aria-hidden="true"
-          />
-        </div>
-      </div>
-
-      {/* Eligible campaign */}
-      <div className={styles.campaignCard}>
-        <div className={styles.campaignIcon}>
-          <Users
-            size={16}
-            aria-hidden="true"
-          />
-        </div>
-
-        <div className={styles.campaignContent}>
-          <span>ELIGIBLE CAMPAIGN</span>
-
-          <strong>
-            Unlock rewards through participation
+          <strong className={styles.rewardValue}>
+            +500 VE
           </strong>
+
+          <span className={styles.rewardCaption}>
+            Campaign Reward
+          </span>
+
+          <button
+  type="button"
+  className={`${styles.completeButton} ${
+    storyCompleted ? styles.completeButtonUnlocked : ""
+  }`}
+>
+  {storyCompleted ? (
+    <>
+      <Check
+        size={12}
+        strokeWidth={2.5}
+        aria-hidden="true"
+      />
+      <span>Reward Unlocked</span>
+    </>
+  ) : (
+    <span>Complete Steps</span>
+  )}
+</button>
         </div>
 
-        <div className={styles.campaignStatus}>
-          <span />
-        </div>
       </div>
     </div>
   );

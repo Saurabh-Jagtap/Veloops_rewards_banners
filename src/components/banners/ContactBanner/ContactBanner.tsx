@@ -4,7 +4,7 @@ import {
   ShieldCheck,
   Zap,
 } from "lucide-react";
-
+import { motion } from "framer-motion";
 import { contactData } from "../../../data/contact";
 import ContactVisual from "./ContactVisual";
 import styles from "./ContactBanner.module.css";
@@ -36,7 +36,17 @@ const ContactBanner = () => {
           </p>
 
           <div className={styles.features}>
-            <div className={styles.feature}>
+            <motion.div
+              className={styles.feature}
+              whileHover={{
+                y: -3,
+                scale: 1.015,
+              }}
+              transition={{
+                duration: 0.18,
+                ease: "easeOut",
+              }}
+            >
               <div className={styles.featureIcon}>
                 <Zap size={19} strokeWidth={1.8} />
               </div>
@@ -45,9 +55,19 @@ const ContactBanner = () => {
                 <strong>Fast</strong>
                 <span>Response</span>
               </div>
-            </div>
+            </motion.div>
 
-            <div className={styles.feature}>
+            <motion.div
+              className={styles.feature}
+              whileHover={{
+                y: -3,
+                scale: 1.015,
+              }}
+              transition={{
+                duration: 0.18,
+                ease: "easeOut",
+              }}
+            >
               <div className={styles.featureIcon}>
                 <Headphones size={19} strokeWidth={1.8} />
               </div>
@@ -56,9 +76,19 @@ const ContactBanner = () => {
                 <strong>Expert</strong>
                 <span>Support</span>
               </div>
-            </div>
+            </motion.div>
 
-            <div className={styles.feature}>
+            <motion.div
+              className={styles.feature}
+              whileHover={{
+                y: -3,
+                scale: 1.015,
+              }}
+              transition={{
+                duration: 0.18,
+                ease: "easeOut",
+              }}
+            >
               <div className={styles.featureIcon}>
                 <ShieldCheck size={19} strokeWidth={1.8} />
               </div>
@@ -67,12 +97,23 @@ const ContactBanner = () => {
                 <strong>Reward</strong>
                 <span>Protection</span>
               </div>
-            </div>
+            </motion.div>
           </div>
 
-          <a
+          <motion.a
             href={`mailto:${contactData.email}`}
             className={styles.cta}
+            whileHover={{
+              y: -3,
+              scale: 1.015,
+            }}
+            whileTap={{
+              scale: 0.985,
+            }}
+            transition={{
+              duration: 0.18,
+              ease: "easeOut",
+            }}
           >
             <span className={styles.ctaIcon}>◯</span>
 
@@ -82,7 +123,7 @@ const ContactBanner = () => {
               size={19}
               strokeWidth={1.8}
             />
-          </a>
+          </motion.a>
         </div>
 
         {/* ================= RIGHT ================= */}
