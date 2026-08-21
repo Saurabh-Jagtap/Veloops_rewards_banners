@@ -22,8 +22,6 @@ const WatchAdVisual = () => {
   const BASE_BALANCE = 12450;
 
   const [balance, setBalance] = useState(BASE_BALANCE);
-  const [walletPulse, setWalletPulse] = useState(0);
-  const [arrivedCoin, setArrivedCoin] = useState(-1);
   const [walletGlow, setWalletGlow] = useState(false);
 
   const walletControls = useAnimationControls();
@@ -52,18 +50,12 @@ const WatchAdVisual = () => {
 
     setIsCompleted(false);
     setBalance(BASE_BALANCE);
-    setWalletPulse(0);
 
     setIsPlaying(true);
   };
 
-  const handleCoinArrived = async (
-    amount: number,
-    index: number,
-  ) => {
+  const handleCoinArrived = async (amount: number) => {
     setBalance((current) => current + amount);
-    setWalletPulse((current) => current + 1);
-    setArrivedCoin(index);
 
     setWalletGlow(true);
 
@@ -378,7 +370,7 @@ const WatchAdVisual = () => {
             }
             onAnimationComplete={() => {
               if (isCompleted) {
-                void handleCoinArrived(amount, index);
+                void handleCoinArrived(amount);
               }
             }}
           >

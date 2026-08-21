@@ -120,24 +120,6 @@ const conversationVariants: Variants = {
   }),
 };
 
-const messageVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 8,
-  },
-
-  visible: (delay: number) => ({
-    opacity: 1,
-    y: 0,
-
-    transition: {
-      duration: 0.4,
-      delay,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  }),
-};
-
 const ContactVisual = () => {
   const [activeConversation, setActiveConversation] = useState(0);
   const [visibleMessage, setVisibleMessage] = useState(0);
