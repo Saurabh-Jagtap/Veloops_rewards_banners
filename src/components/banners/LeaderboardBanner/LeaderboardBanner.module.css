@@ -25,19 +25,17 @@
 }
 
 .content {
-  position: relative;
-
-  display: grid;
-  grid-template-columns: minmax(300px, 0.72fr) minmax(520px, 1.28fr);
-
   width: 100%;
   height: 100%;
+  min-height: 0;
+
+  display: grid;
+  grid-template-columns: minmax(0, 0.42fr) minmax(0, 0.58fr);
 
   align-items: center;
-
   gap: 42px;
 
-  padding: 26px 28px;
+  padding: 34px 42px;
 }
 
 /* =========================================================
@@ -49,7 +47,8 @@
 
   z-index: 5;
 
-  max-width: 390px;
+  width: 100%;
+  max-width: 560px;
 
   padding-left: 20px;
 }

@@ -1,38 +1,47 @@
 .banner {
   width: 100%;
-  min-height: 430px;
-
+  height: 430px;
   overflow: hidden;
 
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(111, 140, 255, 0.18);
   border-radius: var(--radius-banner);
 
   background:
-    radial-gradient(circle at 70% 48%,
-      rgba(43, 73, 145, 0.09),
-      transparent 34%),
-    radial-gradient(circle at 22% 55%,
-      rgba(39, 61, 120, 0.05),
-      transparent 32%),
-    linear-gradient(135deg,
-      #0b101b 0%,
-      #0c1220 52%,
-      #0a0e18 100%);
+    radial-gradient(
+      circle at 78% 48%,
+      rgba(43, 91, 210, 0.18),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 18% 70%,
+      rgba(35, 67, 150, 0.10),
+      transparent 32%
+    ),
+    linear-gradient(
+      135deg,
+      #07101f 0%,
+      #09162c 48%,
+      #07101e 100%
+    );
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.025);
 }
 
 .content {
   width: 100%;
-  min-height: 430px;
+  height: 100%;
 
   display: grid;
   grid-template-columns:
-    minmax(330px, 0.8fr) minmax(560px, 1.2fr);
+    minmax(330px, 0.78fr)
+    minmax(560px, 1.22fr);
 
   align-items: center;
 
-  gap: clamp(34px, 4vw, 58px);
+  gap: clamp(30px, 3.5vw, 52px);
 
-  padding: 34px 46px;
+  padding: 30px 42px;
 }
 
 /* =========================================================
@@ -41,7 +50,7 @@
 
 .copy {
   width: 100%;
-  max-width: 540px;
+  max-width: 560px;
 }
 
 .sectionNumber {
@@ -249,36 +258,44 @@
   position: relative;
 
   width: 100%;
-  height: 315px;
+  height: 350px;
 
   display: grid;
   grid-template-columns:
-    minmax(0, 1.3fr) minmax(205px, 0.7fr);
+    minmax(0, 1.35fr)
+    minmax(190px, 0.65fr);
 
-  gap: 16px;
+  gap: 14px;
 
-  padding: 18px;
+  padding: 14px;
 
   overflow: hidden;
   isolation: isolate;
 
-  border: 1px solid rgba(111, 140, 255, 0.13);
+  border: 1px solid rgba(111, 140, 255, 0.20);
   border-radius: var(--radius-card);
 
   background:
-    radial-gradient(circle at 35% 50%,
-      rgba(44, 76, 153, 0.18),
-      transparent 42%),
-    radial-gradient(circle at 80% 70%,
-      rgba(243, 204, 110, 0.055),
-      transparent 30%),
-    linear-gradient(145deg,
-      #111725,
-      #0f1522 55%,
-      #0c111b);
+    radial-gradient(
+      circle at 32% 48%,
+      rgba(54, 103, 226, 0.24),
+      transparent 42%
+    ),
+    radial-gradient(
+      circle at 82% 72%,
+      rgba(243, 204, 110, 0.07),
+      transparent 30%
+    ),
+    linear-gradient(
+      145deg,
+      #101d35 0%,
+      #0c172b 52%,
+      #091322 100%
+    );
 
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.025);
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 18px 40px rgba(0, 0, 0, 0.20);
 }
 
 .visualGlow,
@@ -331,29 +348,29 @@
 
   overflow: hidden;
 
-  border: 1px solid rgba(111, 140, 255, 0.28);
-  border-radius: 14px;
+  border: 1px solid rgba(111, 140, 255, 0.32);
+  border-radius: 15px;
 
   background:
-    linear-gradient(145deg,
-      #1b3474,
-      #152451 48%,
-      #111936);
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(74, 126, 255, 0.18),
+      transparent 48%
+    ),
+    linear-gradient(
+      145deg,
+      #173b86 0%,
+      #122b61 48%,
+      #0d1c3c 100%
+    );
 
   box-shadow:
-    0 18px 38px rgba(0, 0, 0, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    0 20px 42px rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.09);
 
   transition:
     box-shadow 300ms ease,
     transform 300ms ease;
-}
-
-.isPlaying .adScreen {
-  box-shadow:
-    0 20px 42px rgba(0, 0, 0, 0.32),
-    0 0 32px rgba(111, 140, 255, 0.13),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 /* =========================================================
@@ -709,16 +726,19 @@
 
   padding: 16px;
 
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 13px;
 
   background:
-    linear-gradient(145deg,
-      rgba(18, 23, 39, 0.94),
-      rgba(13, 17, 29, 0.92));
+    linear-gradient(
+      145deg,
+      rgba(19, 29, 48, 0.96),
+      rgba(9, 16, 29, 0.96)
+    );
 
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.025);
+    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    0 14px 30px rgba(0, 0, 0, 0.18);
 }
 
 .rewardHeader {
@@ -934,19 +954,24 @@
   display: grid;
   place-items: center;
 
-  border: 1px solid rgba(243, 204, 110, 0.45);
+  border: 1px solid rgba(243, 204, 110, 0.55);
   border-radius: 50%;
 
   background:
-    linear-gradient(145deg,
-      #f3cf72,
-      #c38f2d);
+    radial-gradient(
+      circle at 30% 25%,
+      #ffe9a3 0%,
+      #f3cf72 38%,
+      #c38f2d 100%
+    );
 
   color: #6d4a13;
 
   box-shadow:
-    0 10px 24px rgba(0, 0, 0, 0.3),
-    0 0 18px rgba(243, 204, 110, 0.16);
+    0 10px 24px rgba(0, 0, 0, 0.34),
+    0 0 22px rgba(243, 204, 110, 0.20);
+
+  transform-style: preserve-3d;
 }
 
 .coin svg {
@@ -1001,25 +1026,27 @@
 .wallet {
   position: absolute;
 
-  right: 20px;
-  bottom: 20px;
+  right: 18px;
+  bottom: 18px;
 
   z-index: 4;
 
-  width: 86px;
-  height: 58px;
+  width: 92px;
+  height: 60px;
 
-  border: 1px solid rgba(243, 204, 110, 0.34);
-  border-radius: 11px;
+  border: 1px solid rgba(111, 140, 255, 0.30);
+  border-radius: 12px;
 
   background:
-    linear-gradient(145deg,
-      #a97b2c,
-      #684918);
+    linear-gradient(
+      145deg,
+      #3159a8,
+      #182e5d
+    );
 
   box-shadow:
-    0 14px 28px rgba(0, 0, 0, 0.35),
-    0 0 18px rgba(243, 204, 110, 0.08);
+    0 14px 30px rgba(0, 0, 0, 0.38),
+    0 0 22px rgba(80, 125, 255, 0.12);
 
   transform: rotate(-2deg);
   transform-origin: center;
@@ -1163,33 +1190,30 @@
   }
 }
 
-@media (max-width: 900px) {
+@media (min-width: 768px) and (max-width: 1199px) {
   .banner {
-    height: auto;
-
-    min-height: 700px;
+    height: clamp(380px, 42vw, 500px);
+    min-height: 380px;
+    max-height: 540px;
   }
 
   .content {
-    min-height: 700px;
-
-    grid-template-columns: 1fr;
-
-    align-items: stretch;
-
+    min-height: 0;
+    height: 100%;
+    grid-template-columns:
+      minmax(280px, 0.82fr)
+      minmax(0, 1.18fr);
+    align-items: center;
     gap: 28px;
-
-    padding: 30px;
+    padding: 28px;
   }
 
   .copy {
-    max-width: 600px;
+    max-width: 500px;
   }
 
   .visual {
-    height: 330px;
-
-    order: 2;
+    height: min(315px, calc(100% - 48px));
   }
 }
 

@@ -109,3 +109,41 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+:root {
+  --banner-surface:
+    linear-gradient(
+      135deg,
+      #0b101b 0%,
+      #0d1321 52%,
+      #0a0f19 100%
+    );
+
+  --banner-surface-gold:
+    radial-gradient(
+      circle at 78% 45%,
+      rgba(230, 194, 96, 0.055),
+      transparent 34%
+    );
+
+  --banner-surface-blue:
+    radial-gradient(
+      circle at 76% 46%,
+      rgba(91, 125, 220, 0.055),
+      transparent 34%
+    );
+
+  --banner-surface-silver:
+    radial-gradient(
+      circle at 78% 46%,
+      rgba(190, 198, 220, 0.045),
+      transparent 34%
+    );
+
+  --banner-surface-purple:
+    radial-gradient(
+      circle at 78% 46%,
+      rgba(145, 126, 210, 0.065),
+      transparent 34%
+    );
+}

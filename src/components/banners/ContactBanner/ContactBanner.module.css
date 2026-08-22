@@ -2,8 +2,9 @@
   position: relative;
 
   width: 100%;
-  min-height: 430px;
-
+  height: 430px;
+  min-height: 410px;
+  max-height: 450px;
   overflow: hidden;
   isolation: isolate;
 
@@ -32,20 +33,20 @@
 ============================================================ */
 
 .content {
-  position: relative;
-
   width: 100%;
-  min-height: 430px;
+  height: 100%;
 
   display: grid;
+
   grid-template-columns:
-    minmax(340px, 0.78fr) minmax(620px, 1.22fr);
+    minmax(0, 0.42fr)
+    minmax(0, 0.58fr);
 
   align-items: center;
 
-  gap: 48px;
+  gap: 42px;
 
-  padding: 30px 48px 30px 47px;
+  padding: 34px 42px;
 }
 
 /* ============================================================
@@ -57,7 +58,8 @@
 
   z-index: 4;
 
-  max-width: 455px;
+  width: 100%;
+  max-width: 560px;
 }
 
 .eyebrow {

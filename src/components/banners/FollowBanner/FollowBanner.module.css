@@ -1,9 +1,6 @@
-/* ==================================================
-   FOLLOW BANNER
-================================================== */
-
 .banner {
   width: 100%;
+  height: 430px;
   min-height: 410px;
   max-height: 450px;
 
@@ -12,7 +9,23 @@
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: var(--radius-banner);
 
-  background: var(--color-surface);
+  background:
+  radial-gradient(
+    circle at 72% 48%,
+    rgba(154, 126, 225, 0.08),
+    transparent 32%
+  ),
+  radial-gradient(
+    circle at 25% 80%,
+    rgba(91, 125, 220, 0.045),
+    transparent 30%
+  ),
+  linear-gradient(
+    135deg,
+    #0b0d18 0%,
+    #0f1020 52%,
+    #0a0d18 100%
+  );
 }
 
 .content {
@@ -20,12 +33,14 @@
   height: 100%;
 
   display: grid;
+
   grid-template-columns:
-    minmax(0, 0.88fr) minmax(0, 1.12fr);
+    minmax(0, 0.42fr)
+    minmax(0, 0.58fr);
 
   align-items: center;
 
-  gap: var(--space-8);
+  gap: 42px;
 
   padding: 34px 42px;
 }
@@ -35,7 +50,8 @@
 ================================================== */
 
 .copy {
-  max-width: 500px;
+  width: 100%;
+  max-width: 560px;
 }
 
 .eyebrow {
