@@ -1,8 +1,8 @@
 import {
   ArrowRight,
   Check,
-  Coins,
   Play,
+  Tag,
 } from "lucide-react";
 
 import WatchAdVisual from "./WatchAdVisual";
@@ -24,6 +24,13 @@ const WatchAdBanner = () => {
           <div className={styles.sectionNumber}>
             <span className={styles.number}>02</span>
 
+            <span
+              className={styles.sectionDot}
+              aria-hidden="true"
+            >
+              &middot;
+            </span>
+
             <span className={styles.eyebrow}>
               Watch &amp; Earn
             </span>
@@ -32,7 +39,7 @@ const WatchAdBanner = () => {
           <h2 id="watch-ad-title">
             Watch ads.
             <br />
-            <span>Earn VE.</span>
+            <span>Earn VEs.</span>
           </h2>
 
           <p className={styles.description}>
@@ -52,69 +59,75 @@ const WatchAdBanner = () => {
             <div className={styles.flowStep}>
               <div className={styles.flowIcon}>
                 <Play
-                  size={19}
+                  size={18}
                   fill="currentColor"
                   aria-hidden="true"
                 />
               </div>
 
-              <span className={styles.flowLabel}>
-                Watch
-              </span>
+              <div className={styles.flowText}>
+                <span className={styles.flowLabel}>
+                  Watch
+                </span>
 
-              <span className={styles.flowSubLabel}>
-                Ad
-              </span>
+                <span className={styles.flowSubLabel}>
+                  Short Ads
+                </span>
+              </div>
             </div>
 
             <span
-              className={styles.flowArrow}
+              className={styles.flowDivider}
               aria-hidden="true"
-            >
-              →
-            </span>
+            />
 
             <div className={styles.flowStep}>
-              <div className={styles.flowIcon}>
+              <div
+                className={`${styles.flowIcon} ${styles.flowIconCircle}`}
+              >
                 <Check
-                  size={19}
+                  size={18}
                   strokeWidth={2}
                   aria-hidden="true"
                 />
               </div>
 
-              <span className={styles.flowLabel}>
-                Complete
-              </span>
+              <div className={styles.flowText}>
+                <span className={styles.flowLabel}>
+                  Complete
+                </span>
 
-              <span className={styles.flowSubLabel}>
-                Ad
-              </span>
+                <span className={styles.flowSubLabel}>
+                  Simple Tasks
+                </span>
+              </div>
             </div>
 
             <span
-              className={styles.flowArrow}
+              className={styles.flowDivider}
               aria-hidden="true"
-            >
-              →
-            </span>
+            />
 
             <div className={styles.flowStep}>
-              <div className={styles.flowIcon}>
-                <Coins
-                  size={19}
+              <div
+                className={`${styles.flowIcon} ${styles.flowIconEarn}`}
+              >
+                <Tag
+                  size={18}
                   strokeWidth={1.8}
                   aria-hidden="true"
                 />
               </div>
 
-              <span className={styles.flowLabel}>
-                Earn
-              </span>
+              <div className={styles.flowText}>
+                <span className={styles.flowLabel}>
+                  Earn
+                </span>
 
-              <span className={styles.flowSubLabel}>
-                Rewards
-              </span>
+                <span className={styles.flowSubLabel}>
+                  Real VEs
+                </span>
+              </div>
             </div>
           </div>
 

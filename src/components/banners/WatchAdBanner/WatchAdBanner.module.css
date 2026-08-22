@@ -7,22 +7,16 @@
   border-radius: var(--radius-banner);
 
   background:
-    radial-gradient(
-      circle at 78% 48%,
+    radial-gradient(circle at 78% 48%,
       rgba(43, 91, 210, 0.18),
-      transparent 34%
-    ),
-    radial-gradient(
-      circle at 18% 70%,
+      transparent 34%),
+    radial-gradient(circle at 18% 70%,
       rgba(35, 67, 150, 0.10),
-      transparent 32%
-    ),
-    linear-gradient(
-      135deg,
+      transparent 32%),
+    linear-gradient(135deg,
       #07101f 0%,
       #09162c 48%,
-      #07101e 100%
-    );
+      #07101e 100%);
 
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.025);
@@ -34,8 +28,7 @@
 
   display: grid;
   grid-template-columns:
-    minmax(330px, 0.78fr)
-    minmax(560px, 1.22fr);
+    minmax(330px, 0.78fr) minmax(560px, 1.22fr);
 
   align-items: center;
 
@@ -51,12 +44,17 @@
 .copy {
   width: 100%;
   max-width: 560px;
+  animation:
+    watchAdContentEnter
+    700ms
+    cubic-bezier(0.22, 1, 0.36, 1)
+    both;
 }
 
 .sectionNumber {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 
   margin-bottom: 22px;
 }
@@ -68,6 +66,16 @@
   font-size: 1.35rem;
   font-weight: 700;
 
+  line-height: 1;
+}
+
+.sectionDot {
+  color: var(--color-blue-light);
+
+  font-size: 1rem;
+  font-weight: 700;
+
+  opacity: 0.6;
   line-height: 1;
 }
 
@@ -117,30 +125,41 @@
 
 .earningFlow {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+
+  gap: 16px;
 
   margin-top: 24px;
 }
 
+.flowDivider {
+  width: 1px;
+  height: 32px;
+
+  flex: 0 0 auto;
+
+  background: rgba(255, 255, 255, 0.1);
+}
+
 .flowStep {
-  min-width: 58px;
-
   display: flex;
-  flex-direction: column;
   align-items: center;
+  gap: 10px;
 
-  text-align: center;
+  white-space: nowrap;
 }
 
 .flowIcon {
-  width: 43px;
-  height: 43px;
+  width: 44px;
+  height: 44px;
+
+  flex: 0 0 auto;
 
   display: grid;
   place-items: center;
 
   border: 1px solid rgba(111, 140, 255, 0.42);
-  border-radius: 50%;
+  border-radius: 13px;
 
   background:
     rgba(17, 25, 50, 0.72);
@@ -152,7 +171,11 @@
     0 0 18px rgba(111, 140, 255, 0.04);
 }
 
-.flowStep:last-child .flowIcon {
+.flowIconCircle {
+  border-radius: 50%;
+}
+
+.flowIconEarn {
   border-color: rgba(243, 204, 110, 0.5);
 
   color: var(--color-gold-light);
@@ -161,29 +184,26 @@
     rgba(49, 39, 20, 0.65);
 }
 
-.flowLabel {
-  margin-top: 9px;
+.flowText {
+  display: flex;
+  flex-direction: column;
+}
 
+.flowLabel {
   color: var(--color-text-primary);
 
-  font-size: 0.67rem;
-  font-weight: 600;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.3;
 }
 
 .flowSubLabel {
-  margin-top: 2px;
+  margin-top: 1px;
 
   color: var(--color-text-muted);
 
-  font-size: 0.62rem;
-}
-
-.flowArrow {
-  margin: 17px 10px 0;
-
-  color: rgba(255, 255, 255, 0.35);
-
-  font-size: 1rem;
+  font-size: 0.68rem;
+  line-height: 1.3;
 }
 
 /* =========================================================
@@ -200,7 +220,7 @@
 
   min-height: 45px;
 
-  margin-top: 17px;
+  margin-top: 22px;
 
   padding: 0 18px;
 
@@ -223,9 +243,9 @@
     0 8px 22px rgba(70, 105, 220, 0.18);
 
   transition:
-    transform 180ms ease,
-    box-shadow 180ms ease,
-    filter 180ms ease;
+  transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+  box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1),
+  filter 220ms ease;
 }
 
 .cta:hover {
@@ -237,9 +257,17 @@
     0 11px 28px rgba(70, 105, 220, 0.28);
 }
 
+.cta:active {
+  transform: translateY(1px) scale(0.975);
+
+  box-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
 .cta:focus-visible {
   outline: 2px solid var(--color-blue-light);
-  outline-offset: 3px;
+  outline-offset: 4px;
 }
 
 .cta svg {
@@ -251,7 +279,7 @@
 }
 
 /* =========================================================
-   RIGHT VISUAL
+   RIGHT VISUAL — GROUP (video panel + earnings panel)
 ========================================================= */
 
 .visual {
@@ -260,42 +288,17 @@
   width: 100%;
   height: 350px;
 
-  display: grid;
-  grid-template-columns:
-    minmax(0, 1.35fr)
-    minmax(190px, 0.65fr);
+  display: flex;
+  align-items: stretch;
 
-  gap: 14px;
+  gap: 18px;
 
-  padding: 14px;
-
-  overflow: hidden;
-  isolation: isolate;
-
-  border: 1px solid rgba(111, 140, 255, 0.20);
-  border-radius: var(--radius-card);
-
-  background:
-    radial-gradient(
-      circle at 32% 48%,
-      rgba(54, 103, 226, 0.24),
-      transparent 42%
-    ),
-    radial-gradient(
-      circle at 82% 72%,
-      rgba(243, 204, 110, 0.07),
-      transparent 30%
-    ),
-    linear-gradient(
-      145deg,
-      #101d35 0%,
-      #0c172b 52%,
-      #091322 100%
-    );
-
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.04),
-    0 18px 40px rgba(0, 0, 0, 0.20);
+  animation:
+    watchAdVisualEnter
+    700ms
+    100ms
+    cubic-bezier(0.22, 1, 0.36, 1)
+    both;
 }
 
 .visualGlow,
@@ -312,65 +315,90 @@
 }
 
 .visualGlow {
-  width: 260px;
-  height: 220px;
+  width: 300px;
+  height: 230px;
 
-  top: 10%;
-  left: 22%;
+  top: 15%;
+  left: 18%;
 
   background:
-    rgba(69, 101, 208, 0.13);
+    rgba(50, 106, 236, 0.14);
 }
 
 .visualGlowSecondary {
-  width: 220px;
-  height: 190px;
+  width: 230px;
+  height: 210px;
 
-  right: -5%;
+  right: -8%;
   bottom: -20%;
 
   background:
-    rgba(243, 204, 110, 0.08);
+    rgba(57, 94, 180, 0.12);
 }
 
+
 /* =========================================================
-   AD SCREEN
+   AD SCREEN (VIDEO PANEL)
 ========================================================= */
 
 .adScreen {
   position: relative;
 
+  flex: 1.5 1 0%;
   min-width: 0;
-  height: 100%;
 
   display: flex;
   flex-direction: column;
 
   overflow: hidden;
 
-  border: 1px solid rgba(111, 140, 255, 0.32);
-  border-radius: 15px;
+  border: 1px solid rgba(79, 126, 255, 0.52);
+  border-radius: 16px;
 
   background:
-    radial-gradient(
-      circle at 50% 45%,
-      rgba(74, 126, 255, 0.18),
-      transparent 48%
-    ),
-    linear-gradient(
-      145deg,
-      #173b86 0%,
-      #122b61 48%,
-      #0d1c3c 100%
-    );
+    radial-gradient(circle at 50% 38%,
+      rgba(64, 118, 255, 0.32),
+      transparent 52%),
+    radial-gradient(circle at 12% 82%,
+      rgba(48, 100, 255, 0.20),
+      transparent 38%),
+    linear-gradient(150deg,
+      #16336e 0%,
+      #102960 45%,
+      #0a1b40 100%);
 
   box-shadow:
-    0 20px 42px rgba(0, 0, 0, 0.32),
+    0 18px 38px rgba(0, 0, 0, 0.28),
     inset 0 1px 0 rgba(255, 255, 255, 0.09);
 
+  z-index: 2;
+
   transition:
-    box-shadow 300ms ease,
-    transform 300ms ease;
+    box-shadow 300ms ease;
+}
+
+.adScreen::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    repeating-linear-gradient(115deg,
+      transparent 0px,
+      transparent 60px,
+      rgba(255, 255, 255, 0.025) 61px,
+      transparent 62px,
+      transparent 130px);
+}
+
+.isPlaying .adScreen {
+  box-shadow:
+    0 20px 42px rgba(0, 0, 0, 0.32),
+    0 0 32px rgba(111, 140, 255, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 /* =========================================================
@@ -378,158 +406,450 @@
 ========================================================= */
 
 .adHeader {
-  display: flex;
+  position: relative;
+  z-index: 4;
 
+  display: flex;
   align-items: center;
   justify-content: space-between;
 
-  padding: 12px 14px;
+  padding: 14px 16px 0;
 
-  color: rgba(255, 255, 255, 0.68);
+  color: rgba(255, 255, 255, 0.86);
 
-  font-family: var(--font-mono);
-  font-size: 0.52rem;
-  font-weight: 500;
-
-  letter-spacing: 0.05em;
+  font-size: 0.72rem;
+  font-weight: 600;
 }
 
-.adBadge {
-  padding: 4px 7px;
+.rewardBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 
-  border-radius: 5px;
+  padding: 5px 10px;
 
-  background:
-    rgba(10, 15, 31, 0.42);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
 
-  color: rgba(255, 255, 255, 0.58);
+  background: rgba(6, 14, 34, 0.68);
 
-  font-size: 0.44rem;
+  font-size: 0.62rem;
+  font-weight: 600;
+
+  color: rgba(255, 255, 255, 0.7);
+
+  white-space: nowrap;
+}
+
+.rewardBadgeValue {
+  color: var(--color-gold-light);
+  font-weight: 700;
 }
 
 /* =========================================================
-   AD ARTWORK
+   VIDEO ARTWORK — 3D CLAPPERBOARD SCENE
 ========================================================= */
 
-.adArtwork {
+.adContent {
   position: relative;
 
   flex: 1;
 
-  display: grid;
-  place-items: center;
+  min-height: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   overflow: hidden;
 }
 
-.artworkGlow {
-  position: absolute;
+.adArt {
+  position: relative;
 
   width: 190px;
   height: 150px;
-
-  border-radius: 50%;
-
-  background:
-    radial-gradient(circle,
-      rgba(91, 133, 255, 0.3),
-      rgba(178, 81, 255, 0.08) 45%,
-      transparent 72%);
-
-  filter: blur(16px);
 }
 
-/* =========================================================
-   HEADPHONE ARTWORK
-========================================================= */
-
-.headphones {
-  position: relative;
-
-  width: 170px;
-  height: 125px;
-
-  transform: translateY(4px);
-
-  filter:
-    drop-shadow(0 12px 20px rgba(0, 0, 0, 0.35));
-}
-
-.headphoneBand {
+.clapperboard {
   position: absolute;
 
-  top: 5px;
-  left: 28px;
+  left: 50%;
+  top: 54%;
 
-  width: 114px;
-  height: 105px;
+  width: 118px;
+  height: 92px;
 
-  border: 5px solid transparent;
-  border-top-color: #9bb5ff;
+  transform:
+    translate(-50%, -50%)
+    rotate(-3deg);
 
-  border-radius: 60px 60px 0 0;
+  transform-style: preserve-3d;
 
-  transform: rotate(1deg);
-
-  opacity: 0.9;
+  transition:
+    transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.headphoneLeft,
-.headphoneRight {
+.adScreen:hover .clapperboard {
+  transform:
+    translate(-50%, -50%)
+    rotate(-3deg)
+    scale(1.035);
+}
+
+.isPlaying .clapperboard {
+  transform:
+    translate(-50%, -50%)
+    rotate(-3deg)
+    scale(1.03);
+}
+
+.clapperBody {
   position: absolute;
 
-  top: 50px;
+  left: 0;
+  bottom: 0;
 
-  width: 42px;
-  height: 58px;
+  width: 100%;
+  height: 68px;
 
-  border-radius: 15px;
+  border-radius: 8px;
 
   background:
-    linear-gradient(145deg,
-      #5b8cff,
-      #232c59 55%,
-      #151a36);
+    linear-gradient(165deg,
+      #3a5eb8 0%,
+      #24427f 45%,
+      #142a54 100%);
+
+  border: 1px solid rgba(160, 190, 255, 0.35);
 
   box-shadow:
-    inset 0 0 0 2px rgba(255, 255, 255, 0.12),
-    0 8px 20px rgba(0, 0, 0, 0.35);
+    0 20px 26px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -10px 18px rgba(0, 0, 0, 0.22);
 }
 
-.headphoneLeft {
-  left: 12px;
-
-  transform: rotate(-9deg);
-}
-
-.headphoneRight {
-  right: 12px;
-
-  transform: rotate(9deg);
-}
-
-.headphoneLeft::after,
-.headphoneRight::after {
+.clapperBody::before {
   content: "";
 
   position: absolute;
 
-  inset: 8px;
+  left: 8px;
+  top: 8px;
+  right: 8px;
+  bottom: 8px;
 
-  border-radius: 10px;
+  border-radius: 5px;
 
-  background:
-    radial-gradient(circle at 40% 40%,
-      rgba(255, 111, 221, 0.7),
-      rgba(82, 91, 190, 0.5) 45%,
-      rgba(8, 12, 28, 0.8));
+  border: 1px solid rgba(255, 255, 255, 0.14);
+
+  pointer-events: none;
+}
+
+.clapperTop {
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  width: 100%;
+  height: 24px;
+
+  display: flex;
+
+  overflow: hidden;
+
+  border-radius: 4px 8px 2px 2px;
+
+  transform-origin: 4% 100%;
+  transform: rotate(-26deg);
 
   box-shadow:
-    inset 0 0 12px rgba(130, 160, 255, 0.25);
+    0 8px 14px rgba(0, 0, 0, 0.38);
+}
+
+.clapperTop span {
+  flex: 1;
+
+  height: 100%;
+
+  transform: skewX(-23deg);
+
+  background: #2b4272;
+
+  opacity: 0.96;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+}
+
+.clapperTop span:nth-child(even) {
+  background: #eef2ff;
+}
+
+.clapperHinge {
+  position: absolute;
+
+  left: 3px;
+  top: -3px;
+
+  width: 11px;
+  height: 11px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(circle at 35% 30%, #cfe0ff, #6f88bf 70%);
+
+  border: 1px solid rgba(255, 255, 255, 0.4);
+
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+
+  z-index: 2;
+}
+
+.clapperLines {
+  position: absolute;
+
+  left: 12px;
+  top: 14px;
+  right: 12px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+.clapperLines span {
+  display: block;
+
+  height: 3px;
+
+  border-radius: 999px;
+
+  background: rgba(200, 218, 255, 0.4);
+}
+
+.clapperLines span:nth-child(1) {
+  width: 78%;
+}
+
+.clapperLines span:nth-child(2) {
+  width: 55%;
+}
+
+.clapperLines span:nth-child(3) {
+  width: 40%;
 }
 
 /* =========================================================
-   AD CONTROLS
+   DECORATIVE VE COINS — 3D METALLIC
+========================================================= */
+
+.artCoin {
+  position: absolute;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  font-family: var(--font-mono);
+  font-weight: 800;
+
+  isolation: isolate;
+
+  overflow: visible;
+
+  /* Deep cast shadow + metallic contact shadow */
+  box-shadow:
+    0 14px 24px rgba(0, 0, 0, 0.38),
+    0 5px 8px rgba(0, 0, 0, 0.28),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.42),
+    inset -3px -4px 6px rgba(80, 40, 0, 0.28);
+
+  transform-style: preserve-3d;
+
+  transition:
+    transform 350ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 350ms ease;
+}
+
+/* Metallic outer bevel */
+.artCoin::before {
+  content: "";
+
+  position: absolute;
+  inset: 2px;
+
+  border-radius: inherit;
+
+  border: 1px solid rgba(255, 244, 194, 0.62);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.34) 0%,
+      rgba(255, 255, 255, 0.04) 28%,
+      transparent 52%,
+      rgba(103, 61, 8, 0.18) 100%
+    );
+
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.45),
+    inset 0 -2px 3px rgba(92, 53, 8, 0.22);
+
+  pointer-events: none;
+
+  z-index: -1;
+}
+
+/* Small specular highlight */
+.artCoin::after {
+  content: "";
+
+  position: absolute;
+
+  width: 42%;
+  height: 22%;
+
+  top: 13%;
+  left: 17%;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      105deg,
+      rgba(255, 255, 255, 0.68),
+      rgba(255, 255, 255, 0)
+    );
+
+  filter: blur(0.6px);
+
+  transform: rotate(-25deg);
+
+  opacity: 0.72;
+
+  pointer-events: none;
+
+  z-index: 2;
+}
+
+/* ---------------------------------------------------------
+   GOLD THUMBNAIL COIN
+--------------------------------------------------------- */
+
+.artCoinGold {
+  width: 44px;
+  height: 44px;
+
+  left: -10px;
+  top: 2px;
+
+  font-size: 0.52rem;
+
+  color: #6b4306;
+
+  background:
+    radial-gradient(
+      circle at 32% 25%,
+      #fff8d6 0%,
+      #ffe99b 16%,
+      #f6d36e 40%,
+      #d9a83d 67%,
+      #9b6417 100%
+    );
+
+  border: 1px solid rgba(255, 226, 139, 0.92);
+
+  transform:
+    rotate(-10deg)
+    rotateY(-12deg);
+
+  z-index: 3;
+
+  filter:
+    drop-shadow(0 0 7px rgba(243, 204, 110, 0.18));
+}
+
+/* ---------------------------------------------------------
+   BLUE THUMBNAIL COIN
+--------------------------------------------------------- */
+
+.artCoinBlue {
+  width: 34px;
+  height: 34px;
+
+  left: 0;
+  bottom: -7px;
+
+  font-size: 0.43rem;
+
+  color: #163d83;
+
+  background:
+    radial-gradient(
+      circle at 30% 24%,
+      #edf5ff 0%,
+      #b9d5ff 18%,
+      #78a3f4 44%,
+      #4b74d0 68%,
+      #28478e 100%
+    );
+
+  border: 1px solid rgba(205, 225, 255, 0.9);
+
+  transform:
+    rotate(-8deg)
+    rotateY(14deg);
+
+  z-index: 1;
+
+  filter:
+    drop-shadow(0 0 7px rgba(100, 150, 255, 0.18));
+}
+
+/* ---------------------------------------------------------
+   PURPLE THUMBNAIL COIN
+--------------------------------------------------------- */
+
+.artCoinPurple {
+  width: 40px;
+  height: 40px;
+
+  right: -14px;
+  top: 30%;
+
+  font-size: 0.48rem;
+
+  color: #3d2675;
+
+  background:
+    radial-gradient(
+      circle at 31% 24%,
+      #f5edff 0%,
+      #dfc9ff 17%,
+      #b18aed 43%,
+      #8056c7 68%,
+      #52328f 100%
+    );
+
+  border: 1px solid rgba(226, 207, 255, 0.92);
+
+  transform:
+    rotate(9deg)
+    rotateY(-13deg);
+
+  z-index: 3;
+
+  filter:
+    drop-shadow(0 0 8px rgba(170, 125, 255, 0.22));
+}
+
+/* =========================================================
+   PLAY BUTTON
 ========================================================= */
 
 .adControls {
@@ -537,54 +857,53 @@
 
   inset: 0;
 
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
-  justify-content: center;
+  z-index: 5;
 
   pointer-events: none;
 }
 
 .playButton {
-  width: 58px;
-  height: 58px;
+  position: absolute;
+
+  left: 50%;
+  top: 63%;
+
+  width: 42px;
+  height: 42px;
 
   display: grid;
   place-items: center;
 
   padding: 0;
 
-  border: 1px solid rgba(255, 255, 255, 0.24);
+  border: none;
+
   border-radius: 50%;
 
-  background:
-    rgba(34, 49, 94, 0.72);
+  background: transparent;
 
   color: #ffffff;
 
-  box-shadow:
-    0 10px 28px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transform: translate(-50%, -50%);
+
+  filter:
+    drop-shadow(0 6px 10px rgba(0, 0, 0, 0.4));
 
   cursor: pointer;
 
   pointer-events: auto;
 
-  backdrop-filter: blur(8px);
-
   transition:
-    background 180ms ease,
-    box-shadow 180ms ease;
+    transform 180ms ease,
+    filter 180ms ease;
 }
 
 .playButton:hover:not(:disabled) {
-  background:
-    rgba(61, 83, 151, 0.82);
+  transform: translate(-50%, -50%) scale(1.08);
+}
 
-  box-shadow:
-    0 12px 32px rgba(0, 0, 0, 0.36),
-    0 0 20px rgba(111, 140, 255, 0.12);
+.playButton:active:not(:disabled) {
+  transform: translate(-50%, -50%) scale(0.94);
 }
 
 .playButton:focus-visible {
@@ -594,18 +913,6 @@
 
 .playButton:disabled {
   cursor: default;
-}
-
-.adMessage {
-  margin-top: 10px;
-
-  color: rgba(255, 255, 255, 0.82);
-
-  font-family: var(--font-mono);
-  font-size: 0.55rem;
-  font-weight: 600;
-
-  letter-spacing: 0.09em;
 }
 
 .playingIndicator {
@@ -646,6 +953,581 @@
   animation-delay: -0.1s;
 }
 
+
+/* =========================================================
+   VIDEO META / TIMELINE
+========================================================= */
+
+.videoMeta {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 0 14px 14px;
+
+  color: rgba(255, 255, 255, 0.78);
+
+  font-size: 0.62rem;
+}
+
+.videoMetaIcon {
+  flex: 0 0 auto;
+
+  display: grid;
+  place-items: center;
+
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.adProgress {
+  flex: 1;
+
+  position: relative;
+
+  height: 3px;
+
+  overflow: visible;
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.adProgress span {
+  position: relative;
+
+  display: block;
+
+  width: 50%;
+  height: 100%;
+
+  border-radius: inherit;
+
+  background: #ffffff;
+
+  transition:
+    width 180ms linear;
+}
+
+.adProgress span::after {
+  content: "";
+
+  position: absolute;
+
+  top: 50%;
+  right: 0;
+
+  width: 9px;
+  height: 9px;
+
+  transform: translate(50%, -50%);
+
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.18);
+}
+
+.isPlaying .adProgress span {
+  width: 100%;
+
+  transition:
+    width 3s linear;
+}
+
+.isCompleted .adProgress span {
+  width: 100%;
+}
+
+
+/* =========================================================
+   EARNINGS PANEL
+========================================================= */
+
+.earningsPanel {
+  position: relative;
+
+  flex: 1 1 0%;
+  min-width: 200px;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 18px;
+
+  border: 1px solid rgba(91, 126, 224, 0.24);
+  border-radius: 16px;
+
+  background:
+    radial-gradient(circle at 85% 0%,
+      rgba(64, 106, 220, 0.14),
+      transparent 45%),
+    linear-gradient(165deg,
+      #101e3b 0%,
+      #0c1931 55%,
+      #091426 100%);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.045),
+    0 18px 42px rgba(0, 0, 0, 0.22);
+
+  z-index: 2;
+}
+
+.earningsLabel {
+  color: rgba(255, 255, 255, 0.5);
+
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  font-weight: 600;
+
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.earningsToday {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  margin-top: 12px;
+}
+
+.earningsIcon {
+  flex: 0 0 auto;
+
+  width: 30px;
+  height: 30px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid rgba(243, 204, 110, 0.42);
+  border-radius: 50%;
+
+  background: rgba(243, 204, 110, 0.11);
+
+  color: var(--color-gold-light);
+}
+
+.earningsTodayText {
+  display: flex;
+  flex-direction: column;
+}
+
+.earningsTodayText strong {
+  color: var(--color-text-primary);
+
+  font-size: 1.28rem;
+  font-weight: 700;
+
+  line-height: 1.15;
+
+  letter-spacing: -0.02em;
+}
+
+.earningsTodayText span {
+  margin-top: 1px;
+
+  color: var(--color-text-muted);
+
+  font-size: 0.66rem;
+}
+
+.completedPill {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  margin-top: 14px;
+  padding: 9px 11px;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.03);
+
+  color: rgba(255, 255, 255, 0.45);
+
+  transition:
+    background 200ms ease,
+    border-color 200ms ease,
+    color 200ms ease;
+}
+
+.completedPillActive {
+  border-color: rgba(69, 195, 130, 0.30);
+
+  background: rgba(37, 119, 78, 0.16);
+
+  color: #68d99e;
+}
+
+.completedPillIcon {
+  flex: 0 0 auto;
+
+  width: 18px;
+  height: 18px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.06);
+
+  color: inherit;
+}
+
+.completedPillActive .completedPillIcon {
+  background: rgba(74, 211, 139, 0.18);
+}
+
+.completedPillIcon svg {
+  width: 11px;
+  height: 11px;
+}
+
+.completedPillText {
+  flex: 1;
+  min-width: 0;
+
+  font-size: 0.72rem;
+  font-weight: 600;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.completedPill > svg {
+  flex: 0 0 auto;
+
+  width: 14px;
+  height: 14px;
+
+  opacity: 0.7;
+}
+
+.earningsDivider {
+  height: 1px;
+
+  margin: 14px 0;
+
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.earningsTotal {
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+.earningsTotal span {
+  color: var(--color-text-muted);
+
+  font-size: 0.66rem;
+}
+
+.earningsTotal strong {
+  color: var(--color-text-primary);
+
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  font-weight: 700;
+
+  letter-spacing: -0.01em;
+}
+
+.earningsTotal strong em {
+  margin-left: 3px;
+
+  color: var(--color-text-muted);
+
+  font-size: 0.7rem;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.balanceRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+
+  margin-top: auto;
+  padding-top: 14px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.balanceRow > span {
+  color: var(--color-text-muted);
+
+  font-size: 0.66rem;
+
+  white-space: nowrap;
+}
+
+.balancePill {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 6px;
+
+  padding: 8px 12px;
+
+  border: 1px solid rgba(243, 204, 110, 0.55);
+  border-radius: 10px;
+
+  background: rgba(243, 204, 110, 0.1);
+
+  color: var(--color-gold-light);
+
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  box-shadow: 0 0 16px rgba(243, 204, 110, 0.1);
+
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.balancePill:hover {
+  transform: translateY(-1px);
+
+  box-shadow: 0 0 20px rgba(243, 204, 110, 0.18);
+}
+
+.balancePill:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   FLOATING EARNINGS COINS — 3D GOLD
+========================================================= */
+
+.earningsCoins {
+  position: absolute;
+
+  top: -17px;
+  right: -15px;
+
+  width: 92px;
+  height: 116px;
+
+  pointer-events: none;
+
+  z-index: 3;
+
+  perspective: 500px;
+}
+
+.coin {
+  position: absolute;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  font-family: var(--font-mono);
+  font-size: 0.43rem;
+  font-weight: 800;
+
+  color: #704707;
+
+  isolation: isolate;
+
+  transform-style: preserve-3d;
+
+  background:
+    radial-gradient(
+      circle at 31% 24%,
+      #fff9dc 0%,
+      #ffedaa 15%,
+      #f6d576 38%,
+      #dca943 64%,
+      #a86d18 86%,
+      #80500e 100%
+    );
+
+  border: 1px solid rgba(255, 230, 145, 0.95);
+
+  box-shadow:
+    0 14px 25px rgba(0, 0, 0, 0.42),
+    0 5px 9px rgba(0, 0, 0, 0.28),
+    0 0 18px rgba(243, 204, 110, 0.16),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.48),
+    inset -3px -4px 6px rgba(90, 48, 3, 0.32);
+
+  transition:
+    transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 300ms ease;
+}
+
+/* Inner engraved/beveled face */
+.coin::before {
+  content: "";
+
+  position: absolute;
+  inset: 3px;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(255, 244, 192, 0.58);
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      rgba(255, 255, 255, 0.22),
+      transparent 35%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.16),
+      transparent 42%,
+      rgba(103, 61, 8, 0.16)
+    );
+
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.42),
+    inset 0 -2px 3px rgba(89, 48, 3, 0.25);
+
+  pointer-events: none;
+
+  z-index: -1;
+}
+
+/* Metallic light streak */
+.coin::after {
+  content: "";
+
+  position: absolute;
+
+  width: 45%;
+  height: 20%;
+
+  top: 12%;
+  left: 16%;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      105deg,
+      rgba(255, 255, 255, 0.72),
+      rgba(255, 255, 255, 0)
+    );
+
+  transform: rotate(-25deg);
+
+  filter: blur(0.7px);
+
+  opacity: 0.72;
+
+  pointer-events: none;
+
+  z-index: 2;
+}
+
+/* ---------------------------------------------------------
+   LARGE COIN
+--------------------------------------------------------- */
+
+.coinOne {
+  width: 42px;
+  height: 42px;
+
+  top: 0;
+  right: 24px;
+
+  transform:
+    rotate(14deg)
+    rotateY(-14deg);
+
+  filter:
+    drop-shadow(0 0 8px rgba(243, 204, 110, 0.22));
+}
+
+/* ---------------------------------------------------------
+   MEDIUM COIN
+--------------------------------------------------------- */
+
+.coinTwo {
+  width: 34px;
+  height: 34px;
+
+  top: 42px;
+  right: -1px;
+
+  transform:
+    rotate(-14deg)
+    rotateY(17deg);
+
+  filter:
+    drop-shadow(0 0 7px rgba(243, 204, 110, 0.18));
+}
+
+/* ---------------------------------------------------------
+   SMALL COIN
+--------------------------------------------------------- */
+
+.coinThree {
+  width: 29px;
+  height: 29px;
+
+  top: 74px;
+  right: 27px;
+
+  transform:
+    rotate(11deg)
+    rotateY(-20deg);
+
+  filter:
+    drop-shadow(0 0 6px rgba(243, 204, 110, 0.16));
+}
+
+@keyframes earningsCoinFloat {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 -5px;
+  }
+}
+
+.earningsCoins .coinOne {
+  animation: earningsCoinFloat 3.2s ease-in-out infinite;
+}
+
+.earningsCoins .coinTwo {
+  animation: earningsCoinFloat 3.6s ease-in-out -0.8s infinite;
+}
+
+.earningsCoins .coinThree {
+  animation: earningsCoinFloat 3.4s ease-in-out -1.5s infinite;
+}
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
 @keyframes soundWave {
   from {
     transform: scaleY(0.55);
@@ -658,486 +1540,7 @@
   }
 }
 
-/* =========================================================
-   VIDEO META / PROGRESS
-========================================================= */
-
-.videoMeta {
-  display: flex;
-
-  align-items: center;
-
-  gap: 8px;
-
-  padding: 0 13px 12px;
-
-  color: rgba(255, 255, 255, 0.65);
-
-  font-family: var(--font-mono);
-  font-size: 0.46rem;
-}
-
-.adProgress {
-  flex: 1;
-
-  height: 3px;
-
-  overflow: hidden;
-
-  border-radius: 999px;
-
-  background:
-    rgba(255, 255, 255, 0.15);
-}
-
-.adProgress span {
-  display: block;
-
-  width: 0;
-  height: 100%;
-
-  border-radius: inherit;
-
-  background:
-    linear-gradient(90deg,
-      #9ab4ff,
-      var(--color-blue-light));
-
-  transition:
-    width 180ms linear;
-}
-
-.isPlaying .adProgress span {
-  width: 100%;
-
-  transition:
-    width 3s linear;
-}
-
-/* =========================================================
-   REWARD PANEL
-========================================================= */
-
-.rewardPanel {
-  min-width: 0;
-
-  display: flex;
-  flex-direction: column;
-
-  padding: 16px;
-
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: 13px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(19, 29, 48, 0.96),
-      rgba(9, 16, 29, 0.96)
-    );
-
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.035),
-    0 14px 30px rgba(0, 0, 0, 0.18);
-}
-
-.rewardHeader {
-  color: var(--color-text-secondary);
-
-  font-family: var(--font-mono);
-  font-size: 0.58rem;
-
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.rewardAmount {
-  display: flex;
-
-  align-items: center;
-
-  gap: 10px;
-
-  margin-top: 17px;
-}
-
-.rewardCoin {
-  width: 31px;
-  height: 31px;
-
-  display: grid;
-  place-items: center;
-
-  border: 1px solid rgba(243, 204, 110, 0.35);
-  border-radius: 50%;
-
-  background:
-    rgba(243, 204, 110, 0.12);
-
-  color: var(--color-gold-light);
-
-  box-shadow:
-    0 0 16px rgba(243, 204, 110, 0.07);
-}
-
-.rewardAmount strong {
-  color: var(--color-text-primary);
-
-  font-family: var(--font-mono);
-  font-size: 1.45rem;
-  font-weight: 700;
-
-  letter-spacing: -0.02em;
-}
-
-/* =========================================================
-   COMPLETION STATUS
-========================================================= */
-
-.completedCard {
-  display: flex;
-
-  align-items: center;
-
-  gap: 8px;
-
-  margin-top: 20px;
-
-  padding: 10px 11px;
-
-  border: 1px solid rgba(64, 191, 126, 0.18);
-  border-radius: 8px;
-
-  background:
-    rgba(38, 112, 76, 0.1);
-
-  color: #75dca5;
-}
-
-.completedIcon {
-  width: 22px;
-  height: 22px;
-
-  display: grid;
-  place-items: center;
-
-  border-radius: 50%;
-
-  background:
-    rgba(76, 211, 139, 0.14);
-
-  color: #72dfa3;
-}
-
-.completedCard strong {
-  flex: 1;
-
-  color: #8ce7b3;
-
-  font-size: 0.62rem;
-  font-weight: 600;
-}
-
-.completedCard>span {
-  color: #59ce91;
-
-  font-size: 0.65rem;
-}
-
-.rewardCredit {
-  margin-top: auto;
-
-  padding-top: 16px;
-
-  color: var(--color-text-muted);
-
-  font-size: 0.58rem;
-  line-height: 1.4;
-}
-
-/* =========================================================
-   BALANCE
-========================================================= */
-
-.balanceCard {
-  position: relative;
-
-  margin-top: 10px;
-
-  padding: 11px;
-
-  border: 1px solid rgba(111, 140, 255, 0.2);
-  border-radius: 8px;
-
-  background:
-    rgba(17, 24, 43, 0.75);
-}
-
-.balanceCard span {
-  display: block;
-
-  color: var(--color-text-muted);
-
-  font-size: 0.52rem;
-}
-
-.balanceCard strong {
-  display: block;
-
-  margin-top: 4px;
-
-  color: var(--color-text-primary);
-
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-}
-
-.balanceArrow {
-  position: absolute;
-
-  top: 50%;
-  right: 9px;
-
-  width: 25px;
-  height: 25px;
-
-  display: grid;
-  place-items: center;
-
-  transform: translateY(-50%);
-
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 6px;
-
-  color: var(--color-text-muted);
-
-  font-size: 0.75rem;
-}
-
-/* =========================================================
-   FLOATING COINS
-========================================================= */
-
-.coinOne {
-  top: 0;
-  right: 34px;
-
-  width: 38px;
-  height: 38px;
-
-  transform: rotate(-12deg);
-}
-
-.coinTwo {
-  top: 43px;
-  right: 5px;
-
-  width: 33px;
-  height: 33px;
-
-  transform: rotate(10deg);
-}
-
-.coinThree {
-  top: 83px;
-  right: 28px;
-
-  width: 28px;
-  height: 28px;
-
-  transform: rotate(-8deg);
-}
-
-.coin {
-  position: absolute;
-
-  display: grid;
-  place-items: center;
-
-  border: 1px solid rgba(243, 204, 110, 0.55);
-  border-radius: 50%;
-
-  background:
-    radial-gradient(
-      circle at 30% 25%,
-      #ffe9a3 0%,
-      #f3cf72 38%,
-      #c38f2d 100%
-    );
-
-  color: #6d4a13;
-
-  box-shadow:
-    0 10px 24px rgba(0, 0, 0, 0.34),
-    0 0 22px rgba(243, 204, 110, 0.20);
-
-  transform-style: preserve-3d;
-}
-
-.coin svg {
-  width: 19px;
-  height: 19px;
-}
-
-.coinOne {
-  top: 5px;
-  right: 34px;
-
-  width: 39px;
-  height: 39px;
-
-  transform: rotate(-12deg);
-}
-
-.coinTwo {
-  top: 47px;
-  right: 7px;
-
-  width: 34px;
-  height: 34px;
-
-  transform: rotate(10deg);
-}
-
-.coinThree {
-  top: 87px;
-  right: 31px;
-
-  width: 29px;
-  height: 29px;
-
-  transform: rotate(-8deg);
-}
-
-.coinTwo svg {
-  width: 16px;
-  height: 16px;
-}
-
-.coinThree svg {
-  width: 14px;
-  height: 14px;
-}
-
-/* =========================================================
-   WALLET
-========================================================= */
-
-.wallet {
-  position: absolute;
-
-  right: 18px;
-  bottom: 18px;
-
-  z-index: 4;
-
-  width: 92px;
-  height: 60px;
-
-  border: 1px solid rgba(111, 140, 255, 0.30);
-  border-radius: 12px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #3159a8,
-      #182e5d
-    );
-
-  box-shadow:
-    0 14px 30px rgba(0, 0, 0, 0.38),
-    0 0 22px rgba(80, 125, 255, 0.12);
-
-  transform: rotate(-2deg);
-  transform-origin: center;
-}
-
-.walletIcon {
-  position: absolute;
-
-  top: 14px;
-  left: 13px;
-
-  color: #f6d16f;
-
-  transition:
-    color 180ms ease,
-    filter 180ms ease;
-}
-
-.walletOpening {
-  position: absolute;
-
-  top: 26px;
-  right: -6px;
-
-  width: 28px;
-  height: 19px;
-
-  border: 1px solid rgba(243, 204, 110, 0.35);
-  border-radius: 6px;
-
-  background:
-    #7d5a1e;
-}
-
-.walletCard {
-  position: absolute;
-
-  left: 50%;
-  bottom: 8px;
-
-  width: 92px;
-
-  padding: 7px 9px;
-
-  transform: translateX(-50%);
-
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 7px;
-
-  background: rgba(13, 17, 29, 0.94);
-
-  box-shadow:
-    0 8px 18px rgba(0, 0, 0, 0.28);
-
-  backdrop-filter: blur(8px);
-}
-
-.walletCard span {
-  display: block;
-
-  color: var(--color-text-muted);
-
-  font-size: 0.46rem;
-  line-height: 1;
-}
-
-.walletCard strong {
-  display: block;
-
-  margin-top: 4px;
-
-  color: var(--color-gold-light);
-
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-  font-weight: 700;
-
-  white-space: nowrap;
-}
-
-.walletGlowing {
-  box-shadow:
-    0 14px 28px rgba(0, 0, 0, 0.35),
-    0 0 28px rgba(243, 204, 110, 0.45);
-}
-
-/* =========================================================
-   PLAYING STATE
-========================================================= */
-
-.isPlaying .rewardCoin {
+.isPlaying .earningsIcon {
   animation:
     rewardPulse 1.2s ease-in-out infinite alternate;
 }
@@ -1154,82 +1557,257 @@
   }
 }
 
+
 /* =========================================================
    RESPONSIVE
 ========================================================= */
 
-@media (max-width: 1100px) {
-  .content {
-    grid-template-columns:
-      minmax(280px, 0.8fr) minmax(480px, 1.2fr);
+/* =========================================================
+   LARGE TABLET / SMALL LAPTOP
+   1200px → 901px
+========================================================= */
 
-    gap: 28px;
-
-    padding: 32px;
-  }
-
-  .copy h2 {
-    font-size: clamp(2.25rem, 4vw, 3.2rem);
-  }
-
-  .visual {
-    grid-template-columns:
-      minmax(0, 1.25fr) minmax(165px, 0.75fr);
-
-    gap: 14px;
-
-    padding: 17px;
-  }
-
-  .rewardPanel {
-    padding: 13px;
-  }
-
-  .coins {
-    right: -18px;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1199px) {
+@media (max-width: 1200px) {
   .banner {
-    height: clamp(380px, 42vw, 500px);
-    min-height: 380px;
-    max-height: 540px;
+    height: clamp(410px, 38vw, 500px);
+    min-height: 410px;
+    max-height: 500px;
   }
 
   .content {
-    min-height: 0;
-    height: 100%;
     grid-template-columns:
-      minmax(280px, 0.82fr)
-      minmax(0, 1.18fr);
-    align-items: center;
-    gap: 28px;
-    padding: 28px;
+      minmax(290px, 0.78fr)
+      minmax(0, 1.22fr);
+
+    gap: clamp(24px, 3vw, 36px);
+
+    padding:
+      clamp(24px, 3vw, 32px)
+      clamp(24px, 3.2vw, 40px);
   }
 
   .copy {
     max-width: 500px;
   }
 
+  .copy h2 {
+    font-size: clamp(2.2rem, 3.7vw, 3rem);
+  }
+
+  .description {
+    max-width: 440px;
+  }
+
+  .earningFlow {
+    gap: 12px;
+  }
+
+  .flowStep {
+    gap: 8px;
+  }
+
+  .flowIcon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .flowLabel {
+    font-size: 0.7rem;
+  }
+
+  .flowSubLabel {
+    font-size: 0.62rem;
+  }
+
   .visual {
-    height: min(315px, calc(100% - 48px));
+    height: min(350px, calc(100% - 8px));
+    gap: 14px;
+  }
+
+  .earningsPanel {
+    min-width: 180px;
+    padding: 16px;
+  }
+
+  .earningsCoins {
+    right: -10px;
   }
 }
 
-@media (max-width: 620px) {
-  .banner {
-    min-height: auto;
 
-    border-radius: 20px;
+/* =========================================================
+   TABLET LANDSCAPE
+   1024px → 901px
+========================================================= */
+
+@media (max-width: 1024px) {
+  .banner {
+    height: 430px;
   }
 
   .content {
-    min-height: auto;
+    grid-template-columns:
+      minmax(275px, 0.76fr)
+      minmax(0, 1.24fr);
 
-    gap: 24px;
+    gap: 22px;
 
-    padding: 24px 20px;
+    padding: 24px 28px;
+  }
+
+  .sectionNumber {
+    margin-bottom: 18px;
+  }
+
+  .copy h2 {
+    font-size: clamp(2.05rem, 3.7vw, 2.7rem);
+  }
+
+  .description {
+    margin-top: 16px;
+    font-size: 0.88rem;
+    line-height: 1.55;
+  }
+
+  .earningFlow {
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .flowStep {
+    gap: 7px;
+  }
+
+  .flowIcon {
+    width: 38px;
+    height: 38px;
+    border-radius: 11px;
+  }
+
+  .flowLabel {
+    font-size: 0.66rem;
+  }
+
+  .flowSubLabel {
+    font-size: 0.59rem;
+  }
+
+  .flowDivider {
+    height: 28px;
+  }
+
+  .cta {
+    margin-top: 20px;
+  }
+
+  .visual {
+    height: 350px;
+    gap: 12px;
+  }
+
+  .adHeader {
+    padding-left: 13px;
+    padding-right: 13px;
+  }
+
+  .adArt {
+    width: 175px;
+    height: 140px;
+  }
+
+  .earningsPanel {
+    min-width: 175px;
+    padding: 15px;
+  }
+
+  .earningsTodayText strong {
+    font-size: 1.16rem;
+  }
+
+  .balancePill {
+    padding: 7px 9px;
+  }
+}
+
+
+/* =========================================================
+   TABLET PORTRAIT
+   900px → 701px
+
+   We stack the two major columns here, but keep
+   the video + earnings cards side-by-side.
+========================================================= */
+
+@media (max-width: 900px) {
+  .banner {
+    height: auto;
+    min-height: 0;
+    max-height: none;
+  }
+
+  .content {
+    height: auto;
+    min-height: 0;
+
+    grid-template-columns: 1fr;
+
+    gap: 30px;
+
+    padding: 32px;
+  }
+
+  .copy {
+    max-width: 650px;
+  }
+
+  .copy h2 {
+    font-size: clamp(2.25rem, 5.5vw, 3rem);
+  }
+
+  .description {
+    max-width: 560px;
+  }
+
+  .earningFlow {
+    max-width: 620px;
+  }
+
+  .visual {
+    order: 2;
+
+    width: 100%;
+    height: 340px;
+
+    flex-direction: row;
+
+    gap: 16px;
+  }
+
+  .adScreen {
+    flex: 1.55 1 0%;
+  }
+
+  .earningsPanel {
+    flex: 0.85 1 0%;
+    min-width: 190px;
+  }
+
+  .earningsCoins {
+    top: -12px;
+    right: -8px;
+  }
+}
+
+
+/* =========================================================
+   SMALL TABLET
+   700px → 541px
+========================================================= */
+
+@media (max-width: 700px) {
+  .content {
+    padding: 28px 24px;
+    gap: 26px;
   }
 
   .sectionNumber {
@@ -1237,27 +1815,24 @@
   }
 
   .number {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
   }
 
   .eyebrow {
-    font-size: 0.62rem;
+    font-size: 0.63rem;
   }
 
   .copy h2 {
-    font-size: clamp(2.15rem, 11vw, 3rem);
-    line-height: 0.98;
+    font-size: clamp(2.15rem, 7vw, 2.7rem);
   }
 
   .description {
-    margin-top: 16px;
-
+    margin-top: 15px;
     font-size: 0.88rem;
-    line-height: 1.55;
   }
 
   .earningFlow {
-    margin-top: 20px;
+    gap: 10px;
   }
 
   .flowIcon {
@@ -1266,177 +1841,395 @@
   }
 
   .flowLabel {
-    font-size: 0.61rem;
+    font-size: 0.66rem;
   }
 
   .flowSubLabel {
-    font-size: 0.56rem;
+    font-size: 0.58rem;
   }
 
-  .flowArrow {
-    margin-right: 7px;
-    margin-left: 7px;
+  .cta {
+    margin-top: 19px;
+  }
+
+  .visual {
+    height: 320px;
+    gap: 12px;
+  }
+
+  .adScreen {
+    flex: 1.4 1 0%;
+  }
+
+  .earningsPanel {
+    flex: 0.9 1 0%;
+    min-width: 175px;
+    padding: 14px;
+  }
+
+  .earningsToday {
+    gap: 8px;
+  }
+
+  .earningsIcon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .earningsTodayText strong {
+    font-size: 1.08rem;
+  }
+
+  .completedPill {
+    padding: 8px 9px;
+  }
+
+  .earningsTotal strong {
+    font-size: 0.98rem;
+  }
+
+  .balanceRow {
+    gap: 6px;
+  }
+
+  .balanceRow > span {
+    font-size: 0.6rem;
+  }
+
+  .balancePill {
+    padding: 7px 8px;
+    font-size: 0.64rem;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   540px → 431px
+
+   Stack video and earnings vertically.
+========================================================= */
+
+@media (max-width: 540px) {
+  .banner {
+    border-radius: 20px;
+  }
+
+  .content {
+    padding: 26px 20px 24px;
+    gap: 24px;
+  }
+
+  .copy {
+    max-width: none;
+  }
+
+  .sectionNumber {
+    margin-bottom: 15px;
+  }
+
+  .number {
+    font-size: 1.08rem;
+  }
+
+  .sectionDot {
+    font-size: 0.9rem;
+  }
+
+  .eyebrow {
+    font-size: 0.6rem;
+  }
+
+  .copy h2 {
+    font-size: clamp(2rem, 10vw, 2.65rem);
+    line-height: 0.99;
+  }
+
+  .description {
+    margin-top: 15px;
+    font-size: 0.86rem;
+    line-height: 1.55;
+  }
+
+  /*
+   * The three-step flow gets slightly smaller but
+   * remains horizontal so the communication hierarchy
+   * is preserved.
+   */
+  .earningFlow {
+    width: 100%;
+    gap: 8px;
+    margin-top: 18px;
+  }
+
+  .flowStep {
+    gap: 6px;
+  }
+
+  .flowIcon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+  }
+
+  .flowLabel {
+    font-size: 0.63rem;
+  }
+
+  .flowSubLabel {
+    font-size: 0.55rem;
+  }
+
+  .flowDivider {
+    height: 26px;
   }
 
   .cta {
     width: 100%;
+    min-height: 46px;
+    margin-top: 18px;
+  }
 
-    margin-top: 20px;
+  /*
+   * Video and earnings become vertical.
+   */
+  .visual {
+    width: 100%;
+    height: auto;
+
+    flex-direction: column;
+
+    gap: 14px;
+  }
+
+  .adScreen {
+    width: 100%;
+    height: 280px;
+
+    flex: none;
+  }
+
+  .earningsPanel {
+    width: 100%;
+    min-width: 0;
+
+    min-height: 220px;
+
+    flex: none;
+
+    padding: 16px;
+  }
+
+  .adArt {
+    width: 155px;
+    height: 125px;
+  }
+
+  .clapperboard {
+    width: 98px;
+    height: 77px;
+  }
+
+  .clapperBody {
+    height: 57px;
+  }
+
+  .earningsCoins {
+    top: -12px;
+    right: -7px;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   430px → 361px
+========================================================= */
+
+@media (max-width: 430px) {
+  .content {
+    padding: 23px 16px 22px;
+    gap: 22px;
+  }
+
+  .copy h2 {
+    font-size: clamp(1.9rem, 10.5vw, 2.4rem);
+  }
+
+  .description {
+    font-size: 0.82rem;
+  }
+
+  .earningFlow {
+    gap: 7px;
+  }
+
+  .flowStep {
+    gap: 4px;
+  }
+
+  .flowIcon {
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+  }
+
+  .flowLabel {
+    font-size: 0.59rem;
+  }
+
+  .flowSubLabel {
+    font-size: 0.52rem;
+  }
+
+  .flowDivider {
+    height: 24px;
+  }
+
+  .cta {
+    min-height: 45px;
   }
 
   .visual {
-    width: 100%;
-    height: 300px;
-
-    grid-template-columns:
-      minmax(0, 1.35fr) minmax(132px, 0.8fr);
-
-    gap: 10px;
-
-    padding: 12px;
-
-    overflow: visible;
+    gap: 12px;
   }
 
-  .adHeader {
-    padding: 9px 10px;
-
-    font-size: 0.45rem;
+  .adScreen {
+    height: 260px;
   }
 
-  .adBadge {
-    font-size: 0.38rem;
+  .earningsPanel {
+    min-height: 210px;
+    padding: 14px;
   }
 
-  .headphones {
-    transform:
-      translateY(3px) scale(0.78);
+  .adArt {
+    width: 145px;
+    height: 115px;
   }
 
-  .playButton {
-    width: 48px;
-    height: 48px;
+  .clapperboard {
+    width: 92px;
+    height: 72px;
   }
 
-  .adMessage {
-    font-size: 0.47rem;
+  .clapperBody {
+    height: 54px;
+  }
+
+  .artCoinGold {
+    width: 40px;
+    height: 40px;
+  }
+
+  .artCoinBlue {
+    width: 31px;
+    height: 31px;
+  }
+
+  .artCoinPurple {
+    width: 36px;
+    height: 36px;
+  }
+
+  .earningsCoins {
+    right: -5px;
+  }
+
+  .coinOne {
+    width: 38px;
+    height: 38px;
+  }
+
+  .coinTwo {
+    width: 31px;
+    height: 31px;
+  }
+
+  .coinThree {
+    width: 27px;
+    height: 27px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+   360px and below
+========================================================= */
+
+@media (max-width: 360px) {
+  .content {
+    padding: 20px 14px;
+    gap: 20px;
+  }
+
+  .copy h2 {
+    font-size: 1.85rem;
+  }
+
+  .description {
+    font-size: 0.8rem;
+  }
+
+  .earningFlow {
+    gap: 5px;
+  }
+
+  .flowStep {
+    gap: 4px;
+  }
+
+  .flowIcon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .flowLabel {
+    font-size: 0.57rem;
+  }
+
+  .flowSubLabel {
+    font-size: 0.5rem;
+  }
+
+  .flowDivider {
+    height: 22px;
+  }
+
+  .adScreen {
+    height: 245px;
+  }
+
+  .earningsPanel {
+    min-height: 200px;
+  }
+
+  .adArt {
+    width: 138px;
+    height: 108px;
+  }
+
+  .clapperboard {
+    width: 88px;
+    height: 69px;
+  }
+
+  .clapperBody {
+    height: 51px;
   }
 
   .videoMeta {
     padding:
-      0 9px 9px;
-
-    font-size: 0.4rem;
+      0 11px 11px;
   }
 
-  .rewardPanel {
-    padding: 10px;
+  .earningsTodayText strong {
+    font-size: 1rem;
   }
 
-  .rewardAmount {
-    gap: 6px;
-
-    margin-top: 10px;
-  }
-
-  .rewardCoin {
-    width: 27px;
-    height: 27px;
-  }
-
-  .rewardAmount strong {
-    font-size: 0.95rem;
-  }
-
-  .completedCard {
-    margin-top: 12px;
-
-    padding: 8px;
-  }
-
-  .completedCard strong {
-    font-size: 0.52rem;
-  }
-
-  .rewardCredit {
-    padding-top: 10px;
-
-    font-size: 0.48rem;
-  }
-
-  .balanceCard {
-    margin-top: 7px;
-
-    padding: 8px;
-  }
-
-  .balanceCard span {
-    font-size: 0.43rem;
-  }
-
-  .balanceCard strong {
-    font-size: 0.64rem;
-  }
-
-  .balanceArrow {
-    width: 20px;
-    height: 20px;
-
-    right: 6px;
-
-    font-size: 0.62rem;
-  }
-
-  .coins {
-    position: absolute;
-
-    top: 32px;
-    right: 25px;
-
-    width: 105px;
-    height: 150px;
-
-    pointer-events: none;
-    z-index: 5;
-  }
-
-  .wallet {
-    right: -7px;
-    bottom: 23px;
-
-    transform:
-      rotate(-2deg) scale(0.78);
-
-    transform-origin: bottom right;
-  }
-}
-
-@media (max-width: 430px) {
-  .content {
-    padding: 22px 16px;
-  }
-
-  .visual {
-    height: 270px;
-
-    grid-template-columns:
-      minmax(0, 1.25fr) minmax(118px, 0.75fr);
-
-    padding: 9px;
-  }
-
-  .rewardPanel {
-    padding: 9px;
-  }
-
-  .wallet {
-    display: none;
-  }
-
-  .coins {
-    right: -12px;
-
-    transform: scale(0.6);
+  .earningsTotal strong {
+    font-size: 0.92rem;
   }
 }
 
@@ -1445,14 +2238,14 @@
 ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
-
   .cta,
   .cta svg,
   .playButton,
   .playingIndicator span,
-  .rewardCoin {
+  .earningsIcon,
+  .clapperboard,
+  .earningsCoins .coin {
     animation: none !important;
-
     transition: none !important;
   }
 
@@ -1462,5 +2255,53 @@
 
   .isPlaying .adProgress span {
     width: 100%;
+  }
+
+  .copy,
+  .visual {
+    animation: none !important;
+  }
+
+  .cta {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* =========================================================
+   ENTRANCE ANIMATION
+========================================================= */
+
+@keyframes watchAdContentEnter {
+  0% {
+    opacity: 0;
+    transform: translate3d(-22px, 0, 0);
+  }
+
+  65% {
+    opacity: 0.9;
+    transform: translate3d(3px, 0, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes watchAdVisualEnter {
+  0% {
+    opacity: 0;
+    transform: translate3d(22px, 0, 0);
+  }
+
+  65% {
+    opacity: 0.9;
+    transform: translate3d(-3px, 0, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 }

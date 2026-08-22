@@ -2,12 +2,11 @@ import { useEffect, useState } from "react";
 
 import {
   Check,
-  Coins,
+  ChevronRight,
+  Flame,
   Play,
-  Wallet,
+  Settings,
 } from "lucide-react";
-
-import { motion, useAnimationControls } from "framer-motion";
 
 import { watchAdData } from "../../../data/watchAd";
 
@@ -18,15 +17,6 @@ const WATCH_DURATION = 3000;
 const WatchAdVisual = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
-
-  const BASE_BALANCE = 12450;
-
-  const [balance, setBalance] = useState(BASE_BALANCE);
-  const [walletGlow, setWalletGlow] = useState(false);
-
-  const walletControls = useAnimationControls();
-
-  const rewardParts = [13, 13, 12];
 
   useEffect(() => {
     if (!isPlaying) {
@@ -49,367 +39,231 @@ const WatchAdVisual = () => {
     }
 
     setIsCompleted(false);
-    setBalance(BASE_BALANCE);
-
     setIsPlaying(true);
   };
 
-  const handleCoinArrived = async (amount: number) => {
-    setBalance((current) => current + amount);
-
-    setWalletGlow(true);
-
-    await walletControls.start({
-      scale: [1, 1.08, 1],
-      filter: [
-        "drop-shadow(0 0 0 rgba(243, 204, 110, 0))",
-        "drop-shadow(0 0 24px rgba(243, 204, 110, 1))",
-        "drop-shadow(0 0 0 rgba(243, 204, 110, 0))",
-      ],
-      transition: {
-        duration: 0.45,
-        ease: "easeOut",
-      },
-    });
-
-    setWalletGlow(false);
-  };
-
   return (
-    <motion.div
-      className={`${styles.visual} ${isPlaying ? styles.isPlaying : ""
-        } ${isCompleted ? styles.isCompleted : ""}`}
+    <div
+      className={`${styles.visual} ${
+        isPlaying ? styles.isPlaying : ""
+      } ${isCompleted ? styles.isCompleted : ""}`}
       aria-label="Watch advertisement, complete the activity, and earn VE rewards"
-      initial={{
-        opacity: 0,
-        scale: 0.97,
-        y: 18,
-      }}
-      whileInView={{
-        opacity: 1,
-        scale: 1,
-        y: 0,
-      }}
-      viewport={{
-        once: true,
-        amount: 0.25,
-      }}
-      transition={{
-        duration: 0.7,
-        ease: "easeOut",
-      }}
     >
-      {/* =====================================================
-          BACKGROUND ATMOSPHERE
-      ===================================================== */}
-
       <div className={styles.visualGlow} />
-
       <div className={styles.visualGlowSecondary} />
 
       {/* =====================================================
-          VIDEO / AD PLAYER
+          AD PLAYER
       ===================================================== */}
 
       <div className={styles.adScreen}>
         <div className={styles.adHeader}>
           <span>
-            {isPlaying ? "WATCHING" : "AD 1 OF 3"}
+            {isPlaying ? "Watching" : "Ad 1 of 3"}
           </span>
 
-          <span className={styles.adBadge}>
-            ADVERTISEMENT
+          <span className={styles.rewardBadge}>
+            <span>Reward Boost</span>
+            <span className={styles.rewardBadgeValue}>
+              +10%
+            </span>
           </span>
         </div>
 
-        <div className={styles.adArtwork}>
-          <div className={styles.artworkGlow} />
+        {/* ===================================================
+            3D VIDEO ARTWORK
+        =================================================== */}
 
-          <div className={styles.headphones}>
-            <div className={styles.headphoneBand} />
+        <div className={styles.adContent}>
+          <div
+            className={styles.adArt}
+            aria-hidden="true"
+          >
+            <div className={styles.clapperboard}>
+              <div className={styles.clapperBody}>
+                <div className={styles.clapperLines}>
+                  <span />
+                  <span />
+                  <span />
+                </div>
+              </div>
 
-            <div className={styles.headphoneLeft}>
-              <span />
+              <div className={styles.clapperTop}>
+                <span />
+                <span />
+                <span />
+                <span />
+                <span />
+                <span />
+              </div>
+
+              <div className={styles.clapperHinge} />
             </div>
 
-            <div className={styles.headphoneRight}>
-              <span />
+            <div className={`${styles.artCoin} ${styles.artCoinGold}`}>
+              VE
+            </div>
+
+            <div className={`${styles.artCoin} ${styles.artCoinBlue}`}>
+              VE
+            </div>
+
+            <div className={`${styles.artCoin} ${styles.artCoinPurple}`}>
+              VE
+            </div>
+
+            {/* Interactive play button, anchored to the clapperboard screen */}
+            <div className={styles.adControls}>
+              <button
+                type="button"
+                className={styles.playButton}
+                onClick={handlePlay}
+                disabled={isPlaying}
+                aria-label={
+                  isPlaying
+                    ? "Advertisement is playing"
+                    : isCompleted
+                      ? "Watch advertisement again"
+                      : "Play advertisement"
+                }
+              >
+                {isPlaying ? (
+                  <span className={styles.playingIndicator}>
+                    <span />
+                    <span />
+                    <span />
+                  </span>
+                ) : isCompleted ? (
+                  <Check
+                    size={24}
+                    strokeWidth={2.4}
+                    aria-hidden="true"
+                  />
+                ) : (
+                  <Play
+                    size={24}
+                    fill="currentColor"
+                    aria-hidden="true"
+                  />
+                )}
+              </button>
             </div>
           </div>
         </div>
 
-        <div className={styles.adControls}>
-          <motion.button
-            type="button"
-            className={styles.playButton}
-            onClick={handlePlay}
-            disabled={isPlaying}
-            aria-label={
-              isPlaying
-                ? "Advertisement is playing"
-                : isCompleted
-                  ? "Watch advertisement again"
-                  : "Play advertisement"
-            }
-            whileHover={
-              !isPlaying
-                ? {
-                  scale: 1.07,
-                  boxShadow:
-                    "0 12px 30px rgba(0, 0, 0, 0.28), 0 0 22px rgba(111, 140, 255, 0.16)",
-                }
-                : undefined
-            }
-            whileTap={
-              !isPlaying
-                ? {
-                  scale: 0.94,
-                }
-                : undefined
-            }
-            transition={{
-              duration: 0.18,
-            }}
-          >
-            {isPlaying ? (
-              <span className={styles.playingIndicator}>
-                <span />
-                <span />
-                <span />
-              </span>
-            ) : isCompleted ? (
-              <Check
-                size={24}
-                strokeWidth={2.2}
-                aria-hidden="true"
-              />
-            ) : (
-              <Play
-                size={25}
-                fill="currentColor"
-                aria-hidden="true"
-              />
-            )}
-          </motion.button>
+        {/* Video timeline */}
+        <div className={styles.videoMeta}>
+          <Play
+            size={9}
+            fill="currentColor"
+            className={styles.videoMetaIcon}
+            aria-hidden="true"
+          />
 
-          <span className={styles.adMessage}>
-            {isPlaying
-              ? "WATCHING AD"
-              : isCompleted
-                ? "AD COMPLETE"
-                : "WATCH TO EARN"}
-          </span>
-        </div>
-
-        <div
-          className={styles.videoMeta}
-          aria-hidden="true"
-        >
-          <span>0:18</span>
+          <span>0:15</span>
 
           <div className={styles.adProgress}>
             <span />
           </div>
 
-          <span>6:30</span>
+          <span>0:30</span>
+
+          <Settings
+            size={11}
+            className={styles.videoMetaIcon}
+            aria-hidden="true"
+          />
         </div>
       </div>
 
       {/* =====================================================
-          REWARD PANEL
+          EARNINGS PANEL
       ===================================================== */}
 
-      <div className={styles.rewardPanel}>
-        <div className={styles.rewardHeader}>
-          <span>Reward</span>
+      <div className={styles.earningsPanel}>
+        <div
+          className={styles.earningsCoins}
+          aria-hidden="true"
+        >
+          <div className={`${styles.coin} ${styles.coinOne}`}>
+            VE
+          </div>
+
+          <div className={`${styles.coin} ${styles.coinTwo}`}>
+            VE
+          </div>
+
+          <div className={`${styles.coin} ${styles.coinThree}`}>
+            VE
+          </div>
         </div>
 
-        <div className={styles.rewardAmount}>
-          <div className={styles.rewardCoin}>
-            <Coins
-              size={18}
-              strokeWidth={1.8}
+        <span className={styles.earningsLabel}>
+          Earnings
+        </span>
+
+        <div className={styles.earningsToday}>
+          <div className={styles.earningsIcon}>
+            <Flame
+              size={16}
+              fill="currentColor"
               aria-hidden="true"
             />
           </div>
 
-          <strong>
-            +{watchAdData.value} VE
-          </strong>
-        </div>
+          <div className={styles.earningsTodayText}>
+            <strong>
+              +{watchAdData.value} VE
+            </strong>
 
-        <motion.div
-          className={styles.completedCard}
-          initial={false}
-          animate={{
-            opacity: isCompleted ? 1 : 0.45,
-            y: isCompleted ? 0 : 4,
-          }}
-          transition={{
-            duration: 0.3,
-          }}
-        >
-          <motion.div
-            className={styles.completedIcon}
-            initial={{
-              scale: 0,
-              rotate: -20,
-            }}
-            animate={
-              isCompleted
-                ? {
-                  scale: [0, 1.15, 1],
-                  rotate: [20, -5, 0],
-                }
-                : {
-                  scale: 0,
-                }
-            }
-            transition={{
-              duration: 0.6,
-              ease: "easeOut",
-            }}
-          >
-            <Check aria-hidden="true" />
-          </motion.div>
-
-          <strong>Ad Completed!</strong>
-
-          <span>✓</span>
-        </motion.div>
-
-        <div className={styles.rewardCredit}>
-          <span>
-            Reward credited to your wallet
-          </span>
-        </div>
-
-        <div className={styles.balanceCard}>
-          <span>Total Balance</span>
-
-          <strong>
-            {balance.toLocaleString()} VE
-          </strong>
-
-          <div className={styles.balanceArrow}>
-            →
+            <span>Today&apos;s Earnings</span>
           </div>
         </div>
-      </div>
 
-      {/* =====================================================
-    REWARD COINS
-===================================================== */}
-
-      <div
-        className={styles.coins}
-        aria-hidden="true"
-      >
-        {rewardParts.map((amount, index) => (
-          <motion.div
-            key={`${amount}-${index}`}
-            className={`${styles.coin} ${index === 0
-              ? styles.coinOne
-              : index === 1
-                ? styles.coinTwo
-                : styles.coinThree
-              }`}
-            initial={{
-              x: 0,
-              y: 0,
-              scale: 1,
-              opacity: 1,
-              rotate: 0,
-            }}
-            animate={
-              isCompleted
-                ? {
-                  x:
-                    index === 0
-                      ? [0, 18, 42, 64]
-                      : index === 1
-                        ? [0, 12, 38, 58]
-                        : [0, 22, 46, 62],
-
-                  y:
-                    index === 0
-                      ? [0, 18, 52, 105]
-                      : index === 1
-                        ? [0, 28, 62, 108]
-                        : [0, 14, 48, 102],
-
-                  scale: [1, 1.05, 0.85, 0.35],
-
-                  rotate:
-                    index === 0
-                      ? [0, 45, 120, 220]
-                      : index === 1
-                        ? [0, -35, -100, -180]
-                        : [0, 30, 90, 180],
-
-                  opacity: [1, 1, 1, 0],
-                }
-                : {
-                  x: 0,
-                  y: 0,
-                  scale: 1,
-                  rotate: 0,
-                  opacity: 1,
-                }
-            }
-            transition={
-              isCompleted
-                ? {
-                  duration: 0.85,
-                  delay: index * 0.48,
-                  ease: [0.32, 0.72, 0, 1],
-                }
-                : {
-                  duration: 0.2,
-                }
-            }
-            onAnimationComplete={() => {
-              if (isCompleted) {
-                void handleCoinArrived(amount);
-              }
-            }}
-          >
-            <Coins aria-hidden="true" />
-          </motion.div>
-        ))}
-      </div>
-
-      {/* =====================================================
-          WALLET
-      ===================================================== */}
-
-      <motion.div
-        className={`${styles.wallet} ${walletGlow ? styles.walletGlowing : ""
+        <div
+          className={`${styles.completedPill} ${
+            isCompleted ? styles.completedPillActive : ""
           }`}
-        animate={walletControls}
-        initial={{
-          scale: 1,
-        }}
-      >
-        <div className={styles.walletIcon}>
-          <Wallet
-            size={26}
-            strokeWidth={1.5}
-            aria-hidden="true"
-          />
+          aria-live="polite"
+        >
+          <span className={styles.completedPillIcon}>
+            <Check aria-hidden="true" />
+          </span>
+
+          <span className={styles.completedPillText}>
+            {isCompleted ? "Ad Completed!" : "Watch to unlock"}
+          </span>
+
+          <ChevronRight aria-hidden="true" />
         </div>
 
-        <div className={styles.walletOpening} />
+        <div className={styles.earningsDivider} />
 
-        <div className={styles.walletCard}>
-          <span>Wallet</span>
+        <div className={styles.earningsTotal}>
+          <span>Total Earned This Week</span>
 
           <strong>
-            {balance.toLocaleString()} VE
+            12,450<em>VE</em>
           </strong>
         </div>
-      </motion.div>
-    </motion.div>
+
+        <div className={styles.balanceRow}>
+          <span>Available Balance</span>
+
+          <button
+            type="button"
+            className={styles.balancePill}
+          >
+            <span>12,450 VE</span>
+
+            <ChevronRight
+              size={14}
+              aria-hidden="true"
+            />
+          </button>
+        </div>
+      </div>
+    </div>
   );
 };
 
