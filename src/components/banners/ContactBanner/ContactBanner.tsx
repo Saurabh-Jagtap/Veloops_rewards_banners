@@ -1,10 +1,12 @@
 import {
   ArrowRight,
-  Headphones,
-  ShieldCheck,
-  Zap,
+  Check,
+  MessageCircle,
+  Send,
 } from "lucide-react";
+
 import { motion } from "framer-motion";
+
 import { contactData } from "../../../data/contact";
 import ContactVisual from "./ContactVisual";
 import styles from "./ContactBanner.module.css";
@@ -16,30 +18,47 @@ const ContactBanner = () => {
       aria-labelledby="contact-banner-title"
     >
       <div className={styles.content}>
-        {/* ================= LEFT ================= */}
+        {/* =====================================================
+            LEFT CONTENT
+        ===================================================== */}
+
         <div className={styles.copy}>
-          <div className={styles.eyebrow}>
-            <span className={styles.eyebrowNumber}>03</span>
-            <span>SUPPORT &amp; TRUST</span>
+          {/* Section number */}
+          <div className={styles.sectionNumber}>
+            <span className={styles.number}>03</span>
+
+            <span className={styles.eyebrow}>
+              Support &amp; Trust
+            </span>
           </div>
 
+          {/* Heading */}
           <h2 id="contact-banner-title">
-            We're here to
+            We&apos;re here to
             <br />
             <span>help you.</span>
           </h2>
 
+          {/* Description */}
           <p className={styles.description}>
             Facing an issue or missing a reward?
             <br />
             Our support team is online and ready.
           </p>
 
-          <div className={styles.features}>
+          {/* =================================================
+              SUPPORT FLOW
+          ================================================= */}
+
+          <div
+            className={styles.supportFlow}
+            aria-label="Contact support process"
+          >
+            {/* Ask */}
             <motion.div
-              className={styles.feature}
+              className={styles.flowStep}
               whileHover={{
-                y: -3,
+                y: -2,
                 scale: 1.015,
               }}
               transition={{
@@ -47,20 +66,38 @@ const ContactBanner = () => {
                 ease: "easeOut",
               }}
             >
-              <div className={styles.featureIcon}>
-                <Zap size={19} strokeWidth={1.8} />
+              <div className={styles.flowIcon}>
+                <MessageCircle
+                  size={19}
+                  strokeWidth={1.8}
+                  aria-hidden="true"
+                />
               </div>
 
-              <div className={styles.featureText}>
-                <strong>Fast</strong>
-                <span>Response</span>
+              <div className={styles.flowText}>
+                <span className={styles.flowLabel}>
+                  Ask
+                </span>
+
+                <span className={styles.flowSubLabel}>
+                  Issue
+                </span>
               </div>
             </motion.div>
 
+            {/* Divider */}
+            <span
+              className={styles.flowArrow}
+              aria-hidden="true"
+            >
+              →
+            </span>
+
+            {/* Connect */}
             <motion.div
-              className={styles.feature}
+              className={styles.flowStep}
               whileHover={{
-                y: -3,
+                y: -2,
                 scale: 1.015,
               }}
               transition={{
@@ -68,20 +105,38 @@ const ContactBanner = () => {
                 ease: "easeOut",
               }}
             >
-              <div className={styles.featureIcon}>
-                <Headphones size={19} strokeWidth={1.8} />
+              <div className={styles.flowIcon}>
+                <Send
+                  size={18}
+                  strokeWidth={1.8}
+                  aria-hidden="true"
+                />
               </div>
 
-              <div className={styles.featureText}>
-                <strong>Expert</strong>
-                <span>Support</span>
+              <div className={styles.flowText}>
+                <span className={styles.flowLabel}>
+                  Connect
+                </span>
+
+                <span className={styles.flowSubLabel}>
+                  Support
+                </span>
               </div>
             </motion.div>
 
+            {/* Divider */}
+            <span
+              className={styles.flowArrow}
+              aria-hidden="true"
+            >
+              →
+            </span>
+
+            {/* Resolve */}
             <motion.div
-              className={styles.feature}
+              className={styles.flowStep}
               whileHover={{
-                y: -3,
+                y: -2,
                 scale: 1.015,
               }}
               transition={{
@@ -89,16 +144,29 @@ const ContactBanner = () => {
                 ease: "easeOut",
               }}
             >
-              <div className={styles.featureIcon}>
-                <ShieldCheck size={19} strokeWidth={1.8} />
+              <div className={styles.flowIcon}>
+                <Check
+                  size={19}
+                  strokeWidth={2}
+                  aria-hidden="true"
+                />
               </div>
 
-              <div className={styles.featureText}>
-                <strong>Reward</strong>
-                <span>Protection</span>
+              <div className={styles.flowText}>
+                <span className={styles.flowLabel}>
+                  Resolve
+                </span>
+
+                <span className={styles.flowSubLabel}>
+                  Reward
+                </span>
               </div>
             </motion.div>
           </div>
+
+          {/* =================================================
+              CTA
+          ================================================= */}
 
           <motion.a
             href={`mailto:${contactData.email}`}
@@ -115,18 +183,20 @@ const ContactBanner = () => {
               ease: "easeOut",
             }}
           >
-            <span className={styles.ctaIcon}>◯</span>
-
             <span>Contact Support</span>
 
             <ArrowRight
-              size={19}
-              strokeWidth={1.8}
+              size={17}
+              strokeWidth={2}
+              aria-hidden="true"
             />
           </motion.a>
         </div>
 
-        {/* ================= RIGHT ================= */}
+        {/* =====================================================
+            RIGHT VISUAL
+        ===================================================== */}
+
         <ContactVisual />
       </div>
     </section>

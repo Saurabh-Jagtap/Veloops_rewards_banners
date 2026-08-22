@@ -1,37 +1,35 @@
 import {
-  ArrowUpRight,
-  ChevronDown,
-  MoreVertical,
-  Paperclip,
+  Gift,
+  PlayCircle,
   Send,
+  Wallet,
 } from "lucide-react";
 import { AnimatePresence, motion, type Variants } from "framer-motion";
 import styles from "./ContactBanner.module.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import SupportAgentIllustration from "./SupportAgentIllustration";
 
-const conversations = [
+const topics = [
   {
     title: "Reward not received",
-    ticket: "#VE-45821",
-    time: "Now",
+    icon: Gift,
     messages: [
       {
         type: "user",
-        text: "I completed an offer but didn't get the reward.",
-        time: "10:30 AM",
+        text: "My reward is missing.",
+        time: "10:25 AM",
       },
       {
         type: "agent",
-        text: "Hi! Let me check this for you right away.",
-        time: "10:31 AM",
+        text: "Hi! Let us check this for you right away.",
+        time: "10:26 AM",
       },
     ],
   },
 
   {
-    title: "Ad tracking issue",
-    ticket: "#VE-45810",
-    time: "2h ago",
+    title: "Ad loading issue",
+    icon: PlayCircle,
     messages: [
       {
         type: "user",
@@ -48,8 +46,7 @@ const conversations = [
 
   {
     title: "Withdrawal pending",
-    ticket: "#VE-45802",
-    time: "1d ago",
+    icon: Wallet,
     messages: [
       {
         type: "user",
@@ -102,7 +99,7 @@ const headerVariants: Variants = {
   },
 };
 
-const conversationVariants: Variants = {
+const topicVariants: Variants = {
   hidden: {
     opacity: 0,
     x: -10,
@@ -120,33 +117,64 @@ const conversationVariants: Variants = {
   }),
 };
 
+const messageVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 10,
+  },
+
+  visible: (index: number) => ({
+    opacity: 1,
+    y: 0,
+
+    transition: {
+      duration: 0.42,
+      delay: 0.25 + index * 0.65,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  }),
+};
+
 const ContactVisual = () => {
-  const [activeConversation, setActiveConversation] = useState(0);
-  const [visibleMessage, setVisibleMessage] = useState(0);
+  const [activeTopic, setActiveTopic] = useState(0);
 
-  const conversation = conversations[activeConversation];
+  const topic = topics[activeTopic];
 
-  useEffect(() => {
-    setVisibleMessage(0);
-
-    const interval = window.setInterval(() => {
-      setVisibleMessage((current) =>
-        current === conversation.messages.length - 1
-          ? 0
-          : current + 1
-      );
-    }, 4200);
-
-    return () => {
-      window.clearInterval(interval);
-    };
-  }, [activeConversation, conversation.messages.length]);
   return (
     <div className={styles.visual}>
       {/* Ambient background */}
       <div className={styles.visualGlow} />
       <div className={styles.visualGlowSecondary} />
       <div className={styles.lightSweep} />
+
+      <div className={styles.ambientWave} aria-hidden="true">
+        <svg
+          viewBox="0 0 700 360"
+          preserveAspectRatio="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M-30 250 C100 130 180 310 315 195 C430 98 505 210 730 55"
+            fill="none"
+            stroke="rgba(87, 137, 245, 0.14)"
+            strokeWidth="1.2"
+          />
+
+          <path
+            d="M-40 285 C105 170 205 330 330 225 C455 120 550 230 740 85"
+            fill="none"
+            stroke="rgba(120, 165, 255, 0.08)"
+            strokeWidth="1"
+          />
+
+          <path
+            d="M30 120 C130 65 190 170 295 105 C420 30 505 130 680 15"
+            fill="none"
+            stroke="rgba(78, 126, 238, 0.08)"
+            strokeWidth="1"
+          />
+        </svg>
+      </div>
 
       {/* ================= SUPPORT WINDOW ================= */}
       <motion.div
@@ -167,8 +195,8 @@ const ContactVisual = () => {
           <div className={styles.supportIdentity}>
             <div className={styles.supportAvatar}>
               <svg
-                width="22"
-                height="22"
+                width="18"
+                height="18"
                 viewBox="0 0 24 24"
                 fill="none"
                 aria-hidden="true"
@@ -189,111 +217,89 @@ const ContactVisual = () => {
               </svg>
             </div>
 
-            <div className={styles.supportIdentityText}>
-              <strong>Support Center</strong>
-
-              <span>
-                <i />
-                Online
-              </span>
-            </div>
+            <strong>Support Center</strong>
           </div>
 
-          <div className={styles.supportHeaderActions}>
-            <button
-              type="button"
-              className={styles.moreButton}
-              aria-label="More options"
-            >
-              <MoreVertical size={16} />
-            </button>
-
-            <motion.div
-              className={styles.onlineBadge}
+          <motion.div
+            className={styles.onlineBadge}
+            animate={{
+              boxShadow: [
+                "0 0 16px rgba(70, 119, 228, 0.045)",
+                "0 0 22px rgba(82, 151, 237, 0.12)",
+                "0 0 16px rgba(70, 119, 228, 0.045)",
+              ],
+            }}
+            transition={{
+              duration: 2.8,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
+            <motion.i
               animate={{
-                boxShadow: [
-                  "0 0 16px rgba(70, 119, 228, 0.045)",
-                  "0 0 22px rgba(82, 151, 237, 0.12)",
-                  "0 0 16px rgba(70, 119, 228, 0.045)",
-                ],
+                opacity: [0.65, 1, 0.65],
+                scale: [0.9, 1.15, 0.9],
               }}
               transition={{
-                duration: 2.8,
+                duration: 2,
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-            >
-              <motion.i
-                animate={{
-                  opacity: [0.65, 1, 0.65],
-                  scale: [0.9, 1.15, 0.9],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
+            />
 
-              <span>Online</span>
-            </motion.div>
-          </div>
+            <span>Online</span>
+          </motion.div>
         </motion.header>
 
         {/* ---------- Main ---------- */}
         <div className={styles.supportMain}>
-          {/* ===== Conversation Sidebar ===== */}
-          <aside className={styles.conversations}>
-            <div className={styles.conversationsHeader}>
-              <span>Recent Conversations</span>
-              <ChevronDown size={15} />
+          {/* ===== Quick Help ===== */}
+          <aside className={styles.quickHelp}>
+            <div className={styles.quickHelpHeader}>
+              <span>Quick Help</span>
             </div>
 
-            <div className={styles.conversationList}>
-              {conversations.map((conversation, index) => (
-                <motion.button
-                  type="button"
-                  key={conversation.ticket}
-                  custom={index}
-                  variants={conversationVariants}
-                  className={`${styles.conversation} ${activeConversation === index
-                      ? styles.conversationActive
+            <div className={styles.topicList}>
+              {topics.map((topicItem, index) => {
+                const Icon = topicItem.icon;
+
+                return (
+                  <motion.button
+                    type="button"
+                    key={topicItem.title}
+                    custom={index}
+                    variants={topicVariants}
+                    className={`${styles.topic} ${activeTopic === index
+                      ? styles.topicActive
                       : ""
-                    }`}
-                  onClick={() => setActiveConversation(index)}
-                  whileHover={{
-                    x: 2,
-                  }}
-                  whileTap={{
-                    scale: 0.985,
-                  }}
-                  transition={{
-                    duration: 0.18,
-                    ease: "easeOut",
-                  }}
-                >
-                  <div className={styles.conversationAvatar}>
-                    <span>
-                      {conversation.title
-                        .charAt(0)
-                        .toUpperCase()}
+                      }`}
+                    onClick={() => setActiveTopic(index)}
+                    whileHover={{
+                      x: 2,
+                    }}
+                    whileTap={{
+                      scale: 0.985,
+                    }}
+                    transition={{
+                      duration: 0.18,
+                      ease: "easeOut",
+                    }}
+                  >
+                    <span className={styles.topicIcon}>
+                      <Icon size={14} strokeWidth={1.8} />
                     </span>
-                  </div>
 
-                  <div className={styles.conversationContent}>
-                    <strong>{conversation.title}</strong>
-
-                    <span>{conversation.ticket}</span>
-                  </div>
-
-                  <time>{conversation.time}</time>
-                </motion.button>
-              ))}
+                    <span className={styles.topicLabel}>
+                      {topicItem.title}
+                    </span>
+                  </motion.button>
+                );
+              })}
             </div>
 
             <motion.button
               type="button"
-              className={styles.viewTickets}
+              className={styles.viewTopics}
               whileHover={{
                 y: -1,
               }}
@@ -301,55 +307,15 @@ const ContactVisual = () => {
                 scale: 0.98,
               }}
             >
-              View All Tickets
+              View All Topics
             </motion.button>
           </aside>
 
           {/* ===== Chat ===== */}
           <section className={styles.chat}>
-            <div className={styles.chatHeader}>
-              <motion.div
-                key={conversation.ticket}
-                initial={{
-                  opacity: 0,
-                  y: 5,
-                }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                transition={{
-                  duration: 0.25,
-                  ease: "easeOut",
-                }}
-              >
-                <span>Ticket {conversation.ticket}</span>
-
-                <strong>{conversation.title}</strong>
-              </motion.div>
-
-              <motion.span
-                className={styles.openBadge}
-                initial={{
-                  opacity: 0,
-                  scale: 0.9,
-                }}
-                animate={{
-                  opacity: 1,
-                  scale: 1,
-                }}
-                transition={{
-                  duration: 0.35,
-                  delay: 0.45,
-                }}
-              >
-                Open
-              </motion.span>
-            </div>
-
             <AnimatePresence mode="wait">
               <motion.div
-                key={`${conversation.ticket}-${visibleMessage}`}
+                key={topic.title}
                 className={styles.messages}
                 initial={{
                   opacity: 0,
@@ -372,97 +338,36 @@ const ContactVisual = () => {
                   ease: [0.22, 1, 0.36, 1],
                 }}
               >
-                {conversation.messages[visibleMessage].type === "user" ? (
+                {topic.messages.map((message, index) => (
                   <motion.div
-                    className={`${styles.messageRow} ${styles.userRow}`}
-                    initial={{
-                      opacity: 0,
-                      x: 14,
-                    }}
-                    animate={{
-                      opacity: 1,
-                      x: 0,
-                    }}
-                    transition={{
-                      duration: 0.45,
-                      ease: [0.22, 1, 0.36, 1],
-                    }}
+                    key={`${topic.title}-${index}`}
+                    className={styles.msgRow}
+                    custom={index}
+                    variants={messageVariants}
+                    initial="hidden"
+                    animate="visible"
                   >
-                    <div className={styles.userMessage}>
-                      <p>
-                        {conversation.messages[visibleMessage].text}
-                      </p>
+                    <div className={styles.msgAvatar}>
+                      <span>VE</span>
+                    </div>
 
-                      <time>
-                        {conversation.messages[visibleMessage].time}
-                      </time>
+                    <div className={styles.msgContent}>
+                      <span className={styles.msgSender}>
+                        {message.type === "user" ? "You" : "VELOOP Support"}
+                      </span>
+
+                      <p className={styles.msgBubble}>
+                        {message.text}
+                        <time>{message.time}</time>
+                      </p>
                     </div>
                   </motion.div>
-                ) : (
-                  <motion.div
-                    className={styles.agentRow}
-                    initial={{
-                      opacity: 0,
-                      x: -14,
-                    }}
-                    animate={{
-                      opacity: 1,
-                      x: 0,
-                    }}
-                    transition={{
-                      duration: 0.45,
-                      ease: [0.22, 1, 0.36, 1],
-                    }}
-                  >
-                    <motion.div
-                      className={styles.agentAvatar}
-                      animate={{
-                        boxShadow: [
-                          "0 0 13px rgba(71, 126, 235, 0.07)",
-                          "0 0 20px rgba(71, 126, 235, 0.16)",
-                          "0 0 13px rgba(71, 126, 235, 0.07)",
-                        ],
-                      }}
-                      transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                    >
-                      <span>V</span>
-                    </motion.div>
-
-                    <div className={styles.agentMessage}>
-                      <p>
-                        {conversation.messages[visibleMessage].text}
-                      </p>
-
-                      <time>
-                        {conversation.messages[visibleMessage].time}
-                      </time>
-                    </div>
-                  </motion.div>
-                )}
+                ))}
               </motion.div>
             </AnimatePresence>
 
             {/* Input */}
             <div className={styles.chatComposer}>
-              <motion.button
-                type="button"
-                className={styles.attachButton}
-                aria-label="Attach file"
-                whileHover={{
-                  scale: 1.08,
-                  color: "#8aaeff",
-                }}
-                whileTap={{
-                  scale: 0.92,
-                }}
-              >
-                <Paperclip size={15} />
-              </motion.button>
-
               <span>Type your message...</span>
 
               <motion.button
@@ -477,30 +382,35 @@ const ContactVisual = () => {
                   scale: 0.92,
                 }}
               >
-                <Send size={15} />
+                <Send size={14} />
               </motion.button>
             </div>
           </section>
         </div>
-
-        {/* ---------- Footer ---------- */}
-        <footer className={styles.supportFooter}>
-          <div className={styles.responseTime}>
-            <span>Support response time</span>
-
-            <i />
-
-            <strong>
-              Usually under 5 minutes
-            </strong>
-          </div>
-
-          <ArrowUpRight
-            size={18}
-            strokeWidth={1.6}
-          />
-        </footer>
       </motion.div>
+
+{/* ================= SUPPORT AGENT ================= */}
+<div
+  className={styles.supportAgentIllustration}
+  aria-hidden="true"
+>
+  <motion.div
+    className={styles.supportAgentFloat}
+    animate={{
+      y: [0, -4, 0],
+      rotateZ: [0, 0.35, 0],
+    }}
+    transition={{
+      duration: 5.5,
+      repeat: Infinity,
+      ease: "easeInOut",
+    }}
+  >
+    <SupportAgentIllustration
+      className={styles.supportAgentSvg}
+    />
+  </motion.div>
+</div>
     </div>
   );
 };
