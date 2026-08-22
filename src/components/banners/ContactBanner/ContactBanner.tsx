@@ -55,17 +55,7 @@ const ContactBanner = () => {
             aria-label="Contact support process"
           >
             {/* Ask */}
-            <motion.div
-              className={styles.flowStep}
-              whileHover={{
-                y: -2,
-                scale: 1.015,
-              }}
-              transition={{
-                duration: 0.18,
-                ease: "easeOut",
-              }}
-            >
+            <div className={styles.flowStep}>
               <div className={styles.flowIcon}>
                 <MessageCircle
                   size={19}
@@ -83,7 +73,7 @@ const ContactBanner = () => {
                   Issue
                 </span>
               </div>
-            </motion.div>
+            </div>
 
             {/* Divider */}
             <span
@@ -94,17 +84,7 @@ const ContactBanner = () => {
             </span>
 
             {/* Connect */}
-            <motion.div
-              className={styles.flowStep}
-              whileHover={{
-                y: -2,
-                scale: 1.015,
-              }}
-              transition={{
-                duration: 0.18,
-                ease: "easeOut",
-              }}
-            >
+            <div className={styles.flowStep}>
               <div className={styles.flowIcon}>
                 <Send
                   size={18}
@@ -122,7 +102,7 @@ const ContactBanner = () => {
                   Support
                 </span>
               </div>
-            </motion.div>
+            </div>
 
             {/* Divider */}
             <span
@@ -133,17 +113,7 @@ const ContactBanner = () => {
             </span>
 
             {/* Resolve */}
-            <motion.div
-              className={styles.flowStep}
-              whileHover={{
-                y: -2,
-                scale: 1.015,
-              }}
-              transition={{
-                duration: 0.18,
-                ease: "easeOut",
-              }}
-            >
+            <div className={styles.flowStep}>
               <div className={styles.flowIcon}>
                 <Check
                   size={19}
@@ -161,7 +131,7 @@ const ContactBanner = () => {
                   Reward
                 </span>
               </div>
-            </motion.div>
+            </div>
           </div>
 
           {/* =================================================
