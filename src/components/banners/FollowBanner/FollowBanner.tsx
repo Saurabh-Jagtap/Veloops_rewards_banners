@@ -1,10 +1,31 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Gift, MessageCircle, UserPlus } from "lucide-react";
 
 import FollowVisual from "./FollowVisual";
 import styles from "./FollowBanner.module.css";
+
+const FEATURES = [
+  {
+    icon: UserPlus,
+    title: "Follow",
+    description: "Stay connected",
+    tone: styles.featureFollow,
+  },
+  {
+    icon: MessageCircle,
+    title: "Engage",
+    description: "Interact",
+    tone: styles.featureEngage,
+  },
+  {
+    icon: Gift,
+    title: "Earn Rewards",
+    description: "Get rewarded",
+    tone: styles.featureEarn,
+  },
+];
 
 const FollowBanner = () => {
   const bannerRef = useRef<HTMLElement>(null);
@@ -53,53 +74,49 @@ const FollowBanner = () => {
         <div className={styles.copy}>
           <span className={styles.eyebrow}>
             <span className={styles.eyebrowNumber}>04</span>
-            <span>FOLLOW &amp; EARN</span>
+            <span className={styles.eyebrowDot} aria-hidden="true">·</span>
+            <span>CONNECT &amp; EARN</span>
           </span>
 
           <h2 id="follow-banner-title">
-            Follow. Engage.
+            Follow &amp;
             <br />
-            <span>Get rewarded.</span>
+            <span> Earn</span>
           </h2>
 
           <p>
-            Follow our official channels and engage
-            to unlock exclusive rewards and campaigns.
+            Follow our official channels, engage with our posts, and
+            complete eligible actions to unlock exciting rewards.
           </p>
 
-          <div className={styles.stats}>
-            <div className={styles.stat}>
-              <strong>3</strong>
-              <span>Channels</span>
-            </div>
+          <ul className={styles.features}>
+            {FEATURES.map(({ icon: Icon, tone, title, description }) => (
+              <li className={styles.feature} key={title}>
+                <span className={`${styles.featureIcon} ${tone}`}>
+                  <Icon
+                    size={17}
+                    strokeWidth={1.8}
+                    aria-hidden="true"
+                  />
+                </span>
 
-            <div className={styles.stat}>
-              <strong>
-                {storyCompleted ? "3/3" : "2/3"}
-              </strong>
-              <span>Completed</span>
-            </div>
+                <div className={styles.featureText}>
+                  <strong>{title}</strong>
+                  <p>{description}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
 
-            <div className={styles.stat}>
-              <strong>+500 VE</strong>
-              <span>Potential</span>
-            </div>
-          </div>
-
-          <a
-            href="#"
-            className={styles.cta}
-          >
+          <a href="#" className={styles.cta}>
             <span>Explore Campaigns</span>
 
-            <ArrowRight
-              size={18}
-              aria-hidden="true"
-            />
+            <ArrowRight size={18} aria-hidden="true" />
           </a>
         </div>
 
         <FollowVisual
+          isVisible={isVisible}
           storyCompleted={storyCompleted}
           onStoryComplete={() => setStoryCompleted(true)}
         />

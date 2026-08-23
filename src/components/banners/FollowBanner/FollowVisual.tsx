@@ -1,207 +1,310 @@
+import { useEffect, useState } from "react";
 import {
-  Camera,
   Check,
-  ArrowRight,
+  Clock,
   Gift,
+  Send,
+  PlayIcon,
 } from "lucide-react";
 
 import styles from "./FollowBanner.module.css";
 
 type FollowVisualProps = {
+  isVisible: boolean;
   storyCompleted: boolean;
   onStoryComplete: () => void;
 };
 
+const XMark = () => (
+  <svg
+    width="12"
+    height="12"
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+  >
+    <path
+      d="M4 4l16 16M20 4L4 20"
+      stroke="currentColor"
+      strokeWidth="2.4"
+      strokeLinecap="round"
+    />
+  </svg>
+);
+
+const InstagramMark = () => (
+  <svg
+    width="13"
+    height="13"
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+  >
+    <rect
+      x="3"
+      y="3"
+      width="18"
+      height="18"
+      rx="6"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+    />
+    <circle
+      cx="12"
+      cy="12"
+      r="4.2"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+    />
+    <circle
+      cx="17.2"
+      cy="6.8"
+      r="1.1"
+      fill="currentColor"
+    />
+  </svg>
+);
+
 const FollowVisual = ({
+  isVisible,
   storyCompleted,
   onStoryComplete,
 }: FollowVisualProps) => {
+  const progress = storyCompleted ? 100 : 75;
+  const completedCount = storyCompleted ? 4 : 3;
+
+  const [progressValue, setProgressValue] = useState(0);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (prefersReducedMotion) {
+      setProgressValue(progress);
+      return;
+    }
+
+    const timer = window.setTimeout(() => {
+      setProgressValue(progress);
+    }, 450);
+
+    return () => window.clearTimeout(timer);
+  }, [isVisible, progress]);
 
   return (
     <div
       className={styles.visual}
-      aria-label="Instagram campaign dashboard"
+      aria-label="Social Connect campaign dashboard"
     >
-      {/* Ambient background */}
-      <div className={styles.visualGlow} />
-      <div className={`${styles.orb} ${styles.orbOne}`} />
-      <div className={`${styles.orb} ${styles.orbTwo}`} />
-
       {/* Campaign Header */}
       <div className={styles.campaignHeader}>
-        <div className={styles.campaignTitle}>
-          <div className={styles.instagramIcon}>
-            <Camera
-              size={13}
-              strokeWidth={2}
-              aria-hidden="true"
-            />
-          </div>
-
-          <strong>Instagram Campaign</strong>
-        </div>
-
-        <span className={styles.liveBadge}>
-          <span />
-          Live
-        </span>
-      </div>
-
-      {/* Dashboard Body */}
-      <div className={styles.dashboardBody}>
-
-        {/* Profile */}
-        <div className={styles.profilePanel}>
-          <div className={styles.profileAvatar}>
-            <span>VE</span>
-          </div>
-
-          <strong className={styles.profileName}>
-            VELOOP Rewards
-          </strong>
-
-          <span className={styles.profileHandle}>
-            @velooprewards
+        <div className={styles.campaignHeaderLeft}>
+          <span className={styles.campaignIcon} aria-hidden="true">
+            <Gift size={16} strokeWidth={1.8} />
           </span>
 
-          <p className={styles.profileDescription}>
-            Official updates, giveaways
-            and exclusive offers!
-          </p>
+          <div className={styles.campaignHeaderText}>
+            <span className={styles.campaignLabel}>
+              Active Campaign
+            </span>
 
-          <button
-            type="button"
-            className={styles.followButton}
-          >
-            <Check
-              size={13}
-              strokeWidth={2.5}
-              aria-hidden="true"
-            />
-            <span>Following</span>
-            <ArrowRight
-              size={12}
-              aria-hidden="true"
-            />
-          </button>
+            <strong className={styles.campaignTitle}>
+              Social Connect Campaign
+            </strong>
+
+            <span className={styles.campaignSub}>
+              Complete all steps to unlock your reward
+            </span>
+          </div>
         </div>
 
-        {/* Campaign Progress */}
+        <div className={styles.campaignHeaderRight}>
+          <span className={styles.liveBadge}>
+            <span className={styles.liveDot} />
+            Live
+          </span>
+
+          <span className={styles.countdown}>
+            <Clock size={11} strokeWidth={2} aria-hidden="true" />
+            Ends in <strong>5d 14h 32m</strong>
+          </span>
+        </div>
+      </div>
+
+      {/* Main Campaign Workspace */}
+      <div className={styles.campaignBody}>
+
+        {/* Progress */}
         <div className={styles.progressPanel}>
-          <div className={styles.progressHeader}>
-            <span>Campaign Progress</span>
+          <div className={styles.progressHeading}>
+            <span>Your Progress</span>
+
             <strong>
-  {storyCompleted ? "100%" : "80%"}
-</strong>
+              {completedCount}/4
+            </strong>
+          </div>
+
+          <div className={styles.progressSummary}>
+            <div className={styles.progressPercent}>
+              {progress}%
+            </div>
+
+            <div className={styles.progressMessage}>
+              <strong>
+                {storyCompleted ? "All done!" : "Keep going!"}
+              </strong>
+
+              <span>
+                {storyCompleted
+                  ? "Every campaign step is complete."
+                  : "Complete the final step to unlock your reward."}
+              </span>
+            </div>
           </div>
 
           <div className={styles.progressTrack}>
             <div
-  className={`${styles.progressFill} ${
-    storyCompleted
-      ? styles.progressComplete
-      : ""
-  }`}
-/>
+              className={styles.progressFill}
+              style={{
+                width: `${progressValue}%`,
+              }}
+            />
           </div>
 
-          <span className={styles.progressHint}>
-            Complete all steps to earn
-          </span>
-
-          <div className={styles.checklist}>
-            <div className={styles.checkItem}>
-              <span className={styles.checkCircle}>
-                <Check size={10} />
+          <div className={styles.channelList}>
+            <div className={styles.channelRow}>
+              <span
+                className={`${styles.channelIcon} ${styles.channelInstagram}`}
+              >
+                <InstagramMark />
               </span>
 
-              <span>Follow our page</span>
+              <span className={styles.channelText}>
+                <strong>Follow on Instagram</strong>
+                <span>@velop.rewards</span>
+              </span>
 
-              <Check
-                className={styles.itemEndCheck}
-                size={13}
-              />
+              <span
+                className={styles.channelCheck}
+                aria-hidden="true"
+              >
+                <Check size={12} strokeWidth={2.5} />
+              </span>
             </div>
 
-            <div className={styles.checkItem}>
-              <span className={styles.checkCircle}>
-                <Check size={10} />
+            <div className={styles.channelRow}>
+              <span
+                className={`${styles.channelIcon} ${styles.channelX}`}
+              >
+                <XMark />
               </span>
 
-              <span>Like latest post</span>
+              <span className={styles.channelText}>
+                <strong>Follow on X</strong>
+                <span>@velop_rewards</span>
+              </span>
 
-              <Check
-                className={styles.itemEndCheck}
-                size={13}
-              />
+              <span
+                className={styles.channelCheck}
+                aria-hidden="true"
+              >
+                <Check size={12} strokeWidth={2.5} />
+              </span>
             </div>
 
-            <div className={styles.checkItem}>
-              <span className={styles.checkCircle}>
-                <Check size={10} />
+            <div className={styles.channelRow}>
+              <span
+                className={`${styles.channelIcon} ${styles.channelYoutube}`}
+              >
+                <PlayIcon
+                  size={13}
+                  strokeWidth={2}
+                  aria-hidden="true"
+                />
               </span>
 
-              <span>Comment on post</span>
+              <span className={styles.channelText}>
+                <strong>Subscribe on YouTube</strong>
+                <span>VELOOP Rewards</span>
+              </span>
 
-              <span className={styles.stepCount}>
-                2/2
+              <span
+                className={styles.channelCheck}
+                aria-hidden="true"
+              >
+                <Check size={12} strokeWidth={2.5} />
               </span>
             </div>
 
             <button
-  type="button"
-  className={`${styles.checkItem} ${
-    styles.checkItemPending
-  } ${
-    storyCompleted
-      ? styles.checkItemCompleted
-      : ""
-  }`}
-  onClick={onStoryComplete}
-  aria-pressed={storyCompleted}
->
-  <span
-    className={
-      storyCompleted
-        ? styles.checkCircle
-        : styles.pendingCircle
-    }
-  >
-    {storyCompleted && (
-      <Check
-        size={10}
-        aria-hidden="true"
-      />
-    )}
-  </span>
+              type="button"
+              className={`${styles.channelRow} ${
+                styles.channelPending
+              } ${
+                storyCompleted ? styles.channelDone : ""
+              }`}
+              onClick={onStoryComplete}
+              aria-pressed={storyCompleted}
+            >
+              <span
+                className={`${styles.channelIcon} ${styles.channelTelegram}`}
+              >
+                <Send
+                  size={12}
+                  strokeWidth={2}
+                  aria-hidden="true"
+                />
+              </span>
 
-  <span>Share to story</span>
+              <span className={styles.channelText}>
+                <strong>Join Telegram</strong>
+                <span>VELOOP Announcements</span>
+              </span>
 
-  <span className={styles.stepCount}>
-    {storyCompleted ? "1/1" : "0/1"}
-  </span>
-</button>
+              <span
+                className={
+                  storyCompleted
+                    ? styles.channelCheck
+                    : styles.channelOutline
+                }
+                aria-hidden="true"
+              >
+                {storyCompleted && (
+                  <Check size={12} strokeWidth={2.5} />
+                )}
+              </span>
+            </button>
           </div>
         </div>
 
         {/* Reward */}
         <div
-  className={`${styles.rewardPanel} ${
-    storyCompleted ? styles.rewardUnlocked : ""
-  }`}
->
+          className={`${styles.rewardPanel} ${
+            storyCompleted ? styles.rewardUnlocked : ""
+          }`}
+        >
           <span className={styles.rewardLabel}>
-  {storyCompleted
-    ? "Reward Unlocked"
-    : "Eligible Reward"}
-</span>
+            Your Reward
+          </span>
 
-          <div className={styles.rewardIcon}>
-            <Gift
-              size={27}
-              strokeWidth={1.8}
-              aria-hidden="true"
-            />
+          <div
+            className={styles.coinStack}
+            aria-hidden="true"
+          >
+            <span className={`${styles.coin} ${styles.coinBack1}`}>
+              VE
+            </span>
+
+            <span className={`${styles.coin} ${styles.coinBack2}`}>
+              VE
+            </span>
+
+            <span className={`${styles.coin} ${styles.coinFront}`}>
+              VE
+            </span>
           </div>
 
           <strong className={styles.rewardValue}>
@@ -209,30 +312,32 @@ const FollowVisual = ({
           </strong>
 
           <span className={styles.rewardCaption}>
-            Campaign Reward
+            {storyCompleted
+              ? "Reward unlocked"
+              : "Complete all steps to earn"}
           </span>
 
-          <button
-  type="button"
-  className={`${styles.completeButton} ${
-    storyCompleted ? styles.completeButtonUnlocked : ""
-  }`}
->
-  {storyCompleted ? (
-    <>
-      <Check
-        size={12}
-        strokeWidth={2.5}
-        aria-hidden="true"
-      />
-      <span>Reward Unlocked</span>
-    </>
-  ) : (
-    <span>Complete Steps</span>
-  )}
-</button>
+          <div
+            className={`${styles.completeButton} ${
+              storyCompleted
+                ? styles.completeButtonUnlocked
+                : ""
+            }`}
+          >
+            {storyCompleted ? (
+              <>
+                <Check
+                  size={12}
+                  strokeWidth={2.5}
+                  aria-hidden="true"
+                />
+                <span>Reward Unlocked</span>
+              </>
+            ) : (
+              <span>Complete steps to claim</span>
+            )}
+          </div>
         </div>
-
       </div>
     </div>
   );

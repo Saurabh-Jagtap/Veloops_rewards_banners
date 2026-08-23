@@ -10,22 +10,16 @@
   border-radius: var(--radius-banner);
 
   background:
-  radial-gradient(
-    circle at 72% 48%,
-    rgba(154, 126, 225, 0.08),
-    transparent 32%
-  ),
-  radial-gradient(
-    circle at 25% 80%,
-    rgba(91, 125, 220, 0.045),
-    transparent 30%
-  ),
-  linear-gradient(
-    135deg,
-    #0b0d18 0%,
-    #0f1020 52%,
-    #0a0d18 100%
-  );
+    radial-gradient(circle at 72% 48%,
+      rgba(154, 126, 225, 0.08),
+      transparent 32%),
+    radial-gradient(circle at 25% 80%,
+      rgba(91, 125, 220, 0.045),
+      transparent 30%),
+    linear-gradient(135deg,
+      #0b0d18 0%,
+      #0f1020 52%,
+      #0a0d18 100%);
 }
 
 .content {
@@ -35,14 +29,13 @@
   display: grid;
 
   grid-template-columns:
-    minmax(0, 0.42fr)
-    minmax(0, 0.58fr);
+    minmax(0, 0.4fr) minmax(0, 0.6fr);
 
   align-items: center;
 
-  gap: 42px;
+  gap: 38px;
 
-  padding: 34px 42px;
+  padding: 32px 42px;
 }
 
 /* ==================================================
@@ -51,108 +44,330 @@
 
 .copy {
   width: 100%;
-  max-width: 560px;
+  max-width: 510px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  position: relative;
+  z-index: 2;
 }
+
+
+/* ==================================================
+   EYEBROW
+================================================== */
 
 .eyebrow {
   display: flex;
   align-items: center;
-  gap: 11px;
 
-  margin-bottom: 18px;
+  gap: 8px;
 
-  color: #9fa7bd;
+  margin-bottom: 20px;
+
+  color: #929bb3;
 
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.67rem;
   font-weight: 600;
 
-  letter-spacing: 0.08em;
+  line-height: 1;
+
+  letter-spacing: 0.105em;
   text-transform: uppercase;
 }
 
 .eyebrowNumber {
-  color: #a995ed;
+  color: #9b7eea;
 
-  font-size: 1.5rem;
+  font-size: 1.18rem;
+  font-weight: 700;
+
   line-height: 1;
-  letter-spacing: -0.03em;
 }
+
+.eyebrowDot {
+  color: rgba(255, 255, 255, 0.28);
+
+  font-size: 0.72rem;
+}
+
+
+/* ==================================================
+   HEADLINE
+================================================== */
 
 .copy h2 {
   margin: 0;
 
-  color: #f5f5fa;
+  color: #f4f5f9;
 
   font-family: var(--font-display);
 
-  font-size: clamp(2.55rem, 3.45vw, 3.35rem);
+  /*
+   * Larger now that the headline is intentionally
+   * two lines, matching Watch Ad / Contact.
+   */
+  font-size: clamp(3rem, 4vw, 3.45rem);
 
-  line-height: 0.98;
+  font-weight: 700;
 
-  letter-spacing: -0.05em;
+  line-height: 0.94;
+
+  letter-spacing: -0.055em;
 }
 
 .copy h2 span {
-  color: #a88cf0;
+  color: #9b7eea;
+
+  text-shadow:
+    0 0 24px rgba(155, 126, 234, 0.10);
 }
 
-.copy p {
-  max-width: 470px;
 
-  margin: 18px 0 0;
+/* ==================================================
+   DESCRIPTION
+================================================== */
 
-  color: #aeb6cb;
+.copy > p {
+  max-width: 455px;
 
-  font-size: 0.96rem;
+  margin: 21px 0 0;
+
+  color: #aab3c8;
+
+  font-size: 0.89rem;
+  font-weight: 400;
 
   line-height: 1.58;
+
+  letter-spacing: -0.005em;
 }
 
 /* ==================================================
-   STATS
+   FEATURES
 ================================================== */
 
-.stats {
+.features {
   display: flex;
+  align-items: stretch;
 
-  gap: 10px;
+  width: auto;
 
-  margin-top: 22px;
+  margin: 27px 0 0;
+  padding: 0;
+
+  list-style: none;
 }
 
-.stat {
-  min-width: 92px;
+.feature {
+  position: relative;
 
-  padding: 10px 14px;
+  flex: 0 0 auto;
 
-  border: 1px solid rgba(169, 151, 237, 0.14);
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  min-width: 0;
+}
+
+/*
+ * IMPORTANT:
+ * Don't distribute the three features across
+ * the entire available width.
+ *
+ * This keeps them visually grouped like the
+ * Watch Ad feature row.
+ */
+.feature:not(:last-child) {
+  padding-right: 15px;
+  margin-right: 15px;
+}
+
+.feature:not(:last-child)::after {
+  content: "";
+
+  position: absolute;
+
+  top: 2px;
+  right: 0;
+
+  width: 1px;
+  height: 38px;
+
+  background: rgba(255, 255, 255, 0.10);
+}
+
+
+/* ==================================================
+   FEATURE TEXT
+================================================== */
+
+.featureText {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.feature strong {
+  display: block;
+
+  color: #edf0f7;
+
+  font-size: 0.70rem;
+  font-weight: 650;
+
+  line-height: 1.2;
+
+  white-space: nowrap;
+}
+
+.featureText p {
+  margin: 3px 0 0;
+
+  color: #858ea5;
+
+  font-size: 0.59rem;
+  font-weight: 400;
+
+  line-height: 1.2;
+
+  white-space: nowrap;
+}
+
+
+/* ==================================================
+   FEATURE ICON
+================================================== */
+
+.featureIcon {
+  display: grid;
+  place-items: center;
+
+  flex: 0 0 auto;
+
+  width: 40px;
+  height: 40px;
+
   border-radius: 10px;
 
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.025);
+
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+
+/* Follow */
+
+.featureFollow {
+  border: 1px solid rgba(158, 127, 235, 0.42);
+
   background:
-    rgba(20, 22, 40, 0.58);
+    linear-gradient(
+      145deg,
+      rgba(156, 124, 235, 0.16),
+      rgba(91, 68, 150, 0.08)
+    );
+
+  color: #b69af5;
 }
 
-.stat strong {
-  display: block;
+.feature:hover .featureFollow {
+  border-color: rgba(158, 127, 235, 0.75);
 
-  color: #b49df2;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(156, 124, 235, 0.26),
+      rgba(91, 68, 150, 0.15)
+    );
 
-  font-family: var(--font-mono);
+  color: #c7b2fb;
 
-  font-size: 0.82rem;
-  font-weight: 600;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 0 14px rgba(158, 127, 235, 0.14);
 }
 
-.stat span {
-  display: block;
 
-  margin-top: 4px;
+/* Engage */
 
-  color: #747d95;
+.featureEngage {
+  border: 1px solid rgba(101, 145, 230, 0.38);
 
-  font-size: 0.58rem;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(82, 126, 219, 0.15),
+      rgba(55, 81, 145, 0.07)
+    );
+
+  color: #8eb3ff;
 }
+
+.feature:hover .featureEngage {
+  border-color: rgba(101, 145, 230, 0.72);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(82, 126, 219, 0.25),
+      rgba(55, 81, 145, 0.13)
+    );
+
+  color: #a9c6ff;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 0 14px rgba(101, 145, 230, 0.13);
+}
+
+
+/* Earn */
+
+.featureEarn {
+  border: 1px solid rgba(231, 180, 63, 0.40);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(225, 174, 54, 0.15),
+      rgba(110, 77, 18, 0.07)
+    );
+
+  color: #efc45c;
+}
+
+.feature:hover .featureEarn {
+  border-color: rgba(231, 180, 63, 0.75);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(225, 174, 54, 0.25),
+      rgba(110, 77, 18, 0.13)
+    );
+
+  color: #f5d488;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 0 14px rgba(231, 180, 63, 0.13);
+}
+
 
 /* ==================================================
    CTA
@@ -161,51 +376,66 @@
 .cta {
   display: inline-flex;
 
-  width: fit-content;
-
   align-items: center;
   justify-content: center;
 
-  gap: 8px;
+  gap: 9px;
 
-  min-height: 43px;
+  width: fit-content;
+  min-height: 45px;
 
-  margin-top: 20px;
+  margin-top: 25px;
 
-  padding: 0 17px;
+  padding: 0 18px;
 
-  border: 1px solid rgba(190, 171, 255, 0.3);
-  border-radius: 10px;
+  border: 1px solid rgba(171, 143, 241, 0.30);
+  border-radius: var(--radius-button);
 
   background:
-    linear-gradient(135deg,
-      #c1b3f5,
-      #917de0);
+    linear-gradient(
+      135deg,
+      #8e6de2,
+      #6e4cc8
+    );
 
-  color: #171827;
+  color: #ffffff;
 
-  font-size: 0.84rem;
+  font-size: 0.82rem;
   font-weight: 700;
 
-  text-decoration: none;
+  line-height: 1;
+
+  cursor: pointer;
 
   box-shadow:
-    0 10px 24px rgba(135, 113, 224, 0.14);
+    0 8px 22px rgba(112, 76, 205, 0.18);
 
   transition:
-    transform 180ms ease,
-    box-shadow 180ms ease;
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 220ms ease;
 }
 
 .cta:hover {
   transform: translateY(-2px);
 
+  filter: brightness(1.05);
+
   box-shadow:
-    0 13px 30px rgba(145, 125, 225, 0.22);
+    0 11px 28px rgba(112, 76, 205, 0.28);
+}
+
+.cta:active {
+  transform: translateY(1px) scale(0.975);
+
+  box-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .cta svg {
-  transition: transform 180ms ease;
+  transition:
+    transform 180ms ease;
 }
 
 .cta:hover svg {
@@ -213,8 +443,8 @@
 }
 
 .cta:focus-visible {
-  outline: 2px solid #b49df2;
-  outline-offset: 3px;
+  outline: 2px solid #a98cf0;
+  outline-offset: 4px;
 }
 
 /* ==================================================
@@ -223,139 +453,75 @@
 
 .visual {
   position: relative;
-
-  width: 100%;
-  height: 330px;
-
-  overflow: hidden;
   isolation: isolate;
 
-  border: 1px solid rgba(169, 151, 237, 0.16);
+  width: 100%;
+  height: 100%;
+
+  min-height: 366px;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+
+  border: 1px solid rgba(169, 151, 237, 0.12);
   border-radius: 18px;
 
   background:
-    radial-gradient(circle at 45% 40%,
-      rgba(157, 132, 238, 0.12),
-      transparent 38%),
-    radial-gradient(circle at 80% 70%,
-      rgba(111, 140, 255, 0.06),
-      transparent 32%),
-    linear-gradient(145deg,
-      #242742,
-      #1f223a 60%,
-      #1c1f35);
+    radial-gradient(
+      circle at 76% 28%,
+      rgba(155, 126, 234, 0.065),
+      transparent 38%
+    ),
+    linear-gradient(
+      145deg,
+      #252742 0%,
+      #22243c 54%,
+      #1e2137 100%
+    );
+
+  opacity: 0;
+
+  transform:
+    translateY(12px)
+    scale(0.985);
+
+  transition:
+    opacity 650ms ease 160ms,
+    transform 800ms cubic-bezier(0.22, 1, 0.36, 1) 160ms;
 }
+
+.isVisible .visual {
+  opacity: 1;
+
+  transform:
+    translateY(0)
+    scale(1);
+}
+
 
 /* ==================================================
-   AMBIENT BACKGROUND
+   SUBTLE AMBIENT LIGHT
 ================================================== */
 
-.visualGlow {
+.visual::before {
+  content: "";
+
   position: absolute;
+  inset: 0;
 
-  top: -70px;
-  left: 34%;
-
-  width: 390px;
-  height: 260px;
-
-  border-radius: 50%;
+  pointer-events: none;
 
   background:
-    rgba(164, 140, 239, 0.08);
+    radial-gradient(
+      circle at 68% 58%,
+      rgba(123, 103, 210, 0.045),
+      transparent 34%
+    );
 
-  filter: blur(70px);
-
-  pointer-events: none;
+  z-index: 0;
 }
 
-/* --------------------------------------------------
-   AMBIENT MOTION
--------------------------------------------------- */
-
-.visualGlow {
-  animation:
-    ambientGlow 10s ease-in-out infinite;
-}
-
-.orbOne {
-  animation:
-    orbDriftOne 22s ease-in-out infinite;
-  transform-origin: center;
-}
-
-.orbTwo {
-  animation:
-    orbDriftTwo 26s ease-in-out infinite;
-  transform-origin: center;
-}
-
-@keyframes ambientGlow {
-
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
-    opacity: 0.8;
-  }
-
-  50% {
-    transform: translate3d(18px, 10px, 0) scale(1.06);
-    opacity: 1;
-  }
-}
-
-@keyframes orbDriftOne {
-
-  0%,
-  100% {
-    transform: rotate(0deg) translate3d(0, 0, 0);
-  }
-
-  50% {
-    transform: rotate(7deg) translate3d(-8px, 8px, 0);
-  }
-}
-
-@keyframes orbDriftTwo {
-
-  0%,
-  100% {
-    transform: rotate(0deg) translate3d(0, 0, 0);
-  }
-
-  50% {
-    transform: rotate(-6deg) translate3d(9px, -6px, 0);
-  }
-}
-
-.orb {
-  position: absolute;
-
-  border: 1px solid rgba(175, 164, 242, 0.07);
-
-  border-radius: 50%;
-
-  pointer-events: none;
-}
-
-.orbOne {
-  top: -120px;
-  right: -80px;
-
-  width: 250px;
-  height: 250px;
-}
-
-.orbTwo {
-  bottom: -160px;
-  left: -100px;
-
-  width: 290px;
-  height: 290px;
-
-  border-color:
-    rgba(111, 140, 255, 0.05);
-}
 
 /* ==================================================
    CAMPAIGN HEADER
@@ -363,44 +529,127 @@
 
 .campaignHeader {
   position: relative;
-  z-index: 4;
-
-  height: 48px;
+  z-index: 2;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  padding: 0 18px;
+  gap: 20px;
 
-  border-bottom: 1px solid rgba(198, 203, 221, 0.1);
+  min-height: 70px;
+
+  padding: 13px 18px;
+
+  box-sizing: border-box;
+
+  border-bottom:
+    1px solid rgba(198, 203, 221, 0.075);
 }
 
-.campaignTitle {
+.campaignHeaderLeft {
   display: flex;
   align-items: center;
-  gap: 8px;
 
-  color: #f1f1f6;
+  gap: 10px;
 
-  font-size: 0.82rem;
+  min-width: 0;
 }
 
-.instagramIcon {
+.campaignIcon {
   display: grid;
   place-items: center;
 
-  width: 20px;
-  height: 20px;
+  flex: 0 0 auto;
 
-  border-radius: 6px;
+  width: 34px;
+  height: 34px;
+
+  border-radius: 10px;
+
+  border:
+    1px solid rgba(169, 151, 237, 0.32);
 
   background:
-    linear-gradient(135deg,
-      #e66bb0,
-      #8d73ee);
+    linear-gradient(
+      145deg,
+      #9879e5,
+      #6d52c6
+    );
 
-  color: white;
+  color: #fff;
+
+  box-shadow:
+    0 6px 14px rgba(91, 64, 170, 0.16);
+
+  opacity: 0;
+  transform: scale(0.94);
+
+  transition:
+    opacity 420ms ease 260ms,
+    transform 480ms cubic-bezier(0.22, 1, 0.36, 1) 260ms;
+}
+
+.isVisible .campaignIcon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.campaignHeaderText {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+}
+
+.campaignLabel {
+  color: #ae96eb;
+
+  font-size: 0.57rem;
+  font-weight: 600;
+
+  line-height: 1.1;
+
+  letter-spacing: 0.015em;
+}
+
+.campaignTitle {
+  margin-top: 3px;
+
+  color: #f2f3f8;
+
+  font-size: 0.91rem;
+  font-weight: 700;
+
+  line-height: 1.1;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.campaignSub {
+  margin-top: 3px;
+
+  color: #858da4;
+
+  font-size: 0.57rem;
+
+  line-height: 1.2;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.campaignHeaderRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  flex: 0 0 auto;
+
+  gap: 6px;
 }
 
 .liveBadge {
@@ -411,862 +660,311 @@
 
   padding: 5px 8px;
 
-  border-radius: 6px;
+  border:
+    1px solid rgba(72, 190, 125, 0.18);
 
-  background: rgba(48, 137, 82, 0.28);
+  border-radius: 7px;
 
-  color: #72e3a0;
+  background:
+    rgba(48, 137, 82, 0.20);
+
+  color: #72dfa0;
 
   font-family: var(--font-mono);
 
-  font-size: 0.52rem;
-}
+  font-size: 0.50rem;
+  font-weight: 600;
 
-.liveBadge span {
-  width: 5px;
-  height: 5px;
-
-  border-radius: 50%;
-
-  background: #63e19b;
-
-  box-shadow:
-    0 0 7px rgba(99, 225, 155, 0.7);
+  line-height: 1;
 }
 
 .liveDot {
+  width: 5px;
+  height: 5px;
+
+  flex: 0 0 auto;
+
+  border-radius: 50%;
+
+  background: #63df99;
+
+  box-shadow:
+    0 0 7px rgba(99, 225, 153, 0.55);
+
   animation:
-    livePulse 2.5s ease-in-out infinite;
+    livePulse
+    2.8s
+    ease-in-out
+    infinite;
 }
 
 @keyframes livePulse {
-
   0%,
   100% {
-    box-shadow:
-      0 0 7px rgba(175, 164, 242, 0.35);
+    opacity: 0.75;
     transform: scale(1);
   }
 
   50% {
-    box-shadow:
-      0 0 13px rgba(175, 164, 242, 0.65);
-    transform: scale(1.12);
+    opacity: 1;
+    transform: scale(1.1);
   }
 }
+
+.countdown {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 4px;
+
+  color: #858da4;
+
+  font-size: 0.56rem;
+
+  line-height: 1;
+
+  white-space: nowrap;
+}
+
+.countdown strong {
+  color: #c8ccd8;
+
+  font-family: var(--font-mono);
+  font-weight: 600;
+}
+
 
 /* ==================================================
    DASHBOARD BODY
 ================================================== */
 
-.dashboardBody {
+.campaignBody {
   position: relative;
-  z-index: 3;
+  z-index: 2;
 
   display: grid;
 
   grid-template-columns:
-    0.9fr 1.45fr 0.72fr;
+    minmax(0, 1.5fr)
+    minmax(185px, 0.72fr);
 
-  height: calc(100% - 48px);
+  height: calc(100% - 70px);
+
+  min-height: 0;
 }
 
-/* ==================================================
-   PROFILE PANEL
-================================================== */
-
-.profilePanel {
-  display: flex;
-
-  flex-direction: column;
-  align-items: flex-start;
-
-  padding: 22px 16px;
-
-  border-right: 1px solid rgba(198, 203, 221, 0.08);
-}
-
-.profileAvatar {
-  display: grid;
-  place-items: center;
-
-  width: 66px;
-  height: 66px;
-
-  border: 1px solid rgba(181, 155, 244, 0.4);
-  border-radius: 50%;
-
-  background:
-    radial-gradient(circle at 35% 30%,
-      rgba(184, 164, 245, 0.2),
-      transparent 55%),
-    #262941;
-
-  color: #f3f2f8;
-
-  font-family: var(--font-mono);
-
-  font-size: 1.05rem;
-  font-weight: 700;
-
-  box-shadow:
-    0 0 28px rgba(164, 137, 240, 0.1);
-}
-
-.profileName {
-  margin-top: 12px;
-
-  color: #f0eff6;
-
-  font-size: 0.82rem;
-}
-
-.profileHandle {
-  margin-top: 4px;
-
-  color: #858da5;
-
-  font-family: var(--font-mono);
-
-  font-size: 0.56rem;
-}
-
-.profileDescription {
-  margin: 13px 0 0;
-
-  color: #858da5;
-
-  font-size: 0.58rem;
-
-  line-height: 1.55;
-}
-
-.followButton {
-  display: flex;
-  align-items: center;
-
-  gap: 5px;
-
-  margin-top: auto;
-
-  padding: 7px 10px;
-
-  border: 1px solid rgba(169, 151, 237, 0.25);
-  border-radius: 8px;
-
-  background:
-    rgba(169, 151, 237, 0.08);
-
-  color: #ddd7f2;
-
-  font-family: var(--font-mono);
-
-  font-size: 0.54rem;
-
-  cursor: pointer;
-}
-
-.followButton svg:last-child {
-  margin-left: 3px;
-
-  opacity: 0.65;
-}
 
 /* ==================================================
    PROGRESS PANEL
 ================================================== */
 
 .progressPanel {
-  padding: 22px 17px;
+  display: flex;
+  flex-direction: column;
 
-  border-right: 1px solid rgba(198, 203, 221, 0.08);
+  min-width: 0;
+  min-height: 0;
+
+  padding: 17px 18px;
+
+  box-sizing: border-box;
+
+  border-right:
+    1px solid rgba(198, 203, 221, 0.055);
 }
 
-.progressHeader {
+.progressHeading {
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  color: #c8cbd8;
+  color: #c9ccd7;
 
-  font-size: 0.64rem;
+  font-size: 0.68rem;
+  font-weight: 650;
+
+  line-height: 1;
 }
 
-.progressHeader strong {
-  color: #929bef;
+.progressHeading strong {
+  color: #a58ce9;
 
   font-family: var(--font-mono);
 
   font-size: 0.58rem;
+  font-weight: 600;
 }
+
+
+/* ==================================================
+   PROGRESS SUMMARY
+================================================== */
+
+.progressSummary {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  margin-top: 12px;
+}
+
+.progressPercent {
+  flex: 0 0 auto;
+
+  color: #f2f3f8;
+
+  font-family: var(--font-mono);
+
+  font-size: 1.42rem;
+  font-weight: 700;
+
+  line-height: 1;
+
+  letter-spacing: -0.045em;
+}
+
+.progressMessage {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+}
+
+.progressMessage strong {
+  color: #edf0f7;
+
+  font-size: 0.74rem;
+  font-weight: 700;
+
+  line-height: 1.15;
+}
+
+.progressMessage span {
+  max-width: 230px;
+
+  margin-top: 3px;
+
+  color: #858da4;
+
+  font-size: 0.55rem;
+
+  line-height: 1.35;
+}
+
+
+/* ==================================================
+   PROGRESS BAR
+================================================== */
 
 .progressTrack {
   width: 100%;
-  height: 5px;
+  height: 4px;
 
-  margin-top: 10px;
+  margin-top: 13px;
 
   overflow: hidden;
 
   border-radius: 999px;
 
-  background: rgba(112, 122, 154, 0.18);
+  background:
+    rgba(255, 255, 255, 0.075);
 }
 
 .progressFill {
-  width: 80%;
   height: 100%;
 
   border-radius: inherit;
 
   background:
-    linear-gradient(90deg,
-      #667fe9,
-      #788ef8);
+    linear-gradient(
+      90deg,
+      #765fd4,
+      #9b7eea
+    );
 
   box-shadow:
-    0 0 12px rgba(102, 127, 233, 0.35);
-}
+    0 0 9px rgba(155, 126, 234, 0.18);
 
-.progressHint {
-  display: block;
-
-  margin-top: 7px;
-
-  color: #717991;
-
-  font-size: 0.53rem;
-}
-
-.checklist {
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 10px;
-
-  margin-top: 22px;
-}
-
-.checkItem {
-  display: flex;
-
-  align-items: center;
-
-  gap: 7px;
-
-  color: #c9cdd9;
-
-  font-size: 0.6rem;
-}
-
-.checkItemPending {
-  width: 100%;
-
-  border: 0;
-
-  padding: 0;
-
-  background: transparent;
-
-  font: inherit;
-
-  text-align: left;
-
-  cursor: pointer;
-}
-
-.checkItemPending {
   transition:
-    color 180ms ease,
-    background 180ms ease,
-    transform 180ms ease;
+    width 900ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.checkItemPending:hover {
-  color: #c9cdd9;
-
-  transform: translateX(2px);
-}
-
-.checkItemCompleted {
-  color: #c9cdd9;
-}
-
-.checkItemPending .pendingCircle {
-  transition:
-    border-color 200ms ease,
-    background 200ms ease,
-    box-shadow 200ms ease,
-    transform 200ms ease;
-}
-
-.checkItemPending:hover .pendingCircle {
-  border-color: #7c8cff;
-
-  box-shadow:
-    0 0 10px rgba(124, 140, 255, 0.2);
-
-  transform: scale(1.05);
-}
-
-.checkItemCompleted .checkCircle {
-  animation:
-    completeStepPop 420ms cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-@keyframes completeStepPop {
-  0% {
-    opacity: 0;
-    transform: scale(0.5);
-  }
-
-  65% {
-    transform: scale(1.15);
-  }
-
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.checkItemCompleted {
-  color: #c9cdd9;
-
-  background:
-    linear-gradient(90deg,
-      rgba(77, 190, 124, 0.055),
-      transparent);
-}
-
-.checkItemPending:focus-visible {
-  outline: 1px solid rgba(109, 151, 245, 0.75);
-
-  outline-offset: 3px;
-
-  border-radius: 5px;
-}
-
-.checkCircle {
-  display: grid;
-  place-items: center;
-
-  width: 13px;
-  height: 13px;
-
-  flex-shrink: 0;
-
-  border-radius: 50%;
-
-  background: #4dbe7c;
-
-  color: #12231a;
-}
-
-.itemEndCheck {
-  margin-left: auto;
-
-  color: #55c989;
-}
-
-.stepCount {
-  margin-left: auto;
-
-  color: #858da5;
-
-  font-family: var(--font-mono);
-
-  font-size: 0.53rem;
-}
-
-.checkItemPending {
-  color: #727b91;
-}
-
-.pendingCircle {
-  width: 13px;
-  height: 13px;
-
-  flex-shrink: 0;
-
-  border: 1px solid #5b647b;
-  border-radius: 50%;
-}
 
 /* ==================================================
-   REWARD PANEL
+   CHECKLIST
 ================================================== */
 
-.rewardPanel {
+.channelList {
   display: flex;
-
   flex-direction: column;
+
+  gap: 4px;
+
+  margin-top: 14px;
+}
+
+.channelRow {
+  display: flex;
   align-items: center;
 
-  padding: 20px 12px;
+  gap: 9px;
 
-  text-align: center;
-}
-
-.rewardLabel {
-  color: #9097aa;
-
-  font-size: 0.54rem;
-}
-
-.rewardIcon {
-  display: grid;
-  place-items: center;
-
-  width: 47px;
-  height: 47px;
-
-  margin-top: 20px;
-
-  border-radius: 12px;
-
-  color: #f1bf43;
-
-  background:
-    rgba(239, 181, 47, 0.08);
-
-  filter:
-    drop-shadow(0 0 12px rgba(239, 181, 47, 0.18));
-}
-
-.rewardValue {
-  margin-top: 9px;
-
-  color: #f2c452;
-
-  font-family: var(--font-mono);
-
-  font-size: 1rem;
-}
-
-.rewardCaption {
-  margin-top: 4px;
-
-  color: #81899d;
-
-  font-size: 0.5rem;
-}
-
-.completeButton {
   width: 100%;
+  min-height: 35px;
 
-  min-height: 34px;
+  padding: 5px 8px;
 
-  margin-top: auto;
+  box-sizing: border-box;
 
-  border: 0;
+  border:
+    1px solid transparent;
+
   border-radius: 8px;
 
   background:
-    linear-gradient(135deg,
-      #8b55dd,
-      #6d3bc7);
+    rgba(255, 255, 255, 0.018);
 
-  color: #fff;
+  font: inherit;
+  text-align: left;
 
-  font-size: 0.58rem;
-  font-weight: 700;
-
-  box-shadow:
-    0 8px 20px rgba(111, 61, 199, 0.2);
-
-  cursor: pointer;
-}
-
-/* ==================================================
-   RESPONSIVE
-================================================== */
-
-@media (max-width: 900px) {
-  .banner {
-    min-height: 0;
-    max-height: none;
-  }
-
-  .content {
-    grid-template-columns: 1fr;
-
-    gap: 28px;
-
-    padding: 32px;
-  }
-
-  .copy {
-    max-width: 620px;
-  }
-
-  .visual {
-    height: 330px;
-  }
-}
-
-@media (max-width: 560px) {
-  .banner {
-    border-radius: 22px;
-  }
-
-  .content {
-    display: flex;
-    flex-direction: column;
-
-    gap: 24px;
-
-    padding: 22px;
-  }
-
-  .copy h2 {
-    font-size: clamp(2rem, 10vw, 2.5rem);
-  }
-
-  .copy p {
-    font-size: 0.86rem;
-  }
-
-  .stats {
-    gap: 7px;
-  }
-
-  .stat {
-    flex: 1;
-    min-width: 0;
-
-    padding: 9px 8px;
-  }
-
-  .stat strong {
-    font-size: 0.68rem;
-  }
-
-  .stat span {
-    font-size: 0.46rem;
-  }
-
-  .cta {
-    width: 100%;
-  }
-
-  .visual {
-    height: 390px;
-
-    border-radius: 18px;
-  }
-
-  .campaignHeader {
-    padding: 0 13px;
-  }
-
-  .dashboardBody {
-    grid-template-columns: 1fr 1.3fr;
-
-    height: calc(100% - 48px);
-  }
-
-  .profilePanel {
-    padding: 24px 18px;
-  }
-
-  .progressPanel {
-    padding: 24px 19px;
-
-    border-right: 0;
-  }
-
-  .rewardPanel {
-    grid-column: 1 / -1;
-
-    flex-direction: row;
-    align-items: center;
-
-    gap: 10px;
-
-    padding: 22px 14px;
-
-    border-top: 1px solid rgba(198, 203, 221, 0.08);
-  }
-
-  .rewardIcon {
-    width: 38px;
-    height: 38px;
-
-    margin-top: 0;
-  }
-
-  .rewardValue {
-    margin-top: 0;
-  }
-
-  .rewardCaption {
-    margin-top: 0;
-  }
-
-  .completeButton {
-    width: auto;
-
-    min-width: 110px;
-
-    margin-top: 0;
-    margin-left: auto;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-
-  .copy>.eyebrow,
-  .copy>h2,
-  .copy>p,
-  .copy>.valueRow,
-  .copy>.cta,
-  .profileCard,
-  .followState,
-  .channels,
-  .channel,
-  .campaignCard,
-  .sparkle {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-    animation: none !important;
-  }
-
-  .rewardUnlocked,
-  .rewardUnlocked .rewardIcon,
-  .rewardUnlocked .rewardValue,
-  .completeButtonUnlocked {
-    animation: none;
-  }
-
-  .checkItemCompleted .checkCircle {
-    animation: none;
-  }
-
-  .checkItemPending {
-    transition: none;
-  }
-
-  .profileCard {
-    transform:
-      translateX(-50%) rotate(-1deg) !important;
-  }
-
-  .channels {
-    transform:
-      translateX(-50%) !important;
-  }
-
-  .campaignCard {
-    transform:
-      translateX(-50%) !important;
-  }
-
-  .visualGlow,
-  .orbOne,
-  .orbTwo,
-  .liveDot {
-    animation: none !important;
-  }
-
-  .followCheck,
-  .campaignStatus span {
-    animation: none !important;
-  }
-
-  .sparkle {
-    opacity: 0.55 !important;
-  }
-
-  .cta,
-  .cta svg {
-    transition: none;
-  }
-
-  .progressFill {
-    width: 80%;
-    animation: none;
-  }
-
-  .checkItem {
-    opacity: 1;
-    transform: none;
-    animation: none;
-  }
-
-  .checkCircle {
-    animation: none;
-  }
-}
-
-/* ==================================================
-   FOLLOW BANNER — ENTRANCE ANIMATION
-   Static layout remains untouched.
-================================================== */
-
-.copy>.eyebrow,
-.copy>h2,
-.copy>p,
-.copy>.stats,
-.copy>.cta,
-.visual {
   opacity: 0;
-}
-
-/* --------------------------------------------------
-   LEFT CONTENT
--------------------------------------------------- */
-
-.copy>.eyebrow {
-  transform: translateY(14px);
-  transition:
-    opacity 420ms ease,
-    transform 560ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.copy>h2 {
-  transform: translateY(16px);
-  transition:
-    opacity 500ms ease 90ms,
-    transform 620ms cubic-bezier(0.22, 1, 0.36, 1) 90ms;
-}
-
-.copy>p {
-  transform: translateY(14px);
-  transition:
-    opacity 480ms ease 190ms,
-    transform 580ms cubic-bezier(0.22, 1, 0.36, 1) 190ms;
-}
-
-.copy>.stats {
-  transform: translateY(12px);
-  transition:
-    opacity 450ms ease 300ms,
-    transform 540ms cubic-bezier(0.22, 1, 0.36, 1) 300ms;
-}
-
-.copy>.cta {
-  transform: translateY(12px);
-  transition:
-    opacity 450ms ease 400ms,
-    transform 540ms cubic-bezier(0.22, 1, 0.36, 1) 400ms;
-}
-
-/* --------------------------------------------------
-   RIGHT VISUAL
--------------------------------------------------- */
-
-.visual {
-  transform: translateY(12px) scale(0.985);
+  transform: translateX(-6px);
 
   transition:
-    opacity 650ms ease 160ms,
-    transform 800ms cubic-bezier(0.22, 1, 0.36, 1) 160ms;
+    background 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
 }
 
-/* --------------------------------------------------
-   VISIBLE STATE
--------------------------------------------------- */
-
-.isVisible .copy>.eyebrow,
-.isVisible .copy>h2,
-.isVisible .copy>p,
-.isVisible .copy>.stats,
-.isVisible .copy>.cta,
-.isVisible .visual {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.isVisible .visual {
-  transform: translateY(0) scale(1);
-}
-
-/* --------------------------------------------------
-   REDUCED MOTION
--------------------------------------------------- */
-
-@media (prefers-reduced-motion: reduce) {
-
-  .copy>.eyebrow,
-  .copy>h2,
-  .copy>p,
-  .copy>.stats,
-  .copy>.cta,
-  .visual {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-}
-
-/* ==================================================
-   CAMPAIGN PROGRESS ANIMATION
-================================================== */
-
-.progressFill {
-  width: 0;
-}
-
-.isVisible .progressFill {
+.isVisible .channelRow {
   animation:
-    fillCampaignProgress 1100ms
+    revealChannelRow
+    380ms
     cubic-bezier(0.22, 1, 0.36, 1)
-    700ms forwards;
+    forwards;
 }
 
-.progressComplete {
-  animation:
-    completeProgress 900ms
-    cubic-bezier(0.22, 1, 0.36, 1)
-    forwards !important;
+.isVisible .channelRow:nth-child(1) {
+  animation-delay: 700ms;
 }
 
-@keyframes fillCampaignProgress {
-  from {
-    width: 0;
-  }
-
-  to {
-    width: 80%;
-  }
+.isVisible .channelRow:nth-child(2) {
+  animation-delay: 770ms;
 }
 
-/* ==================================================
-   CHECKLIST REVEAL
-================================================== */
-
-.checkItem {
-  opacity: 0;
-  transform: translateX(-8px);
+.isVisible .channelRow:nth-child(3) {
+  animation-delay: 840ms;
 }
 
-.isVisible .checkItem {
-  animation: revealCheckItem 420ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+.isVisible .channelRow:nth-child(4) {
+  animation-delay: 910ms;
 }
 
-.isVisible .checkItem:nth-child(1) {
-  animation-delay: 1050ms;
-}
-
-.isVisible .checkItem:nth-child(2) {
-  animation-delay: 1200ms;
-}
-
-.isVisible .checkItem:nth-child(3) {
-  animation-delay: 1350ms;
-}
-
-.isVisible .checkItem:nth-child(4) {
-  animation-delay: 1500ms;
-}
-
-@keyframes revealCheckItem {
+@keyframes revealChannelRow {
   from {
     opacity: 0;
-    transform: translateX(-8px);
+    transform: translateX(-6px);
   }
 
   to {
@@ -1275,400 +973,430 @@
   }
 }
 
-.isVisible .checkItem:not(.checkItemPending) .checkCircle {
-  animation: checkPop 360ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
-}
-
-.isVisible .checkItem:nth-child(1) .checkCircle {
-  animation-delay: 1080ms;
-}
-
-.isVisible .checkItem:nth-child(2) .checkCircle {
-  animation-delay: 1230ms;
-}
-
-.isVisible .checkItem:nth-child(3) .checkCircle {
-  animation-delay: 1380ms;
-}
-
-@keyframes checkPop {
-  0% {
-    transform: scale(0.7);
-    opacity: 0.5;
-  }
-
-  70% {
-    transform: scale(1.12);
-  }
-
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
 
 /* ==================================================
-   MICRO INTERACTIONS — PROFILE
+   CHANNEL HOVER
 ================================================== */
 
-.profilePanel {
-  transition:
-    background 220ms ease,
-    box-shadow 220ms ease;
+.channelPending {
+  cursor: pointer;
 }
 
-.profilePanel:hover {
+.channelPending:hover {
   background:
-    rgba(169, 151, 237, 0.025);
-
-  box-shadow:
-    inset 0 0 24px rgba(169, 151, 237, 0.035);
-}
-
-.profileAvatar {
-  transition:
-    transform 220ms ease,
-    border-color 220ms ease,
-    box-shadow 220ms ease;
-}
-
-.profilePanel:hover .profileAvatar {
-  transform: scale(1.035);
+    rgba(155, 126, 234, 0.055);
 
   border-color:
-    rgba(181, 155, 244, 0.62);
+    rgba(155, 126, 234, 0.12);
 
-  box-shadow:
-    0 0 32px rgba(164, 137, 240, 0.18);
+  transform:
+    translateX(2px);
 }
 
-.followButton {
+.channelPending:active {
+  transform:
+    translateX(1px)
+    scale(0.995);
+}
+
+.channelPending:focus-visible {
+  outline:
+    1px solid rgba(169, 151, 237, 0.55);
+
+  outline-offset: 2px;
+}
+
+
+/* ==================================================
+   CHANNEL ICONS
+================================================== */
+
+.channelIcon {
+  display: grid;
+  place-items: center;
+
+  flex: 0 0 auto;
+
+  width: 25px;
+  height: 25px;
+
+  border-radius: 7px;
+
+  color: #fff;
+}
+
+.channelInstagram {
+  background:
+    linear-gradient(
+      135deg,
+      #f9ce34,
+      #ee2a7b 55%,
+      #6228d7
+    );
+}
+
+.channelX {
+  background: #0c0d14;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.13);
+}
+
+.channelYoutube {
+  background: #e0342f;
+}
+
+.channelTelegram {
+  background: #29a9e8;
+}
+
+
+/* ==================================================
+   CHANNEL TEXT
+================================================== */
+
+.channelText {
+  display: flex;
+  flex-direction: column;
+
+  flex: 1;
+  min-width: 0;
+}
+
+.channelText strong {
+  color: #e9ecf4;
+
+  font-size: 0.64rem;
+  font-weight: 620;
+
+  line-height: 1.15;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.channelText span {
+  margin-top: 2px;
+
+  color: #7f879d;
+
+  font-family: var(--font-mono);
+
+  font-size: 0.49rem;
+
+  line-height: 1.1;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+/* ==================================================
+   COMPLETION STATE
+================================================== */
+
+.channelCheck {
+  display: grid;
+  place-items: center;
+
+  flex: 0 0 auto;
+
+  width: 18px;
+  height: 18px;
+
+  border-radius: 50%;
+
+  background:
+    #4fbd7d;
+
+  color: #102319;
+}
+
+.channelOutline {
+  display: grid;
+  place-items: center;
+
+  flex: 0 0 auto;
+
+  width: 18px;
+  height: 18px;
+
+  border:
+    1.5px solid #5b6479;
+
+  border-radius: 50%;
+
   transition:
-    transform 180ms ease,
-    background 180ms ease,
     border-color 180ms ease,
     box-shadow 180ms ease;
 }
 
-.followButton:hover {
-  transform: translateY(-1px);
-
-  background:
-    rgba(169, 151, 237, 0.14);
-
-  border-color:
-    rgba(169, 151, 237, 0.42);
+.channelPending:hover .channelOutline {
+  border-color: #9b7eea;
 
   box-shadow:
-    0 6px 16px rgba(126, 99, 213, 0.12);
+    0 0 8px rgba(155, 126, 234, 0.18);
 }
 
-.followButton svg:last-child {
-  transition:
-    transform 180ms ease;
+.channelDone .channelCheck {
+  animation:
+    checkPop
+    360ms
+    cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.followButton:hover svg:last-child {
-  transform: translateX(3px);
+@keyframes checkPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.65);
+  }
+
+  70% {
+    transform: scale(1.08);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
+
 
 /* ==================================================
-   MICRO INTERACTIONS — CHANNELS
-================================================== */
-
-.channel {
-  transition:
-    transform 200ms ease,
-    background 200ms ease,
-    border-color 200ms ease,
-    box-shadow 200ms ease;
-}
-
-.channel:hover {
-  transform: translateY(-2px);
-
-  border-color:
-    rgba(169, 151, 237, 0.28);
-
-  box-shadow:
-    0 8px 22px rgba(20, 20, 40, 0.2);
-}
-
-.channelIcon {
-  transition:
-    transform 200ms ease,
-    box-shadow 200ms ease;
-}
-
-.channel:hover .channelIcon {
-  transform: scale(1.08);
-
-  box-shadow:
-    0 0 14px rgba(169, 151, 237, 0.14);
-}
-
-.channelArrow {
-  transition:
-    transform 200ms ease,
-    opacity 200ms ease;
-}
-
-.channel:hover .channelArrow {
-  transform: translate(3px, -2px);
-
-  opacity: 1;
-}
-
-/* ==================================================
-   MICRO INTERACTIONS — REWARD
+   REWARD PANEL
 ================================================== */
 
 .rewardPanel {
-  transition:
-    background 240ms ease,
-    box-shadow 240ms ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  min-width: 0;
+  min-height: 0;
+
+  padding: 17px 18px;
+
+  box-sizing: border-box;
+
+  text-align: center;
+
+  background:
+    radial-gradient(
+      circle at 50% 38%,
+      rgba(235, 181, 55, 0.045),
+      transparent 42%
+    );
 }
 
-.rewardPanel:hover {
+.rewardLabel {
+  align-self: flex-start;
+
+  color: #9299ab;
+
+  font-size: 0.63rem;
+  font-weight: 600;
+
+  line-height: 1;
+}
+
+.coinStack {
+  position: relative;
+
+  width: 68px;
+  height: 48px;
+
+  margin-top: 11px;
+
+  opacity: 0;
+
+  transform:
+    translateY(4px)
+    scale(0.95);
+
+  transition:
+    opacity 420ms ease 480ms,
+    transform 500ms cubic-bezier(0.22, 1, 0.36, 1) 480ms;
+}
+
+.isVisible .coinStack {
+  opacity: 1;
+
+  transform:
+    translateY(0)
+    scale(1);
+}
+
+.coin {
+  position: absolute;
+
+  display: grid;
+  place-items: center;
+
+  width: 32px;
+  height: 32px;
+
+  border:
+    1px solid rgba(255, 224, 150, 0.58);
+
+  border-radius: 50%;
+
   background:
-    rgba(239, 181, 47, 0.025);
+    radial-gradient(
+      circle at 32% 28%,
+      #ffe9a8,
+      #f2c452 45%,
+      #c98f22 100%
+    );
+
+  color: #79500f;
+
+  font-family: var(--font-mono);
+
+  font-size: 0.39rem;
+  font-weight: 700;
 
   box-shadow:
-    inset 0 0 26px rgba(239, 181, 47, 0.035);
+    inset 0 -3px 5px rgba(120, 74, 10, 0.30),
+    inset 0 2px 3px rgba(255, 255, 255, 0.45),
+    0 4px 9px rgba(0, 0, 0, 0.26);
 }
 
-.rewardIcon {
-  transition:
-    transform 240ms ease,
-    filter 240ms ease;
+.coinBack1 {
+  top: 1px;
+  left: 2px;
+
+  transform: rotate(-9deg);
 }
 
-.rewardPanel:hover .rewardIcon {
-  transform: translateY(-2px) scale(1.05);
+.coinBack2 {
+  top: 1px;
+  right: 2px;
 
-  filter:
-    drop-shadow(0 0 17px rgba(239, 181, 47, 0.3));
+  transform: rotate(9deg);
 }
+
+.coinFront {
+  top: 9px;
+  left: 50%;
+
+  width: 38px;
+  height: 38px;
+
+  font-size: 0.45rem;
+
+  transform:
+    translateX(-50%);
+}
+
+
+/* ==================================================
+   REWARD VALUE
+================================================== */
 
 .rewardValue {
+  margin-top: 7px;
+
+  color: #f2c452;
+
+  font-family: var(--font-mono);
+
+  font-size: 1.16rem;
+  font-weight: 700;
+
+  line-height: 1;
+
+  letter-spacing: -0.025em;
+
+  opacity: 0;
+
   transition:
-    transform 220ms ease,
-    text-shadow 220ms ease;
+    opacity 420ms ease 560ms;
 }
 
-.rewardPanel:hover .rewardValue {
-  transform: scale(1.04);
-
-  text-shadow:
-    0 0 14px rgba(242, 196, 82, 0.24);
+.isVisible .rewardValue {
+  opacity: 1;
 }
+
+.rewardCaption {
+  max-width: 150px;
+
+  margin-top: 6px;
+
+  color: #81899d;
+
+  font-size: 0.55rem;
+
+  line-height: 1.35;
+}
+
+
+/* ==================================================
+   REWARD ACTION
+================================================== */
 
 .completeButton {
-  transition:
-    transform 180ms ease,
-    box-shadow 180ms ease,
-    filter 180ms ease;
-}
-
-.completeButton:hover {
-  transform: translateY(-2px);
-
-  filter: brightness(1.08);
-
-  box-shadow:
-    0 11px 25px rgba(111, 61, 199, 0.3);
-}
-
-.completeButton:active {
-  transform: translateY(0) scale(0.97);
-}
-
-@media (prefers-reduced-motion: reduce) {
-
-  .profilePanel,
-  .profileAvatar,
-  .followButton,
-  .channel,
-  .channelIcon,
-  .channelArrow,
-  .rewardPanel,
-  .rewardIcon,
-  .rewardValue,
-  .completeButton {
-    transition: none;
-  }
-}
-
-/* ==================================================
-   CAMPAIGN COMPLETION
-================================================== */
-
-.progressComplete {
-  animation:
-    completeProgress 900ms
-    cubic-bezier(0.22, 1, 0.36, 1)
-    forwards;
-}
-
-@keyframes completeProgress {
-  from {
-    width: 80%;
-  }
-
-  to {
-    width: 100%;
-  }
-}
-
-.progressHeader strong {
-  transition:
-    color 250ms ease,
-    transform 250ms ease;
-}
-
-.progressComplete
-  ~ .progressHint {
-  color: #8d97b0;
-}
-
-/* ==================================================
-   REWARD UNLOCK SEQUENCE
-================================================== */
-
-.rewardUnlocked {
-  animation:
-    rewardPanelUnlock 700ms
-    cubic-bezier(0.22, 1, 0.36, 1)
-    650ms both;
-}
-
-@keyframes rewardPanelUnlock {
-  0% {
-    background: transparent;
-
-    box-shadow:
-      inset 0 0 0 rgba(239, 181, 47, 0);
-  }
-
-  45% {
-    background:
-      rgba(239, 181, 47, 0.045);
-
-    box-shadow:
-      inset 0 0 32px rgba(239, 181, 47, 0.09);
-  }
-
-  100% {
-    background:
-      rgba(239, 181, 47, 0.018);
-
-    box-shadow:
-      inset 0 0 20px rgba(239, 181, 47, 0.035);
-  }
-}
-
-.rewardUnlocked .rewardIcon {
-  animation:
-    rewardGiftUnlock 650ms
-    cubic-bezier(0.34, 1.56, 0.64, 1)
-    700ms both;
-}
-
-@keyframes rewardGiftUnlock {
-  0% {
-    transform: scale(1);
-  }
-
-  35% {
-    transform:
-      translateY(-4px)
-      scale(1.14);
-
-    filter:
-      drop-shadow(
-        0 0 22px
-        rgba(239, 181, 47, 0.55)
-      );
-  }
-
-  65% {
-    transform:
-      translateY(1px)
-      scale(0.97);
-  }
-
-  100% {
-    transform:
-      translateY(0)
-      scale(1);
-
-    filter:
-      drop-shadow(
-        0 0 15px
-        rgba(239, 181, 47, 0.24)
-      );
-  }
-}
-
-.rewardUnlocked .rewardValue {
-  animation:
-    rewardValueUnlock 650ms
-    cubic-bezier(0.22, 1, 0.36, 1)
-    850ms both;
-}
-
-@keyframes rewardValueUnlock {
-  0% {
-    transform: scale(1);
-
-    text-shadow:
-      0 0 0 rgba(242, 196, 82, 0);
-  }
-
-  45% {
-    transform: scale(1.1);
-
-    text-shadow:
-      0 0 18px rgba(242, 196, 82, 0.55);
-  }
-
-  100% {
-    transform: scale(1);
-
-    text-shadow:
-      0 0 10px rgba(242, 196, 82, 0.18);
-  }
-}
-
-.completeButtonUnlocked {
   display: flex;
   align-items: center;
   justify-content: center;
 
   gap: 5px;
 
+  width: 100%;
+  min-height: 32px;
+
+  margin-top: auto;
+
+  padding: 0 8px;
+
+  box-sizing: border-box;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.055);
+
+  border-radius: 8px;
+
+  background:
+    rgba(255, 255, 255, 0.045);
+
+  color: #9299ab;
+
+  font-size: 0.54rem;
+  font-weight: 650;
+
+  line-height: 1;
+
+  cursor: default;
+}
+
+.completeButtonUnlocked {
+  border-color:
+    rgba(72, 190, 125, 0.18);
+
   background:
     linear-gradient(
       135deg,
       #36a968,
-      #287f50
+      #2b8b59
     );
 
-  box-shadow:
-    0 8px 22px rgba(54, 169, 104, 0.2);
+  color: #fff;
 
-  cursor: default;
+  box-shadow:
+    0 7px 18px rgba(54, 169, 104, 0.14);
 
   animation:
-    unlockedButtonReveal 500ms
+    unlockedButtonReveal
+    380ms
     cubic-bezier(0.22, 1, 0.36, 1)
-    1000ms both;
+    both;
 }
 
 @keyframes unlockedButtonReveal {
   from {
-    opacity: 0.4;
-    transform: scale(0.96);
+    opacity: 0.5;
+    transform: scale(0.98);
   }
 
   to {
@@ -1677,86 +1405,205 @@
   }
 }
 
-.completeButtonUnlocked:hover {
-  transform: none;
 
-  filter: none;
+/* ==================================================
+   COMPLETED REWARD STATE
+================================================== */
 
-  box-shadow:
-    0 8px 22px rgba(54, 169, 104, 0.2);
-}
-
-.completeButtonUnlocked:active {
-  transform: none;
+.rewardUnlocked {
+  background:
+    radial-gradient(
+      circle at 50% 36%,
+      rgba(235, 181, 55, 0.06),
+      transparent 42%
+    );
 }
 
 .rewardUnlocked .rewardLabel {
   color: #72d99b;
-
-  transition:
-    color 300ms ease 900ms;
 }
+
+.rewardUnlocked .coinFront {
+  animation:
+    coinUnlock
+    500ms
+    cubic-bezier(0.34, 1.56, 0.64, 1)
+    both;
+}
+
+@keyframes coinUnlock {
+  0% {
+    transform:
+      translateX(-50%)
+      scale(1);
+  }
+
+  45% {
+    transform:
+      translateX(-50%)
+      translateY(-3px)
+      scale(1.06);
+  }
+
+  100% {
+    transform:
+      translateX(-50%)
+      translateY(0)
+      scale(1);
+  }
+}
+
 
 /* ==================================================
-   FINAL TYPOGRAPHY REFINEMENT
-   Follow & Earn dashboard
+   RESPONSIVE — TABLET
 ================================================== */
 
-/* Campaign progress */
+@media (max-width: 1080px) {
+  .campaignBody {
+    grid-template-columns:
+      minmax(0, 1.4fr)
+      minmax(175px, 0.72fr);
+  }
 
-.progressHeader {
-  font-size: 0.72rem;
-}
+  .progressPanel {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 
-.progressHeader strong {
-  font-size: 0.68rem;
-}
+  .rewardPanel {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 
-.progressHint {
-  font-size: 0.62rem;
-}
-
-
-/* Checklist */
-
-.checkItem {
-  font-size: 0.66rem;
-  line-height: 1.2;
-}
-
-.checkItem > span:not(.checkCircle):not(.pendingCircle):not(.stepCount) {
-  font-size: 0.66rem;
-}
-
-.stepCount {
-  font-size: 0.56rem;
+  .channelText strong {
+    font-size: 0.61rem;
+  }
 }
 
 
-/* Reward */
+/* ==================================================
+   RESPONSIVE — STACKED
+================================================== */
 
-.rewardLabel {
-  font-size: 0.58rem;
+@media (max-width: 900px) {
+  .visual {
+    height: auto;
+    min-height: 0;
+  }
+
+  .campaignBody {
+    grid-template-columns: 1fr;
+
+    height: auto;
+  }
+
+  .progressPanel {
+    border-right: 0;
+
+    border-bottom:
+      1px solid rgba(198, 203, 221, 0.055);
+  }
+
+  .rewardPanel {
+    min-height: 190px;
+  }
 }
 
-.rewardValue {
-  font-size: 1.28rem;
-  line-height: 1;
+
+/* ==================================================
+   RESPONSIVE — MOBILE
+================================================== */
+
+@media (max-width: 560px) {
+  .visual {
+    border-radius: 16px;
+  }
+
+  .campaignHeader {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    min-height: auto;
+
+    padding: 14px;
+  }
+
+  .campaignHeaderRight {
+    width: 100%;
+
+    align-items: flex-start;
+
+    flex-direction: row;
+
+    justify-content: space-between;
+
+    gap: 10px;
+  }
+
+  .campaignTitle {
+    font-size: 0.86rem;
+  }
+
+  .campaignSub {
+    font-size: 0.55rem;
+  }
+
+  .progressPanel {
+    padding: 15px 14px;
+  }
+
+  .rewardPanel {
+    min-height: 190px;
+
+    padding: 15px 14px;
+  }
+
+  .channelList {
+    margin-top: 13px;
+  }
+
+  .channelRow {
+    min-height: 36px;
+  }
 }
 
-.rewardCaption {
-  font-size: 0.55rem;
-}
 
+/* ==================================================
+   REDUCED MOTION
+================================================== */
 
-/* Keep the interactive Share to Story row
-   at exactly the same typography as the
-   other checklist items. */
+@media (prefers-reduced-motion: reduce) {
+  .visual,
+  .campaignIcon,
+  .coinStack,
+  .rewardValue {
+    opacity: 1 !important;
 
-.checkItemPending {
-  font-size: 0.66rem;
-}
+    transform: none !important;
 
-.checkItemPending > span {
-  font-size: 0.66rem;
+    transition: none !important;
+  }
+
+  .liveDot {
+    animation: none !important;
+  }
+
+  .channelRow {
+    opacity: 1 !important;
+
+    transform: none !important;
+
+    animation: none !important;
+  }
+
+  .channelDone .channelCheck,
+  .rewardUnlocked .coinFront,
+  .completeButtonUnlocked {
+    animation: none !important;
+  }
+
+  .progressFill {
+    transition: none !important;
+  }
 }
