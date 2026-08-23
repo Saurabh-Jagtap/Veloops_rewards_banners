@@ -1,288 +1,403 @@
 import {
+  Calendar,
   Clock3,
-  Trophy,
+  Crown,
+  Star,
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 import styles from "./LeaderboardBanner.module.css";
 
-const topPlayers = [
-  {
-    rank: 2,
-    name: "Priya S.",
-    score: "11,820",
-    initials: "PS",
-    className: "second",
-  },
+type ChangeDirection = "up" | "down";
+
+interface RankEntry {
+  rank: number;
+  name: string;
+  initials: string;
+  score: string;
+  change: number;
+  direction: ChangeDirection;
+  isCurrentUser?: boolean;
+  isFirst?: boolean;
+}
+
+const topPlayers: RankEntry[] = [
   {
     rank: 1,
-    name: "Aarav M.",
-    score: "12,450",
+    name: "Arlene M.",
     initials: "AM",
-    className: "first",
+    score: "12,450",
+    change: 2,
+    direction: "up",
+    isFirst: true,
+  },
+  {
+    rank: 2,
+    name: "Priya K.",
+    initials: "PK",
+    score: "9,210",
+    change: 1,
+    direction: "up",
   },
   {
     rank: 3,
-    name: "Rohan K.",
-    score: "10,970",
-    initials: "RK",
-    className: "third",
+    name: "Robert C.",
+    initials: "RC",
+    score: "7,310",
+    change: 1,
+    direction: "down",
   },
 ];
 
-const nearbyPlayers = [
-  {
-    rank: 13,
-    name: "Karan P.",
-    score: "6,460",
-    initials: "KP",
+const currentUser: RankEntry = {
+  rank: 14,
+  name: "You",
+  initials: "YO",
+  score: "4,650",
+  change: 2,
+  direction: "up",
+  isCurrentUser: true,
+};
+
+const rankBadgeClassName = (entry: RankEntry) => {
+  if (entry.isCurrentUser) {
+    return styles.rankBadgeMe;
+  }
+
+  if (entry.rank === 1) {
+    return styles.rankBadgeGold;
+  }
+
+  if (entry.rank === 2) {
+    return styles.rankBadgeSilver;
+  }
+
+  return styles.rankBadgeBronze;
+};
+
+/* =========================================================
+   MOTION VARIANTS — kept small & GPU-cheap
+   (opacity / x / y / scale only, short durations)
+========================================================= */
+
+const containerVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    scale: 0.97,
+    y: 18,
   },
-  {
-    rank: 14,
-    name: "You",
-    score: "6,240",
-    initials: "YO",
-    current: true,
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.22, 1, 0.36, 1],
+      staggerChildren: 0.09,
+      delayChildren: 0.08,
+    },
   },
-  {
-    rank: 15,
-    name: "Neha T.",
-    score: "6,010",
-    initials: "NT",
+};
+
+const fadeUpVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 10,
   },
-];
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.4,
+      ease: "easeOut",
+    },
+  },
+};
+
+const rowListVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.06,
+    },
+  },
+};
+
+const rowVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    x: -10,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.32,
+      ease: "easeOut",
+    },
+  },
+};
+
+const RankRow = ({
+  entry,
+  reduceMotion,
+}: {
+  entry: RankEntry;
+  reduceMotion: boolean;
+}) => (
+  <motion.div
+    className={`${styles.rankRow} ${entry.isFirst ? styles.rankRowFirst : ""
+      } ${entry.isCurrentUser ? styles.rankRowMe : ""}`}
+    variants={rowVariants}
+    whileHover={{
+      x: 3,
+      transition: { duration: 0.18, ease: "easeOut" },
+    }}
+  >
+    <div
+      className={`${styles.rankBadge} ${rankBadgeClassName(entry)}`}
+    >
+      {entry.rank}
+    </div>
+
+    <div className={styles.rankUser}>
+      <div className={styles.rankAvatar}>
+        {entry.initials}
+      </div>
+
+      <span className={styles.rankName}>
+        {entry.name}
+
+        {entry.isFirst && (
+          <motion.span
+            className={styles.crownIcon}
+            animate={
+              reduceMotion
+                ? undefined
+                : {
+                    rotate: [0, -8, 8, 0],
+                    scale: [1, 1.08, 1],
+                  }
+            }
+            transition={{
+              duration: 2.6,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
+            <Crown
+              size={13}
+              fill="currentColor"
+              aria-hidden="true"
+            />
+          </motion.span>
+        )}
+      </span>
+    </div>
+
+    <div className={styles.rankEarned}>
+      <span className={styles.veIcon}>VE</span>
+      {entry.score} VE
+    </div>
+
+    <div
+      className={`${styles.rankChange} ${entry.direction === "up"
+          ? styles.rankChangeUp
+          : styles.rankChangeDown
+        }`}
+    >
+      <span aria-hidden="true">
+        {entry.direction === "up" ? "▲" : "▼"}
+      </span>
+      {entry.change}
+    </div>
+  </motion.div>
+);
 
 const LeaderboardVisual = () => {
+  const reduceMotion = useReducedMotion() ?? false;
+
   return (
     <motion.div
       className={styles.visual}
-      initial={{
-        opacity: 0,
-        scale: 0.97,
-        y: 18,
-      }}
-      whileInView={{
-        opacity: 1,
-        scale: 1,
-        y: 0,
-      }}
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
       viewport={{
         once: true,
         amount: 0.25,
       }}
-      transition={{
-        duration: 0.7,
-        ease: "easeOut",
-      }}
     >
-      <div className={styles.visualAtmosphere} />
-
-      <div className={styles.visualHeader}>
-        <span className={styles.visualTitle}>
-          Weekly Leaderboard
-        </span>
-
-        <div className={styles.timer}>
-          <Clock3 size={12} strokeWidth={1.8} />
-          <span>Ends in 5d 14h</span>
-        </div>
-      </div>
-
-      <div className={styles.risingPath}>
-        <svg
-          viewBox="0 0 600 180"
-          preserveAspectRatio="none"
-          aria-hidden="true"
-        >
-          <defs>
-            <linearGradient
-              id="leaderboardCurve"
-              x1="0"
-              y1="0"
-              x2="1"
-              y2="0"
-            >
-              <stop
-                offset="0%"
-                stopColor="#D9A93A"
-                stopOpacity="0"
-              />
-
-              <stop
-                offset="40%"
-                stopColor="#D9A93A"
-                stopOpacity="0.7"
-              />
-
-              <stop
-                offset="100%"
-                stopColor="#F3CC6E"
-                stopOpacity="0.9"
-              />
-            </linearGradient>
-          </defs>
-
-          <path
-            d="M0 142 C120 145 170 132 245 91 C330 45 405 73 470 53 C520 38 555 18 600 0"
-            fill="none"
-            stroke="url(#leaderboardCurve)"
-            strokeWidth="2"
-          />
-
-          <path
-            d="M0 142 C120 145 170 132 245 91 C330 45 405 73 470 53 C520 38 555 18 600 0 L600 180 L0 180 Z"
-            fill="url(#leaderboardCurve)"
-            opacity="0.045"
-          />
-
-          <path
-            d="M570 12 L598 0 L590 27"
-            fill="none"
-            stroke="#F3CC6E"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </div>
-
-      <div className={styles.trophy}>
-        <div className={styles.trophyGlow} />
-
-        <Trophy
-          size={30}
-          strokeWidth={1.8}
-          aria-hidden="true"
-        />
-      </div>
-
+      {/* ---------- Header ---------- */}
       <motion.div
-        className={styles.podium}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.25 }}
-        variants={{
-          hidden: {},
-          visible: {
-            transition: {
-              staggerChildren: 0.12,
-              delayChildren: 0.25,
-            },
-          },
-        }}
+        className={styles.visualHeader}
+        variants={fadeUpVariants}
       >
-        {topPlayers.map((player) => (
-          <motion.div
-            key={player.rank}
-            className={`${styles.podiumPlayer} ${styles[player.className]
-              }`}
-            variants={{
-              hidden: {
-                opacity: 0,
-                y: 22,
-              },
-              visible: {
-                opacity: 1,
-                y: 0,
-                transition: {
-                  duration: 0.5,
-                  ease: "easeOut",
-                },
-              },
-            }}
-            whileHover={{
-              y: -5,
-              scale: 1.015,
-              transition: {
-                duration: 0.2,
-                ease: "easeOut",
-              },
-            }}
-          >
-            <motion.div
-              className={styles.avatar}
-              whileHover={{
-                scale: 1.08,
-                transition: {
-                  duration: 0.18,
-                },
-              }}
-            >
-              {player.initials}
-            </motion.div>
+        <div className={styles.visualTitleGroup}>
+          <div className={styles.calendarIcon}>
+            <Calendar
+              size={14}
+              strokeWidth={2}
+              aria-hidden="true"
+            />
+          </div>
 
-            <div className={styles.podiumCard}>
-              <span className={styles.podiumRank}>
-                {player.rank}
-              </span>
+          <span className={styles.visualTitle}>
+            Weekly Leaderboard
+          </span>
+        </div>
 
-              <strong>{player.name}</strong>
-
-              <span>{player.score}</span>
-            </div>
-          </motion.div>
-        ))}
+        <motion.div
+          className={styles.timer}
+          animate={
+            reduceMotion
+              ? undefined
+              : {
+                  boxShadow: [
+                    "0 0 0px rgba(243, 204, 110, 0)",
+                    "0 0 14px rgba(243, 204, 110, 0.16)",
+                    "0 0 0px rgba(243, 204, 110, 0)",
+                  ],
+                }
+          }
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        >
+          <Clock3 size={13} strokeWidth={1.8} aria-hidden="true" />
+          <span>Resets in 5d 14h</span>
+        </motion.div>
       </motion.div>
 
-      <div className={styles.nearbyRanks}>
-        {nearbyPlayers.map((player) => (
-          <motion.div
+      {/* ---------- Column labels ---------- */}
+      <motion.div
+        className={styles.columnHeader}
+        variants={fadeUpVariants}
+      >
+        <span>Rank</span>
+        <span>User</span>
+        <span>VE Earned</span>
+        <span className={styles.colChange}>Change</span>
+      </motion.div>
+
+      {/* ---------- Rank list ---------- */}
+      <motion.div
+        className={styles.rankList}
+        variants={rowListVariants}
+      >
+        {topPlayers.map((player) => (
+          <RankRow
+            entry={player}
+            reduceMotion={reduceMotion}
             key={player.rank}
-            className={`${styles.nearbyPlayer} ${player.current ? styles.currentPlayer : ""
-              }`}
-            whileHover={{
-              scale: player.current ? 1.015 : 1,
-              transition: {
-                duration: 0.18,
-              },
-            }}
-          >
-            <span className={styles.nearbyRank}>
-              {player.rank}
-            </span>
-
-            <span className={styles.nearbyAvatar}>
-              {player.initials}
-            </span>
-
-            <span className={styles.nearbyName}>
-              {player.name}
-            </span>
-
-            <span className={styles.nearbyScore}>
-              {player.score}
-            </span>
-          </motion.div>
+          />
         ))}
-      </div>
 
-      <div className={styles.progressPanel}>
-        <div className={styles.progressHeader}>
-          <span>
-            You are 260 VE away from #13
+        <motion.div
+          className={styles.rankEllipsis}
+          variants={fadeUpVariants}
+        >
+          <span />
+          <span />
+          <span />
+        </motion.div>
+
+        <RankRow entry={currentUser} reduceMotion={reduceMotion} />
+      </motion.div>
+
+      {/* ---------- Bottom panels ---------- */}
+      <motion.div
+        className={styles.bottomPanels}
+        variants={fadeUpVariants}
+      >
+        <motion.div
+          className={styles.nextRankPanel}
+          whileHover={{
+            y: -2,
+            transition: { duration: 0.18, ease: "easeOut" },
+          }}
+        >
+          <div className={styles.nextRankTop}>
+            <div className={styles.nextRankIcon}>
+              <Star
+                size={15}
+                fill="currentColor"
+                aria-hidden="true"
+              />
+            </div>
+
+            <div className={styles.nextRankText}>
+              <strong>
+                Next Rank: <em>Bronze I</em>
+              </strong>
+
+              <span>Keep going! You&apos;re close.</span>
+            </div>
+          </div>
+
+          <div className={styles.nextRankTrack}>
+            <motion.div
+              className={styles.nextRankFill}
+              initial={{ width: 0 }}
+              whileInView={{ width: "78%" }}
+              viewport={{ once: true, amount: 0.6 }}
+              transition={{
+                duration: 0.9,
+                delay: 0.35,
+                ease: "easeOut",
+              }}
+            />
+          </div>
+
+          <div className={styles.nextRankNumbers}>
+            <strong>4,650</strong> / 6,000 VE
+          </div>
+        </motion.div>
+
+        <motion.div
+          className={styles.rewardPanel}
+          whileHover={{
+            y: -2,
+            transition: { duration: 0.18, ease: "easeOut" },
+          }}
+        >
+          <span className={styles.rewardAmount}>+350 VE</span>
+          <span className={styles.rewardLabel}>
+            Reward for next rank
           </span>
 
-          <strong>
-            6,240 / 6,500
-          </strong>
-        </div>
+          <div
+            className={styles.rewardCoins}
+            aria-hidden="true"
+          >
+            <motion.div
+              className={`${styles.rewardCoin} ${styles.rewardCoinBack}`}
+              animate={reduceMotion ? undefined : { y: [0, -3, 0] }}
+              transition={{
+                duration: 3.2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            >
+              VE
+            </motion.div>
 
-        <div className={styles.progressTrack}>
-          <motion.div
-            className={styles.progressFill}
-            initial={{ width: 0 }}
-            whileInView={{ width: "80%" }}
-            viewport={{ once: true }}
-            transition={{
-              duration: 1,
-              delay: 0.5,
-              ease: "easeOut",
-            }}
-            whileHover={{
-              filter: "brightness(1.15)",
-            }}
-          />
-        </div>
-      </div>
+            <motion.div
+              className={`${styles.rewardCoin} ${styles.rewardCoinFront}`}
+              animate={reduceMotion ? undefined : { y: [0, -4, 0] }}
+              transition={{
+                duration: 3.2,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 0.45,
+              }}
+            >
+              VE
+            </motion.div>
+          </div>
+        </motion.div>
+      </motion.div>
     </motion.div>
   );
 };

@@ -1,7 +1,35 @@
-import { ArrowRight } from "lucide-react";
+import { Fragment } from "react";
+import {
+  ArrowRight,
+  Trophy,
+  TrendingUp,
+  Users,
+} from "lucide-react";
 import { motion } from "framer-motion";
+
 import LeaderboardVisual from "./LeaderboardVisual";
 import styles from "./LeaderboardBanner.module.css";
+
+const features = [
+  {
+    icon: Users,
+    title: "Compete",
+    subtitle: "Climb weekly ranks",
+    variant: "blue",
+  },
+  {
+    icon: Trophy,
+    title: "Earn More",
+    subtitle: "Higher rank, bigger rewards",
+    variant: "gold",
+  },
+  {
+    icon: TrendingUp,
+    title: "Stay Ahead",
+    subtitle: "Beat your best",
+    variant: "purple",
+  },
+];
 
 const LeaderboardBanner = () => {
   return (
@@ -10,6 +38,10 @@ const LeaderboardBanner = () => {
       aria-labelledby="leaderboard-title"
     >
       <div className={styles.content}>
+        {/* =====================================================
+            LEFT CONTENT
+        ===================================================== */}
+
         <motion.div
           className={styles.copy}
           initial="hidden"
@@ -27,78 +59,150 @@ const LeaderboardBanner = () => {
           <motion.div
             className={styles.sectionNumber}
             variants={{
-              hidden: { opacity: 0, y: 12 },
+              hidden: {
+                opacity: 0,
+                y: 12,
+              },
               visible: {
                 opacity: 1,
                 y: 0,
-                transition: { duration: 0.45, ease: "easeOut" },
+                transition: {
+                  duration: 0.45,
+                  ease: "easeOut",
+                },
               },
             }}
           >
             <span className={styles.number}>01</span>
 
-            <span className={styles.sectionLabel}>
-              Compete & Win
+            <span
+              className={styles.sectionDot}
+              aria-hidden="true"
+            >
+              &middot;
+            </span>
+
+            <span className={styles.eyebrow}>
+              Compete &amp; Win
             </span>
           </motion.div>
 
           <motion.h2
             id="leaderboard-title"
             variants={{
-              hidden: { opacity: 0, y: 18 },
+              hidden: {
+                opacity: 0,
+                y: 18,
+              },
               visible: {
                 opacity: 1,
                 y: 0,
-                transition: { duration: 0.55, ease: "easeOut" },
+                transition: {
+                  duration: 0.55,
+                  ease: "easeOut",
+                },
               },
             }}
           >
-            Climb the ranks.
+            Climb the
             <br />
-            <span>Earn more.</span>
+            <span>Leaderboard.</span>
           </motion.h2>
 
           <motion.p
+            className={styles.description}
             variants={{
-              hidden: { opacity: 0, y: 15 },
+              hidden: {
+                opacity: 0,
+                y: 15,
+              },
               visible: {
                 opacity: 1,
                 y: 0,
-                transition: { duration: 0.5, ease: "easeOut" },
+                transition: {
+                  duration: 0.5,
+                  ease: "easeOut",
+                },
               },
             }}
           >
-            The more you engage, the higher you climb.
+            Complete activities, earn rewards,
             <br />
-            Top performers earn bigger rewards every week.
+            and compete with other users.
           </motion.p>
 
+          {/* =================================================
+              LEADERBOARD FLOW
+          ================================================= */}
+
           <motion.div
-            className={styles.stats}
+            className={styles.featureFlow}
+            aria-label="Compete, earn more, and stay ahead"
             variants={{
-              hidden: { opacity: 0, y: 15, scale: 0.98 },
+              hidden: {
+                opacity: 0,
+                y: 15,
+              },
               visible: {
                 opacity: 1,
                 y: 0,
-                scale: 1,
-                transition: { duration: 0.5, ease: "easeOut" },
+                transition: {
+                  duration: 0.5,
+                  ease: "easeOut",
+                },
               },
             }}
           >
-            {/* keep your existing stats content here */}
+            {features.map((feature, index) => {
+              const Icon = feature.icon;
+
+              const variantClassName =
+                feature.variant.charAt(0).toUpperCase() +
+                feature.variant.slice(1);
+
+              return (
+                <Fragment key={feature.title}>
+                  <div className={styles.featureStep}>
+                    <div
+                      className={`${styles.featureIcon} ${styles[`featureIcon${variantClassName}`]
+                        }`}
+                    >
+                      <Icon
+                        size={18}
+                        strokeWidth={1.9}
+                        aria-hidden="true"
+                      />
+                    </div>
+
+                    <div className={styles.featureText}>
+                      <span className={styles.featureLabel}>
+                        {feature.title}
+                      </span>
+
+                      <span className={styles.featureSubLabel}>
+                        {feature.subtitle}
+                      </span>
+                    </div>
+                  </div>
+
+                  {index < features.length - 1 && (
+                    <span
+                      className={styles.featureDivider}
+                      aria-hidden="true"
+                    />
+                  )}
+                </Fragment>
+              );
+            })}
           </motion.div>
 
-          <motion.button
+          {/* =================================================
+              CTA
+          ================================================= */}
+
+          <button
             type="button"
             className={styles.cta}
-            variants={{
-              hidden: { opacity: 0, y: 15 },
-              visible: {
-                opacity: 1,
-                y: 0,
-                transition: { duration: 0.5, ease: "easeOut" },
-              },
-            }}
           >
             <span>View Leaderboard</span>
 
@@ -107,8 +211,12 @@ const LeaderboardBanner = () => {
               strokeWidth={2}
               aria-hidden="true"
             />
-          </motion.button>
+          </button>
         </motion.div>
+
+        {/* =====================================================
+            RIGHT VISUAL
+        ===================================================== */}
 
         <LeaderboardVisual />
       </div>
