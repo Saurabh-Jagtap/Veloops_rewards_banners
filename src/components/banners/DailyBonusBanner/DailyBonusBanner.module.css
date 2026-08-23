@@ -1,3 +1,7 @@
+/* ==================================================
+   BANNER
+================================================== */
+
 .banner {
     width: 100%;
     height: 430px;
@@ -10,13 +14,8 @@
     border-radius: var(--radius-banner);
 
     background:
-        radial-gradient(circle at 82% 50%,
-            rgba(230, 194, 96, 0.025),
-            transparent 34%),
-        linear-gradient(135deg,
-            #080d19 0%,
-            #0b101d 52%,
-            #0a0f1b 100%);
+        radial-gradient(circle at 82% 50%, rgba(230, 194, 96, 0.025), transparent 34%),
+        linear-gradient(135deg, #080d19 0%, #0b101d 52%, #0a0f1b 100%);
 }
 
 .content {
@@ -25,16 +24,11 @@
     min-height: 0;
 
     display: grid;
-
-    grid-template-columns:
-        minmax(0, 0.42fr)
-        minmax(0, 0.58fr);
-
+    grid-template-columns: minmax(0, 0.42fr) minmax(0, 0.58fr);
     align-items: center;
+    gap: 36px;
 
-    gap: 42px;
-
-    padding: 34px 42px;
+    padding: 30px 42px;
 }
 
 /* ==================================================
@@ -49,22 +43,18 @@
 
 .eyebrow {
     display: flex;
-
     align-items: center;
-
-    gap: 10px;
+    gap: 8px;
 
     margin-bottom: 18px;
 
     color: #8b91a6;
 
     font-family: var(--font-mono);
-
     font-size: 0.7rem;
     font-weight: 600;
 
     letter-spacing: 0.12em;
-
     text-transform: uppercase;
 }
 
@@ -72,11 +62,14 @@
     color: #f0c84f;
 
     font-family: var(--font-mono);
-
-    font-size: 1.15rem;
+    font-size: 0.78rem;
     font-weight: 700;
 
-    letter-spacing: -0.03em;
+    letter-spacing: 0.02em;
+}
+
+.eyebrowDot {
+    color: #565c70;
 }
 
 .eyebrow span {
@@ -89,14 +82,11 @@
     color: #f4f4f7;
 
     font-family: var(--font-display);
-
-    font-size: clamp(2.6rem, 3.7vw, 3.75rem);
-
+    font-size: clamp(2.2rem, 2.9vw, 2.95rem);
     font-weight: 700;
 
-    line-height: 0.99;
-
-    letter-spacing: -0.055em;
+    line-height: 1.02;
+    letter-spacing: -0.05em;
 }
 
 .copy h2 span {
@@ -104,15 +94,48 @@
 }
 
 .copy p {
-    max-width: 470px;
+    max-width: 420px;
 
-    margin: 20px 0 0;
+    margin: 16px 0 0;
 
     color: #8f98ad;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
 
-    font-size: 0.94rem;
+/* ==================================================
+   SUPPORTING SIGNAL
+================================================== */
 
-    line-height: 1.65;
+.signal {
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    gap: 8px;
+
+    margin: 22px 0 0;
+
+    color: #9aa1b5;
+
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 600;
+
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.signalDot {
+    width: 6px;
+    height: 6px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #f0c84f;
+
+    box-shadow: 0 0 8px rgba(240, 200, 79, 0.55);
 }
 
 /* ==================================================
@@ -121,48 +144,39 @@
 
 .cta {
     display: inline-flex;
-
     width: fit-content;
-
     align-items: center;
     justify-content: center;
-
     gap: 10px;
 
-    min-height: 46px;
+    min-height: 47px;
 
-    margin-top: 25px;
+    margin-top: 24px;
 
     padding: 0 19px;
 
     border: 1px solid rgba(240, 200, 79, 0.5);
     border-radius: 10px;
 
-    background:
-        linear-gradient(135deg,
-            #f4cc55 0%,
-            #e5b936 100%);
+    background: linear-gradient(135deg, #f4cc55 0%, #e5b936 100%);
 
     color: #171827;
-
     font-size: 0.84rem;
     font-weight: 750;
-
     text-decoration: none;
 
-    box-shadow:
-        0 8px 25px rgba(230, 194, 96, 0.08);
+    box-shadow: 0 8px 25px rgba(230, 194, 96, 0.08);
 
-    transition:
-        transform 180ms ease,
-        box-shadow 180ms ease;
+    transition: transform 180ms ease, box-shadow 180ms ease;
 }
 
 .cta:hover {
     transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(230, 194, 96, 0.2);
+}
 
-    box-shadow:
-        0 12px 28px rgba(230, 194, 96, 0.2);
+.cta:active {
+    transform: translateY(0) scale(0.98);
 }
 
 .cta:focus-visible {
@@ -179,917 +193,1289 @@
 }
 
 /* ==================================================
-   RIGHT VISUAL
+   RIGHT VISUAL CONTAINER
 ================================================== */
 
 .visual {
     position: relative;
 
     width: 100%;
-    height: 330px;
+    height: 336px;
+
+    isolation: isolate;
+}
+
+
+/* ==================================================
+   UNIFIED BONUS PANEL
+================================================== */
+
+.bonusPanel {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: 100%;
 
     overflow: hidden;
 
-    isolation: isolate;
+    padding: 18px 20px 16px;
 
-    border: 1px solid rgba(230, 194, 96, 0.16);
-    border-radius: 18px;
+    border: 1px solid rgba(230, 194, 96, 0.18);
+    border-radius: 16px;
 
     background:
-        radial-gradient(circle at 72% 46%,
-            rgba(230, 194, 96, 0.055),
-            transparent 32%),
-        radial-gradient(circle at 20% 90%,
-            rgba(85, 112, 220, 0.045),
-            transparent 38%),
         linear-gradient(145deg,
             #171b30 0%,
             #14182b 55%,
             #101523 100%);
 
     box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.04),
-        0 20px 60px rgba(0, 0, 0, 0.12);
+        inset 0 1px 0 rgba(255, 255, 255, 0.045),
+        0 14px 32px rgba(0, 0, 0, 0.12);
+
+    isolation: isolate;
 }
+
 
 /* ==================================================
-   VISUAL AMBIENCE
+   PANEL AMBIENCE
 ================================================== */
 
-.visualGlow {
+.panelGlow {
     position: absolute;
+    z-index: -2;
 
-    top: -90px;
-    right: 18%;
+    top: 38px;
+    left: 50%;
 
-    width: 360px;
-    height: 230px;
+    width: 330px;
+    height: 190px;
 
     border-radius: 50%;
+
+    transition:
+        opacity 300ms ease,
+        transform 500ms cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        );
+        
+    transform: translateX(-50%);
 
     background:
-        rgba(230, 194, 96, 0.055);
+        radial-gradient(circle,
+            rgba(240, 200, 79, 0.15) 0%,
+            rgba(240, 200, 79, 0.055) 42%,
+            transparent 72%);
 
-    filter: blur(70px);
+    filter: blur(28px);
 
     pointer-events: none;
 
-    opacity: 0.85;
+    animation:
+        panelGlowBreath 5s ease-in-out infinite;
 }
 
-.orb {
+.panelRing {
     position: absolute;
+    z-index: -1;
 
-    border: 1px solid rgba(230, 194, 96, 0.045);
-
+    border: 1px solid rgba(240, 200, 79, 0.055);
     border-radius: 50%;
 
     pointer-events: none;
 }
 
-.orbOne {
-    top: -145px;
-    right: -90px;
+.panelRingOne {
+    top: -85px;
+    right: -55px;
 
-    width: 280px;
-    height: 280px;
+    width: 250px;
+    height: 250px;
 }
 
-.orbTwo {
-    bottom: -190px;
-    left: -110px;
+.panelRingTwo {
+    top: -38px;
+    right: 8px;
 
-    width: 320px;
-    height: 320px;
+    width: 150px;
+    height: 150px;
 
-    border-color:
-        rgba(100, 130, 230, 0.035);
+    border-color: rgba(240, 200, 79, 0.04);
 }
+
+.panelSpark {
+    position: absolute;
+    z-index: 0;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 1px;
+
+    background: #f0c84f;
+
+    box-shadow:
+        0 0 9px rgba(240, 200, 79, 0.7);
+
+    transform: rotate(45deg);
+
+    pointer-events: none;
+
+    animation:
+        panelSparkle 3.4s ease-in-out infinite;
+}
+
+.panelSparkOne {
+    top: 105px;
+    left: 47%;
+}
+
+.panelSparkTwo {
+    top: 177px;
+    right: 8%;
+
+    width: 4px;
+    height: 4px;
+
+    animation-delay: 1.5s;
+}
+
 
 /* ==================================================
    HEADER
 ================================================== */
 
-.visualHeader {
-    position: absolute;
-
-    top: 24px;
-    right: 24px;
-    left: 24px;
-
-    z-index: 5;
+.bonusHeader {
+    position: relative;
+    z-index: 2;
 
     display: flex;
-
     align-items: flex-start;
     justify-content: space-between;
 
-    gap: 24px;
+    gap: 20px;
+
+    padding-bottom: 12px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.055);
 }
 
-.streakHeading {
+.bonusHeaderLeft {
     display: flex;
-
     align-items: center;
 
-    gap: 10px;
+    gap: 9px;
+
+    min-width: 0;
 }
 
-.flameIcon {
+.bonusIcon {
     display: grid;
+    place-items: center;
 
-    width: 34px;
-    height: 34px;
+    width: 31px;
+    height: 31px;
 
     flex-shrink: 0;
 
-    place-items: center;
-
-    border: 1px solid rgba(230, 194, 96, 0.18);
-    border-radius: 10px;
+    border: 1px solid rgba(230, 194, 96, 0.3);
+    border-radius: 9px;
 
     background:
-        rgba(230, 194, 96, 0.08);
+        rgba(230, 194, 96, 0.09);
+
+    color: #f0c84f;
+}
+
+.bonusEyebrow {
+    display: block;
 
     color: #f0c84f;
 
-    box-shadow:
-        0 0 18px rgba(230, 194, 96, 0.05);
-}
-
-.streakHeading h3 {
-    margin: 0;
-
-    color: #f1f2f5;
-
-    font-family: var(--font-display);
-
-    font-size: 0.95rem;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
     font-weight: 700;
 
-    line-height: 1.2;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
 }
 
-.streakHeading p {
-    margin: 4px 0 0;
+.bonusSubtitle {
+    display: block;
 
-    color: #7f879d;
+    margin-top: 2px;
 
-    font-size: 0.68rem;
+    color: #747c91;
 
-    line-height: 1.3;
+    font-size: 0.57rem;
 }
 
-.streakBonus {
+.bonusHeaderRight {
     display: flex;
-
     flex-direction: column;
 
     align-items: flex-end;
 
     gap: 3px;
+
+    flex-shrink: 0;
 }
 
-.streakBonus span {
-    color: #9299ad;
+.bonusHeaderRight strong {
+    color: #e3e5eb;
 
     font-family: var(--font-mono);
-
-    font-size: 0.49rem;
-    font-weight: 600;
-
-    letter-spacing: 0.08em;
-
-    text-transform: uppercase;
-}
-
-.streakBonus strong {
-    color: #f0c84f;
-
-    font-family: var(--font-mono);
-
-    font-size: 1.22rem;
+    font-size: 0.65rem;
     font-weight: 700;
-
-    letter-spacing: -0.03em;
 }
 
-/* ==================================================
-   TIMELINE
-================================================== */
-
-.streakTimeline {
-    position: absolute;
-
-    right: 24px;
-    bottom: 48px;
-    left: 24px;
-
-    z-index: 4;
-}
-
-.timelineTrack {
-    position: absolute;
-
-    top: 59px;
-    right: 6.5%;
-    left: 6.5%;
-
-    height: 2px;
-
-    overflow: hidden;
-
-    border-radius: 999px;
-
-    background:
-        rgba(170, 177, 198, 0.13);
-}
-
-.timelineFill {
-    width: 65%;
-
-    height: 100%;
-
-    border-radius: inherit;
-
-    background:
-        linear-gradient(90deg,
-            rgba(230, 194, 96, 0.35),
-            #e6c260);
-
-    box-shadow:
-        0 0 10px rgba(230, 194, 96, 0.12);
-}
-
-.days {
-    position: relative;
-
-    display: grid;
-
-    grid-template-columns: repeat(7, minmax(0, 1fr));
-
-    gap: 7px;
-}
-
-.day {
-    display: flex;
-
-    min-width: 0;
-
-    flex-direction: column;
-
+.bonusHeaderRight span {
+    display: inline-flex;
     align-items: center;
 
-    gap: 7px;
+    gap: 4px;
+
+    color: #737b90;
+
+    font-size: 0.55rem;
 }
 
-.dayLabel {
-    color: #7e8599;
 
-    font-family: var(--font-mono);
+/* ==================================================
+   REWARD HERO
+================================================== */
 
-    font-size: 0.51rem;
-    font-weight: 600;
-
-    letter-spacing: 0.02em;
-
-    white-space: nowrap;
-}
-
-.dayCard {
+.rewardHero {
     position: relative;
+    z-index: 2;
 
     display: flex;
-
-    width: 100%;
-    min-height: 118px;
-
-    flex-direction: column;
     align-items: center;
     justify-content: center;
 
-    gap: 8px;
+    flex: 1 1 auto;
 
-    padding: 12px 6px;
+    min-height: 0;
 
-    border: 1px solid rgba(176, 182, 202, 0.11);
-    border-radius: 15px;
+    gap: 45px;
+}
+
+.rewardHeroCopy {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    text-align: center;
+}
+
+.rewardHeroLabel {
+    color: #7d8499;
+
+    font-family: var(--font-mono);
+    font-size: 0.54rem;
+    font-weight: 600;
+
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.rewardAmount {
+    margin-top: 5px;
+
+    color: #f5f6fa;
+
+    font-family: var(--font-display);
+    font-size: clamp(2.45rem, 3.5vw, 3.05rem);
+    font-weight: 700;
+
+    line-height: 0.95;
+
+    letter-spacing: -0.045em;
+    transition:
+        transform 220ms ease,
+        text-shadow 220ms ease;
+}
+
+.rewardAmount span {
+    margin-left: 3px;
+
+    color: #f0c84f;
+}
+
+.rewardHero {
+    transition:
+        transform 220ms ease,
+        filter 220ms ease;
+}
+
+.rewardHero:hover {
+    transform: translateY(-2px);
+}
+
+.rewardHero:hover .rewardAmount {
+    text-shadow:
+        0 0 18px rgba(240, 200, 79, 0.12);
+    transform: scale(1.025);
+}
+
+.rewardHero:hover .rewardHeroLabel {
+    color: #9a91b8;
+}
+
+.availabilityPill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+
+    margin-top: 12px;
+
+    min-height: 27px;
+
+    padding: 0 11px;
+
+    border: 1px solid rgba(99, 213, 126, 0.3);
+    border-radius: 999px;
 
     background:
-        linear-gradient(145deg,
-            rgba(32, 36, 58, 0.96),
-            rgba(24, 28, 47, 0.99));
+        rgba(76, 190, 124, 0.1);
+
+    color: #7fdb9e;
+
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    font-weight: 600;
+
+    cursor: pointer;
 
     transition:
         transform 180ms ease,
         border-color 180ms ease,
-        box-shadow 180ms ease,
-        background 180ms ease;
+        background 180ms ease,
+        box-shadow 180ms ease;
 }
 
-/* ==================================================
-   PHASE 2A — STATUS MICRO INTERACTIONS
-================================================== */
-
-/* Completed check */
-.completed:not(.today):hover .dayStatus svg {
-    animation:
-        completedCheckPop 360ms cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-@keyframes completedCheckPop {
-    0% {
-        transform: scale(1);
-    }
-
-    45% {
-        transform: scale(1.22);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
-
-/* Completed reward */
-.completed:not(.today):hover .reward {
+.availabilityPill:hover {
     transform: translateY(-1px);
 
-    transition:
-        color 180ms ease,
-        transform 180ms ease,
-        text-shadow 180ms ease;
-}
-
-/* Locked icon */
-.locked:not(.today):hover .dayStatus svg {
-    animation:
-        lockedShake 380ms ease-in-out;
-}
-
-@keyframes lockedShake {
-
-    0%,
-    100% {
-        transform: translateX(0);
-    }
-
-    25% {
-        transform: translateX(-1.5px);
-    }
-
-    50% {
-        transform: translateX(1.5px);
-    }
-
-    75% {
-        transform: translateX(-1px);
-    }
-}
-
-/* Locked reward */
-.locked:not(.today):hover .reward {
-    transform: translateY(-1px);
-
-    transition:
-        color 180ms ease,
-        transform 180ms ease;
-}
-
-/* Subtle light sweep */
-.day:not(.today) .dayCard {
-    overflow: hidden;
-}
-
-.day:not(.today) .dayCard::after {
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    left: -120%;
-
-    width: 65%;
-    height: 100%;
-
-    pointer-events: none;
+    border-color:
+        rgba(99, 213, 126, 0.5);
 
     background:
-        linear-gradient(90deg,
-            transparent,
-            rgba(255, 255, 255, 0.035),
-            transparent);
-
-    transform: skewX(-18deg);
-}
-
-.day:not(.today):hover .dayCard::after {
-    animation:
-        cardSweep 520ms ease-out;
-}
-
-@keyframes cardSweep {
-    from {
-        left: -120%;
-    }
-
-    to {
-        left: 150%;
-    }
-}
-
-.day:not(.today) .dayCard {
-    cursor: pointer;
-}
-
-.dayNumber {
-    color: #858da1;
-
-    font-family: var(--font-mono);
-
-    font-size: 0.72rem;
-    font-weight: 600;
-}
-
-.dayStatus {
-    display: grid;
-
-    width: 24px;
-    height: 24px;
-
-    place-items: center;
-
-    color: #7c8397;
-}
-
-/* ==================================================
-   PHASE 2B — DAY INSPECTION
-================================================== */
-
-.dayCard {
-    position: relative;
-}
-
-.day.selected .dayCard {
-    transform: translateY(-3px);
-
-    border-color:
-        rgba(240, 200, 79, 0.42);
+        rgba(76, 190, 124, 0.14);
 
     box-shadow:
-        0 10px 24px rgba(0, 0, 0, 0.2),
-        0 0 20px rgba(240, 200, 79, 0.08),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        0 6px 16px rgba(76, 190, 124, 0.08);
 }
 
-.completed.selected .dayCard {
+.availabilityPill:active {
+    transform: translateY(0) scale(0.98);
+}
+
+.availabilityPill:focus-visible {
+    outline: 2px solid rgba(99, 213, 126, 0.55);
+    outline-offset: 2px;
+}
+
+.availabilityPillClaimed {
     border-color:
-        rgba(99, 213, 126, 0.42);
-
-    box-shadow:
-        0 10px 24px rgba(0, 0, 0, 0.2),
-        0 0 20px rgba(99, 213, 126, 0.08),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
-}
-
-.locked.selected .dayCard {
-    border-color:
-        rgba(150, 160, 188, 0.28);
-
-    box-shadow:
-        0 10px 24px rgba(0, 0, 0, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
-}
-
-.dayDetail {
-    position: absolute;
-
-    right: 6px;
-    bottom: 6px;
-    left: 6px;
-
-    padding: 3px 4px;
-
-    border-radius: 5px;
+        rgba(240, 200, 79, 0.36);
 
     background:
-        rgba(10, 14, 25, 0.72);
+        rgba(240, 200, 79, 0.1);
 
-    color: #aeb5c5;
-
-    font-family: var(--font-mono);
-
-    font-size: 0.38rem;
-    font-weight: 600;
-
-    letter-spacing: 0.025em;
-
-    text-align: center;
-
-    animation:
-        dayDetailReveal 180ms ease-out both;
-}
-
-@keyframes dayDetailReveal {
-    from {
-        opacity: 0;
-        transform: translateY(3px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.completed .dayDetail {
-    color: #76d887;
-}
-
-.today .dayDetail {
     color: #f0c84f;
 }
 
-/* ==================================================
-   COMPLETED DAYS
-================================================== */
-
-.completed .dayLabel {
-    color: #9ca390;
-}
-
-.completed .dayCard {
+.availabilityPillClaimed:hover {
     border-color:
-        rgba(99, 213, 126, 0.12);
+        rgba(240, 200, 79, 0.55);
 
     background:
-        linear-gradient(145deg,
-            rgba(31, 40, 48, 0.96),
-            rgba(25, 32, 43, 0.98));
-}
-
-.completed .dayNumber {
-    color: #8f98a1;
-}
-
-.completed .dayStatus {
-    color: #65d17d;
-}
-
-.completed .reward {
-    color: #72d784;
-}
-
-/* ==================================================
-   TODAY
-================================================== */
-
-.today .dayLabel {
-    color: #f0c84f;
-
-    font-weight: 700;
-}
-
-.today .dayCard {
-    min-height: 132px;
-
-    margin-top: -7px;
-
-    border-color: rgba(240, 200, 79, 0.78);
-
-    background:
-        radial-gradient(circle at 50% 35%,
-            rgba(240, 200, 79, 0.16),
-            transparent 58%),
-        linear-gradient(145deg,
-            rgba(62, 57, 43, 0.98),
-            rgba(35, 36, 48, 0.99));
+        rgba(240, 200, 79, 0.14);
 
     box-shadow:
-        0 0 0 1px rgba(240, 200, 79, 0.08),
-        0 0 32px rgba(240, 200, 79, 0.16),
-        inset 0 1px 0 rgba(255, 255, 255, 0.07);
+        0 6px 16px rgba(240, 200, 79, 0.08);
 }
 
-.today .dayNumber {
-    color: #f3d56e;
+.availabilityDot {
+    width: 6px;
+    height: 6px;
 
-    font-size: 0.86rem;
-    font-weight: 700;
-}
-
-.today .dayStatus {
-    color: #f0c84f;
-}
-
-.today .reward {
-    color: #f0c84f;
-
-    font-size: 0.8rem;
-}
-
-.todayGem {
-    width: 7px;
-    height: 7px;
+    flex-shrink: 0;
 
     border-radius: 50%;
 
-    background: #62d979;
+    background: #63d59b;
 
     box-shadow:
-        0 0 8px rgba(98, 217, 121, 0.55);
+        0 0 8px rgba(99, 213, 155, 0.7);
+
+    animation:
+        availabilityPulse 2.4s ease-in-out infinite;
 }
 
-.today::after {
-    content: "";
 
+/* ==================================================
+   GIFT ILLUSTRATION
+================================================== */
+
+.giftScene {
+    position: relative;
+
+    flex-shrink: 0;
+
+    width: 145px;
+    height: 130px;
+
+    transition:
+        transform 260ms ease,
+        filter 260ms ease;
+}
+
+.giftScene {
+    transition:
+        transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+        filter 260ms ease;
+}
+
+.giftScene:hover {
+    transform: translateY(-4px) scale(1.025);
+
+    filter:
+        drop-shadow(0 12px 22px rgba(240, 200, 79, 0.16));
+}
+
+.giftScene:hover .giftSparkleOne,
+.giftScene:hover .giftSparkleTwo {
+    animation-duration: 1.2s;
+}
+
+.giftScene:hover .giftCoinLeft {
+    transform: rotate(-10deg) translate(-2px, -2px);
+}
+
+.giftScene:hover .giftCoinRight {
+    transform: rotate(10deg) translate(2px, -2px);
+}
+
+.giftSceneClaimed {
+    filter:
+        saturate(0.72) brightness(0.9);
+}
+
+.giftAura {
     position: absolute;
 
-    top: 28px;
+    top: 5px;
     left: 50%;
 
-    width: 90px;
-    height: 90px;
+    width: 125px;
+    height: 115px;
+
+    border-radius: 50%;
+
+    transform: translateX(-50%);
+
+    background:
+        radial-gradient(circle,
+            rgba(240, 200, 79, 0.16),
+            rgba(240, 200, 79, 0.04) 48%,
+            transparent 72%);
+
+    filter: blur(4px);
+}
+
+.giftBox {
+    position: absolute;
+
+    bottom: 12px;
+    left: 50%;
+
+    width: 76px;
+    height: 57px;
+
+    transform: translateX(-50%);
+
+    border-radius: 8px;
+
+    background:
+        linear-gradient(160deg,
+            #9a82e7 0%,
+            #5c46b8 100%);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        0 12px 22px rgba(0, 0, 0, 0.34);
+}
+
+.giftLid {
+    position: absolute;
+
+    bottom: 64px;
+    left: 50%;
+
+    width: 87px;
+    height: 15px;
+
+    transform: translateX(-50%);
+
+    border-radius: 6px 6px 3px 3px;
+
+    background:
+        linear-gradient(160deg,
+            #aa92ef 0%,
+            #6a53c6 100%);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+.giftRibbonVertical {
+    position: absolute;
+
+    top: -15px;
+    left: 50%;
+
+    width: 10px;
+    height: 72px;
+
+    transform: translateX(-50%);
+
+    background:
+        linear-gradient(180deg,
+            #ffe28f,
+            #e6b23f);
+}
+
+.giftRibbonHorizontal {
+    position: absolute;
+
+    top: 19px;
+    left: 0;
+
+    width: 100%;
+    height: 10px;
+
+    background:
+        linear-gradient(90deg,
+            #ffe28f,
+            #e6b23f);
+}
+
+.giftBowLeft,
+.giftBowRight {
+    position: absolute;
+
+    bottom: 74px;
+    left: 50%;
+
+    width: 25px;
+    height: 20px;
+
+    background:
+        linear-gradient(150deg,
+            #ffe28f,
+            #e6b23f);
+
+    box-shadow:
+        0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.giftBowLeft {
+    border-radius: 60% 60% 60% 5%;
+
+    transform:
+        translate(calc(-100% - 1px)) rotate(-18deg);
+}
+
+.giftBowRight {
+    border-radius: 60% 60% 5% 60%;
+
+    transform:
+        translate(1px) rotate(18deg);
+}
+
+.giftBowKnot {
+    position: absolute;
+
+    bottom: 77px;
+    left: 50%;
+
+    width: 14px;
+    height: 14px;
 
     transform: translateX(-50%);
 
     border-radius: 50%;
 
-    background: rgba(240, 200, 79, 0.08);
-
-    filter: blur(25px);
-
-    pointer-events: none;
-
-    z-index: -1;
-
-    animation:
-        todayGlow 3.8s ease-in-out 1.1s infinite;
-}
-
-@keyframes todayGlow {
-
-    0%,
-    100% {
-        opacity: 0.55;
-        transform: translateX(-50%) scale(0.92);
-    }
-
-    50% {
-        opacity: 1;
-        transform: translateX(-50%) scale(1.08);
-    }
-}
-
-/* ==================================================
-   DAY CARD INTERACTION
-================================================== */
-
-/* Completed days */
-.completed:not(.today):hover .dayCard {
-    transform: translateY(-3px);
-
-    border-color:
-        rgba(99, 213, 126, 0.34);
-
     background:
-        linear-gradient(145deg,
-            rgba(35, 47, 52, 0.98),
-            rgba(26, 37, 46, 0.99));
+        linear-gradient(160deg,
+            #ffe28f,
+            #d9a635);
 
     box-shadow:
-        0 8px 22px rgba(0, 0, 0, 0.18),
-        0 0 18px rgba(99, 213, 126, 0.08),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        0 2px 5px rgba(0, 0, 0, 0.25);
 }
 
-/* Locked days */
-.locked:not(.today):hover .dayCard {
-    transform: translateY(-2px);
-
-    border-color:
-        rgba(160, 170, 200, 0.18);
-
-    background:
-        linear-gradient(145deg,
-            rgba(32, 36, 55, 0.96),
-            rgba(25, 29, 47, 0.99));
-
-    box-shadow:
-        0 7px 18px rgba(0, 0, 0, 0.16),
-        inset 0 1px 0 rgba(255, 255, 255, 0.04);
-}
-
-/* Completed reward gets a little emphasis */
-.completed:not(.today):hover .reward {
-    color: #82df91;
-
-    text-shadow:
-        0 0 10px rgba(99, 213, 126, 0.18);
-}
-
-/* Locked cards stay subdued */
-.locked:not(.today):hover .dayNumber,
-.locked:not(.today):hover .reward {
-    color: #858ca0;
-}
-
-/* Press feedback */
-.day:not(.today) .dayCard:active {
-    transform: translateY(0) scale(0.985);
-}
-
-/* Keyboard accessibility */
-.day:not(.today) .dayCard:focus-visible {
-    outline: 2px solid rgba(240, 200, 79, 0.55);
-    outline-offset: 3px;
-}
-
-/* ==================================================
-   LOCKED DAYS
-================================================== */
-
-.locked .dayCard {
-    background:
-        linear-gradient(145deg,
-            rgba(26, 29, 45, 0.9),
-            rgba(21, 24, 39, 0.95));
-}
-
-.locked .dayStatus {
-    color: #5f6679;
-}
-
-.locked .reward {
-    color: #72798b;
-}
-
-.locked .dayNumber {
-    color: #646b7d;
-}
-
-/* ==================================================
-   REWARD VALUE
-================================================== */
-
-.reward {
-    color: #a8aebc;
-
-    font-family: var(--font-mono);
-
-    font-size: 0.72rem;
-    font-weight: 700;
-
-    line-height: 1;
-}
-
-/* ==================================================
-   FOOTER
-================================================== */
-
-.progressFooter {
+.giftCoin {
     position: absolute;
 
-    right: 24px;
-    bottom: 20px;
-    left: 24px;
+    display: grid;
+    place-items: center;
 
-    z-index: 5;
+    border: 1px solid rgba(255, 224, 150, 0.65);
+    border-radius: 50%;
 
+    background:
+        radial-gradient(circle at 32% 28%,
+            #ffe9a8,
+            #f2c452 45%,
+            #c98f22 100%);
+
+    color: #7c4e0f;
+
+    font-family: var(--font-mono);
+    font-size: 0.48rem;
+    font-weight: 700;
+
+    box-shadow:
+        inset 0 -3px 5px rgba(120, 74, 10, 0.35),
+        inset 0 2px 3px rgba(255, 255, 255, 0.5),
+        0 7px 14px rgba(0, 0, 0, 0.3);
+}
+
+.giftCoinLeft {
+    top: 23px;
+    left: 5px;
+
+    width: 31px;
+    height: 31px;
+
+    transform: rotate(-10deg);
+}
+
+.giftCoinRight {
+    top: 13px;
+    right: 6px;
+
+    width: 28px;
+    height: 28px;
+
+    transform: rotate(10deg);
+}
+
+.giftSparkleOne,
+.giftSparkleTwo {
+    position: absolute;
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 1px;
+
+    background: #f0c84f;
+
+    box-shadow:
+        0 0 8px rgba(240, 200, 79, 0.75);
+
+    transform: rotate(45deg);
+
+    animation:
+        giftSparkle 3.2s ease-in-out infinite;
+}
+
+.giftSparkleOne {
+    top: 7px;
+    left: 23px;
+
+    animation-delay: 0.4s;
+}
+
+.giftSparkleTwo {
+    top: 36px;
+    right: 1px;
+
+    animation-delay: 1.6s;
+}
+
+
+/* ==================================================
+   SEVEN DAY JOURNEY
+================================================== */
+
+.journey {
+    position: relative;
+    z-index: 2;
+
+    padding-top: 11px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.055);
+}
+
+.journeyHeader {
     display: flex;
-
     align-items: center;
     justify-content: space-between;
 
-    padding-top: 12px;
+    gap: 15px;
 
-    border-top: 1px solid rgba(255, 255, 255, 0.045);
-
-    color: #6f768b;
-
-    font-family: var(--font-mono);
-
-    font-size: 0.49rem;
-
-    letter-spacing: 0.025em;
+    margin-bottom: 10px;
 }
 
-.progressIndicator {
-    color: #a39a79;
+.journeyHeader span {
+    color: #7e869a;
 
+    font-family: var(--font-mono);
+    font-size: 0.52rem;
+    font-weight: 600;
+
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.journeyHeader strong {
+    color: #cdbb80;
+
+    font-family: var(--font-mono);
+    font-size: 0.52rem;
     font-weight: 600;
 }
 
+.timeline {
+    position: relative;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    width: 100%;
+
+    padding: 0 8px;
+
+    list-style: none;
+}
+
+.timelineTrack,
+.timelineProgress {
+    position: absolute;
+
+    top: 12px;
+    left: 22px;
+
+    height: 2px;
+
+    border-radius: 999px;
+}
+
+.timelineTrack {
+    right: 22px;
+
+    background:
+        rgba(255, 255, 255, 0.075);
+}
+
+.timelineProgress {
+    z-index: 1;
+
+    max-width: calc(100% - 44px);
+
+    background:
+        linear-gradient(90deg,
+            #5fcf83,
+            #f0c84f);
+
+    box-shadow:
+        0 0 8px rgba(240, 200, 79, 0.12);
+
+    transform-origin: left center;
+
+    transition:
+        width 700ms cubic-bezier(0.22,
+            1,
+            0.36,
+            1);
+}
+
+.timelineNode {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 5px;
+
+    min-width: 32px;
+
+    opacity: 0;
+
+    transform: translateY(5px);
+
+    transition:
+        opacity 380ms ease,
+        transform 420ms cubic-bezier(0.22,
+            1,
+            0.36,
+            1);
+}
+
+.timelineDot {
+    display: grid;
+    place-items: center;
+
+    width: 25px;
+    height: 25px;
+
+    border: 1.5px solid rgba(150, 160, 188, 0.26);
+    border-radius: 50%;
+
+    background: #191d33;
+
+    color: #565d70;
+
+    box-shadow:
+        0 3px 8px rgba(0, 0, 0, 0.16);
+
+    transition:
+        transform 180ms ease,
+        border-color 180ms ease,
+        background 180ms ease;
+}
+
+.timelineDay {
+    color: #666e82;
+
+    font-family: var(--font-mono);
+    font-size: 0.47rem;
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+.completed .timelineDot {
+    border-color:
+        rgba(99, 213, 126, 0.42);
+
+    background:
+        rgba(99, 213, 126, 0.14);
+
+    color: #65d17d;
+}
+
+.completed .timelineDay {
+    color: #8a9a8e;
+}
+
+.completed:hover .timelineDot {
+    border-color: rgba(99, 213, 126, 0.7);
+
+    background:
+        rgba(99, 213, 126, 0.2);
+
+    box-shadow:
+        0 0 12px rgba(99, 213, 126, 0.12);
+}
+
+.today:hover .timelineDot {
+    transform: translateY(-2px) scale(1.08);
+
+    border-color: #ffd968;
+
+    box-shadow:
+        0 0 0 2px rgba(240, 200, 79, 0.12),
+        0 0 20px rgba(240, 200, 79, 0.18);
+}
+
+.locked:hover .timelineDot {
+    border-color:
+        rgba(150, 160, 188, 0.42);
+
+    background:
+        rgba(255, 255, 255, 0.045);
+}
+
+.timeline:hover .timelineTrack {
+    background:
+        rgba(255, 255, 255, 0.1);
+}
+
+.timeline:hover .timelineProgress {
+    box-shadow:
+        0 0 10px rgba(240, 200, 79, 0.18);
+}
+
+.streakSummary {
+    transition:
+        transform 180ms ease;
+}
+
+.streakSummary:hover {
+    transform: translateY(-1px);
+}
+
+.streakSummary:hover .flameBadge {
+    border-color:
+        rgba(240, 200, 79, 0.38);
+
+    background:
+        rgba(240, 200, 79, 0.12);
+
+    box-shadow:
+        0 0 12px rgba(240, 200, 79, 0.08);
+}
+
+.flameBadge {
+    transition:
+        border-color 180ms ease,
+        background 180ms ease,
+        box-shadow 180ms ease,
+        transform 180ms ease;
+}
+
+.streakSummary:hover .flameBadge {
+    transform: scale(1.05);
+}
+
+.today .timelineDot {
+    width: 28px;
+    height: 28px;
+
+    border-color: #f0c84f;
+
+    background:
+        radial-gradient(circle at 40% 30%,
+            rgba(240, 200, 79, 0.4),
+            rgba(240, 200, 79, 0.12));
+
+    color: #f0c84f;
+
+    box-shadow:
+        0 0 0 1px rgba(240, 200, 79, 0.14),
+        0 0 16px rgba(240, 200, 79, 0.1);
+}
+
+.today .timelineDay {
+    color: #f0c84f;
+
+    font-weight: 700;
+}
+
+.todayDot {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #f0c84f;
+
+    box-shadow:
+        0 0 8px rgba(240, 200, 79, 0.75);
+}
+
+.locked .timelineDot {
+    color: #50576a;
+}
+
+.locked .timelineDay {
+    color: #555c70;
+}
+
+.timelineNode {
+    cursor: default;
+}
+
+.timelineNode:hover .timelineDot {
+    transform: translateY(-2px) scale(1.06);
+}
+
+.timelineNode:hover .timelineDay {
+    color: #aab0c0;
+}
+
+
 /* ==================================================
-   SUBTLE ENTRANCE ANIMATION
+   FOOTER MOTIVATION
 ================================================== */
 
-.visualHeader,
-.day,
-.progressFooter {
+.bonusFooter {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-top: 10px;
+    padding-top: 10px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.055);
+}
+
+.streakSummary,
+.returnMessage {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    min-width: 0;
+    transition:
+        transform 180ms ease,
+        opacity 180ms ease;
+}
+
+.returnMessage:hover {
+    transform: translateY(-1px);
+}
+
+.returnMessage:hover .returnIcon {
+    border-color:
+        rgba(255, 255, 255, 0.14);
+
+    color: #a4aabd;
+    transform: rotate(-8deg);
+}
+
+.flameBadge,
+.returnIcon {
+    display: grid;
+    place-items: center;
+
+    width: 27px;
+    height: 27px;
+
+    flex-shrink: 0;
+
+    border-radius: 8px;
+}
+
+.flameBadge {
+    border: 1px solid rgba(240, 200, 79, 0.2);
+
+    background:
+        rgba(240, 200, 79, 0.08);
+
+    color: #f0c84f;
+}
+
+.returnIcon {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    background:
+        rgba(255, 255, 255, 0.035);
+
+    color: #7e869a;
+
+    font-size: 0.85rem;
+    transition:
+        border-color 180ms ease,
+        color 180ms ease,
+        transform 180ms ease;
+}
+
+.streakSummary div,
+.returnMessage div {
+    display: flex;
+    flex-direction: column;
+
+    gap: 1px;
+}
+
+.streakSummary strong,
+.returnMessage strong {
+    color: #d9dce4;
+
+    font-size: 0.59rem;
+    font-weight: 700;
+}
+
+.streakSummary span:not(.flameBadge),
+.returnMessage span:not(.returnIcon) {
+    color: #6f778b;
+
+    font-size: 0.51rem;
+}
+
+.bonusPanel {
+    transition:
+        border-color 240ms ease;
+}
+
+.bonusPanel:hover {
+    border-color:
+        rgba(230, 194, 96, 0.24);
+}
+
+.bonusPanel:hover .panelGlow {
+    opacity: 1;
+
+    transform:
+        translateX(-50%)
+        scale(1.06);
+}
+
+
+/* ==================================================
+   ENTRANCE ANIMATION
+================================================== */
+
+.bonusHeader,
+.rewardHero,
+.journey,
+.bonusFooter {
     opacity: 0;
 
     transform: translateY(7px);
 
     transition:
         opacity 450ms ease,
-        transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+        transform 500ms cubic-bezier(0.22,
+            1,
+            0.36,
+            1);
 }
 
-.visualGlow {
-    opacity: 0;
-
-    transform: scale(0.88);
-
-    transition:
-        opacity 900ms ease,
-        transform 1000ms cubic-bezier(0.22, 1, 0.36, 1);
+.rewardHero {
+    transition-delay: 110ms;
 }
 
-.timelineTrack {
-    opacity: 0;
-
-    transition:
-        opacity 500ms ease 500ms;
+.journey {
+    transition-delay: 210ms;
 }
 
-.timelineFill {
-    width: 0;
-
-    transition:
-        width 900ms cubic-bezier(0.22, 1, 0.36, 1) 600ms;
+.bonusFooter {
+    transition-delay: 300ms;
 }
 
-.isVisible .visualHeader {
+.isVisible .bonusHeader,
+.isVisible .rewardHero,
+.isVisible .journey,
+.isVisible .bonusFooter {
     opacity: 1;
 
     transform: translateY(0);
 }
 
-.isVisible .visualGlow {
-    opacity: 1;
-
-    transform: scale(1);
-}
-
-.isVisible .timelineTrack {
-    opacity: 1;
-}
-
-.isVisible .timelineFill {
-    width: 65%;
-}
-
-.isVisible .day {
+.isVisible .timelineNode {
     opacity: 1;
 
     transform: translateY(0);
 
     transition-delay:
-        calc(550ms + (var(--day-index) * 70ms));
+        calc(420ms + (var(--node-index) * 65ms));
 }
 
-.isVisible .progressFooter {
-    opacity: 1;
-
-    transform: translateY(0);
-
-    transition-delay: 1150ms;
+.isVisible .today .timelineDot {
+    animation:
+        todayPulse 3.6s ease-in-out 1.1s infinite;
 }
+
 
 /* ==================================================
-   TODAY EMPHASIS
+   KEYFRAMES
 ================================================== */
 
-.isVisible .today .dayCard {
-    animation:
-        todayBreath 3.8s ease-in-out 1.1s infinite;
-}
-
-@keyframes todayBreath {
+@keyframes panelGlowBreath {
 
     0%,
     100% {
-        transform: scale(1);
+        opacity: 0.65;
 
-        box-shadow:
-            0 0 0 1px rgba(240, 200, 79, 0.08),
-            0 0 24px rgba(240, 200, 79, 0.10),
-            inset 0 1px 0 rgba(255, 255, 255, 0.07);
+        transform:
+            translateX(-50%) scale(0.96);
     }
 
     50% {
-        transform: scale(1.012);
+        opacity: 1;
 
-        box-shadow:
-            0 0 0 1px rgba(240, 200, 79, 0.12),
-            0 0 34px rgba(240, 200, 79, 0.18),
-            inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        transform:
+            translateX(-50%) scale(1.04);
     }
 }
 
+@keyframes panelSparkle {
+
+    0%,
+    100% {
+        opacity: 0.25;
+
+        transform:
+            rotate(45deg) scale(0.8);
+    }
+
+    50% {
+        opacity: 0.9;
+
+        transform:
+            rotate(45deg) scale(1.08);
+    }
+}
+
+@keyframes availabilityPulse {
+
+    0%,
+    100% {
+        opacity: 0.8;
+
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+
+        transform: scale(1.2);
+    }
+}
+
+@keyframes giftSparkle {
+
+    0%,
+    100% {
+        opacity: 0.3;
+
+        transform:
+            rotate(45deg) scale(0.8);
+    }
+
+    50% {
+        opacity: 1;
+
+        transform:
+            rotate(45deg) scale(1.1);
+    }
+}
+
+@keyframes todayPulse {
+
+    0%,
+    100% {
+        box-shadow:
+            0 0 0 1px rgba(240, 200, 79, 0.12),
+            0 0 14px rgba(240, 200, 79, 0.08);
+    }
+
+    50% {
+        box-shadow:
+            0 0 0 3px rgba(240, 200, 79, 0.16),
+            0 0 22px rgba(240, 200, 79, 0.12);
+    }
+}
+
+
 /* ==================================================
-   TABLET
+   RESPONSIVE
 ================================================== */
 
 @media (max-width: 1050px) {
@@ -1097,48 +1483,27 @@
         grid-template-columns:
             minmax(0, 0.7fr) minmax(0, 1.3fr);
 
-        gap: 28px;
+        gap: 26px;
 
-        padding: 30px;
+        padding: 28px;
     }
 
     .copy h2 {
-        font-size: clamp(2.45rem, 4vw, 3.3rem);
+        font-size: clamp(2.05rem,
+                3.6vw,
+                2.7rem);
     }
 
-    .visual {
-        height: 320px;
+    .rewardHero {
+        gap: 28px;
     }
 
-    .visualHeader {
-        top: 20px;
-        right: 20px;
-        left: 20px;
-    }
-
-    .streakTimeline {
-        right: 20px;
-        bottom: 53px;
-        left: 20px;
-    }
-
-    .progressFooter {
-        right: 20px;
-        left: 20px;
-    }
-
-    .dayCard {
-        min-height: 104px;
-    }
-
-    .today .dayCard {
-        min-height: 116px;
+    .giftScene {
+        width: 125px;
+        height: 120px;
     }
 }
 
-/* ==================================================
-   MOBILE / TABLET STACK
-================================================== */
 
 @media (max-width: 900px) {
     .banner {
@@ -1151,9 +1516,9 @@
 
         grid-template-columns: 1fr;
 
-        gap: 30px;
+        gap: 28px;
 
-        padding: 30px;
+        padding: 28px;
     }
 
     .copy {
@@ -1161,13 +1526,10 @@
     }
 
     .visual {
-        height: 330px;
+        height: 336px;
     }
 }
 
-/* ==================================================
-   MOBILE
-================================================== */
 
 @media (max-width: 560px) {
     .banner {
@@ -1176,162 +1538,140 @@
 
     .content {
         display: flex;
-
         flex-direction: column;
 
-        gap: 24px;
+        gap: 22px;
 
         padding: 22px;
     }
 
-    .eyebrow {
-        margin-bottom: 14px;
-
-        font-size: 0.62rem;
-    }
-
-    .eyebrow strong {
-        font-size: 1rem;
-    }
-
     .copy h2 {
-        font-size: clamp(2.25rem, 10vw, 2.8rem);
-
-        line-height: 0.99;
+        font-size: clamp(2rem,
+                9vw,
+                2.5rem);
     }
 
     .copy p {
-        margin-top: 15px;
-
         font-size: 0.84rem;
-
-        line-height: 1.6;
-    }
-
-    .copy p br {
-        display: none;
     }
 
     .cta {
-        width: fit-content;
-
-        min-height: 45px;
-
-        margin-top: 18px;
-
-        font-size: 0.8rem;
+        width: 100%;
     }
 
     .visual {
-        height: 330px;
-
-        border-radius: 17px;
+        height: 390px;
     }
 
-    .visualHeader {
-        top: 17px;
-        right: 17px;
-        left: 17px;
-
-        gap: 12px;
+    .bonusPanel {
+        padding: 16px;
     }
 
-    .flameIcon {
-        width: 30px;
-        height: 30px;
-
-        border-radius: 8px;
+    .bonusHeader {
+        gap: 10px;
     }
 
-    .streakHeading {
-        gap: 8px;
-    }
-
-    .streakHeading h3 {
-        font-size: 0.82rem;
-    }
-
-    .streakHeading p {
-        max-width: 170px;
-
+    .bonusHeaderRight strong {
         font-size: 0.58rem;
     }
 
-    .streakBonus span {
-        font-size: 0.42rem;
+    .bonusHeaderRight span {
+        font-size: 0.5rem;
     }
 
-    .streakBonus strong {
-        font-size: 1rem;
-    }
+    .rewardHero {
+        flex-direction: column;
 
-    .streakTimeline {
-        right: 14px;
-        bottom: 54px;
-        left: 14px;
-    }
+        justify-content: center;
 
-    .days {
         gap: 4px;
     }
 
-    .day {
-        gap: 5px;
+    .rewardAmount {
+        font-size: 2.55rem;
     }
 
-    .dayLabel {
-        font-size: 0.42rem;
+    .giftScene {
+        width: 125px;
+        height: 112px;
     }
 
-    .dayCard {
-        min-height: 78px;
-
-        padding: 7px 3px;
-
-        border-radius: 8px;
+    .giftBox {
+        bottom: 8px;
     }
 
-    .today .dayCard {
-        min-height: 90px;
-
-        margin-top: -6px;
+    .giftLid {
+        bottom: 60px;
     }
 
-    .dayNumber {
-        font-size: 0.58rem;
+    .giftBowLeft,
+    .giftBowRight {
+        bottom: 70px;
     }
 
-    .reward {
-        font-size: 0.58rem;
+    .giftBowKnot {
+        bottom: 73px;
     }
 
-    .today .dayNumber {
-        font-size: 0.7rem;
+    .journey {
+        padding-top: 10px;
     }
 
-    .today .reward {
-        font-size: 0.66rem;
+    .journeyHeader span,
+    .journeyHeader strong {
+        font-size: 0.48rem;
     }
 
-    .dayStatus {
-        width: 17px;
-        height: 17px;
+    .timeline {
+        padding: 0 2px;
+    }
+
+    .timelineTrack,
+    .timelineProgress {
+        left: 17px;
     }
 
     .timelineTrack {
-        top: 39px;
+        right: 17px;
     }
 
-    .progressFooter {
-        right: 14px;
-        bottom: 17px;
-        left: 14px;
+    .timelineProgress {
+        max-width: calc(100% - 34px);
+    }
 
-        padding-top: 9px;
+    .timelineNode {
+        min-width: 26px;
+    }
 
-        font-size: 0.42rem;
+    .timelineDay {
+        font-size: 0.43rem;
+    }
+
+    .timelineDot {
+        width: 23px;
+        height: 23px;
+    }
+
+    .today .timelineDot {
+        width: 26px;
+        height: 26px;
+    }
+
+    .bonusFooter {
+        gap: 10px;
+    }
+
+    .streakSummary strong,
+    .returnMessage strong {
+        font-size: 0.54rem;
+    }
+
+    .streakSummary span:not(.flameBadge),
+    .returnMessage span:not(.returnIcon) {
+        font-size: 0.47rem;
     }
 }
+
 
 /* ==================================================
    REDUCED MOTION
@@ -1339,30 +1679,33 @@
 
 @media (prefers-reduced-motion: reduce) {
 
-    .visualHeader,
-    .day,
-    .progressFooter,
-    .visualGlow,
-    .timelineTrack,
-    .timelineFill {
+    .bonusHeader,
+    .rewardHero,
+    .journey,
+    .bonusFooter,
+    .timelineNode {
         opacity: 1 !important;
 
         transform: none !important;
 
         transition: none !important;
+    }
 
+    .panelGlow,
+    .panelSpark,
+    .giftSparkleOne,
+    .giftSparkleTwo,
+    .availabilityDot,
+    .today .timelineDot {
         animation: none !important;
     }
 
-    .timelineFill {
-        width: 65% !important;
+    .timelineProgress {
+        transition: none !important;
     }
 
-    .today .dayCard {
-        animation: none !important;
-    }
-
-    .cta {
-        transition: none;
+    .giftScene,
+    .availabilityPill {
+        transition: none !important;
     }
 }

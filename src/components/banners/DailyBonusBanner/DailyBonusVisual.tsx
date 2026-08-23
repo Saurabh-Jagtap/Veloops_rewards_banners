@@ -1,17 +1,33 @@
 import {
     Check,
+    Clock,
     Flame,
+    Gift,
     Lock,
 } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+
+import {
+    useEffect,
+    useRef,
+    useState,
+} from "react";
+
+import type { CSSProperties } from "react";
 
 import styles from "./DailyBonusBanner.module.css";
 import { days } from "../../../data/dailybonus";
 
 const DailyBonusVisual = () => {
     const visualRef = useRef<HTMLDivElement>(null);
+
     const [isVisible, setIsVisible] = useState(false);
-    const [selectedDay, setSelectedDay] = useState<string | null>(null);
+    const [claimed, setClaimed] = useState(false);
+
+    /*
+     * --------------------------------------------------
+     * ENTRANCE OBSERVER
+     * --------------------------------------------------
+     */
 
     useEffect(() => {
         const element = visualRef.current;
@@ -37,7 +53,7 @@ const DailyBonusVisual = () => {
                 }
             },
             {
-                threshold: 0.35,
+                threshold: 0.3,
             },
         );
 
@@ -48,189 +64,487 @@ const DailyBonusVisual = () => {
         };
     }, []);
 
+    /*
+     * --------------------------------------------------
+     * DAILY BONUS DATA
+     * --------------------------------------------------
+     */
+
+    const totalDays = days.length;
+
+    const completedCount = days.filter(
+        (day) => day.status === "completed",
+    ).length;
+
+    const todayIndex = days.findIndex(
+        (day) => day.status === "today",
+    );
+
+    const currentDayNumber =
+        todayIndex >= 0
+            ? todayIndex + 1
+            : completedCount;
+
+    const safeCurrentDayNumber = Math.min(
+        Math.max(currentDayNumber, 1),
+        totalDays,
+    );
+
+    const progressCount = claimed
+        ? Math.min(completedCount + 1, totalDays)
+        : completedCount;
+
+    /*
+     * --------------------------------------------------
+     * RENDER
+     * --------------------------------------------------
+     */
+
     return (
         <div
             ref={visualRef}
-            className={`${styles.visual} ${isVisible ? styles.isVisible : ""
-                }`}
-            aria-label="Daily streak and bonus progress"
+            className={`${styles.visual} ${
+                isVisible ? styles.isVisible : ""
+            }`}
         >
-            {/* Ambient background */}
-            <div
-                className={styles.visualGlow}
-                aria-hidden="true"
-            />
+            {/* ==================================================
+                UNIFIED BONUS PANEL
+            ================================================== */}
 
-            <div
-                className={`${styles.orb} ${styles.orbOne}`}
-                aria-hidden="true"
-            />
+            <section
+                className={styles.bonusPanel}
+                aria-label="Daily bonus reward"
+            >
+                {/* ==================================================
+                    AMBIENT BACKGROUND
+                ================================================== */}
 
-            <div
-                className={`${styles.orb} ${styles.orbTwo}`}
-                aria-hidden="true"
-            />
+                <div
+                    className={styles.panelGlow}
+                    aria-hidden="true"
+                />
 
-            {/* Header */}
-            <div className={styles.visualHeader}>
-                <div className={styles.streakHeading}>
-                    <div className={styles.flameIcon}>
-                        <Flame
-                            size={17}
-                            strokeWidth={2.2}
-                            fill="currentColor"
+                <div
+                    className={`${styles.panelRing} ${styles.panelRingOne}`}
+                    aria-hidden="true"
+                />
+
+                <div
+                    className={`${styles.panelRing} ${styles.panelRingTwo}`}
+                    aria-hidden="true"
+                />
+
+                <span
+                    className={`${styles.panelSpark} ${styles.panelSparkOne}`}
+                    aria-hidden="true"
+                />
+
+                <span
+                    className={`${styles.panelSpark} ${styles.panelSparkTwo}`}
+                    aria-hidden="true"
+                />
+
+                {/* ==================================================
+                    HEADER
+                ================================================== */}
+
+                <header className={styles.bonusHeader}>
+                    <div className={styles.bonusHeaderLeft}>
+                        <span
+                            className={styles.bonusIcon}
                             aria-hidden="true"
-                        />
-                    </div>
+                        >
+                            <Gift
+                                size={15}
+                                strokeWidth={2}
+                            />
+                        </span>
 
-                    <div>
-                        <h3>Daily Streak</h3>
-                        <p>Keep it up! You're on a 5 day streak.</p>
-                    </div>
-                </div>
-
-                <div className={styles.streakBonus}>
-                    <span>STREAK BONUS</span>
-                    <strong>+25%</strong>
-                </div>
-            </div>
-
-            {/* Seven day streak */}
-            <div className={styles.streakTimeline}>
-                <div className={styles.timelineTrack}>
-                    <div className={styles.timelineFill} />
-                </div>
-
-                <div className={styles.days}>
-                    {days.map((item, index) => {
-                        const isCompleted = item.status === "completed";
-                        const isToday = item.status === "today";
-
-                        return (
-                            <div
-                                key={item.number}
-                                className={`
-        ${styles.day}
-        ${isCompleted ? styles.completed : ""}
-        ${isToday ? styles.today : ""}
-        ${!isCompleted && !isToday ? styles.locked : ""}
-        ${selectedDay === item.number
-                                        ? styles.selected
-                                        : ""
-                                    }
-    `}
-                                style={
-                                    {
-                                        "--day-index": index,
-                                    } as React.CSSProperties
+                        <div>
+                            <span
+                                className={
+                                    styles.bonusEyebrow
                                 }
                             >
-                                <span className={styles.dayLabel}>
-                                    {isToday ? "Today" : item.day}
-                                </span>
+                                Today&apos;s Bonus
+                            </span>
 
-                                <button
-                                    type="button"
-                                    className={styles.dayCard}
-                                    onClick={() =>
-                                        setSelectedDay(
-                                            selectedDay === item.number
-                                                ? null
-                                                : item.number,
-                                        )
-                                    }
-                                    aria-expanded={selectedDay === item.number}
-                                    aria-label={
-                                        isCompleted
-                                            ? `${item.day}, completed, reward ${index === 0
-                                                ? 10
-                                                : index === 1
-                                                    ? 15
-                                                    : index === 2
-                                                        ? 20
-                                                        : index === 3
-                                                            ? 20
-                                                            : index === 4
-                                                                ? 25
-                                                                : index === 5
-                                                                    ? 30
-                                                                    : 40} VE`
-                                            : isToday
-                                                ? "Today, current streak reward 25 VE"
-                                                : `${item.day}, locked reward`
-                                    }
-                                >
-                                    <span className={styles.dayNumber}>
-                                        {item.number}
+                            <span
+                                className={
+                                    styles.bonusSubtitle
+                                }
+                            >
+                                Daily reward available
+                            </span>
+                        </div>
+                    </div>
+
+                    <div className={styles.bonusHeaderRight}>
+                        <strong>
+                            Day {safeCurrentDayNumber} of{" "}
+                            {totalDays}
+                        </strong>
+
+                        <span>
+                            <Clock
+                                size={10}
+                                strokeWidth={2}
+                                aria-hidden="true"
+                            />
+
+                            Resets in 14h 32m
+                        </span>
+                    </div>
+                </header>
+
+                {/* ==================================================
+                    REWARD HERO
+                ================================================== */}
+
+                <div className={styles.rewardHero}>
+                    <div className={styles.rewardHeroCopy}>
+                        <span
+                            className={
+                                styles.rewardHeroLabel
+                            }
+                        >
+                            Today&apos;s Reward
+                        </span>
+
+                        <strong
+                            className={
+                                styles.rewardAmount
+                            }
+                        >
+                            +25 <span>VE</span>
+                        </strong>
+
+                        <button
+                            type="button"
+                            className={`${styles.availabilityPill} ${
+                                claimed
+                                    ? styles.availabilityPillClaimed
+                                    : ""
+                            }`}
+                            onClick={() =>
+                                setClaimed(
+                                    (value) => !value,
+                                )
+                            }
+                            aria-pressed={claimed}
+                        >
+                            {claimed ? (
+                                <>
+                                    <Check
+                                        size={11}
+                                        strokeWidth={2.8}
+                                        aria-hidden="true"
+                                    />
+
+                                    <span>
+                                        Claimed Today
                                     </span>
-
-                                    <div className={styles.dayStatus}>
-                                        {isCompleted && (
-                                            <Check
-                                                size={14}
-                                                strokeWidth={3}
-                                                aria-hidden="true"
-                                            />
-                                        )}
-
-                                        {isToday && (
-                                            <span
-                                                className={styles.todayGem}
-                                                aria-hidden="true"
-                                            />
-                                        )}
-
-                                        {!isCompleted && !isToday && (
-                                            <Lock
-                                                size={12}
-                                                strokeWidth={2}
-                                                aria-hidden="true"
-                                            />
-                                        )}
-                                    </div>
-
-                                    <strong className={styles.reward}>
-                                        +
-                                        {
-                                            [
-                                                "10",
-                                                "15",
-                                                "20",
-                                                "20",
-                                                "25",
-                                                "30",
-                                                "40",
-                                            ][index]
+                                </>
+                            ) : (
+                                <>
+                                    <span
+                                        className={
+                                            styles.availabilityDot
                                         }
-                                    </strong>
+                                        aria-hidden="true"
+                                    />
 
-                                    {selectedDay === item.number && (
-                                        <span
-                                            className={styles.dayDetail}
-                                            aria-hidden="true"
-                                        >
-                                            {isCompleted
-                                                ? "Completed"
-                                                : isToday
-                                                    ? "Available"
-                                                    : "Locked"}
-                                        </span>
-                                    )}
-                                </button>
-                            </div>
-                        );
-                    })}
+                                    <span>
+                                        Available Now
+                                    </span>
+                                </>
+                            )}
+                        </button>
+                    </div>
+
+                    {/* ------------------------------------------
+                        SIMPLE CSS GIFT
+                    ------------------------------------------ */}
+
+                    <div
+                        className={`${styles.giftScene} ${
+                            claimed
+                                ? styles.giftSceneClaimed
+                                : ""
+                        }`}
+                        aria-hidden="true"
+                    >
+                        <span
+                            className={styles.giftAura}
+                        />
+
+                        <span
+                            className={`${styles.giftCoin} ${styles.giftCoinLeft}`}
+                        >
+                            VE
+                        </span>
+
+                        <span
+                            className={`${styles.giftCoin} ${styles.giftCoinRight}`}
+                        >
+                            VE
+                        </span>
+
+                        <span
+                            className={styles.giftSparkleOne}
+                        />
+
+                        <span
+                            className={styles.giftSparkleTwo}
+                        />
+
+                        <span
+                            className={styles.giftBowLeft}
+                        />
+
+                        <span
+                            className={styles.giftBowRight}
+                        />
+
+                        <span
+                            className={styles.giftBowKnot}
+                        />
+
+                        <span
+                            className={styles.giftLid}
+                        />
+
+                        <span
+                            className={styles.giftBox}
+                        >
+                            <span
+                                className={
+                                    styles.giftRibbonVertical
+                                }
+                            />
+
+                            <span
+                                className={
+                                    styles.giftRibbonHorizontal
+                                }
+                            />
+                        </span>
+                    </div>
                 </div>
-            </div>
 
-            {/* Footer */}
-            <div className={styles.progressFooter}>
-                <span>Bonus resets if you miss a day</span>
+                {/* ==================================================
+                    SEVEN DAY JOURNEY
+                ================================================== */}
 
-                <span className={styles.progressIndicator}>
-                    5 / 7 DAYS
-                </span>
-            </div>
+                <div
+                    className={styles.journey}
+                    aria-label="Seven day bonus progress"
+                >
+                    <div
+                        className={
+                            styles.journeyHeader
+                        }
+                    >
+                        <span>
+                            Your 7-day journey
+                        </span>
+
+                        <strong>
+                            {progressCount} /{" "}
+                            {totalDays} completed
+                        </strong>
+                    </div>
+
+                    <div className={styles.timeline}>
+                        <div
+                            className={
+                                styles.timelineTrack
+                            }
+                            aria-hidden="true"
+                        />
+
+                        <div
+                            className={
+                                styles.timelineProgress
+                            }
+                            style={{
+                                width:
+                                    totalDays > 1
+                                        ? `${
+                                              Math.min(
+                                                  progressCount,
+                                                  totalDays - 1,
+                                              ) /
+                                              (totalDays -
+                                                  1) *
+                                              100
+                                          }%`
+                                        : "0%",
+                            }}
+                            aria-hidden="true"
+                        />
+
+                        {days.map(
+                            (item, index) => {
+                                const isCompleted =
+                                    item.status ===
+                                    "completed";
+
+                                const isToday =
+                                    item.status ===
+                                    "today";
+
+                                const isLocked =
+                                    !isCompleted &&
+                                    !isToday;
+
+                                const stateClass =
+                                    isToday
+                                        ? styles.today
+                                        : isCompleted
+                                          ? styles.completed
+                                          : styles.locked;
+
+                                const nodeStyle = {
+                                    "--node-index":
+                                        index,
+                                } as CSSProperties;
+
+                                return (
+                                    <div
+                                        key={item.number}
+                                        className={`${styles.timelineNode} ${stateClass}`}
+                                        style={
+                                            nodeStyle
+                                        }
+                                        aria-label={
+                                            isToday
+                                                ? `${item.day}, today`
+                                                : isCompleted
+                                                  ? `${item.day}, completed`
+                                                  : `${item.day}, upcoming`
+                                        }
+                                    >
+                                        <span
+                                            className={
+                                                styles.timelineDot
+                                            }
+                                        >
+                                            {isCompleted && (
+                                                <Check
+                                                    size={
+                                                        11
+                                                    }
+                                                    strokeWidth={
+                                                        3
+                                                    }
+                                                    aria-hidden="true"
+                                                />
+                                            )}
+
+                                            {isToday && (
+                                                <span
+                                                    className={
+                                                        styles.todayDot
+                                                    }
+                                                />
+                                            )}
+
+                                            {isLocked && (
+                                                <Lock
+                                                    size={
+                                                        8
+                                                    }
+                                                    strokeWidth={
+                                                        2.2
+                                                    }
+                                                    aria-hidden="true"
+                                                />
+                                            )}
+                                        </span>
+
+                                        <span
+                                            className={
+                                                styles.timelineDay
+                                            }
+                                        >
+                                            {isToday
+                                                ? "Today"
+                                                : item.day}
+                                        </span>
+                                    </div>
+                                );
+                            },
+                        )}
+                    </div>
+                </div>
+
+                {/* ==================================================
+                    FOOTER MOTIVATION
+                ================================================== */}
+
+                <footer
+                    className={
+                        styles.bonusFooter
+                    }
+                >
+                    <div
+                        className={
+                            styles.streakSummary
+                        }
+                    >
+                        <span
+                            className={
+                                styles.flameBadge
+                            }
+                            aria-hidden="true"
+                        >
+                            <Flame
+                                size={13}
+                                strokeWidth={2.3}
+                                fill="currentColor"
+                            />
+                        </span>
+
+                        <div>
+                            <strong>
+                                {completedCount} Day
+                                {" "}
+                                Streak
+                            </strong>
+
+                            <span>
+                                Keep it going
+                            </span>
+                        </div>
+                    </div>
+
+                    <div
+                        className={
+                            styles.returnMessage
+                        }
+                    >
+                        <span
+                            className={
+                                styles.returnIcon
+                            }
+                            aria-hidden="true"
+                        >
+                            ↻
+                        </span>
+
+                        <div>
+                            <strong>
+                                Come back tomorrow
+                            </strong>
+
+                            <span>
+                                More rewards await
+                            </span>
+                        </div>
+                    </div>
+                </footer>
+            </section>
         </div>
     );
 };

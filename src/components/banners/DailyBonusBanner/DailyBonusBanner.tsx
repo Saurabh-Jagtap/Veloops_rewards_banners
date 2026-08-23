@@ -12,23 +12,28 @@ const DailyBonusBanner = () => {
                 <div className={styles.copy}>
                     <span className={styles.eyebrow}>
                         <strong>05</strong>
+                        <span className={styles.eyebrowDot} aria-hidden="true">·</span>
                         <span>DAILY BONUS</span>
                     </span>
 
                     <h2 id="daily-bonus-banner-title">
-                        Claim your daily
+                        Your Daily Bonus
                         <br />
-                        <span>bonus.</span>
+                        <span>Is Waiting.</span>
                     </h2>
 
                     <p>
-                        Log in every day and keep your streak alive.
-                        <br />
-                        Better streaks, bigger rewards!
+                        Claim your available reward each day before it resets.
+                        Come back consistently to build your streak and earn more.
                     </p>
 
+                    <span className={styles.signal}>
+                        <span className={styles.signalDot} aria-hidden="true" />
+                        7 Day Reward Streak
+                    </span>
+
                     <a href="#" className={styles.cta}>
-                        <span>Claim Bonus</span>
+                        <span>Claim Your Bonus</span>
 
                         <ArrowRight
                             size={18}
