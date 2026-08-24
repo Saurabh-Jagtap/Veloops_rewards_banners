@@ -131,7 +131,7 @@
    DESCRIPTION
 ================================================== */
 
-.copy > p {
+.copy>p {
   max-width: 455px;
 
   margin: 21px 0 0;
@@ -276,11 +276,9 @@
   border: 1px solid rgba(158, 127, 235, 0.42);
 
   background:
-    linear-gradient(
-      145deg,
+    linear-gradient(145deg,
       rgba(156, 124, 235, 0.16),
-      rgba(91, 68, 150, 0.08)
-    );
+      rgba(91, 68, 150, 0.08));
 
   color: #b69af5;
 }
@@ -289,11 +287,9 @@
   border-color: rgba(158, 127, 235, 0.75);
 
   background:
-    linear-gradient(
-      145deg,
+    linear-gradient(145deg,
       rgba(156, 124, 235, 0.26),
-      rgba(91, 68, 150, 0.15)
-    );
+      rgba(91, 68, 150, 0.15));
 
   color: #c7b2fb;
 
@@ -309,11 +305,9 @@
   border: 1px solid rgba(101, 145, 230, 0.38);
 
   background:
-    linear-gradient(
-      145deg,
+    linear-gradient(145deg,
       rgba(82, 126, 219, 0.15),
-      rgba(55, 81, 145, 0.07)
-    );
+      rgba(55, 81, 145, 0.07));
 
   color: #8eb3ff;
 }
@@ -322,11 +316,9 @@
   border-color: rgba(101, 145, 230, 0.72);
 
   background:
-    linear-gradient(
-      145deg,
+    linear-gradient(145deg,
       rgba(82, 126, 219, 0.25),
-      rgba(55, 81, 145, 0.13)
-    );
+      rgba(55, 81, 145, 0.13));
 
   color: #a9c6ff;
 
@@ -342,11 +334,9 @@
   border: 1px solid rgba(231, 180, 63, 0.40);
 
   background:
-    linear-gradient(
-      145deg,
+    linear-gradient(145deg,
       rgba(225, 174, 54, 0.15),
-      rgba(110, 77, 18, 0.07)
-    );
+      rgba(110, 77, 18, 0.07));
 
   color: #efc45c;
 }
@@ -355,11 +345,9 @@
   border-color: rgba(231, 180, 63, 0.75);
 
   background:
-    linear-gradient(
-      145deg,
+    linear-gradient(145deg,
       rgba(225, 174, 54, 0.25),
-      rgba(110, 77, 18, 0.13)
-    );
+      rgba(110, 77, 18, 0.13));
 
   color: #f5d488;
 
@@ -392,11 +380,9 @@
   border-radius: var(--radius-button);
 
   background:
-    linear-gradient(
-      135deg,
+    linear-gradient(135deg,
       #8e6de2,
-      #6e4cc8
-    );
+      #6e4cc8);
 
   color: #ffffff;
 
@@ -468,23 +454,18 @@
   border-radius: 18px;
 
   background:
-    radial-gradient(
-      circle at 76% 28%,
+    radial-gradient(circle at 76% 28%,
       rgba(155, 126, 234, 0.065),
-      transparent 38%
-    ),
-    linear-gradient(
-      145deg,
+      transparent 38%),
+    linear-gradient(145deg,
       #252742 0%,
       #22243c 54%,
-      #1e2137 100%
-    );
+      #1e2137 100%);
 
   opacity: 0;
 
   transform:
-    translateY(12px)
-    scale(0.985);
+    translateY(12px) scale(0.985);
 
   transition:
     opacity 650ms ease 160ms,
@@ -495,8 +476,7 @@
   opacity: 1;
 
   transform:
-    translateY(0)
-    scale(1);
+    translateY(0) scale(1);
 }
 
 
@@ -513,11 +493,9 @@
   pointer-events: none;
 
   background:
-    radial-gradient(
-      circle at 68% 58%,
+    radial-gradient(circle at 68% 58%,
       rgba(123, 103, 210, 0.045),
-      transparent 34%
-    );
+      transparent 34%);
 
   z-index: 0;
 }
@@ -571,11 +549,9 @@
     1px solid rgba(169, 151, 237, 0.32);
 
   background:
-    linear-gradient(
-      145deg,
+    linear-gradient(145deg,
       #9879e5,
-      #6d52c6
-    );
+      #6d52c6);
 
   color: #fff;
 
@@ -692,13 +668,11 @@
     0 0 7px rgba(99, 225, 153, 0.55);
 
   animation:
-    livePulse
-    2.8s
-    ease-in-out
-    infinite;
+    livePulse 2.8s ease-in-out infinite;
 }
 
 @keyframes livePulse {
+
   0%,
   100% {
     opacity: 0.75;
@@ -745,8 +719,7 @@
   display: grid;
 
   grid-template-columns:
-    minmax(0, 1.5fr)
-    minmax(185px, 0.72fr);
+    minmax(0, 1.5fr) minmax(185px, 0.72fr);
 
   height: calc(100% - 70px);
 
@@ -877,11 +850,9 @@
   border-radius: inherit;
 
   background:
-    linear-gradient(
-      90deg,
+    linear-gradient(90deg,
       #765fd4,
-      #9b7eea
-    );
+      #9b7eea);
 
   box-shadow:
     0 0 9px rgba(155, 126, 234, 0.18);
@@ -939,10 +910,7 @@
 
 .isVisible .channelRow {
   animation:
-    revealChannelRow
-    380ms
-    cubic-bezier(0.22, 1, 0.36, 1)
-    forwards;
+    revealChannelRow 380ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .isVisible .channelRow:nth-child(1) {
@@ -995,8 +963,7 @@
 
 .channelPending:active {
   transform:
-    translateX(1px)
-    scale(0.995);
+    translateX(1px) scale(0.995);
 }
 
 .channelPending:focus-visible {
@@ -1027,12 +994,10 @@
 
 .channelInstagram {
   background:
-    linear-gradient(
-      135deg,
+    linear-gradient(135deg,
       #f9ce34,
       #ee2a7b 55%,
-      #6228d7
-    );
+      #6228d7);
 }
 
 .channelX {
@@ -1142,9 +1107,7 @@
 
 .channelDone .channelCheck {
   animation:
-    checkPop
-    360ms
-    cubic-bezier(0.34, 1.56, 0.64, 1);
+    checkPop 360ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 @keyframes checkPop {
@@ -1183,11 +1146,9 @@
   text-align: center;
 
   background:
-    radial-gradient(
-      circle at 50% 38%,
+    radial-gradient(circle at 50% 38%,
       rgba(235, 181, 55, 0.045),
-      transparent 42%
-    );
+      transparent 42%);
 }
 
 .rewardLabel {
@@ -1212,8 +1173,7 @@
   opacity: 0;
 
   transform:
-    translateY(4px)
-    scale(0.95);
+    translateY(4px) scale(0.95);
 
   transition:
     opacity 420ms ease 480ms,
@@ -1224,8 +1184,7 @@
   opacity: 1;
 
   transform:
-    translateY(0)
-    scale(1);
+    translateY(0) scale(1);
 }
 
 .coin {
@@ -1243,12 +1202,10 @@
   border-radius: 50%;
 
   background:
-    radial-gradient(
-      circle at 32% 28%,
+    radial-gradient(circle at 32% 28%,
       #ffe9a8,
       #f2c452 45%,
-      #c98f22 100%
-    );
+      #c98f22 100%);
 
   color: #79500f;
 
@@ -1375,11 +1332,9 @@
     rgba(72, 190, 125, 0.18);
 
   background:
-    linear-gradient(
-      135deg,
+    linear-gradient(135deg,
       #36a968,
-      #2b8b59
-    );
+      #2b8b59);
 
   color: #fff;
 
@@ -1387,10 +1342,7 @@
     0 7px 18px rgba(54, 169, 104, 0.14);
 
   animation:
-    unlockedButtonReveal
-    380ms
-    cubic-bezier(0.22, 1, 0.36, 1)
-    both;
+    unlockedButtonReveal 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @keyframes unlockedButtonReveal {
@@ -1412,11 +1364,9 @@
 
 .rewardUnlocked {
   background:
-    radial-gradient(
-      circle at 50% 36%,
+    radial-gradient(circle at 50% 36%,
       rgba(235, 181, 55, 0.06),
-      transparent 42%
-    );
+      transparent 42%);
 }
 
 .rewardUnlocked .rewardLabel {
@@ -1425,175 +1375,1622 @@
 
 .rewardUnlocked .coinFront {
   animation:
-    coinUnlock
-    500ms
-    cubic-bezier(0.34, 1.56, 0.64, 1)
-    both;
+    coinUnlock 500ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
 @keyframes coinUnlock {
   0% {
     transform:
-      translateX(-50%)
-      scale(1);
+      translateX(-50%) scale(1);
   }
 
   45% {
     transform:
-      translateX(-50%)
-      translateY(-3px)
-      scale(1.06);
+      translateX(-50%) translateY(-3px) scale(1.06);
   }
 
   100% {
     transform:
-      translateX(-50%)
-      translateY(0)
-      scale(1);
+      translateX(-50%) translateY(0) scale(1);
   }
 }
 
+/* ============================================================
+   RESPONSIVE SYSTEM
+   ============================================================ */
 
-/* ==================================================
-   RESPONSIVE — TABLET
-================================================== */
+/* ============================================================
+   LARGE TABLET / SMALL LAPTOP
+   1080px
+   ============================================================ */
 
 @media (max-width: 1080px) {
+  .banner {
+    height: 430px;
+  }
+
+  .content {
+    grid-template-columns:
+      minmax(0, 0.43fr) minmax(0, 0.57fr);
+
+    gap: 28px;
+
+    padding:
+      30px 32px;
+  }
+
+  .copy {
+    max-width: 460px;
+  }
+
+  .copy h2 {
+    font-size: clamp(2.55rem, 4.5vw, 3.15rem);
+  }
+
+  .copy>p {
+    max-width: 410px;
+    font-size: 0.84rem;
+  }
+
+  /* Features */
+
+  .features {
+    max-width: 100%;
+    margin-top: 23px;
+  }
+
+  .feature {
+    gap: 7px;
+  }
+
+  .feature:not(:last-child) {
+    padding-right: 11px;
+    margin-right: 11px;
+  }
+
+  .featureIcon {
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+  }
+
+  .feature strong {
+    font-size: 0.63rem;
+  }
+
+  .featureText p {
+    font-size: 0.53rem;
+  }
+
+  /* CTA */
+
+  .cta {
+    min-height: 43px;
+
+    margin-top: 22px;
+    padding: 0 16px;
+
+    font-size: 0.76rem;
+  }
+
+  /* Visual */
+
+  .visual {
+    min-height: 350px;
+  }
+
+  .campaignHeader {
+    min-height: 64px;
+    padding: 11px 14px;
+  }
+
+  .campaignIcon {
+    width: 31px;
+    height: 31px;
+  }
+
+  .campaignTitle {
+    font-size: 0.84rem;
+  }
+
+  .campaignSub {
+    font-size: 0.53rem;
+  }
+
   .campaignBody {
     grid-template-columns:
-      minmax(0, 1.4fr)
-      minmax(175px, 0.72fr);
+      minmax(0, 1.45fr) minmax(150px, 0.72fr);
   }
 
-  .progressPanel {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-
+  .progressPanel,
   .rewardPanel {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .progressPercent {
+    font-size: 1.28rem;
+  }
+
+  .progressMessage strong {
+    font-size: 0.68rem;
+  }
+
+  .progressMessage span {
+    font-size: 0.51rem;
+  }
+
+  .channelRow {
+    min-height: 33px;
+    gap: 7px;
+  }
+
+  .channelIcon {
+    width: 23px;
+    height: 23px;
   }
 
   .channelText strong {
-    font-size: 0.61rem;
+    font-size: 0.57rem;
+  }
+
+  .channelText span {
+    font-size: 0.45rem;
+  }
+
+  .rewardValue {
+    font-size: 1.08rem;
   }
 }
 
 
-/* ==================================================
-   RESPONSIVE — STACKED
-================================================== */
+/* ============================================================
+   TABLET
+   900px
+   ============================================================ */
 
 @media (max-width: 900px) {
-  .visual {
+  /*
+     This is the important breakpoint.
+
+     The entire banner switches from:
+       LEFT | RIGHT
+
+     to:
+       COPY
+       VISUAL
+  */
+
+  .banner {
     height: auto;
     min-height: 0;
+    max-height: none;
+
+    overflow: hidden;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    width: 100%;
+    height: auto;
+
+    gap: 30px;
+
+    padding:
+      30px 30px 32px;
+  }
+
+  /* ----------------------------------------------------------
+     COPY
+     ---------------------------------------------------------- */
+
+  .copy {
+    width: 100%;
+    max-width: 700px;
+  }
+
+  .eyebrow {
+    margin-bottom: 17px;
+  }
+
+  .copy h2 {
+    font-size: clamp(2.7rem, 7vw, 3.35rem);
+    line-height: 0.96;
+  }
+
+  .copy>p {
+    max-width: 650px;
+
+    margin-top: 18px;
+
+    font-size: 0.87rem;
+  }
+
+  /* ----------------------------------------------------------
+     FEATURES
+     ---------------------------------------------------------- */
+
+  .features {
+    width: fit-content;
+    max-width: 100%;
+
+    margin-top: 23px;
+  }
+
+  .feature {
+    gap: 8px;
+  }
+
+  .feature:not(:last-child) {
+    padding-right: 15px;
+    margin-right: 15px;
+  }
+
+  .featureIcon {
+    width: 38px;
+    height: 38px;
+  }
+
+  .feature strong {
+    font-size: 0.66rem;
+  }
+
+  .featureText p {
+    font-size: 0.55rem;
+  }
+
+  /* ----------------------------------------------------------
+     CTA
+     ---------------------------------------------------------- */
+
+  .cta {
+    margin-top: 21px;
+  }
+
+  /* ----------------------------------------------------------
+     VISUAL
+     ---------------------------------------------------------- */
+
+  .visual {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+
+    aspect-ratio: 16 / 8.8;
+
+    border-radius: 17px;
+  }
+
+  .campaignHeader {
+    min-height: 68px;
+  }
+
+  .campaignBody {
+    grid-template-columns:
+      minmax(0, 1.5fr) minmax(175px, 0.72fr);
+
+    height: auto;
+    min-height: 280px;
+  }
+
+  .progressPanel,
+  .rewardPanel {
+    min-height: 280px;
+  }
+}
+
+
+/* ============================================================
+   SMALL TABLET
+   768px
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .content {
+    gap: 26px;
+
+    padding:
+      26px 24px 28px;
+  }
+
+  .copy h2 {
+    font-size: clamp(2.5rem, 8vw, 3rem);
+  }
+
+  .copy>p {
+    max-width: 600px;
+  }
+
+  /* ----------------------------------------------------------
+     FEATURES
+
+     Keep them in one row while possible.
+  ---------------------------------------------------------- */
+
+  .features {
+    width: 100%;
+    max-width: 620px;
+  }
+
+  .feature {
+    flex: 1 1 0;
+  }
+
+  .feature:not(:last-child) {
+    padding-right: 12px;
+    margin-right: 12px;
+  }
+
+  .featureIcon {
+    width: 36px;
+    height: 36px;
+    flex-basis: 36px;
+  }
+
+  .feature strong {
+    font-size: 0.62rem;
+  }
+
+  .featureText p {
+    font-size: 0.52rem;
+  }
+
+  /* ----------------------------------------------------------
+     VISUAL
+  ---------------------------------------------------------- */
+
+  .visual {
+    aspect-ratio: 16 / 9.4;
+  }
+
+  .campaignHeader {
+    min-height: 64px;
+
+    padding:
+      10px 13px;
+  }
+
+  .campaignHeaderLeft {
+    gap: 8px;
+  }
+
+  .campaignIcon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .campaignLabel {
+    font-size: 0.53rem;
+  }
+
+  .campaignTitle {
+    font-size: 0.8rem;
+  }
+
+  .campaignSub {
+    font-size: 0.5rem;
+  }
+
+  .liveBadge {
+    padding: 4px 7px;
+    font-size: 0.46rem;
+  }
+
+  .countdown {
+    font-size: 0.5rem;
+  }
+
+  .campaignBody {
+    grid-template-columns:
+      minmax(0, 1.55fr) minmax(155px, 0.72fr);
+
+    min-height: 265px;
+  }
+
+  .progressPanel,
+  .rewardPanel {
+    min-height: 265px;
+
+    padding:
+      14px 13px;
+  }
+
+  .progressHeading {
+    font-size: 0.63rem;
+  }
+
+  .progressHeading strong {
+    font-size: 0.53rem;
+  }
+
+  .progressPercent {
+    font-size: 1.18rem;
+  }
+
+  .progressMessage strong {
+    font-size: 0.63rem;
+  }
+
+  .progressMessage span {
+    font-size: 0.48rem;
+  }
+
+  .channelList {
+    margin-top: 11px;
+  }
+
+  .channelRow {
+    min-height: 32px;
+
+    gap: 6px;
+    padding: 4px 6px;
+  }
+
+  .channelIcon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .channelText strong {
+    font-size: 0.54rem;
+  }
+
+  .channelText span {
+    font-size: 0.42rem;
+  }
+
+  .channelCheck,
+  .channelOutline {
+    width: 17px;
+    height: 17px;
+  }
+
+  .rewardLabel {
+    font-size: 0.56rem;
+  }
+
+  .coinStack {
+    transform:
+      translateY(4px) scale(0.9);
+  }
+
+  .isVisible .coinStack {
+    transform: scale(0.9);
+  }
+
+  .rewardValue {
+    font-size: 1rem;
+  }
+
+  .rewardCaption {
+    font-size: 0.49rem;
+  }
+
+  .completeButton {
+    min-height: 30px;
+    font-size: 0.49rem;
+  }
+}
+
+
+/* ============================================================
+   LARGE MOBILE
+   640px
+   ============================================================ */
+
+@media (max-width: 640px) {
+  .content {
+    gap: 23px;
+
+    padding:
+      24px 20px 24px;
+  }
+
+  .eyebrow {
+    gap: 7px;
+    margin-bottom: 14px;
+
+    font-size: 0.6rem;
+  }
+
+  .eyebrowNumber {
+    font-size: 1.05rem;
+  }
+
+  .copy h2 {
+    font-size: clamp(2.25rem, 10vw, 2.75rem);
+    line-height: 0.97;
+  }
+
+  .copy>p {
+    margin-top: 15px;
+
+    font-size: 0.8rem;
+    line-height: 1.55;
+  }
+
+  /* ----------------------------------------------------------
+     FEATURES
+
+     At this width the feature descriptions are no longer
+     useful. Keep the title and icon.
+  ---------------------------------------------------------- */
+
+  .features {
+    width: 100%;
+
+    gap: 0;
+
+    margin-top: 20px;
+  }
+
+  .feature {
+    gap: 6px;
+  }
+
+  .feature:not(:last-child) {
+    padding-right: 9px;
+    margin-right: 9px;
+  }
+
+  .featureIcon {
+    width: 32px;
+    height: 32px;
+    flex-basis: 32px;
+
+    border-radius: 8px;
+  }
+
+  .featureIcon svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .feature strong {
+    font-size: 0.57rem;
+  }
+
+  .featureText p {
+    display: none;
+  }
+
+  /* ----------------------------------------------------------
+     CTA
+  ---------------------------------------------------------- */
+
+  .cta {
+    min-height: 42px;
+
+    margin-top: 18px;
+
+    padding:
+      0 15px;
+
+    font-size: 0.72rem;
+  }
+
+  .cta svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* ----------------------------------------------------------
+     VISUAL
+  ---------------------------------------------------------- */
+
+  .visual {
+    aspect-ratio: auto;
+
+    min-height: 0;
+    height: auto;
+
+    border-radius: 15px;
+  }
+
+  /* ----------------------------------------------------------
+     CAMPAIGN HEADER
+
+     Header becomes two rows.
+  ---------------------------------------------------------- */
+
+  .campaignHeader {
+    display: grid;
+
+    grid-template-columns: 1fr;
+    gap: 9px;
+
+    min-height: auto;
+
+    padding:
+      12px 13px;
+  }
+
+  .campaignHeaderLeft {
+    width: 100%;
+  }
+
+  .campaignHeaderRight {
+    width: 100%;
+
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 8px;
+  }
+
+  .campaignTitle {
+    font-size: 0.78rem;
+  }
+
+  .campaignSub {
+    font-size: 0.49rem;
   }
 
   .campaignBody {
     grid-template-columns: 1fr;
 
     height: auto;
+    min-height: 0;
   }
 
+  /* ----------------------------------------------------------
+     PROGRESS
+  ---------------------------------------------------------- */
+
   .progressPanel {
+    min-height: auto;
+
+    padding:
+      14px 13px 15px;
+
     border-right: 0;
 
     border-bottom:
       1px solid rgba(198, 203, 221, 0.055);
   }
 
-  .rewardPanel {
-    min-height: 190px;
-  }
-}
-
-
-/* ==================================================
-   RESPONSIVE — MOBILE
-================================================== */
-
-@media (max-width: 560px) {
-  .visual {
-    border-radius: 16px;
-  }
-
-  .campaignHeader {
-    align-items: flex-start;
-
-    flex-direction: column;
-
-    min-height: auto;
-
-    padding: 14px;
-  }
-
-  .campaignHeaderRight {
-    width: 100%;
-
-    align-items: flex-start;
-
-    flex-direction: row;
-
-    justify-content: space-between;
-
+  .progressSummary {
     gap: 10px;
   }
 
-  .campaignTitle {
-    font-size: 0.86rem;
+  .progressPercent {
+    font-size: 1.15rem;
   }
 
-  .campaignSub {
-    font-size: 0.55rem;
+  .progressMessage strong {
+    font-size: 0.63rem;
   }
 
-  .progressPanel {
-    padding: 15px 14px;
+  .progressMessage span {
+    max-width: 300px;
+
+    font-size: 0.48rem;
   }
+
+  .channelList {
+    gap: 5px;
+    margin-top: 11px;
+  }
+
+  .channelRow {
+    min-height: 35px;
+
+    gap: 8px;
+    padding:
+      5px 7px;
+  }
+
+  .channelIcon {
+    width: 23px;
+    height: 23px;
+  }
+
+  .channelText strong {
+    font-size: 0.57rem;
+  }
+
+  .channelText span {
+    font-size: 0.44rem;
+  }
+
+  /* ----------------------------------------------------------
+     REWARD
+  ---------------------------------------------------------- */
 
   .rewardPanel {
     min-height: 190px;
 
-    padding: 15px 14px;
+    padding:
+      15px 13px 13px;
   }
 
-  .channelList {
-    margin-top: 13px;
+  .rewardLabel {
+    align-self: center;
+
+    font-size: 0.57rem;
   }
 
-  .channelRow {
-    min-height: 36px;
+  .coinStack {
+    margin-top: 8px;
+  }
+
+  .rewardValue {
+    margin-top: 5px;
+
+    font-size: 1.05rem;
+  }
+
+  .rewardCaption {
+    font-size: 0.5rem;
+  }
+
+  .completeButton {
+    width: 100%;
+    max-width: 300px;
+
+    min-height: 32px;
+
+    margin-top: 14px;
+
+    font-size: 0.5rem;
   }
 }
 
 
-/* ==================================================
+/* ============================================================
+   MOBILE
+   560px
+   ============================================================ */
+
+@media (max-width: 540px) {
+  .banner {
+    border-radius: 18px;
+  }
+
+  .content {
+    padding:
+      22px 16px 20px;
+  }
+
+  .copy h2 {
+    font-size: clamp(2.05rem, 10.5vw, 2.55rem);
+  }
+
+  .copy>p {
+    font-size: 0.76rem;
+  }
+
+  .cta {
+    width: 100%;
+  }
+
+  /* ----------------------------------------------------------
+     FEATURES
+  ---------------------------------------------------------- */
+
+  .features {
+    display: grid;
+
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+
+    width: 100%;
+  }
+
+  .feature {
+    min-width: 0;
+  }
+
+  .feature:not(:last-child) {
+    padding-right: 8px;
+    margin-right: 8px;
+  }
+
+  .featureIcon {
+    width: 30px;
+    height: 30px;
+    flex-basis: 30px;
+  }
+
+  .featureIcon svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .feature strong {
+    font-size: 0.54rem;
+  }
+
+  /* ----------------------------------------------------------
+     VISUAL
+  ---------------------------------------------------------- */
+
+  .visual {
+    border-radius: 14px;
+  }
+
+  .campaignHeader {
+    padding:
+      11px 11px;
+  }
+
+  .campaignIcon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .campaignIcon svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .campaignLabel {
+    font-size: 0.49rem;
+  }
+
+  .campaignTitle {
+    font-size: 0.73rem;
+  }
+
+  .campaignSub {
+    font-size: 0.46rem;
+  }
+
+  .liveBadge {
+    padding: 4px 6px;
+
+    font-size: 0.42rem;
+  }
+
+  .countdown {
+    font-size: 0.46rem;
+  }
+
+  .countdown strong {
+    font-size: 0.46rem;
+  }
+
+  /* ----------------------------------------------------------
+     PROGRESS
+  ---------------------------------------------------------- */
+
+  .progressPanel {
+    padding:
+      12px 11px 13px;
+  }
+
+  .progressHeading {
+    font-size: 0.58rem;
+  }
+
+  .progressHeading strong {
+    font-size: 0.49rem;
+  }
+
+  .progressPercent {
+    font-size: 1.05rem;
+  }
+
+  .progressMessage strong {
+    font-size: 0.58rem;
+  }
+
+  .progressMessage span {
+    font-size: 0.45rem;
+  }
+
+  .progressTrack {
+    height: 3px;
+    margin-top: 10px;
+  }
+
+  .channelList {
+    gap: 4px;
+    margin-top: 10px;
+  }
+
+  .channelRow {
+    min-height: 33px;
+
+    gap: 7px;
+    padding:
+      4px 6px;
+  }
+
+  .channelIcon {
+    width: 21px;
+    height: 21px;
+  }
+
+  .channelIcon svg {
+    width: 11px;
+    height: 11px;
+  }
+
+  .channelText strong {
+    font-size: 0.52rem;
+  }
+
+  .channelText span {
+    font-size: 0.4rem;
+  }
+
+  .channelCheck,
+  .channelOutline {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* ----------------------------------------------------------
+     REWARD
+  ---------------------------------------------------------- */
+
+  .rewardPanel {
+    min-height: 175px;
+
+    padding:
+      13px 11px 11px;
+  }
+
+  .rewardValue {
+    font-size: 1rem;
+  }
+
+  .rewardCaption {
+    font-size: 0.47rem;
+  }
+
+  .completeButton {
+    max-width: 260px;
+
+    min-height: 30px;
+
+    font-size: 0.47rem;
+  }
+}
+
+
+/* ============================================================
+   SMALL MOBILE
+   430px
+   ============================================================ */
+
+@media (max-width: 430px) {
+  .content {
+    gap: 20px;
+
+    padding:
+      20px 13px 17px;
+  }
+
+  .eyebrow {
+    gap: 6px;
+
+    font-size: 0.54rem;
+  }
+
+  .eyebrowNumber {
+    font-size: 0.95rem;
+  }
+
+  .copy h2 {
+    font-size: clamp(1.9rem, 11vw, 2.3rem);
+  }
+
+  .copy>p {
+    margin-top: 13px;
+
+    font-size: 0.72rem;
+    line-height: 1.5;
+  }
+
+  /* ----------------------------------------------------------
+     FEATURES
+
+     On very narrow screens, show only the icons and
+     feature title. The descriptions were already hidden.
+  ---------------------------------------------------------- */
+
+  .features {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+
+    margin-top: 17px;
+  }
+
+  .feature {
+    gap: 5px;
+  }
+
+  .feature:not(:last-child) {
+    padding-right: 6px;
+    margin-right: 6px;
+  }
+
+  .featureIcon {
+    width: 28px;
+    height: 28px;
+    flex-basis: 28px;
+
+    border-radius: 7px;
+  }
+
+  .feature strong {
+    font-size: 0.5rem;
+  }
+
+  .cta {
+    width: 100%;
+
+    min-height: 41px;
+
+    margin-top: 16px;
+
+    font-size: 0.68rem;
+  }
+
+  /* ----------------------------------------------------------
+     CAMPAIGN HEADER
+  ---------------------------------------------------------- */
+
+  .campaignHeader {
+    gap: 8px;
+
+    padding:
+      10px;
+  }
+
+  .campaignHeaderLeft {
+    gap: 7px;
+  }
+
+  .campaignIcon {
+    width: 26px;
+    height: 26px;
+
+    border-radius: 8px;
+  }
+
+  .campaignLabel {
+    font-size: 0.46rem;
+  }
+
+  .campaignTitle {
+    font-size: 0.68rem;
+  }
+
+  .campaignSub {
+    margin-top: 2px;
+
+    font-size: 0.42rem;
+  }
+
+  .campaignHeaderRight {
+    gap: 6px;
+  }
+
+  .liveBadge {
+    padding:
+      4px 6px;
+
+    font-size: 0.39rem;
+  }
+
+  .liveDot {
+    width: 4px;
+    height: 4px;
+  }
+
+  .countdown {
+    gap: 3px;
+
+    font-size: 0.42rem;
+  }
+
+  .countdown svg {
+    width: 9px;
+    height: 9px;
+  }
+
+  .countdown strong {
+    font-size: 0.42rem;
+  }
+
+  /* ----------------------------------------------------------
+     PROGRESS
+  ---------------------------------------------------------- */
+
+  .progressPanel {
+    padding:
+      11px 9px 12px;
+  }
+
+  .progressHeading {
+    font-size: 0.54rem;
+  }
+
+  .progressHeading strong {
+    font-size: 0.46rem;
+  }
+
+  .progressSummary {
+    gap: 8px;
+
+    margin-top: 10px;
+  }
+
+  .progressPercent {
+    font-size: 0.96rem;
+  }
+
+  .progressMessage strong {
+    font-size: 0.54rem;
+  }
+
+  .progressMessage span {
+    max-width: 240px;
+
+    font-size: 0.42rem;
+  }
+
+  .progressTrack {
+    margin-top: 9px;
+  }
+
+  .channelList {
+    gap: 4px;
+    margin-top: 9px;
+  }
+
+  .channelRow {
+    min-height: 31px;
+
+    gap: 6px;
+
+    padding:
+      4px 5px;
+  }
+
+  .channelIcon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .channelText strong {
+    font-size: 0.49rem;
+  }
+
+  .channelText span {
+    font-size: 0.37rem;
+  }
+
+  .channelCheck,
+  .channelOutline {
+    width: 15px;
+    height: 15px;
+  }
+
+  /* ----------------------------------------------------------
+     REWARD
+  ---------------------------------------------------------- */
+
+  .rewardPanel {
+    min-height: 165px;
+
+    padding:
+      12px 9px 10px;
+  }
+
+  .rewardLabel {
+    font-size: 0.53rem;
+  }
+
+  .coinStack {
+    transform:
+      translateY(4px) scale(0.82);
+  }
+
+  .isVisible .coinStack {
+    transform: scale(0.82);
+  }
+
+  .rewardValue {
+    margin-top: 2px;
+
+    font-size: 0.94rem;
+  }
+
+  .rewardCaption {
+    margin-top: 4px;
+
+    font-size: 0.43rem;
+  }
+
+  .completeButton {
+    max-width: 230px;
+
+    min-height: 29px;
+
+    margin-top: 10px;
+
+    font-size: 0.43rem;
+  }
+}
+
+
+/* ============================================================
+   VERY SMALL MOBILE
+   360px
+   ============================================================ */
+
+@media (max-width: 360px) {
+  .content {
+    gap: 18px;
+
+    padding:
+      18px 11px 14px;
+  }
+
+  .eyebrow {
+    font-size: 0.5rem;
+  }
+
+  .eyebrowNumber {
+    font-size: 0.88rem;
+  }
+
+  .copy h2 {
+    font-size: 1.78rem;
+  }
+
+  .copy>p {
+    font-size: 0.68rem;
+  }
+
+  /* ----------------------------------------------------------
+     FEATURES
+
+     Icons + very compact labels.
+  ---------------------------------------------------------- */
+
+  .features {
+    margin-top: 15px;
+  }
+
+  .feature {
+    gap: 4px;
+  }
+
+  .feature:not(:last-child) {
+    padding-right: 5px;
+    margin-right: 5px;
+  }
+
+  .featureIcon {
+    width: 25px;
+    height: 25px;
+    flex-basis: 25px;
+  }
+
+  .featureIcon svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .feature strong {
+    font-size: 0.45rem;
+  }
+
+  .cta {
+    min-height: 39px;
+
+    margin-top: 14px;
+
+    font-size: 0.63rem;
+  }
+
+  .cta svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* ----------------------------------------------------------
+     DASHBOARD
+  ---------------------------------------------------------- */
+
+  .campaignHeader {
+    padding:
+      9px;
+  }
+
+  .campaignIcon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .campaignTitle {
+    font-size: 0.63rem;
+  }
+
+  .campaignSub {
+    font-size: 0.39rem;
+  }
+
+  .campaignLabel {
+    font-size: 0.42rem;
+  }
+
+  /*
+     Countdown gets visually noisy at this width.
+     Keep the Live state but hide the countdown.
+  */
+
+  .countdown {
+    display: none;
+  }
+
+  .campaignHeaderRight {
+    justify-content: flex-start;
+  }
+
+  .liveBadge {
+    font-size: 0.37rem;
+  }
+
+  /* ----------------------------------------------------------
+     PROGRESS
+  ---------------------------------------------------------- */
+
+  .progressPanel {
+    padding:
+      10px 8px 11px;
+  }
+
+  .progressHeading {
+    font-size: 0.5rem;
+  }
+
+  .progressHeading strong {
+    font-size: 0.43rem;
+  }
+
+  .progressSummary {
+    margin-top: 8px;
+  }
+
+  .progressPercent {
+    font-size: 0.9rem;
+  }
+
+  .progressMessage strong {
+    font-size: 0.5rem;
+  }
+
+  .progressMessage span {
+    font-size: 0.39rem;
+  }
+
+  .channelList {
+    margin-top: 8px;
+  }
+
+  .channelRow {
+    min-height: 29px;
+
+    gap: 5px;
+    padding:
+      3px 4px;
+  }
+
+  .channelIcon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .channelIcon svg {
+    width: 9px;
+    height: 9px;
+  }
+
+  .channelText strong {
+    font-size: 0.45rem;
+  }
+
+  .channelText span {
+    font-size: 0.34rem;
+  }
+
+  .channelCheck,
+  .channelOutline {
+    width: 14px;
+    height: 14px;
+  }
+
+  .channelCheck svg {
+    width: 9px;
+    height: 9px;
+  }
+
+  /* ----------------------------------------------------------
+     REWARD
+  ---------------------------------------------------------- */
+
+  .rewardPanel {
+    min-height: 155px;
+
+    padding:
+      10px 8px 9px;
+  }
+
+  .rewardLabel {
+    font-size: 0.49rem;
+  }
+
+  .coinStack {
+    transform:
+      translateY(4px) scale(0.74);
+  }
+
+  .isVisible .coinStack {
+    transform: scale(0.74);
+  }
+
+  .rewardValue {
+    font-size: 0.88rem;
+  }
+
+  .rewardCaption {
+    font-size: 0.39rem;
+  }
+
+  .completeButton {
+    min-height: 27px;
+
+    margin-top: 8px;
+
+    font-size: 0.39rem;
+  }
+}
+
+
+/* ============================================================
+   EXTRA SMALL DEVICES
+   320px
+   ============================================================ */
+
+@media (max-width: 320px) {
+  .content {
+    padding:
+      16px 9px 12px;
+  }
+
+  .copy h2 {
+    font-size: 1.62rem;
+  }
+
+  .copy>p {
+    font-size: 0.64rem;
+  }
+
+  .features {
+    margin-top: 13px;
+  }
+
+  .featureIcon {
+    width: 23px;
+    height: 23px;
+    flex-basis: 23px;
+  }
+
+  .featureIcon svg {
+    width: 11px;
+    height: 11px;
+  }
+
+  .feature strong {
+    font-size: 0.41rem;
+  }
+
+  .cta {
+    min-height: 37px;
+
+    font-size: 0.59rem;
+  }
+
+  .campaignHeader {
+    padding:
+      8px;
+  }
+
+  .campaignTitle {
+    font-size: 0.59rem;
+  }
+
+  .campaignSub {
+    font-size: 0.36rem;
+  }
+
+  .progressPanel {
+    padding:
+      9px 7px 10px;
+  }
+
+  .progressPercent {
+    font-size: 0.84rem;
+  }
+
+  .progressMessage strong {
+    font-size: 0.46rem;
+  }
+
+  .progressMessage span {
+    font-size: 0.36rem;
+  }
+
+  .channelRow {
+    min-height: 27px;
+
+    padding:
+      3px;
+  }
+
+  .channelIcon {
+    width: 17px;
+    height: 17px;
+  }
+
+  .channelText strong {
+    font-size: 0.42rem;
+  }
+
+  .channelText span {
+    font-size: 0.31rem;
+  }
+
+  .rewardPanel {
+    min-height: 145px;
+
+    padding:
+      9px 7px 8px;
+  }
+
+  .rewardValue {
+    font-size: 0.82rem;
+  }
+
+  .completeButton {
+    min-height: 25px;
+
+    font-size: 0.36rem;
+  }
+}
+
+
+/* ============================================================
    REDUCED MOTION
-================================================== */
+   ============================================================ */
 
 @media (prefers-reduced-motion: reduce) {
+
   .visual,
   .campaignIcon,
   .coinStack,
-  .rewardValue {
+  .rewardValue,
+  .channelRow {
     opacity: 1 !important;
 
     transform: none !important;
 
     transition: none !important;
-  }
 
-  .liveDot {
     animation: none !important;
   }
 
-  .channelRow {
-    opacity: 1 !important;
-
-    transform: none !important;
-
+  .liveDot {
     animation: none !important;
   }
 
@@ -1604,6 +3001,12 @@
   }
 
   .progressFill {
+    transition: none !important;
+  }
+
+  .cta,
+  .cta svg,
+  .channelPending {
     transition: none !important;
   }
 }
