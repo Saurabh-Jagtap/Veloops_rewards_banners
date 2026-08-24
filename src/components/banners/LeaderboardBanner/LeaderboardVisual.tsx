@@ -4,7 +4,13 @@ import {
   Crown,
   Star,
 } from "lucide-react";
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import {
+  motion,
+  useReducedMotion,
+  type Variants,
+} from "framer-motion";
+import { useState } from "react";
+
 import styles from "./LeaderboardBanner.module.css";
 
 type ChangeDirection = "up" | "down";
@@ -38,18 +44,10 @@ const topPlayers: RankEntry[] = [
     change: 1,
     direction: "up",
   },
-  {
-    rank: 3,
-    name: "Robert C.",
-    initials: "RC",
-    score: "7,310",
-    change: 1,
-    direction: "down",
-  },
 ];
 
 const currentUser: RankEntry = {
-  rank: 14,
+  rank: 3,
   name: "You",
   initials: "YO",
   score: "4,650",
@@ -57,6 +55,15 @@ const currentUser: RankEntry = {
   direction: "up",
   isCurrentUser: true,
 };
+
+const getScoreValue = (score: string) =>
+  Number(score.replace(/,/g, ""));
+
+const secondPlace = topPlayers[1];
+
+const secondPlaceGap =
+  getScoreValue(secondPlace.score) -
+  getScoreValue(currentUser.score);
 
 const rankBadgeClassName = (entry: RankEntry) => {
   if (entry.isCurrentUser) {
@@ -74,21 +81,18 @@ const rankBadgeClassName = (entry: RankEntry) => {
   return styles.rankBadgeBronze;
 };
 
-/* =========================================================
-   MOTION VARIANTS — kept small & GPU-cheap
-   (opacity / x / y / scale only, short durations)
-========================================================= */
-
 const containerVariants: Variants = {
   hidden: {
     opacity: 0,
     scale: 0.97,
     y: 18,
   },
+
   visible: {
     opacity: 1,
     scale: 1,
     y: 0,
+
     transition: {
       duration: 0.6,
       ease: [0.22, 1, 0.36, 1],
@@ -103,9 +107,11 @@ const fadeUpVariants: Variants = {
     opacity: 0,
     y: 10,
   },
+
   visible: {
     opacity: 1,
     y: 0,
+
     transition: {
       duration: 0.4,
       ease: "easeOut",
@@ -115,6 +121,7 @@ const fadeUpVariants: Variants = {
 
 const rowListVariants: Variants = {
   hidden: {},
+
   visible: {
     transition: {
       staggerChildren: 0.06,
@@ -127,9 +134,11 @@ const rowVariants: Variants = {
     opacity: 0,
     x: -10,
   },
+
   visible: {
     opacity: 1,
     x: 0,
+
     transition: {
       duration: 0.32,
       ease: "easeOut",
@@ -140,18 +149,66 @@ const rowVariants: Variants = {
 const RankRow = ({
   entry,
   reduceMotion,
+  isInteractive = false,
+  isSelected = false,
+  onClick,
+  detail,
 }: {
   entry: RankEntry;
   reduceMotion: boolean;
+  isInteractive?: boolean;
+  isSelected?: boolean;
+  onClick?: () => void;
+  detail?: string;
 }) => (
   <motion.div
-    className={`${styles.rankRow} ${entry.isFirst ? styles.rankRowFirst : ""
-      } ${entry.isCurrentUser ? styles.rankRowMe : ""}`}
+    className={[
+      styles.rankRow,
+      entry.isFirst ? styles.rankRowFirst : "",
+      entry.isCurrentUser ? styles.rankRowMe : "",
+      isInteractive ? styles.rankRowInteractive : "",
+      isSelected ? styles.rankRowSelected : "",
+    ]
+      .filter(Boolean)
+      .join(" ")}
     variants={rowVariants}
-    whileHover={{
-      x: 3,
-      transition: { duration: 0.18, ease: "easeOut" },
-    }}
+    whileHover={
+      isInteractive
+        ? {
+          x: 3,
+          transition: {
+            duration: 0.18,
+            ease: "easeOut",
+          },
+        }
+        : undefined
+    }
+    whileTap={
+      isInteractive
+        ? {
+          scale: 0.985,
+        }
+        : undefined
+    }
+    onClick={isInteractive ? onClick : undefined}
+    role={isInteractive ? "button" : undefined}
+    tabIndex={isInteractive ? 0 : undefined}
+    onKeyDown={
+      isInteractive
+        ? (event) => {
+          if (
+            event.key === "Enter" ||
+            event.key === " "
+          ) {
+            event.preventDefault();
+            onClick?.();
+          }
+        }
+        : undefined
+    }
+    aria-expanded={
+      isInteractive ? isSelected : undefined
+    }
   >
     <div
       className={`${styles.rankBadge} ${rankBadgeClassName(entry)}`}
@@ -164,50 +221,80 @@ const RankRow = ({
         {entry.initials}
       </div>
 
-      <span className={styles.rankName}>
-        {entry.name}
+      <div className={styles.rankUserInfo}>
+        <span className={styles.rankName}>
+          {entry.name}
 
-        {entry.isFirst && (
-          <motion.span
-            className={styles.crownIcon}
-            animate={
-              reduceMotion
-                ? undefined
-                : {
+          {entry.isFirst && (
+            <motion.span
+              className={styles.crownIcon}
+              animate={
+                reduceMotion
+                  ? undefined
+                  : {
                     rotate: [0, -8, 8, 0],
                     scale: [1, 1.08, 1],
                   }
+              }
+              transition={{
+                duration: 2.6,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            >
+              <Crown
+                size={13}
+                fill="currentColor"
+                aria-hidden="true"
+              />
+            </motion.span>
+          )}
+        </span>
+
+        {isSelected && detail && (
+          <motion.span
+            className={styles.rankDetail}
+            initial={
+              reduceMotion
+                ? { opacity: 0 }
+                : {
+                  opacity: 0,
+                  y: 3,
+                }
             }
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
             transition={{
-              duration: 2.6,
-              repeat: Infinity,
-              ease: "easeInOut",
+              duration: 0.18,
+              ease: "easeOut",
             }}
           >
-            <Crown
-              size={13}
-              fill="currentColor"
-              aria-hidden="true"
-            />
+            {detail}
           </motion.span>
         )}
-      </span>
+      </div>
     </div>
 
     <div className={styles.rankEarned}>
-      <span className={styles.veIcon}>VE</span>
+      <span className={styles.veIcon}>
+        VE
+      </span>
+
       {entry.score} VE
     </div>
 
     <div
       className={`${styles.rankChange} ${entry.direction === "up"
-          ? styles.rankChangeUp
-          : styles.rankChangeDown
+        ? styles.rankChangeUp
+        : styles.rankChangeDown
         }`}
     >
       <span aria-hidden="true">
         {entry.direction === "up" ? "▲" : "▼"}
       </span>
+
       {entry.change}
     </div>
   </motion.div>
@@ -215,6 +302,13 @@ const RankRow = ({
 
 const LeaderboardVisual = () => {
   const reduceMotion = useReducedMotion() ?? false;
+
+  const [isSecondPlaceSelected, setIsSecondPlaceSelected] =
+    useState(false);
+
+  const handleSecondPlaceClick = () => {
+    setIsSecondPlaceSelected((current) => !current);
+  };
 
   return (
     <motion.div
@@ -228,6 +322,7 @@ const LeaderboardVisual = () => {
       }}
     >
       {/* ---------- Header ---------- */}
+
       <motion.div
         className={styles.visualHeader}
         variants={fadeUpVariants}
@@ -252,12 +347,12 @@ const LeaderboardVisual = () => {
             reduceMotion
               ? undefined
               : {
-                  boxShadow: [
-                    "0 0 0px rgba(243, 204, 110, 0)",
-                    "0 0 14px rgba(243, 204, 110, 0.16)",
-                    "0 0 0px rgba(243, 204, 110, 0)",
-                  ],
-                }
+                boxShadow: [
+                  "0 0 0px rgba(243, 204, 110, 0)",
+                  "0 0 14px rgba(243, 204, 110, 0.16)",
+                  "0 0 0px rgba(243, 204, 110, 0)",
+                ],
+              }
           }
           transition={{
             duration: 3,
@@ -265,12 +360,18 @@ const LeaderboardVisual = () => {
             ease: "easeInOut",
           }}
         >
-          <Clock3 size={13} strokeWidth={1.8} aria-hidden="true" />
+          <Clock3
+            size={13}
+            strokeWidth={1.8}
+            aria-hidden="true"
+          />
+
           <span>Resets in 5d 14h</span>
         </motion.div>
       </motion.div>
 
       {/* ---------- Column labels ---------- */}
+
       <motion.div
         className={styles.columnHeader}
         variants={fadeUpVariants}
@@ -278,35 +379,53 @@ const LeaderboardVisual = () => {
         <span>Rank</span>
         <span>User</span>
         <span>VE Earned</span>
-        <span className={styles.colChange}>Change</span>
+        <span className={styles.colChange}>
+          Change
+        </span>
       </motion.div>
 
       {/* ---------- Rank list ---------- */}
+
       <motion.div
         className={styles.rankList}
         variants={rowListVariants}
       >
+        {/* #1 and #2 */}
+
         {topPlayers.map((player) => (
           <RankRow
             entry={player}
             reduceMotion={reduceMotion}
+            isInteractive={player.rank === 2}
+            isSelected={
+              player.rank === 2 &&
+              isSecondPlaceSelected
+            }
+            onClick={
+              player.rank === 2
+                ? handleSecondPlaceClick
+                : undefined
+            }
+            detail={
+              player.rank === 2
+                ? `${secondPlaceGap.toLocaleString()} VE ahead`
+                : undefined
+            }
             key={player.rank}
           />
         ))}
 
-        <motion.div
-          className={styles.rankEllipsis}
-          variants={fadeUpVariants}
-        >
-          <span />
-          <span />
-          <span />
-        </motion.div>
+        {/* Current user — #3 */}
 
-        <RankRow entry={currentUser} reduceMotion={reduceMotion} />
+        <RankRow
+          entry={currentUser}
+          reduceMotion={reduceMotion}
+          key={currentUser.rank}
+        />
       </motion.div>
 
       {/* ---------- Bottom panels ---------- */}
+
       <motion.div
         className={styles.bottomPanels}
         variants={fadeUpVariants}
@@ -315,7 +434,10 @@ const LeaderboardVisual = () => {
           className={styles.nextRankPanel}
           whileHover={{
             y: -2,
-            transition: { duration: 0.18, ease: "easeOut" },
+            transition: {
+              duration: 0.18,
+              ease: "easeOut",
+            },
           }}
         >
           <div className={styles.nextRankTop}>
@@ -332,7 +454,9 @@ const LeaderboardVisual = () => {
                 Next Rank: <em>Bronze I</em>
               </strong>
 
-              <span>Keep going! You&apos;re close.</span>
+              <span>
+                Keep going! You&apos;re close.
+              </span>
             </div>
           </div>
 
@@ -341,7 +465,10 @@ const LeaderboardVisual = () => {
               className={styles.nextRankFill}
               initial={{ width: 0 }}
               whileInView={{ width: "78%" }}
-              viewport={{ once: true, amount: 0.6 }}
+              viewport={{
+                once: true,
+                amount: 0.6,
+              }}
               transition={{
                 duration: 0.9,
                 delay: 0.35,
@@ -359,10 +486,16 @@ const LeaderboardVisual = () => {
           className={styles.rewardPanel}
           whileHover={{
             y: -2,
-            transition: { duration: 0.18, ease: "easeOut" },
+            transition: {
+              duration: 0.18,
+              ease: "easeOut",
+            },
           }}
         >
-          <span className={styles.rewardAmount}>+350 VE</span>
+          <span className={styles.rewardAmount}>
+            +350 VE
+          </span>
+
           <span className={styles.rewardLabel}>
             Reward for next rank
           </span>
@@ -373,7 +506,13 @@ const LeaderboardVisual = () => {
           >
             <motion.div
               className={`${styles.rewardCoin} ${styles.rewardCoinBack}`}
-              animate={reduceMotion ? undefined : { y: [0, -3, 0] }}
+              animate={
+                reduceMotion
+                  ? undefined
+                  : {
+                    y: [0, -3, 0],
+                  }
+              }
               transition={{
                 duration: 3.2,
                 repeat: Infinity,
@@ -385,7 +524,13 @@ const LeaderboardVisual = () => {
 
             <motion.div
               className={`${styles.rewardCoin} ${styles.rewardCoinFront}`}
-              animate={reduceMotion ? undefined : { y: [0, -4, 0] }}
+              animate={
+                reduceMotion
+                  ? undefined
+                  : {
+                    y: [0, -4, 0],
+                  }
+              }
               transition={{
                 duration: 3.2,
                 repeat: Infinity,

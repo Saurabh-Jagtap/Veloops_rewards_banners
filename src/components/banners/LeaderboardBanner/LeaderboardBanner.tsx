@@ -14,19 +14,19 @@ const features = [
   {
     icon: Users,
     title: "Compete",
-    subtitle: "Climb weekly ranks",
+    subtitle: "Rise through ranks",
     variant: "blue",
   },
   {
     icon: Trophy,
     title: "Earn More",
-    subtitle: "Higher rank, bigger rewards",
+    subtitle: "Unlock rewards",
     variant: "gold",
   },
   {
     icon: TrendingUp,
     title: "Stay Ahead",
-    subtitle: "Beat your best",
+    subtitle: "Keep your edge",
     variant: "purple",
   },
 ];

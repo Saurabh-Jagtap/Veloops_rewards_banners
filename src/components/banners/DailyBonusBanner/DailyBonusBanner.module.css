@@ -258,13 +258,11 @@
 
     transition:
         opacity 300ms ease,
-        transform 500ms cubic-bezier(
-            0.22,
+        transform 500ms cubic-bezier(0.22,
             1,
             0.36,
-            1
-        );
-        
+            1);
+
     transform: translateX(-50%);
 
     background:
@@ -555,12 +553,17 @@
     font-weight: 600;
 
     cursor: pointer;
+    user-select: none;
 
     transition:
         transform 180ms ease,
         border-color 180ms ease,
         background 180ms ease,
         box-shadow 180ms ease;
+}
+
+.availabilityPill:disabled {
+    cursor: default;
 }
 
 .availabilityPill:hover {
@@ -587,12 +590,14 @@
 
 .availabilityPillClaimed {
     border-color:
-        rgba(240, 200, 79, 0.36);
+        rgba(240, 200, 79, 0.4);
 
     background:
-        rgba(240, 200, 79, 0.1);
+        rgba(240, 200, 79, 0.11);
 
     color: #f0c84f;
+
+    cursor: default;
 }
 
 .availabilityPillClaimed:hover {
@@ -667,9 +672,35 @@
     transform: rotate(10deg) translate(2px, -2px);
 }
 
-.giftSceneClaimed {
+/* .giftSceneClaimed {
     filter:
         saturate(0.72) brightness(0.9);
+} */
+
+.giftSceneClaimed {
+    filter:
+        drop-shadow(0 10px 22px rgba(240, 200, 79, 0.14));
+
+    animation:
+        giftClaimedPop 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes giftClaimedPop {
+    0% {
+        transform: translateY(0) scale(1);
+    }
+
+    45% {
+        transform: translateY(-7px) scale(1.06);
+    }
+
+    70% {
+        transform: translateY(1px) scale(0.985);
+    }
+
+    100% {
+        transform: translateY(0) scale(1);
+    }
 }
 
 .giftAura {
@@ -907,6 +938,159 @@
     animation-delay: 1.6s;
 }
 
+/* ==================================================
+   CLAIM CELEBRATION
+================================================== */
+
+.claimCelebration {
+    position: absolute;
+    z-index: 5;
+
+    top: 16px;
+    left: 50%;
+
+    width: 0;
+    height: 0;
+
+    pointer-events: none;
+}
+
+.confetti {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 5px;
+    height: 9px;
+
+    border-radius: 2px;
+
+    opacity: 0;
+
+    animation:
+        claimConfetti 720ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.confettiOne {
+    background: #f0c84f;
+
+    --x: -48px;
+    --y: -34px;
+    --r: -28deg;
+
+    animation-delay: 20ms;
+}
+
+.confettiTwo {
+    width: 4px;
+    height: 7px;
+
+    background: #8d7ae8;
+
+    --x: -30px;
+    --y: -52px;
+    --r: 22deg;
+
+    animation-delay: 45ms;
+}
+
+.confettiThree {
+    background: #63d59b;
+
+    --x: -12px;
+    --y: -62px;
+    --r: -18deg;
+
+    animation-delay: 10ms;
+}
+
+.confettiFour {
+    width: 4px;
+    height: 8px;
+
+    background: #f5f6fa;
+
+    --x: 10px;
+    --y: -58px;
+    --r: 28deg;
+
+    animation-delay: 55ms;
+}
+
+.confettiFive {
+    background: #f0c84f;
+
+    --x: 28px;
+    --y: -48px;
+    --r: -24deg;
+
+    animation-delay: 30ms;
+}
+
+.confettiSix {
+    width: 4px;
+    height: 7px;
+
+    background: #8d7ae8;
+
+    --x: 46px;
+    --y: -30px;
+    --r: 18deg;
+
+    animation-delay: 70ms;
+}
+
+.confettiSeven {
+    width: 6px;
+    height: 4px;
+
+    background: #63d59b;
+
+    --x: -42px;
+    --y: -12px;
+    --r: 38deg;
+
+    animation-delay: 90ms;
+}
+
+.confettiEight {
+    width: 6px;
+    height: 4px;
+
+    background: #f0c84f;
+
+    --x: 42px;
+    --y: -10px;
+    --r: -35deg;
+
+    animation-delay: 80ms;
+}
+
+@keyframes claimConfetti {
+    0% {
+        opacity: 0;
+        transform:
+            translate(0, 0) rotate(0deg) scale(0.5);
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    72% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translate(var(--x),
+                var(--y)) rotate(var(--r)) scale(1);
+    }
+}
+
 
 /* ==================================================
    SEVEN DAY JOURNEY
@@ -968,16 +1152,20 @@
 .timelineProgress {
     position: absolute;
 
-    top: 12px;
-    left: 22px;
+    top: 13px;
+    left: 25px;
 
     height: 2px;
 
     border-radius: 999px;
+
+    pointer-events: none;
 }
 
 .timelineTrack {
-    right: 22px;
+    right: 25px;
+
+    z-index: 0;
 
     background:
         rgba(255, 255, 255, 0.075);
@@ -986,7 +1174,7 @@
 .timelineProgress {
     z-index: 1;
 
-    max-width: calc(100% - 44px);
+    max-width: calc(100% - 50px);
 
     background:
         linear-gradient(90deg,
@@ -1030,26 +1218,33 @@
 }
 
 .timelineDot {
+    position: relative;
+    z-index: 4;
+
     display: grid;
     place-items: center;
 
     width: 25px;
     height: 25px;
 
+    flex-shrink: 0;
+
     border: 1.5px solid rgba(150, 160, 188, 0.26);
     border-radius: 50%;
 
-    background: #191d33;
+    background: #171b30;
 
     color: #565d70;
 
     box-shadow:
+        0 0 0 3px #171b30,
         0 3px 8px rgba(0, 0, 0, 0.16);
 
     transition:
         transform 180ms ease,
         border-color 180ms ease,
-        background 180ms ease;
+        background 180ms ease,
+        box-shadow 180ms ease;
 }
 
 .timelineDay {
@@ -1064,12 +1259,17 @@
 
 .completed .timelineDot {
     border-color:
-        rgba(99, 213, 126, 0.42);
+        rgba(99, 213, 126, 0.55);
 
     background:
-        rgba(99, 213, 126, 0.14);
+        #182b2a;
 
     color: #65d17d;
+
+    box-shadow:
+        0 0 0 3px #171b30,
+        0 0 10px rgba(99, 213, 126, 0.08),
+        0 3px 8px rgba(0, 0, 0, 0.16);
 }
 
 .completed .timelineDay {
@@ -1154,13 +1354,15 @@
 
     background:
         radial-gradient(circle at 40% 30%,
-            rgba(240, 200, 79, 0.4),
-            rgba(240, 200, 79, 0.12));
+            #3a3420 0%,
+            #252234 72%,
+            #171b30 100%);
 
     color: #f0c84f;
 
     box-shadow:
-        0 0 0 1px rgba(240, 200, 79, 0.14),
+        0 0 0 3px #171b30,
+        0 0 0 4px rgba(240, 200, 79, 0.08),
         0 0 16px rgba(240, 200, 79, 0.1);
 }
 
@@ -1202,6 +1404,18 @@
     color: #aab0c0;
 }
 
+.timelineTrack {
+    z-index: 0;
+}
+
+.timelineProgress {
+    z-index: 1;
+}
+
+.timelineNode {
+    position: relative;
+    z-index: 3;
+}
 
 /* ==================================================
    FOOTER MOTIVATION
@@ -1322,8 +1536,7 @@
     opacity: 1;
 
     transform:
-        translateX(-50%)
-        scale(1.06);
+        translateX(-50%) scale(1.06);
 }
 
 
@@ -1478,20 +1691,36 @@
    RESPONSIVE
 ================================================== */
 
-@media (max-width: 1050px) {
+/* --------------------------------------------------
+   LARGE TABLET / SMALL LAPTOP
+-------------------------------------------------- */
+
+@media (max-width: 1180px) {
     .content {
         grid-template-columns:
-            minmax(0, 0.7fr) minmax(0, 1.3fr);
+            minmax(280px, 0.44fr) minmax(0, 0.56fr);
 
-        gap: 26px;
+        gap: 28px;
 
-        padding: 28px;
+        padding: 28px 32px;
     }
 
     .copy h2 {
-        font-size: clamp(2.05rem,
-                3.6vw,
-                2.7rem);
+        font-size:
+            clamp(2.2rem, 3.4vw, 2.8rem);
+    }
+
+    .copy p {
+        max-width: 390px;
+    }
+
+    .visual {
+        height: 330px;
+    }
+
+    .bonusPanel {
+        padding:
+            17px 18px 15px;
     }
 
     .rewardHero {
@@ -1499,179 +1728,724 @@
     }
 
     .giftScene {
-        width: 125px;
-        height: 120px;
+        width: 132px;
+        height: 122px;
     }
 }
 
 
+/* --------------------------------------------------
+   TABLET
+-------------------------------------------------- */
+
 @media (max-width: 900px) {
     .banner {
+        height: auto;
         min-height: 0;
         max-height: none;
     }
 
     .content {
-        min-height: 0;
+        display: grid;
 
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            minmax(230px, 0.38fr) minmax(0, 0.62fr);
 
-        gap: 28px;
-
-        padding: 28px;
-    }
-
-    .copy {
-        max-width: 620px;
-    }
-
-    .visual {
-        height: 336px;
-    }
-}
-
-
-@media (max-width: 560px) {
-    .banner {
-        border-radius: 22px;
-    }
-
-    .content {
-        display: flex;
-        flex-direction: column;
+        align-items: center;
 
         gap: 22px;
 
-        padding: 22px;
+        padding:
+            28px;
+    }
+
+    .copy {
+        max-width: 430px;
     }
 
     .copy h2 {
-        font-size: clamp(2rem,
-                9vw,
-                2.5rem);
+        font-size:
+            clamp(2rem, 4.2vw, 2.65rem);
     }
 
     .copy p {
+        max-width: 360px;
+
         font-size: 0.84rem;
     }
 
+    .signal {
+        margin-top: 18px;
+
+        font-size: 0.62rem;
+    }
+
     .cta {
-        width: 100%;
+        margin-top: 20px;
     }
 
     .visual {
-        height: 390px;
+        height: 320px;
     }
 
     .bonusPanel {
-        padding: 16px;
+        padding:
+            16px 17px 14px;
     }
 
     .bonusHeader {
-        gap: 10px;
+        gap: 12px;
     }
 
     .bonusHeaderRight strong {
-        font-size: 0.58rem;
+        font-size: 0.6rem;
     }
 
     .bonusHeaderRight span {
-        font-size: 0.5rem;
+        font-size: 0.51rem;
     }
 
     .rewardHero {
-        flex-direction: column;
-
-        justify-content: center;
-
-        gap: 4px;
+        gap: 22px;
     }
 
     .rewardAmount {
-        font-size: 2.55rem;
+        font-size:
+            clamp(2.25rem, 4vw, 2.8rem);
     }
 
     .giftScene {
         width: 125px;
-        height: 112px;
+        height: 116px;
+    }
+
+    .journey {
+        padding-top: 9px;
+    }
+
+    .bonusFooter {
+        gap: 12px;
+    }
+}
+
+
+/* --------------------------------------------------
+   SMALL TABLET / LARGE PHONE
+-------------------------------------------------- */
+
+@media (max-width: 760px) {
+    .banner {
+        border-radius: 24px;
+    }
+
+    .content {
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 24px;
+
+        padding:
+            26px 24px 24px;
+    }
+
+    .copy {
+        width: 100%;
+        max-width: 600px;
+    }
+
+    .copy h2 {
+        font-size:
+            clamp(2.15rem, 7vw, 2.7rem);
+    }
+
+    .copy p {
+        max-width: 520px;
+    }
+
+    .cta {
+        width: fit-content;
+    }
+
+    .visual {
+        width: 100%;
+        height: 330px;
+    }
+
+    .bonusPanel {
+        padding:
+            17px 18px 15px;
+    }
+
+    .rewardHero {
+        gap: 26px;
+    }
+
+    .giftScene {
+        width: 130px;
+        height: 118px;
+    }
+
+    .timelineNode {
+        min-width: 30px;
+    }
+}
+
+
+/* --------------------------------------------------
+   MOBILE
+-------------------------------------------------- */
+
+@media (max-width: 560px) {
+    .banner {
+        border-radius: 20px;
+    }
+
+    .content {
+        gap: 20px;
+
+        padding:
+            22px 18px 18px;
+    }
+
+    /* ------------------------------
+       LEFT SIDE
+    ------------------------------ */
+
+    .eyebrow {
+        gap: 7px;
+
+        margin-bottom: 13px;
+
+        font-size: 0.62rem;
+    }
+
+    .eyebrow strong {
+        font-size: 0.72rem;
+    }
+
+    .copy h2 {
+        font-size:
+            clamp(2rem, 10vw, 2.55rem);
+
+        line-height: 1;
+
+        letter-spacing: -0.045em;
+    }
+
+    .copy p {
+        max-width: none;
+
+        margin-top: 13px;
+
+        font-size: 0.82rem;
+
+        line-height: 1.55;
+    }
+
+    .signal {
+        margin-top: 15px;
+
+        font-size: 0.58rem;
+
+        letter-spacing: 0.065em;
+    }
+
+    .cta {
+        width: 100%;
+
+        min-height: 45px;
+
+        margin-top: 17px;
+    }
+
+
+    /* ------------------------------
+       RIGHT VISUAL
+    ------------------------------ */
+
+    .visual {
+        height: 355px;
+    }
+
+    .bonusPanel {
+        padding:
+            14px 14px 13px;
+
+        border-radius: 14px;
+    }
+
+
+    /* ------------------------------
+       HEADER
+    ------------------------------ */
+
+    .bonusHeader {
+        gap: 8px;
+
+        padding-bottom: 10px;
+    }
+
+    .bonusIcon {
+        width: 28px;
+        height: 28px;
+
+        border-radius: 8px;
+    }
+
+    .bonusEyebrow {
+        font-size: 0.58rem;
+    }
+
+    .bonusSubtitle {
+        font-size: 0.5rem;
+    }
+
+    .bonusHeaderRight {
+        gap: 2px;
+    }
+
+    .bonusHeaderRight strong {
+        font-size: 0.54rem;
+    }
+
+    .bonusHeaderRight span {
+        font-size: 0.46rem;
+    }
+
+
+    /* ------------------------------
+       REWARD HERO
+    ------------------------------ */
+
+    .rewardHero {
+        gap: 14px;
+    }
+
+    .rewardHeroLabel {
+        font-size: 0.49rem;
+    }
+
+    .rewardAmount {
+        margin-top: 4px;
+
+        font-size:
+            clamp(2.15rem, 10vw, 2.65rem);
+    }
+
+    .availabilityPill {
+        min-height: 26px;
+
+        margin-top: 10px;
+
+        padding: 0 9px;
+
+        font-size: 0.5rem;
+    }
+
+    .giftScene {
+        width: 116px;
+        height: 108px;
     }
 
     .giftBox {
-        bottom: 8px;
+        bottom: 7px;
+
+        width: 68px;
+        height: 51px;
     }
 
     .giftLid {
-        bottom: 60px;
+        bottom: 57px;
+
+        width: 78px;
+        height: 14px;
     }
 
     .giftBowLeft,
     .giftBowRight {
-        bottom: 70px;
+        bottom: 67px;
+
+        width: 22px;
+        height: 18px;
     }
 
     .giftBowKnot {
-        bottom: 73px;
+        bottom: 70px;
+
+        width: 13px;
+        height: 13px;
     }
 
+    .giftRibbonVertical {
+        width: 9px;
+        height: 65px;
+    }
+
+    .giftRibbonHorizontal {
+        top: 17px;
+
+        height: 9px;
+    }
+
+    .giftCoinLeft {
+        top: 22px;
+        left: 3px;
+
+        width: 27px;
+        height: 27px;
+    }
+
+    .giftCoinRight {
+        top: 12px;
+        right: 3px;
+
+        width: 25px;
+        height: 25px;
+    }
+
+
+    /* ------------------------------
+       JOURNEY
+    ------------------------------ */
+
     .journey {
-        padding-top: 10px;
+        padding-top: 9px;
+    }
+
+    .journeyHeader {
+        gap: 8px;
+
+        margin-bottom: 9px;
     }
 
     .journeyHeader span,
     .journeyHeader strong {
-        font-size: 0.48rem;
+        font-size: 0.45rem;
     }
 
     .timeline {
-        padding: 0 2px;
+        padding: 0 3px;
     }
 
     .timelineTrack,
     .timelineProgress {
-        left: 17px;
+        top: 11px;
+
+        left: 18px;
     }
 
     .timelineTrack {
-        right: 17px;
+        right: 18px;
     }
 
     .timelineProgress {
-        max-width: calc(100% - 34px);
+        max-width:
+            calc(100% - 36px);
     }
 
     .timelineNode {
-        min-width: 26px;
-    }
+        min-width: 25px;
 
-    .timelineDay {
-        font-size: 0.43rem;
+        gap: 4px;
     }
 
     .timelineDot {
-        width: 23px;
-        height: 23px;
+        width: 21px;
+        height: 21px;
     }
 
     .today .timelineDot {
-        width: 26px;
-        height: 26px;
+        width: 24px;
+        height: 24px;
     }
+
+    .timelineDay {
+        font-size: 0.41rem;
+    }
+
+
+    /* ------------------------------
+       FOOTER
+    ------------------------------ */
 
     .bonusFooter {
         gap: 10px;
+
+        margin-top: 8px;
+
+        padding-top: 9px;
+    }
+
+    .flameBadge,
+    .returnIcon {
+        width: 25px;
+        height: 25px;
+
+        border-radius: 7px;
     }
 
     .streakSummary strong,
     .returnMessage strong {
-        font-size: 0.54rem;
+        font-size: 0.51rem;
     }
 
     .streakSummary span:not(.flameBadge),
     .returnMessage span:not(.returnIcon) {
-        font-size: 0.47rem;
+        font-size: 0.44rem;
+    }
+
+    .streakSummary,
+    .returnMessage {
+        min-width: 0;
+        max-width: 48%;
+    }
+
+    .streakSummary div,
+    .returnMessage div {
+        min-width: 0;
+    }
+
+    .streakSummary strong,
+    .returnMessage strong,
+    .streakSummary span:not(.flameBadge),
+    .returnMessage span:not(.returnIcon) {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 }
 
+
+/* --------------------------------------------------
+   VERY SMALL PHONES
+-------------------------------------------------- */
+
+@media (max-width: 390px) {
+    .content {
+        padding:
+            20px 15px 16px;
+
+        gap: 18px;
+    }
+
+    .copy h2 {
+        font-size:
+            clamp(1.85rem, 10vw, 2.25rem);
+    }
+
+    .copy p {
+        font-size: 0.78rem;
+    }
+
+    .signal {
+        font-size: 0.54rem;
+    }
+
+    .cta {
+        min-height: 43px;
+
+        font-size: 0.78rem;
+    }
+
+    .visual {
+        height: 335px;
+    }
+
+    .bonusPanel {
+        padding:
+            13px 12px 12px;
+    }
+
+    .bonusHeaderRight span {
+        max-width: 90px;
+
+        text-align: right;
+    }
+
+    .rewardHero {
+        gap: 10px;
+    }
+
+    .rewardAmount {
+        font-size: 2.15rem;
+    }
+
+    .giftScene {
+        width: 104px;
+        height: 98px;
+    }
+
+    .giftBox {
+        width: 62px;
+        height: 47px;
+    }
+
+    .giftLid {
+        bottom: 53px;
+
+        width: 71px;
+    }
+
+    .giftBowLeft,
+    .giftBowRight {
+        bottom: 62px;
+
+        width: 20px;
+        height: 17px;
+    }
+
+    .giftBowKnot {
+        bottom: 65px;
+
+        width: 12px;
+        height: 12px;
+    }
+
+    .giftCoinLeft {
+        width: 24px;
+        height: 24px;
+    }
+
+    .giftCoinRight {
+        width: 22px;
+        height: 22px;
+    }
+
+    .journeyHeader span,
+    .journeyHeader strong {
+        font-size: 0.41rem;
+    }
+
+    .timeline {
+        padding: 0;
+    }
+
+    .timelineTrack,
+    .timelineProgress {
+        left: 15px;
+    }
+
+    .timelineTrack {
+        right: 15px;
+    }
+
+    .timelineProgress {
+        max-width:
+            calc(100% - 30px);
+    }
+
+    .timelineNode {
+        min-width: 22px;
+    }
+
+    .timelineDot {
+        width: 19px;
+        height: 19px;
+    }
+
+    .today .timelineDot {
+        width: 22px;
+        height: 22px;
+    }
+
+    .timelineDay {
+        font-size: 0.37rem;
+    }
+
+    .bonusFooter {
+        gap: 7px;
+    }
+
+    .flameBadge,
+    .returnIcon {
+        width: 23px;
+        height: 23px;
+    }
+
+    .streakSummary strong,
+    .returnMessage strong {
+        font-size: 0.47rem;
+    }
+
+    .streakSummary span:not(.flameBadge),
+    .returnMessage span:not(.returnIcon) {
+        font-size: 0.4rem;
+    }
+}
+
+
+/* --------------------------------------------------
+   ULTRA SMALL PHONES
+-------------------------------------------------- */
+
+@media (max-width: 340px) {
+    .content {
+        padding:
+            18px 12px 14px;
+    }
+
+    .copy h2 {
+        font-size: 1.9rem;
+    }
+
+    .copy p {
+        font-size: 0.75rem;
+    }
+
+    .visual {
+        height: 320px;
+    }
+
+    .bonusHeaderRight span {
+        display: none;
+    }
+
+    .rewardHero {
+        gap: 6px;
+    }
+
+    .giftScene {
+        width: 94px;
+        height: 90px;
+    }
+
+    .giftBox {
+        width: 56px;
+        height: 43px;
+    }
+
+    .giftLid {
+        bottom: 49px;
+
+        width: 64px;
+    }
+
+    .giftBowLeft,
+    .giftBowRight {
+        bottom: 57px;
+
+        width: 18px;
+        height: 15px;
+    }
+
+    .giftBowKnot {
+        bottom: 60px;
+
+        width: 11px;
+        height: 11px;
+    }
+
+    .timelineDay {
+        font-size: 0.35rem;
+    }
+
+    .bonusFooter {
+        gap: 5px;
+    }
+}
 
 /* ==================================================
    REDUCED MOTION
@@ -1707,5 +2481,14 @@
     .giftScene,
     .availabilityPill {
         transition: none !important;
+    }
+
+    .giftSceneClaimed,
+    .confetti {
+        animation: none !important;
+    }
+
+    .claimCelebration {
+        display: none;
     }
 }

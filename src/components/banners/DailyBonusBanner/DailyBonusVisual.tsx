@@ -103,9 +103,8 @@ const DailyBonusVisual = () => {
     return (
         <div
             ref={visualRef}
-            className={`${styles.visual} ${
-                isVisible ? styles.isVisible : ""
-            }`}
+            className={`${styles.visual} ${isVisible ? styles.isVisible : ""
+                }`}
         >
             {/* ==================================================
                 UNIFIED BONUS PANEL
@@ -221,17 +220,17 @@ const DailyBonusVisual = () => {
 
                         <button
                             type="button"
-                            className={`${styles.availabilityPill} ${
+                            className={`${styles.availabilityPill} ${claimed
+                                ? styles.availabilityPillClaimed
+                                : ""
+                                }`}
+                            onClick={() => setClaimed(true)}
+                            disabled={claimed}
+                            aria-label={
                                 claimed
-                                    ? styles.availabilityPillClaimed
-                                    : ""
-                            }`}
-                            onClick={() =>
-                                setClaimed(
-                                    (value) => !value,
-                                )
+                                    ? "Daily bonus claimed today"
+                                    : "Claim daily bonus"
                             }
-                            aria-pressed={claimed}
                         >
                             {claimed ? (
                                 <>
@@ -248,14 +247,12 @@ const DailyBonusVisual = () => {
                             ) : (
                                 <>
                                     <span
-                                        className={
-                                            styles.availabilityDot
-                                        }
+                                        className={styles.availabilityDot}
                                         aria-hidden="true"
                                     />
 
                                     <span>
-                                        Available Now
+                                        Claim Now
                                     </span>
                                 </>
                             )}
@@ -267,13 +264,43 @@ const DailyBonusVisual = () => {
                     ------------------------------------------ */}
 
                     <div
-                        className={`${styles.giftScene} ${
-                            claimed
-                                ? styles.giftSceneClaimed
-                                : ""
-                        }`}
+                        className={`${styles.giftScene} ${claimed
+                            ? styles.giftSceneClaimed
+                            : ""
+                            }`}
                         aria-hidden="true"
                     >
+                        {claimed && (
+                            <span
+                                className={styles.claimCelebration}
+                                aria-hidden="true"
+                            >
+                                <span
+                                    className={`${styles.confetti} ${styles.confettiOne}`}
+                                />
+                                <span
+                                    className={`${styles.confetti} ${styles.confettiTwo}`}
+                                />
+                                <span
+                                    className={`${styles.confetti} ${styles.confettiThree}`}
+                                />
+                                <span
+                                    className={`${styles.confetti} ${styles.confettiFour}`}
+                                />
+                                <span
+                                    className={`${styles.confetti} ${styles.confettiFive}`}
+                                />
+                                <span
+                                    className={`${styles.confetti} ${styles.confettiSix}`}
+                                />
+                                <span
+                                    className={`${styles.confetti} ${styles.confettiSeven}`}
+                                />
+                                <span
+                                    className={`${styles.confetti} ${styles.confettiEight}`}
+                                />
+                            </span>
+                        )}
                         <span
                             className={styles.giftAura}
                         />
@@ -370,15 +397,14 @@ const DailyBonusVisual = () => {
                             style={{
                                 width:
                                     totalDays > 1
-                                        ? `${
-                                              Math.min(
-                                                  progressCount,
-                                                  totalDays - 1,
-                                              ) /
-                                              (totalDays -
-                                                  1) *
-                                              100
-                                          }%`
+                                        ? `${Math.min(
+                                            progressCount,
+                                            totalDays - 1,
+                                        ) /
+                                        (totalDays -
+                                            1) *
+                                        100
+                                        }%`
                                         : "0%",
                             }}
                             aria-hidden="true"
@@ -402,8 +428,8 @@ const DailyBonusVisual = () => {
                                     isToday
                                         ? styles.today
                                         : isCompleted
-                                          ? styles.completed
-                                          : styles.locked;
+                                            ? styles.completed
+                                            : styles.locked;
 
                                 const nodeStyle = {
                                     "--node-index":
@@ -421,8 +447,8 @@ const DailyBonusVisual = () => {
                                             isToday
                                                 ? `${item.day}, today`
                                                 : isCompleted
-                                                  ? `${item.day}, completed`
-                                                  : `${item.day}, upcoming`
+                                                    ? `${item.day}, completed`
+                                                    : `${item.day}, upcoming`
                                         }
                                     >
                                         <span
