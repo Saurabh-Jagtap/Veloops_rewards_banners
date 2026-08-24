@@ -30,7 +30,7 @@ export default function SupportAgentIllustration(
         </linearGradient>
 
         {/* =====================================================
-            HAIR
+            HAIR — GRAPHITE
         ===================================================== */}
 
         <linearGradient
@@ -41,13 +41,13 @@ export default function SupportAgentIllustration(
           y2="140"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stopColor="#38465b" />
-          <stop offset="0.45" stopColor="#182536" />
-          <stop offset="1" stopColor="#0a1422" />
+          <stop offset="0" stopColor="#4a4f57" />
+          <stop offset="0.45" stopColor="#252a31" />
+          <stop offset="1" stopColor="#0d1116" />
         </linearGradient>
 
         {/* =====================================================
-            JACKET
+            JACKET — SILVER / GRAPHITE
         ===================================================== */}
 
         <linearGradient
@@ -58,31 +58,31 @@ export default function SupportAgentIllustration(
           y2="350"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stopColor="#344966" />
-          <stop offset="0.4" stopColor="#1c304a" />
-          <stop offset="0.75" stopColor="#101d30" />
-          <stop offset="1" stopColor="#0a1423" />
+          <stop offset="0" stopColor="#59616c" />
+          <stop offset="0.32" stopColor="#343b45" />
+          <stop offset="0.68" stopColor="#1d232b" />
+          <stop offset="1" stopColor="#0d1218" />
         </linearGradient>
 
         {/* =====================================================
-            BLUE ACCENT
+            SILVER ACCENT
         ===================================================== */}
 
         <linearGradient
-          id="agent-blue"
+          id="agent-silver"
           x1="0"
           y1="0"
           x2="1"
           y2="1"
         >
-          <stop offset="0" stopColor="#b9cdf2" />
-          <stop offset="0.35" stopColor="#86a9e8" />
-          <stop offset="0.7" stopColor="#557cbd" />
-          <stop offset="1" stopColor="#38588c" />
+          <stop offset="0" stopColor="#f4f6f8" />
+          <stop offset="0.3" stopColor="#d8dde3" />
+          <stop offset="0.65" stopColor="#aeb6c0" />
+          <stop offset="1" stopColor="#747d88" />
         </linearGradient>
 
         {/* =====================================================
-            CHAT BUBBLE
+            CHAT BUBBLE — GRAPHITE
         ===================================================== */}
 
         <linearGradient
@@ -92,13 +92,13 @@ export default function SupportAgentIllustration(
           x2="1"
           y2="1"
         >
-          <stop offset="0" stopColor="#344b6c" />
-          <stop offset="0.5" stopColor="#203651" />
-          <stop offset="1" stopColor="#132238" />
+          <stop offset="0" stopColor="#343a42" />
+          <stop offset="0.5" stopColor="#20262d" />
+          <stop offset="1" stopColor="#11161c" />
         </linearGradient>
 
         {/* =====================================================
-            GLASS / BADGE
+            GLASS / BADGE — SILVER
         ===================================================== */}
 
         <linearGradient
@@ -108,8 +108,9 @@ export default function SupportAgentIllustration(
           x2="1"
           y2="1"
         >
-          <stop offset="0" stopColor="#3c587b" />
-          <stop offset="1" stopColor="#17283f" />
+          <stop offset="0" stopColor="#555e69" />
+          <stop offset="0.5" stopColor="#303740" />
+          <stop offset="1" stopColor="#171c22" />
         </linearGradient>
 
         {/* =====================================================
@@ -123,8 +124,8 @@ export default function SupportAgentIllustration(
           x2="1"
           y2="1"
         >
-          <stop offset="0" stopColor="#ffffff" stopOpacity="0.3" />
-          <stop offset="0.35" stopColor="#ffffff" stopOpacity="0.07" />
+          <stop offset="0" stopColor="#ffffff" stopOpacity="0.32" />
+          <stop offset="0.35" stopColor="#ffffff" stopOpacity="0.08" />
           <stop offset="1" stopColor="#ffffff" stopOpacity="0" />
         </linearGradient>
 
@@ -151,7 +152,6 @@ export default function SupportAgentIllustration(
 
       {/* =====================================================
           BACKING SHAPE
-          Gives the character some separation from the banner.
       ===================================================== */}
 
       <ellipse
@@ -159,7 +159,7 @@ export default function SupportAgentIllustration(
         cy="335"
         rx="105"
         ry="17"
-        fill="#050c17"
+        fill="#05080c"
         opacity="0.75"
       />
 
@@ -182,12 +182,13 @@ export default function SupportAgentIllustration(
             Z
           "
           fill="url(#agent-jacket)"
-          stroke="#8299b8"
-          strokeOpacity="0.2"
+          stroke="#c5ccd4"
+          strokeOpacity="0.24"
           strokeWidth="1.5"
         />
 
-        {/* Jacket highlight */}
+        {/* Jacket metallic highlight */}
+
         <path
           d="
             M143 288
@@ -252,14 +253,15 @@ export default function SupportAgentIllustration(
         />
 
         {/* Hair highlight */}
+
         <path
           d="
             M177 78
             C190 58 214 51 238 57
           "
           fill="none"
-          stroke="#8798ae"
-          strokeOpacity="0.22"
+          stroke="#d8dde3"
+          strokeOpacity="0.18"
           strokeWidth="5"
           strokeLinecap="round"
         />
@@ -293,7 +295,7 @@ export default function SupportAgentIllustration(
           cy="126"
           rx="4"
           ry="2.5"
-          fill="#1b2534"
+          fill="#1b2026"
         />
 
         <ellipse
@@ -301,10 +303,11 @@ export default function SupportAgentIllustration(
           cy="126"
           rx="4"
           ry="2.5"
-          fill="#1b2534"
+          fill="#1b2026"
         />
 
         {/* Eye highlights */}
+
         <circle
           cx="197"
           cy="125.5"
@@ -349,7 +352,7 @@ export default function SupportAgentIllustration(
         />
 
         {/* ------------------------------
-            COLLAR
+            COLLAR — GRAPHITE
         ------------------------------ */}
 
         <path
@@ -363,22 +366,23 @@ export default function SupportAgentIllustration(
             L174 227
             Z
           "
-          fill="#17273c"
-          stroke="#7187a6"
-          strokeOpacity="0.22"
+          fill="#242b33"
+          stroke="#b5bdc6"
+          strokeOpacity="0.28"
         />
 
         {/* Collar highlight */}
+
         <path
           d="M192 221 L220 246 L248 221"
           fill="none"
-          stroke="#9eb4d1"
-          strokeOpacity="0.18"
+          stroke="#e0e4e8"
+          strokeOpacity="0.22"
           strokeWidth="2"
         />
 
         {/* ------------------------------
-            VE BADGE
+            VE BADGE — SILVER
         ------------------------------ */}
 
         <circle
@@ -386,7 +390,7 @@ export default function SupportAgentIllustration(
           cy="286"
           r="27"
           fill="url(#agent-badge)"
-          stroke="url(#agent-blue)"
+          stroke="url(#agent-silver)"
           strokeWidth="1.5"
         />
 
@@ -394,16 +398,16 @@ export default function SupportAgentIllustration(
           cx="220"
           cy="286"
           r="21"
-          fill="#0d1a2b"
-          stroke="#829bc4"
-          strokeOpacity="0.16"
+          fill="#151a20"
+          stroke="#c3cad2"
+          strokeOpacity="0.22"
         />
 
         <text
           x="220"
           y="290"
           textAnchor="middle"
-          fill="#e3edff"
+          fill="#edf0f3"
           fontSize="12"
           fontWeight="700"
           fontFamily="Inter, system-ui, sans-serif"
@@ -417,15 +421,15 @@ export default function SupportAgentIllustration(
 
         <path
           d="M220 314 V340"
-          stroke="#7890b0"
-          strokeOpacity="0.15"
+          stroke="#c2c9d1"
+          strokeOpacity="0.18"
           strokeWidth="2"
         />
       </g>
 
       {/* =====================================================
-    CHAT BUBBLE — MAIN
-===================================================== */}
+          CHAT BUBBLE — MAIN
+      ===================================================== */}
 
       <g>
         <rect
@@ -435,42 +439,45 @@ export default function SupportAgentIllustration(
           height="72"
           rx="17"
           fill="url(#agent-chat)"
-          stroke="#91acd7"
-          strokeOpacity="0.32"
+          stroke="#cbd1d8"
+          strokeOpacity="0.30"
           strokeWidth="1.3"
           filter="url(#agent-shadow)"
         />
 
         {/* Bubble tail */}
+
         <path
           d="M293 132 L287 147 L306 134"
-          fill="#213750"
-          stroke="#91acd7"
-          strokeOpacity="0.22"
+          fill="#20262d"
+          stroke="#cbd1d8"
+          strokeOpacity="0.18"
         />
 
         {/* Chat icon */}
+
         <circle
           cx="293"
           cy="90"
           r="15"
-          fill="#2c4b73"
-          stroke="#8eafe2"
-          strokeOpacity="0.32"
+          fill="#424a54"
+          stroke="#d5dae0"
+          strokeOpacity="0.30"
         />
 
         <path
           d="M286 88 H300 M286 94 H296"
-          stroke="#c4d7f5"
+          stroke="#e3e6ea"
           strokeWidth="1.7"
           strokeLinecap="round"
         />
 
         {/* Support title */}
+
         <text
           x="316"
           y="89"
-          fill="#e7eef9"
+          fill="#eef1f4"
           fontSize="10"
           fontWeight="700"
           fontFamily="Inter, system-ui, sans-serif"
@@ -479,17 +486,19 @@ export default function SupportAgentIllustration(
         </text>
 
         {/* Support message */}
+
         <text
           x="316"
           y="105"
-          fill="#9aacc5"
+          fill="#aeb6c0"
           fontSize="8"
           fontFamily="Inter, system-ui, sans-serif"
         >
           We're here to help.
         </text>
 
-        {/* Online indicator */}
+        {/* Online indicator — intentionally green */}
+
         <circle
           cx="316"
           cy="122"
@@ -510,8 +519,8 @@ export default function SupportAgentIllustration(
       </g>
 
       {/* =====================================================
-    SMALL MESSAGE BUBBLE
-===================================================== */}
+          SMALL MESSAGE BUBBLE
+      ===================================================== */}
 
       <g opacity="0.98">
         <rect
@@ -521,38 +530,40 @@ export default function SupportAgentIllustration(
           height="56"
           rx="15"
           fill="url(#agent-chat)"
-          stroke="#7897c6"
-          strokeOpacity="0.28"
+          stroke="#c3cad2"
+          strokeOpacity="0.24"
           strokeWidth="1.1"
         />
 
         <path
           d="M125 223 L134 236 L138 221"
-          fill="#1c3049"
+          fill="#1b2026"
         />
 
         {/* Message icon */}
+
         <circle
           cx="59"
           cy="196"
           r="10"
-          fill="#29476e"
-          stroke="#8eafe2"
-          strokeOpacity="0.18"
+          fill="#3d444d"
+          stroke="#d4d9df"
+          strokeOpacity="0.22"
         />
 
         <path
           d="M54 194 H64 M54 199 H62"
-          stroke="#b2c9ee"
+          stroke="#e0e4e8"
           strokeWidth="1.4"
           strokeLinecap="round"
         />
 
         {/* Title */}
+
         <text
           x="75"
           y="195"
-          fill="#e1e9f6"
+          fill="#e5e8eb"
           fontSize="8"
           fontWeight="600"
           fontFamily="Inter, system-ui, sans-serif"
@@ -561,10 +572,11 @@ export default function SupportAgentIllustration(
         </text>
 
         {/* Description */}
+
         <text
           x="75"
           y="208"
-          fill="#8da0bc"
+          fill="#9ca5af"
           fontSize="7"
           fontFamily="Inter, system-ui, sans-serif"
         >
@@ -574,6 +586,7 @@ export default function SupportAgentIllustration(
 
       {/* =====================================================
           SMALL RESOLUTION CHECK
+          Green retained as semantic success state.
       ===================================================== */}
 
       <g>
