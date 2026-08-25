@@ -5,6 +5,7 @@ import { ArrowRight, Gift, MessageCircle, UserPlus } from "lucide-react";
 
 import FollowVisual from "./FollowVisual";
 import styles from "./FollowBanner.module.css";
+import FollowReactions from "./FollowReactions";
 
 const FEATURES = [
   {
@@ -30,7 +31,6 @@ const FEATURES = [
 const FollowBanner = () => {
   const bannerRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const [storyCompleted, setStoryCompleted] = useState(false);
 
   useEffect(() => {
     const element = bannerRef.current;
@@ -115,11 +115,11 @@ const FollowBanner = () => {
           </a>
         </div>
 
-        <FollowVisual
-          isVisible={isVisible}
-          storyCompleted={storyCompleted}
-          onStoryComplete={() => setStoryCompleted(true)}
-        />
+<div className={styles.rightSide}>
+  <FollowVisual isVisible={isVisible} />
+  <FollowReactions />
+</div>
+        
       </div>
     </section>
   );

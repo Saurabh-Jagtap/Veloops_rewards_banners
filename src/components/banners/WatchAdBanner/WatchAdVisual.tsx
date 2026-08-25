@@ -9,8 +9,8 @@ import {
 } from "lucide-react";
 
 import { watchAdData } from "../../../data/watchAd";
-
 import styles from "./WatchAdBanner.module.css";
+import WatchAdIllustration from "./WatchAdIllustration";
 
 const WATCH_DURATION = 3000;
 
@@ -44,9 +44,8 @@ const WatchAdVisual = () => {
 
   return (
     <div
-      className={`${styles.visual} ${
-        isPlaying ? styles.isPlaying : ""
-      } ${isCompleted ? styles.isCompleted : ""}`}
+      className={`${styles.visual} ${isPlaying ? styles.isPlaying : ""
+        } ${isCompleted ? styles.isCompleted : ""}`}
       aria-label="Watch advertisement, complete the activity, and earn VE rewards"
     >
       <div className={styles.visualGlow} />
@@ -75,44 +74,9 @@ const WatchAdVisual = () => {
         =================================================== */}
 
         <div className={styles.adContent}>
-          <div
-            className={styles.adArt}
-            aria-hidden="true"
-          >
-            <div className={styles.clapperboard}>
-              <div className={styles.clapperBody}>
-                <div className={styles.clapperLines}>
-                  <span />
-                  <span />
-                  <span />
-                </div>
-              </div>
+          <div className={styles.adArt}>
+            <WatchAdIllustration />
 
-              <div className={styles.clapperTop}>
-                <span />
-                <span />
-                <span />
-                <span />
-                <span />
-                <span />
-              </div>
-
-              <div className={styles.clapperHinge} />
-            </div>
-
-            <div className={`${styles.artCoin} ${styles.artCoinGold}`}>
-              VE
-            </div>
-
-            <div className={`${styles.artCoin} ${styles.artCoinBlue}`}>
-              VE
-            </div>
-
-            <div className={`${styles.artCoin} ${styles.artCoinPurple}`}>
-              VE
-            </div>
-
-            {/* Interactive play button, anchored to the clapperboard screen */}
             <div className={styles.adControls}>
               <button
                 type="button"
@@ -221,9 +185,8 @@ const WatchAdVisual = () => {
         </div>
 
         <div
-          className={`${styles.completedPill} ${
-            isCompleted ? styles.completedPillActive : ""
-          }`}
+          className={`${styles.completedPill} ${isCompleted ? styles.completedPillActive : ""
+            }`}
           aria-live="polite"
         >
           <span className={styles.completedPillIcon}>
@@ -264,6 +227,7 @@ const WatchAdVisual = () => {
         </div>
       </div>
     </div>
+
   );
 };
 

@@ -1,314 +1,135 @@
+import { useState } from "react";
 import {
-  Calendar,
   Clock3,
-  Crown,
-  Star,
+  Trophy,
 } from "lucide-react";
 import {
   motion,
   useReducedMotion,
   type Variants,
 } from "framer-motion";
-import { useState } from "react";
 
 import styles from "./LeaderboardBanner.module.css";
 
-type ChangeDirection = "up" | "down";
+/* =========================================================
+   DATA
+   ========================================================= */
 
-interface RankEntry {
+interface PodiumEntry {
+  rank: 1 | 2 | 3;
+  name: string;
+  score: string;
+  tier: "gold" | "silver" | "bronze";
+}
+
+interface SupportingEntry {
   rank: number;
   name: string;
   initials: string;
   score: string;
-  change: number;
-  direction: ChangeDirection;
   isCurrentUser?: boolean;
-  isFirst?: boolean;
 }
 
-const topPlayers: RankEntry[] = [
-  {
-    rank: 1,
-    name: "Arlene M.",
-    initials: "AM",
-    score: "12,450",
-    change: 2,
-    direction: "up",
-    isFirst: true,
-  },
-  {
-    rank: 2,
-    name: "Priya K.",
-    initials: "PK",
-    score: "9,210",
-    change: 1,
-    direction: "up",
-  },
+// Rendered left → right: silver, gold, bronze — gold stays
+// centered and dominant regardless of array order.
+const podium: PodiumEntry[] = [
+  { rank: 2, name: "Priya K.", score: "9,210", tier: "silver" },
+  { rank: 1, name: "Arlene M.", score: "12,450", tier: "gold" },
+  { rank: 3, name: "Robert C.", score: "7,310", tier: "bronze" },
 ];
 
-const currentUser: RankEntry = {
-  rank: 3,
-  name: "You",
-  initials: "YO",
-  score: "4,650",
-  change: 2,
-  direction: "up",
-  isCurrentUser: true,
-};
+const supporting: SupportingEntry[] = [
+  { rank: 4, name: "Jayden R.", initials: "JR", score: "6,240" },
+  {
+    rank: 5,
+    name: "You",
+    initials: "YO",
+    score: "4,650",
+    isCurrentUser: true,
+  },
+  { rank: 6, name: "Neha T.", initials: "NT", score: "3,120" },
+];
 
-const getScoreValue = (score: string) =>
-  Number(score.replace(/,/g, ""));
+const currentUser = supporting.find((entry) => entry.isCurrentUser)!;
 
-const secondPlace = topPlayers[1];
+// The row immediately above the current user — the subject of
+// the "preview the person above you" interaction.
+const rowAboveUser =
+  supporting[supporting.findIndex((e) => e.isCurrentUser) - 1];
 
-const secondPlaceGap =
-  getScoreValue(secondPlace.score) -
-  getScoreValue(currentUser.score);
+const getScoreValue = (score: string) => Number(score.replace(/,/g, ""));
 
-const rankBadgeClassName = (entry: RankEntry) => {
-  if (entry.isCurrentUser) {
-    return styles.rankBadgeMe;
-  }
+const gapAboveUser = rowAboveUser
+  ? getScoreValue(rowAboveUser.score) - getScoreValue(currentUser.score)
+  : 0;
 
-  if (entry.rank === 1) {
-    return styles.rankBadgeGold;
-  }
+const GOAL_VE = 10000;
+const progressPct = Math.min(
+  100,
+  Math.round((getScoreValue(currentUser.score) / GOAL_VE) * 100),
+);
 
-  if (entry.rank === 2) {
-    return styles.rankBadgeSilver;
-  }
-
-  return styles.rankBadgeBronze;
-};
+/* =========================================================
+   MOTION VARIANTS — small, cheap (opacity / x / y / scale)
+   ========================================================= */
 
 const containerVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    scale: 0.97,
-    y: 18,
-  },
-
+  hidden: { opacity: 0, scale: 0.97, y: 18 },
   visible: {
     opacity: 1,
     scale: 1,
     y: 0,
-
     transition: {
       duration: 0.6,
       ease: [0.22, 1, 0.36, 1],
-      staggerChildren: 0.09,
+      staggerChildren: 0.1,
       delayChildren: 0.08,
     },
   },
 };
 
 const fadeUpVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 10,
-  },
-
+  hidden: { opacity: 0, y: 10 },
   visible: {
     opacity: 1,
     y: 0,
+    transition: { duration: 0.4, ease: "easeOut" },
+  },
+};
 
-    transition: {
-      duration: 0.4,
-      ease: "easeOut",
-    },
+const podiumListVariants: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
+};
+
+const podiumBlockVariants: Variants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
 const rowListVariants: Variants = {
   hidden: {},
-
-  visible: {
-    transition: {
-      staggerChildren: 0.06,
-    },
-  },
+  visible: { transition: { staggerChildren: 0.06 } },
 };
 
 const rowVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    x: -10,
-  },
-
+  hidden: { opacity: 0, y: 8 },
   visible: {
     opacity: 1,
-    x: 0,
-
-    transition: {
-      duration: 0.32,
-      ease: "easeOut",
-    },
+    y: 0,
+    transition: { duration: 0.3, ease: "easeOut" },
   },
 };
 
-const RankRow = ({
-  entry,
-  reduceMotion,
-  isInteractive = false,
-  isSelected = false,
-  onClick,
-  detail,
-}: {
-  entry: RankEntry;
-  reduceMotion: boolean;
-  isInteractive?: boolean;
-  isSelected?: boolean;
-  onClick?: () => void;
-  detail?: string;
-}) => (
-  <motion.div
-    className={[
-      styles.rankRow,
-      entry.isFirst ? styles.rankRowFirst : "",
-      entry.isCurrentUser ? styles.rankRowMe : "",
-      isInteractive ? styles.rankRowInteractive : "",
-      isSelected ? styles.rankRowSelected : "",
-    ]
-      .filter(Boolean)
-      .join(" ")}
-    variants={rowVariants}
-    whileHover={
-      isInteractive
-        ? {
-          x: 3,
-          transition: {
-            duration: 0.18,
-            ease: "easeOut",
-          },
-        }
-        : undefined
-    }
-    whileTap={
-      isInteractive
-        ? {
-          scale: 0.985,
-        }
-        : undefined
-    }
-    onClick={isInteractive ? onClick : undefined}
-    role={isInteractive ? "button" : undefined}
-    tabIndex={isInteractive ? 0 : undefined}
-    onKeyDown={
-      isInteractive
-        ? (event) => {
-          if (
-            event.key === "Enter" ||
-            event.key === " "
-          ) {
-            event.preventDefault();
-            onClick?.();
-          }
-        }
-        : undefined
-    }
-    aria-expanded={
-      isInteractive ? isSelected : undefined
-    }
-  >
-    <div
-      className={`${styles.rankBadge} ${rankBadgeClassName(entry)}`}
-    >
-      {entry.rank}
-    </div>
-
-    <div className={styles.rankUser}>
-      <div className={styles.rankAvatar}>
-        {entry.initials}
-      </div>
-
-      <div className={styles.rankUserInfo}>
-        <span className={styles.rankName}>
-          {entry.name}
-
-          {entry.isFirst && (
-            <motion.span
-              className={styles.crownIcon}
-              animate={
-                reduceMotion
-                  ? undefined
-                  : {
-                    rotate: [0, -8, 8, 0],
-                    scale: [1, 1.08, 1],
-                  }
-              }
-              transition={{
-                duration: 2.6,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            >
-              <Crown
-                size={13}
-                fill="currentColor"
-                aria-hidden="true"
-              />
-            </motion.span>
-          )}
-        </span>
-
-        {isSelected && detail && (
-          <motion.span
-            className={styles.rankDetail}
-            initial={
-              reduceMotion
-                ? { opacity: 0 }
-                : {
-                  opacity: 0,
-                  y: 3,
-                }
-            }
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            transition={{
-              duration: 0.18,
-              ease: "easeOut",
-            }}
-          >
-            {detail}
-          </motion.span>
-        )}
-      </div>
-    </div>
-
-    <div className={styles.rankEarned}>
-      <span className={styles.veIcon}>
-        VE
-      </span>
-
-      {entry.score} VE
-    </div>
-
-    <div
-      className={`${styles.rankChange} ${entry.direction === "up"
-        ? styles.rankChangeUp
-        : styles.rankChangeDown
-        }`}
-    >
-      <span aria-hidden="true">
-        {entry.direction === "up" ? "▲" : "▼"}
-      </span>
-
-      {entry.change}
-    </div>
-  </motion.div>
-);
-
 const LeaderboardVisual = () => {
   const reduceMotion = useReducedMotion() ?? false;
+  const [isAboveRowActive, setIsAboveRowActive] = useState(false);
 
-  const [isSecondPlaceSelected, setIsSecondPlaceSelected] =
-    useState(false);
-
-  const handleSecondPlaceClick = () => {
-    setIsSecondPlaceSelected((current) => !current);
-  };
+  const toggleAboveRow = () => setIsAboveRowActive((v) => !v);
 
   return (
     <motion.div
@@ -316,30 +137,42 @@ const LeaderboardVisual = () => {
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{
-        once: true,
-        amount: 0.25,
-      }}
+      viewport={{ once: true, amount: 0.25 }}
     >
-      {/* ---------- Header ---------- */}
-
-      <motion.div
-        className={styles.visualHeader}
-        variants={fadeUpVariants}
+      {/* Ambient background */}
+      <div className={styles.visualGoldGlow} aria-hidden="true" />
+      <svg
+        className={styles.risingPath}
+        viewBox="0 0 420 160"
+        preserveAspectRatio="none"
+        aria-hidden="true"
       >
-        <div className={styles.visualTitleGroup}>
-          <div className={styles.calendarIcon}>
-            <Calendar
-              size={14}
-              strokeWidth={2}
-              aria-hidden="true"
-            />
-          </div>
+        <defs>
+          <linearGradient id="risingPathGradient" x1="0" y1="1" x2="1" y2="0">
+            <stop offset="0%" stopColor="#d9a93a" stopOpacity="0" />
+            <stop offset="45%" stopColor="#d9a93a" stopOpacity="0.55" />
+            <stop offset="100%" stopColor="#ffd873" stopOpacity="0.85" />
+          </linearGradient>
+        </defs>
+        <path
+          d="M20 140 C90 130 140 100 190 78 C240 56 290 60 330 34 C355 18 370 10 395 4"
+          fill="none"
+          stroke="url(#risingPathGradient)"
+          strokeWidth="2"
+        />
+        <path
+          d="M370 3 L398 3 L392 28"
+          fill="none"
+          stroke="#ffd873"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
 
-          <span className={styles.visualTitle}>
-            Weekly Leaderboard
-          </span>
-        </div>
+      {/* ---------- Header ---------- */}
+      <motion.div className={styles.visualHeader} variants={fadeUpVariants}>
+        <span className={styles.visualTitle}>Weekly Leaderboard</span>
 
         <motion.div
           className={styles.timer}
@@ -347,201 +180,157 @@ const LeaderboardVisual = () => {
             reduceMotion
               ? undefined
               : {
-                boxShadow: [
-                  "0 0 0px rgba(243, 204, 110, 0)",
-                  "0 0 14px rgba(243, 204, 110, 0.16)",
-                  "0 0 0px rgba(243, 204, 110, 0)",
-                ],
-              }
+                  boxShadow: [
+                    "0 0 0px rgba(243, 204, 110, 0)",
+                    "0 0 14px rgba(243, 204, 110, 0.18)",
+                    "0 0 0px rgba(243, 204, 110, 0)",
+                  ],
+                }
           }
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         >
-          <Clock3
-            size={13}
-            strokeWidth={1.8}
-            aria-hidden="true"
-          />
-
-          <span>Resets in 5d 14h</span>
+          <Clock3 size={12} strokeWidth={2} aria-hidden="true" />
+          <span>Ends in 5d 14h</span>
         </motion.div>
       </motion.div>
 
-      {/* ---------- Column labels ---------- */}
-
-      <motion.div
-        className={styles.columnHeader}
-        variants={fadeUpVariants}
-      >
-        <span>Rank</span>
-        <span>User</span>
-        <span>VE Earned</span>
-        <span className={styles.colChange}>
-          Change
-        </span>
-      </motion.div>
-
-      {/* ---------- Rank list ---------- */}
-
-      <motion.div
-        className={styles.rankList}
-        variants={rowListVariants}
-      >
-        {/* #1 and #2 */}
-
-        {topPlayers.map((player) => (
-          <RankRow
-            entry={player}
-            reduceMotion={reduceMotion}
-            isInteractive={player.rank === 2}
-            isSelected={
-              player.rank === 2 &&
-              isSecondPlaceSelected
-            }
-            onClick={
-              player.rank === 2
-                ? handleSecondPlaceClick
-                : undefined
-            }
-            detail={
-              player.rank === 2
-                ? `${secondPlaceGap.toLocaleString()} VE ahead`
-                : undefined
-            }
-            key={player.rank}
-          />
-        ))}
-
-        {/* Current user — #3 */}
-
-        <RankRow
-          entry={currentUser}
-          reduceMotion={reduceMotion}
-          key={currentUser.rank}
-        />
-      </motion.div>
-
-      {/* ---------- Bottom panels ---------- */}
-
-      <motion.div
-        className={styles.bottomPanels}
-        variants={fadeUpVariants}
-      >
-        <motion.div
-          className={styles.nextRankPanel}
-          whileHover={{
-            y: -2,
-            transition: {
-              duration: 0.18,
-              ease: "easeOut",
-            },
-          }}
-        >
-          <div className={styles.nextRankTop}>
-            <div className={styles.nextRankIcon}>
-              <Star
-                size={15}
-                fill="currentColor"
-                aria-hidden="true"
-              />
-            </div>
-
-            <div className={styles.nextRankText}>
-              <strong>
-                Next Rank: <em>Bronze I</em>
-              </strong>
-
-              <span>
-                Keep going! You&apos;re close.
-              </span>
-            </div>
-          </div>
-
-          <div className={styles.nextRankTrack}>
-            <motion.div
-              className={styles.nextRankFill}
-              initial={{ width: 0 }}
-              whileInView={{ width: "78%" }}
-              viewport={{
-                once: true,
-                amount: 0.6,
-              }}
-              transition={{
-                duration: 0.9,
-                delay: 0.35,
-                ease: "easeOut",
-              }}
-            />
-          </div>
-
-          <div className={styles.nextRankNumbers}>
-            <strong>4,650</strong> / 6,000 VE
-          </div>
-        </motion.div>
-
-        <motion.div
-          className={styles.rewardPanel}
-          whileHover={{
-            y: -2,
-            transition: {
-              duration: 0.18,
-              ease: "easeOut",
-            },
-          }}
-        >
-          <span className={styles.rewardAmount}>
-            +350 VE
-          </span>
-
-          <span className={styles.rewardLabel}>
-            Reward for next rank
-          </span>
-
-          <div
-            className={styles.rewardCoins}
-            aria-hidden="true"
+      {/* ---------- Top 3 podium ---------- */}
+      <motion.div className={styles.podium} variants={podiumListVariants}>
+        {podium.map((entry) => (
+          <motion.div
+            key={entry.rank}
+            className={`${styles.podiumBlock} ${
+              styles[
+                `podiumBlock${entry.tier[0].toUpperCase()}${entry.tier.slice(1)}`
+              ]
+            }`}
+            variants={podiumBlockVariants}
           >
-            <motion.div
-              className={`${styles.rewardCoin} ${styles.rewardCoinBack}`}
-              animate={
-                reduceMotion
-                  ? undefined
-                  : {
-                    y: [0, -3, 0],
-                  }
-              }
-              transition={{
-                duration: 3.2,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            >
-              VE
-            </motion.div>
+            {entry.tier === "gold" && (
+              <motion.div
+                className={styles.podiumTrophy}
+                animate={
+                  reduceMotion
+                    ? undefined
+                    : { y: [0, -3, 0] }
+                }
+                transition={{
+                  duration: 4.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                <Trophy
+                  size={22}
+                  strokeWidth={1.6}
+                  fill="currentColor"
+                  aria-hidden="true"
+                />
+              </motion.div>
+            )}
 
+            <span className={styles.podiumBadge}>{entry.rank}</span>
+
+            <div className={styles.podiumSlab}>
+              <strong>{entry.name}</strong>
+              <span>{entry.score} VE</span>
+            </div>
+          </motion.div>
+        ))}
+      </motion.div>
+
+      {/* ---------- Supporting rows (#4 / #5 You / #6) ---------- */}
+      <motion.div className={styles.supportingRows} variants={rowListVariants}>
+        {supporting.map((entry) => {
+          const isAboveUser = entry.rank === rowAboveUser?.rank;
+
+          return (
             <motion.div
-              className={`${styles.rewardCoin} ${styles.rewardCoinFront}`}
-              animate={
-                reduceMotion
-                  ? undefined
-                  : {
-                    y: [0, -4, 0],
-                  }
+              key={entry.rank}
+              className={[
+                styles.supportingRow,
+                entry.isCurrentUser ? styles.supportingRowMe : "",
+                isAboveUser ? styles.supportingRowInteractive : "",
+                isAboveUser && isAboveRowActive
+                  ? styles.supportingRowActive
+                  : "",
+              ]
+                .filter(Boolean)
+                .join(" ")}
+              variants={rowVariants}
+              whileHover={
+                isAboveUser
+                  ? { y: -2, transition: { duration: 0.16, ease: "easeOut" } }
+                  : undefined
               }
-              transition={{
-                duration: 3.2,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 0.45,
-              }}
+              onClick={isAboveUser ? toggleAboveRow : undefined}
+              onMouseEnter={
+                isAboveUser ? () => setIsAboveRowActive(true) : undefined
+              }
+              onMouseLeave={
+                isAboveUser ? () => setIsAboveRowActive(false) : undefined
+              }
+              role={isAboveUser ? "button" : undefined}
+              tabIndex={isAboveUser ? 0 : undefined}
+              onKeyDown={
+                isAboveUser
+                  ? (event) => {
+                      if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault();
+                        toggleAboveRow();
+                      }
+                    }
+                  : undefined
+              }
+              aria-expanded={isAboveUser ? isAboveRowActive : undefined}
             >
-              VE
+              <span className={styles.supportingRank}>#{entry.rank}</span>
+
+              <span className={styles.supportingAvatar}>
+                {entry.initials}
+              </span>
+
+              <span className={styles.supportingName}>{entry.name}</span>
+
+              {isAboveUser && isAboveRowActive && (
+                <motion.span
+                  className={styles.supportingGap}
+                  initial={
+                    reduceMotion ? { opacity: 0 } : { opacity: 0, y: 3 }
+                  }
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.16, ease: "easeOut" }}
+                >
+                  {gapAboveUser.toLocaleString()} VE ahead
+                </motion.span>
+              )}
+
+              <span className={styles.supportingScore}>
+                {entry.score} VE
+              </span>
             </motion.div>
-          </div>
-        </motion.div>
+          );
+        })}
+      </motion.div>
+
+      {/* ---------- Progress toward goal ---------- */}
+      <motion.div className={styles.progressSection} variants={fadeUpVariants}>
+        <div className={styles.progressHeaderRow}>
+          <span>You are in the top 15% this week!</span>
+          <strong>
+            {currentUser.score} / {GOAL_VE.toLocaleString()}
+          </strong>
+        </div>
+
+        <div className={styles.progressTrack}>
+          <motion.div
+            className={styles.progressFill}
+            initial={{ width: 0 }}
+            whileInView={{ width: `${progressPct}%` }}
+            viewport={{ once: true, amount: 0.6 }}
+            transition={{ duration: 0.9, delay: 0.35, ease: "easeOut" }}
+          />
+        </div>
       </motion.div>
     </motion.div>
   );

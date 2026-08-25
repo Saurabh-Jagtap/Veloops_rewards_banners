@@ -371,69 +371,82 @@
 
   overflow: hidden;
 
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(217, 169, 58, 0.28);
   border-radius: 16px;
 
   background:
-    radial-gradient(circle at 46% 0%,
-      rgba(226, 168, 51, 0.07),
+    radial-gradient(circle at 78% 6%,
+      rgba(226, 168, 51, 0.10),
+      transparent 34%),
+    radial-gradient(circle at 12% 100%,
+      rgba(217, 169, 58, 0.05),
       transparent 30%),
-    radial-gradient(circle at 85% 90%,
-      rgba(55, 76, 135, 0.09),
-      transparent 32%),
-    linear-gradient(135deg,
-      rgba(17, 19, 27, 0.98),
-      rgba(12, 15, 23, 0.99));
+    linear-gradient(160deg,
+      #100d08 0%,
+      #0c0a07 55%,
+      #0a0806 100%);
 
   box-shadow:
-    0 22px 50px rgba(0, 0, 0, 0.24),
+    0 22px 50px rgba(0, 0, 0, 0.32),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 
 /* =========================================================
-   VISUAL HEADER
+   AMBIENT BACKGROUND
+   ========================================================= */
+
+.visualGoldGlow {
+  position: absolute;
+
+  top: -18%;
+  right: -10%;
+
+  width: 60%;
+  height: 60%;
+
+  border-radius: 50%;
+
+  background: radial-gradient(circle,
+      rgba(217, 169, 58, 0.16),
+      transparent 70%);
+
+  filter: blur(20px);
+
+  pointer-events: none;
+  z-index: 0;
+}
+
+.risingPath {
+  position: absolute;
+
+  top: 8px;
+  right: 4%;
+
+  width: 46%;
+  height: 58%;
+
+  opacity: 0.8;
+  pointer-events: none;
+  z-index: 1;
+}
+
+
+/* =========================================================
+   HEADER
    ========================================================= */
 
 .visualHeader {
+  position: relative;
+  z-index: 2;
+
   flex: 0 0 auto;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  padding: 14px 18px 12px;
-
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.visualTitleGroup {
-  display: flex;
-  align-items: center;
-
-  gap: 10px;
-}
-
-.calendarIcon {
-  width: 26px;
-  height: 26px;
-
-  flex: 0 0 auto;
-
-  display: grid;
-  place-items: center;
-
-  border-radius: 8px;
-
-  background:
-    linear-gradient(145deg,
-      #3a5ecf,
-      #223a86);
-
-  color: #ffffff;
-
-  box-shadow:
-    0 0 12px rgba(61, 99, 220, 0.35);
+  padding: 14px 18px 0;
 }
 
 .visualTitle {
@@ -454,492 +467,396 @@
 
   gap: 5px;
 
-  color: rgba(178, 183, 198, 0.75);
+  padding: 4px 9px;
 
-  font-size: 0.66rem;
-}
+  border: 1px solid rgba(217, 169, 58, 0.3);
+  border-radius: 999px;
 
+  color: rgba(243, 204, 110, 0.92);
 
-/* =========================================================
-   COLUMN HEADER
-   ========================================================= */
-
-.columnHeader {
-  flex: 0 0 auto;
-
-  display: grid;
-  grid-template-columns: 40px minmax(0, 1fr) 108px 64px;
-
-  align-items: center;
-
-  gap: 10px;
-
-  padding: 9px 18px;
-
-  color: rgba(150, 156, 176, 0.6);
-
-  font-family: var(--font-mono);
-  font-size: 0.52rem;
+  font-size: 0.62rem;
   font-weight: 600;
 
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.colChange {
-  text-align: right;
+  white-space: nowrap;
 }
 
 
 /* =========================================================
-   RANK LIST
+   TOP 3 PODIUM
    ========================================================= */
 
-.rankList {
+.podium {
+  position: relative;
+  z-index: 2;
+
   flex: 1 1 auto;
   min-height: 0;
 
   display: flex;
-  flex-direction: column;
-
-  gap: 6px;
-
-  padding: 8px 12px 0;
-
-  overflow: hidden;
-}
-
-.rankRow {
-  flex: 0 0 auto;
-
-  display: grid;
-  grid-template-columns: 40px minmax(0, 1fr) 108px 64px;
-
-  align-items: center;
+  align-items: flex-end;
+  justify-content: center;
 
   gap: 10px;
 
-  height: 44px;
-  min-height: 0;
-
-  padding: 0 8px;
-
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 10px;
-
-  background: rgba(20, 24, 35, 0.55);
-
-  transition:
-    border-color 200ms ease,
-    background 200ms ease,
-    box-shadow 200ms ease;
+  padding: 46px 18px 0;
 }
 
-.rankRow:hover {
-  border-color: rgba(255, 255, 255, 0.16);
+.podiumBlock {
+  position: relative;
 
-  background: rgba(255, 255, 255, 0.045);
-}
-
-.rankRowInteractive {
-  cursor: pointer;
-}
-
-.rankRowInteractive:focus-visible {
-  outline: 2px solid rgba(243, 204, 110, 0.7);
-  outline-offset: 2px;
-}
-
-.rankRowSelected {
-  border-color: rgba(243, 204, 110, 0.62);
-
-  background:
-    linear-gradient(90deg,
-      rgba(120, 92, 20, 0.22),
-      rgba(30, 25, 15, 0.32));
-
-  box-shadow:
-    0 0 18px rgba(243, 204, 110, 0.1),
-    inset 0 0 0 1px rgba(243, 204, 110, 0.04);
-}
-
-.rankUserInfo {
-  min-width: 0;
+  flex: 1 1 0;
+  max-width: 128px;
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 2px;
+  align-items: center;
 
-  overflow: hidden;
+  padding-top: 14px;
+
+  border-radius: 10px 10px 4px 4px;
+
+  box-shadow:
+    0 14px 22px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
 }
 
-.rankDetail {
-  display: block;
+.podiumBlock::before {
+  content: "";
 
-  min-width: 0;
-  max-width: 100%;
+  position: absolute;
+  inset: 0;
 
-  color: rgba(243, 204, 110, 0.82);
+  border-radius: inherit;
+
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.14),
+      transparent 40%);
+
+  pointer-events: none;
+}
+
+.podiumBadge {
+  position: absolute;
+  top: 0;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  display: grid;
+  place-items: center;
+
+  width: 30px;
+  height: 30px;
+
+  border-radius: 50%;
+  border: 2px solid rgba(10, 8, 6, 0.85);
 
   font-family: var(--font-mono);
-  font-size: 0.46rem;
-  font-weight: 600;
+  font-size: 0.7rem;
+  font-weight: 800;
 
-  line-height: 1.15;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.45);
+
+  z-index: 2;
+}
+
+.podiumSlab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 2px;
+
+  padding: 4px 8px 12px;
+
+  text-align: center;
+}
+
+.podiumSlab strong {
+  color: #fff;
+
+  font-size: 0.74rem;
+  font-weight: 700;
 
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  max-width: 100%;
 }
 
-.rankRowFirst {
-  border-color: rgba(243, 204, 110, 0.55);
-
-  background:
-    linear-gradient(90deg,
-      rgba(120, 92, 20, 0.28),
-      rgba(30, 25, 15, 0.35));
-
-  box-shadow:
-    0 0 18px rgba(243, 204, 110, 0.08);
-}
-
-.rankRowFirst:hover {
-  border-color: rgba(243, 204, 110, 0.8);
-
-  box-shadow:
-    0 0 24px rgba(243, 204, 110, 0.16);
-}
-
-.rankRowMe {
-  border-color: rgba(110, 150, 255, 0.55);
-
-  background:
-    linear-gradient(90deg,
-      rgba(46, 74, 158, 0.32),
-      rgba(20, 27, 48, 0.4));
-
-  box-shadow:
-    0 0 18px rgba(93, 137, 255, 0.1);
-}
-
-.rankRowMe:hover {
-  border-color: rgba(110, 150, 255, 0.85);
-
-  box-shadow:
-    0 0 24px rgba(93, 137, 255, 0.2);
-}
-
-.rankBadge {
-  width: 26px;
-  height: 26px;
-
-  display: grid;
-  place-items: center;
-
-  border-radius: 50%;
-
+.podiumSlab span {
   font-family: var(--font-mono);
-  font-size: 0.62rem;
-  font-weight: 700;
+  font-size: 0.66rem;
+  font-weight: 600;
 
-  transition: transform 200ms ease;
+  white-space: nowrap;
 }
 
-.rankRow:hover .rankBadge {
-  transform: scale(1.08);
-}
 
-.rankBadgeGold {
-  background:
-    linear-gradient(150deg,
-      #f6d375,
-      #d79a2b);
+/* ---- Gold (#1) ---- */
 
-  color: #3c2a05;
+.podiumBlockGold {
+  height: 128px;
+
+  background: linear-gradient(180deg, #ffd873 0%, #e2a93a 55%, #c1862a 100%);
 
   box-shadow:
-    0 0 10px rgba(243, 204, 110, 0.4);
+    0 16px 30px rgba(198, 143, 30, 0.35),
+    0 0 30px rgba(255, 200, 90, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+
+  z-index: 2;
 }
 
-.rankBadgeSilver {
-  background:
-    linear-gradient(150deg,
-      #e4e8f0,
-      #a3aebd);
+.podiumBlockGold .podiumBadge {
+  background: linear-gradient(150deg, #3a2a0c, #17110a);
+  color: #ffd873;
+}
 
+.podiumBlockGold .podiumSlab span {
+  color: #3d2a06;
+}
+
+.podiumTrophy {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  color: #ffd873;
+
+  filter: drop-shadow(0 0 10px rgba(255, 210, 110, 0.55));
+
+  z-index: 2;
+}
+
+
+/* ---- Silver (#2) ---- */
+
+.podiumBlockSilver {
+  height: 92px;
+
+  background: linear-gradient(180deg, #7c8598 0%, #454b5c 55%, #2c3140 100%);
+}
+
+.podiumBlockSilver .podiumBadge {
+  background: linear-gradient(150deg, #e6eaf2, #9aa3b5);
   color: #262b34;
 }
 
-.rankBadgeBronze {
-  background:
-    linear-gradient(150deg,
-      #d99a63,
-      #a85f2f);
+.podiumBlockSilver .podiumSlab span {
+  color: rgba(210, 216, 230, 0.85);
+}
 
+
+/* ---- Bronze (#3) ---- */
+
+.podiumBlockBronze {
+  height: 92px;
+
+  background: linear-gradient(180deg, #d99a63 0%, #a85f2f 55%, #7a4520 100%);
+}
+
+.podiumBlockBronze .podiumBadge {
+  background: linear-gradient(150deg, #e7ab72, #a85f2f);
   color: #2c1707;
 }
 
-.rankBadgeMe {
-  background:
-    linear-gradient(150deg,
-      #4f74e0,
-      #2b3f8f);
-
-  color: #ffffff;
+.podiumBlockBronze .podiumSlab span {
+  color: rgba(255, 224, 197, 0.82);
 }
 
-.rankUser {
+
+/* =========================================================
+   SUPPORTING ROWS (#4 / #5 You / #6)
+   ========================================================= */
+
+.supportingRows {
+  position: relative;
+  z-index: 2;
+
+  flex: 0 0 auto;
+
+  display: flex;
+
+  gap: 8px;
+
+  padding: 12px 14px 0;
+}
+
+.supportingRow {
+  position: relative;
+
+  flex: 1 1 0;
+  min-width: 0;
+
   display: flex;
   align-items: center;
 
-  gap: 9px;
+  gap: 6px;
 
-  min-width: 0;
+  height: 38px;
+
+  padding: 0 9px;
+
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 9px;
+
+  background: rgba(255, 255, 255, 0.03);
+
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease;
 }
 
-.rankAvatar {
-  width: 26px;
-  height: 26px;
+.supportingRowMe {
+  border-color: rgba(217, 169, 58, 0.55);
 
+  background: rgba(217, 169, 58, 0.1);
+
+  box-shadow: 0 0 16px rgba(217, 169, 58, 0.1);
+}
+
+.supportingRowInteractive {
+  cursor: pointer;
+}
+
+.supportingRowInteractive:hover,
+.supportingRowActive {
+  border-color: rgba(255, 255, 255, 0.18);
+
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.supportingRowInteractive:focus-visible {
+  outline: 2px solid rgba(243, 204, 110, 0.6);
+  outline-offset: 2px;
+}
+
+.supportingRank {
+  flex: 0 0 auto;
+
+  color: rgba(255, 255, 255, 0.4);
+
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  font-weight: 600;
+}
+
+.supportingAvatar {
   flex: 0 0 auto;
 
   display: grid;
   place-items: center;
 
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  width: 19px;
+  height: 19px;
+
   border-radius: 50%;
 
-  background:
-    linear-gradient(150deg,
-      #4a5578,
-      #22283a);
+  background: linear-gradient(150deg, #4a5578, #22283a);
 
   color: #eef1fb;
 
   font-family: var(--font-mono);
-  font-size: 0.46rem;
+  font-size: 0.42rem;
   font-weight: 700;
-
-  transition: transform 200ms ease;
 }
 
-.rankRow:hover .rankAvatar {
-  transform: scale(1.06);
+.supportingRowMe .supportingAvatar {
+  background: linear-gradient(150deg, #f6d375, #d79a2b);
+  color: #4a340a;
 }
 
-.rankRowMe .rankAvatar {
-  border-color: rgba(122, 160, 255, 0.5);
-
-  background:
-    linear-gradient(150deg,
-      #3f5cc4,
-      #1e2c66);
-}
-
-.rankName {
+.supportingName {
   min-width: 0;
-
-  display: flex;
-  align-items: center;
-
-  gap: 5px;
+  flex: 1 1 auto;
 
   overflow: hidden;
 
   color: #f1f2f6;
 
-  font-size: 0.7rem;
+  font-size: 0.66rem;
   font-weight: 700;
 
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 
-.crownIcon {
+.supportingGap {
   flex: 0 0 auto;
 
-  color: #f3c85e;
-}
+  color: #6fe3a1;
 
-.rankEarned {
-  display: flex;
-  align-items: center;
-
-  gap: 6px;
-
-  color: #eef0f6;
-
-  font-size: 0.68rem;
+  font-family: var(--font-mono);
+  font-size: 0.52rem;
   font-weight: 700;
 
   white-space: nowrap;
 }
 
-.veIcon {
+.supportingScore {
   flex: 0 0 auto;
 
-  width: 17px;
-  height: 17px;
-
-  display: grid;
-  place-items: center;
-
-  border-radius: 50%;
-
-  background:
-    linear-gradient(150deg,
-      #f6d375,
-      #d79a2b);
-
-  color: #4a340a;
+  color: #eef0f6;
 
   font-family: var(--font-mono);
-  font-size: 0.38rem;
-  font-weight: 800;
-}
-
-.rankChange {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-
-  gap: 2px;
-
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.6rem;
   font-weight: 700;
-}
 
-.rankChangeUp {
-  color: #6fe3a1;
-}
-
-.rankChangeDown {
-  color: #f0685f;
-}
-
-.rankEllipsis {
-  flex: 0 0 auto;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  gap: 3px;
-
-  height: 12px;
-}
-
-.rankEllipsis span {
-  width: 3px;
-  height: 3px;
-
-  border-radius: 50%;
-
-  background: rgba(255, 255, 255, 0.22);
+  white-space: nowrap;
 }
 
 
 /* =========================================================
-   BOTTOM PANELS
+   PROGRESS TOWARD GOAL
    ========================================================= */
 
-.bottomPanels {
+.progressSection {
+  position: relative;
+  z-index: 2;
+
   flex: 0 0 auto;
 
-  display: grid;
-  grid-template-columns: 1.55fr 1fr;
+  padding: 12px 16px 14px;
+}
+
+.progressHeaderRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
 
   gap: 10px;
 
-  padding: 10px 12px 12px;
+  margin-bottom: 7px;
 }
 
-.nextRankPanel,
-.rewardPanel {
-  min-width: 0;
+.progressHeaderRow span {
+  color: rgba(255, 255, 255, 0.68);
 
-  padding: 11px 13px;
+  font-size: 0.64rem;
 
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 11px;
-
-  background: rgba(15, 18, 27, 0.6);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.nextRankPanel {
-  display: flex;
-  flex-direction: column;
-}
-
-.nextRankTop {
-  display: flex;
-  align-items: center;
-
-  gap: 10px;
-}
-
-.nextRankIcon {
+.progressHeaderRow strong {
   flex: 0 0 auto;
 
-  width: 32px;
-  height: 32px;
+  color: #fff;
 
-  display: grid;
-  place-items: center;
-
-  clip-path:
-    polygon(25% 3%,
-      75% 3%,
-      100% 50%,
-      75% 97%,
-      25% 97%,
-      0% 50%);
-
-  background:
-    linear-gradient(150deg,
-      #8f7dff,
-      #4c5edb);
-
-  color: #ffffff;
-
-  box-shadow:
-    0 0 12px rgba(120, 110, 240, 0.35);
-}
-
-.nextRankText strong {
-  display: block;
-
-  color: #eef0f6;
-
-  font-size: 0.68rem;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
   font-weight: 700;
 }
 
-.nextRankText strong em {
-  color: #f0a34e;
-  font-style: normal;
-}
-
-.nextRankText span {
-  display: block;
-
-  margin-top: 2px;
-
-  color: rgba(178, 183, 198, 0.62);
-
-  font-size: 0.6rem;
-}
-
-.nextRankTrack {
+.progressTrack {
   width: 100%;
-  height: 5px;
-
-  margin-top: 9px;
+  height: 6px;
 
   overflow: hidden;
 
@@ -948,123 +865,16 @@
   background: rgba(255, 255, 255, 0.08);
 }
 
-.nextRankFill {
+.progressFill {
   height: 100%;
 
   border-radius: inherit;
 
-  background:
-    linear-gradient(90deg,
-      #4f74e0,
-      #6f93f5);
+  background: linear-gradient(90deg, #d9a93a, #ffd873);
 
-  box-shadow:
-    0 0 8px rgba(95, 133, 235, 0.4);
+  box-shadow: 0 0 10px rgba(243, 204, 110, 0.45);
 }
 
-.nextRankNumbers {
-  margin-top: 7px;
-
-  color: rgba(201, 204, 216, 0.7);
-
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-}
-
-.nextRankNumbers strong {
-  color: #7ea3ef;
-  font-weight: 700;
-}
-
-.rewardPanel {
-  position: relative;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  overflow: hidden;
-}
-
-.rewardAmount {
-  color: #f3d798;
-
-  font-family: var(--font-mono);
-  font-size: 0.92rem;
-  font-weight: 700;
-}
-
-.rewardLabel {
-  margin-top: 2px;
-
-  color: rgba(178, 183, 198, 0.62);
-
-  font-size: 0.58rem;
-}
-
-.rewardCoins {
-  position: absolute;
-
-  right: 8px;
-  bottom: 6px;
-
-  width: 42px;
-  height: 34px;
-
-  pointer-events: none;
-}
-
-.rewardCoin {
-  position: absolute;
-
-  display: grid;
-  place-items: center;
-
-  border-radius: 50%;
-
-  font-family: var(--font-mono);
-  font-weight: 800;
-
-  box-shadow:
-    0 6px 14px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
-
-  background:
-    radial-gradient(circle at 32% 28%,
-      #ffe9a3,
-      #f3cf72 45%,
-      #c68e2d 100%);
-
-  border: 1px solid rgba(255, 231, 155, 0.75);
-
-  color: #7a4e0e;
-}
-
-.rewardCoinBack {
-  width: 22px;
-  height: 22px;
-
-  left: 0;
-  bottom: 0;
-
-  font-size: 0.32rem;
-
-  transform: rotate(-8deg);
-
-  opacity: 0.85;
-}
-
-.rewardCoinFront {
-  width: 30px;
-  height: 30px;
-
-  right: 0;
-  top: 0;
-
-  font-size: 0.4rem;
-
-  transform: rotate(9deg);
-}
 
 /* =========================================================
    RESPONSIVE
@@ -1126,21 +936,21 @@
     height: 350px;
   }
 
-  .columnHeader,
-  .rankRow {
-    grid-template-columns:
-      34px minmax(0, 1fr) 92px 52px;
-
-    gap: 8px;
+  .podium {
+    padding-top: 42px;
   }
 
-  .rankRow {
-    height: 42px;
+  .podiumBlockGold {
+    height: 116px;
   }
 
-  .bottomPanels {
-    grid-template-columns:
-      1.45fr 1fr;
+  .podiumBlockSilver,
+  .podiumBlockBronze {
+    height: 84px;
+  }
+
+  .supportingName {
+    font-size: 0.62rem;
   }
 }
 
@@ -1262,68 +1072,67 @@
 
   .visualHeader {
     padding:
-      12px 15px 10px;
+      12px 15px 0;
   }
 
-  .columnHeader {
-    grid-template-columns:
-      32px minmax(0, 1fr) 82px 46px;
-
-    gap: 7px;
-
-    padding:
-      8px 14px;
+  .visualTitle {
+    font-size: 0.72rem;
   }
 
-  .rankList {
-    gap: 5px;
+  .podium {
+    padding: 40px 12px 0;
 
-    padding:
-      7px 9px 0;
+    gap: 8px;
   }
 
-  .rankRow {
-    grid-template-columns:
-      32px minmax(0, 1fr) 82px 46px;
+  .podiumBlockGold {
+    height: 104px;
+  }
 
-    gap: 7px;
+  .podiumBlockSilver,
+  .podiumBlockBronze {
+    height: 76px;
+  }
 
-    height: 40px;
+  .podiumBadge {
+    width: 26px;
+    height: 26px;
+
+    font-size: 0.62rem;
+  }
+
+  .podiumSlab strong {
+    font-size: 0.68rem;
+  }
+
+  .podiumSlab span {
+    font-size: 0.6rem;
+  }
+
+  .supportingRows {
+    padding: 10px 12px 0;
+  }
+
+  .supportingRow {
+    height: 36px;
 
     padding: 0 7px;
   }
 
-  .rankBadge,
-  .rankAvatar {
-    width: 24px;
-    height: 24px;
+  .supportingRank {
+    display: none;
   }
 
-  .rankName {
-    font-size: 0.65rem;
-  }
-
-  .rankEarned {
-    gap: 4px;
-
-    font-size: 0.61rem;
-  }
-
-  .rankChange {
+  .supportingName {
     font-size: 0.6rem;
   }
 
-  .bottomPanels {
-    gap: 8px;
-
-    padding:
-      8px 9px 9px;
+  .supportingScore {
+    font-size: 0.56rem;
   }
 
-  .nextRankPanel,
-  .rewardPanel {
-    padding:
-      9px 10px;
+  .progressSection {
+    padding: 10px 14px 12px;
   }
 }
 
@@ -1413,14 +1222,9 @@
   .visual {
     width: 100%;
 
-    height: 370px;
+    height: 400px;
 
     flex-shrink: 0;
-  }
-
-  .bottomPanels {
-    grid-template-columns:
-      1.4fr 1fr;
   }
 }
 
@@ -1563,30 +1367,14 @@
   .visual {
     height: auto;
 
-    min-height: 390px;
+    min-height: 480px;
 
     border-radius: 13px;
   }
 
   .visualHeader {
     padding:
-      11px 13px 9px;
-  }
-
-  .visualTitleGroup {
-    gap: 7px;
-  }
-
-  .calendarIcon {
-    width: 23px;
-    height: 23px;
-
-    border-radius: 7px;
-  }
-
-  .calendarIcon svg {
-    width: 12px;
-    height: 12px;
+      11px 13px 0;
   }
 
   .visualTitle {
@@ -1596,159 +1384,97 @@
   .timer {
     gap: 4px;
 
+    padding: 3px 7px;
+
     font-size: 0.52rem;
 
     white-space: nowrap;
   }
 
-  .timer svg {
-    width: 11px;
-    height: 11px;
-  }
-
 
   /* -------------------------
-     LEADERBOARD COLUMNS
+     PODIUM
      ------------------------- */
 
-  .columnHeader {
-    display: none;
+  .podium {
+    padding: 34px 10px 0;
+
+    gap: 6px;
   }
 
-  .rankList {
-    gap: 5px;
-
-    padding:
-      8px 8px 0;
+  .podiumBlockGold {
+    height: 92px;
   }
 
-  .rankRow {
-    grid-template-columns:
-      30px minmax(0, 1fr) auto;
-
-    gap: 7px;
-
-    height: auto;
-
-    min-height: 42px;
-
-    padding:
-      6px 7px;
+  .podiumBlockSilver,
+  .podiumBlockBronze {
+    height: 68px;
   }
 
-  .rankChange,
-  .colChange {
-    display: none;
-  }
-
-  .rankBadge {
-    width: 23px;
-    height: 23px;
-
-    font-size: 0.55rem;
-  }
-
-  .rankUser {
-    gap: 7px;
-  }
-
-  .rankAvatar {
-    width: 23px;
-    height: 23px;
-  }
-
-  .rankName {
-    font-size: 0.63rem;
-  }
-
-  .rankEarned {
-    gap: 4px;
+  .podiumBadge {
+    width: 24px;
+    height: 24px;
 
     font-size: 0.58rem;
   }
 
-  .veIcon {
-    width: 15px;
-    height: 15px;
-
-    font-size: 0.33rem;
+  .podiumTrophy {
+    top: -30px;
   }
 
-  .rankUserInfo {
-    min-width: 0;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 2px;
-
-    overflow: hidden;
+  .podiumTrophy svg {
+    width: 17px;
+    height: 17px;
   }
 
-  /* -------------------------
-     BOTTOM PANELS
-     ------------------------- */
-
-  .bottomPanels {
-    grid-template-columns: 1fr;
-
-    gap: 7px;
-
-    padding:
-      8px 8px 8px;
-  }
-
-  .nextRankPanel,
-  .rewardPanel {
-    padding:
-      9px 10px;
-  }
-
-  .nextRankIcon {
-    width: 28px;
-    height: 28px;
-  }
-
-  .nextRankText strong {
+  .podiumSlab strong {
     font-size: 0.62rem;
   }
 
-  .nextRankText span {
-    font-size: 0.54rem;
-  }
-
-  .nextRankTrack {
-    height: 4px;
-
-    margin-top: 7px;
-  }
-
-  .nextRankNumbers {
-    margin-top: 5px;
-
+  .podiumSlab span {
     font-size: 0.55rem;
   }
 
-  .rewardPanel {
-    min-height: 58px;
 
-    padding-right: 58px;
+  /* -------------------------
+     SUPPORTING ROWS
+     ------------------------- */
+
+  .supportingRows {
+    flex-direction: column;
+
+    gap: 6px;
+
+    padding: 10px 12px 0;
   }
 
-  .rewardAmount {
-    font-size: 0.82rem;
+  .supportingRow {
+    height: 36px;
   }
 
-  .rewardLabel {
-    font-size: 0.52rem;
+  .supportingName {
+    font-size: 0.64rem;
   }
 
-  .rewardCoins {
-    right: 8px;
-    bottom: 8px;
+  .supportingScore {
+    font-size: 0.6rem;
+  }
 
-    transform: scale(0.8);
-    transform-origin: bottom right;
+
+  /* -------------------------
+     PROGRESS
+     ------------------------- */
+
+  .progressSection {
+    padding: 10px 13px 12px;
+  }
+
+  .progressHeaderRow span {
+    font-size: 0.6rem;
+  }
+
+  .progressHeaderRow strong {
+    font-size: 0.6rem;
   }
 }
 
@@ -1850,17 +1576,12 @@
      ------------------------- */
 
   .visual {
-    min-height: 375px;
+    min-height: 460px;
   }
 
   .visualHeader {
     padding:
-      10px 11px 8px;
-  }
-
-  .calendarIcon {
-    width: 21px;
-    height: 21px;
+      10px 11px 0;
   }
 
   .visualTitle {
@@ -1871,63 +1592,67 @@
     font-size: 0.47rem;
   }
 
-  .rankList {
-    padding:
-      7px 7px 0;
+  .podium {
+    padding: 30px 8px 0;
   }
 
-  .rankRow {
-    grid-template-columns:
-      27px minmax(0, 1fr) auto;
-
-    min-height: 40px;
-
-    gap: 6px;
-
-    padding:
-      5px 6px;
+  .podiumBlockGold {
+    height: 84px;
   }
 
-  .rankBadge {
-    width: 21px;
-    height: 21px;
-
-    font-size: 0.51rem;
+  .podiumBlockSilver,
+  .podiumBlockBronze {
+    height: 62px;
   }
 
-  .rankAvatar {
-    width: 21px;
-    height: 21px;
+  .podiumBadge {
+    width: 22px;
+    height: 22px;
+
+    font-size: 0.55rem;
   }
 
-  .rankName {
-    font-size: 0.59rem;
+  .podiumTrophy {
+    top: -27px;
   }
 
-  .rankEarned {
-    font-size: 0.54rem;
+  .podiumTrophy svg {
+    width: 15px;
+    height: 15px;
   }
 
-  .rankDetail {
-    max-width: 92px;
+  .podiumSlab strong {
+    font-size: 0.58rem;
   }
 
-  .veIcon {
-    width: 14px;
-    height: 14px;
-
-    font-size: 0.3rem;
+  .podiumSlab span {
+    font-size: 0.52rem;
   }
 
-  .bottomPanels {
-    padding:
-      7px;
+  .supportingRows {
+    padding: 8px 10px 0;
   }
 
-  .nextRankPanel,
-  .rewardPanel {
-    padding:
-      8px 9px;
+  .supportingRow {
+    height: 34px;
+
+    padding: 0 8px;
+  }
+
+  .supportingName {
+    font-size: 0.6rem;
+  }
+
+  .supportingScore {
+    font-size: 0.56rem;
+  }
+
+  .supportingGap {
+    font-size: 0.48rem;
+  }
+
+  .progressSection {
+    padding: 9px 11px 10px;
   }
 }
 
@@ -1998,19 +1723,19 @@
   }
 
   .visual {
-    min-height: 360px;
+    min-height: 440px;
   }
 
   .timer span {
     display: none;
   }
 
-  .rankEarned {
-    font-size: 0.51rem;
+  .podiumSlab strong {
+    font-size: 0.55rem;
   }
 
-  .rewardPanel {
-    min-height: 54px;
+  .supportingScore {
+    font-size: 0.53rem;
   }
 }
 
@@ -2025,14 +1750,7 @@
     transition: none;
   }
 
-  .rankRow,
-  .rankBadge,
-  .rankAvatar {
+  .supportingRow {
     transition: none;
-  }
-
-  .rankRow:hover .rankBadge,
-  .rankRow:hover .rankAvatar {
-    transform: none;
   }
 }
