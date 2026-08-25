@@ -7,7 +7,7 @@ import {
 import { AnimatePresence, motion, type Variants } from "framer-motion";
 import styles from "./ContactBanner.module.css";
 import { useState } from "react";
-import SupportAgentIllustration from "./SupportAgentIllustration";
+import Headset from "./Headset";
 
 const topics = [
   {
@@ -406,9 +406,7 @@ const ContactVisual = () => {
       ease: "easeInOut",
     }}
   >
-    <SupportAgentIllustration
-      className={styles.supportAgentSvg}
-    />
+    <Headset size={280} /> 
   </motion.div>
 </div>
     </div>

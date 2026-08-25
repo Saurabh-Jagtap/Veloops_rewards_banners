@@ -1,0 +1,1233 @@
+.visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    width: 100%;
+    min-width: 0;
+    min-height: 290px;
+    padding-left: 0;
+}
+
+/* ========================================
+   MAIN DAILY STREAK CARD
+======================================== */
+
+.card {
+    position: relative;
+    isolation: isolate;
+
+    display: flex;
+    flex-direction: column;
+
+    width: min(100%, 650px);
+    height: 250px;
+    min-height: 250px;
+
+    box-sizing: border-box;
+
+    transform: translateX(-10px);
+
+    overflow: hidden;
+
+    padding: 20px 18px 18px;
+
+    border: 1px solid rgba(211, 164, 73, 0.43);
+    border-radius: 12px;
+
+    color: #f5f0e7;
+
+    background:
+        radial-gradient(70% 120% at 72% 100%,
+            rgba(119, 72, 25, 0.2),
+            transparent 72%),
+        radial-gradient(55% 90% at 7% 0%,
+            rgba(113, 70, 20, 0.13),
+            transparent 75%),
+        linear-gradient(145deg,
+            #1c1711 0%,
+            #14110d 55%,
+            #100d0a 100%);
+
+    box-shadow:
+        0 17px 35px rgba(7, 5, 2, 0.52),
+        inset 0 1px rgba(255, 241, 193, 0.1),
+        0 0 23px rgba(183, 123, 32, 0.08);
+
+    font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+.card::before {
+    position: absolute;
+    z-index: -1;
+
+    width: 330px;
+    height: 125px;
+
+    right: -80px;
+    bottom: -79px;
+
+    border: 1px solid rgba(218, 163, 62, 0.13);
+    border-radius: 50%;
+
+    content: "";
+
+    transform: rotate(-12deg);
+
+    box-shadow:
+        0 0 22px rgba(185, 123, 31, 0.09);
+}
+
+/* ========================================
+   HEADER
+======================================== */
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    min-height: 42px;
+}
+
+.headerIdentity {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.flameBadge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 auto;
+
+    width: 32px;
+    height: 32px;
+
+    border: 1px solid rgba(222, 170, 68, 0.52);
+    border-radius: 50%;
+
+    color: #f6bd4d;
+
+    background:
+        radial-gradient(circle at 35% 25%,
+            rgba(132, 91, 30, 0.6),
+            rgba(43, 30, 14, 0.88));
+
+    box-shadow:
+        0 0 13px rgba(225, 164, 44, 0.18),
+        inset 0 1px rgba(255, 224, 132, 0.2);
+}
+
+.flameIcon {
+    width: 15px;
+    height: 15px;
+}
+
+.header h1 {
+    margin: 0;
+
+    color: #f8f1e6;
+
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.15;
+
+    letter-spacing: -0.01em;
+}
+
+.header p {
+    margin: 3px 0 0;
+
+    color: #9e9588;
+
+    font-size: 8px;
+    line-height: 1;
+}
+
+.boost {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    gap: 1px;
+
+    padding-right: 2px;
+}
+
+.boost span {
+    color: #a59a8a;
+    font-size: 7px;
+}
+
+.boost strong {
+    color: #f2bf48;
+
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1;
+
+    text-shadow:
+        0 0 9px rgba(242, 191, 72, 0.2);
+}
+
+/* ========================================
+   DIVIDER
+======================================== */
+
+.divider {
+    height: 1px;
+
+    margin: 9px 0 10px;
+
+    background:
+        linear-gradient(90deg,
+            rgba(198, 148, 55, 0.2),
+            rgba(198, 148, 55, 0.08),
+            transparent);
+}
+
+/* ========================================
+   TIMELINE
+======================================== */
+
+.timeline {
+    position: relative;
+
+    flex: 1;
+
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    min-width: 0;
+
+    padding: 4px 2px 0;
+}
+
+.track {
+    position: absolute;
+
+    top: 51px;
+    left: 7%;
+    right: 7%;
+
+    height: 2px;
+
+    overflow: visible;
+
+    border-radius: 999px;
+
+    background: rgba(60, 48, 32, 0.9);
+
+    box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.48);
+}
+
+.trackCompleted {
+    width: 87%;
+    height: 100%;
+
+    border-radius: inherit;
+
+    background: linear-gradient(90deg,
+            #b77c1a,
+            #f4bd3e);
+
+    box-shadow:
+        0 0 7px rgba(242, 180, 50, 0.5);
+
+    transform-origin: left center;
+
+    animation:
+        streakProgress 900ms cubic-bezier(.22, .7, .28, 1) 350ms both;
+}
+
+@keyframes streakProgress {
+    from {
+        transform: scaleX(0);
+    }
+
+    to {
+        transform: scaleX(1);
+    }
+}
+
+.trackClaimed {
+    width: 100%;
+}
+
+.dayGrid {
+    position: relative;
+
+    width: 100%;
+    min-width: 0;
+
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+
+    align-items: start;
+}
+
+.day {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 8px;
+
+    min-width: 0;
+
+    animation:
+        dayReveal 420ms cubic-bezier(.22, .7, .28, 1) both;
+}
+
+.day:nth-child(1) {
+    animation-delay: 450ms;
+}
+
+.day:nth-child(2) {
+    animation-delay: 500ms;
+}
+
+.day:nth-child(3) {
+    animation-delay: 550ms;
+}
+
+.day:nth-child(4) {
+    animation-delay: 600ms;
+}
+
+.day:nth-child(5) {
+    animation-delay: 650ms;
+}
+
+.day:nth-child(6) {
+    animation-delay: 700ms;
+}
+
+.day:nth-child(7) {
+    animation-delay: 760ms;
+}
+
+@keyframes dayReveal {
+    from {
+        opacity: 0;
+        transform: translateY(5px) scale(0.94);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.dayLabel {
+    color: #aaa092;
+
+    font-family:
+        ui-monospace,
+        SFMono-Regular,
+        Menlo,
+        monospace;
+
+    font-size: 8px;
+    font-weight: 500;
+    line-height: 1;
+}
+
+.todayLabel {
+    color: #e9c66c;
+    font-weight: 700;
+}
+
+/* ========================================
+   NODES
+======================================== */
+
+.node {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 22px;
+    height: 22px;
+
+    border-radius: 50%;
+}
+
+.completedNode {
+    color: #fff9e8;
+
+    background:
+        radial-gradient(circle at 32% 25%,
+            #ffe58b,
+            #e5a822 59%,
+            #986311 100%);
+
+    box-shadow:
+        0 0 8px rgba(238, 182, 50, 0.53),
+        inset 0 1px 2px rgba(255, 255, 255, 0.52),
+        inset 0 -2px 2px rgba(104, 61, 6, 0.2);
+
+    animation: completedNodeGlow 700ms ease-out both;
+}
+
+@keyframes completedNodeGlow {
+    0% {
+        box-shadow:
+            0 0 0 rgba(238, 182, 50, 0),
+            inset 0 1px 2px rgba(255, 255, 255, 0.52);
+    }
+
+    45% {
+        box-shadow:
+            0 0 16px rgba(238, 182, 50, 0.8),
+            inset 0 1px 2px rgba(255, 255, 255, 0.52);
+    }
+
+    100% {
+        box-shadow:
+            0 0 8px rgba(238, 182, 50, 0.53),
+            inset 0 1px 2px rgba(255, 255, 255, 0.52);
+    }
+}
+
+.day:nth-child(1) .completedNode {
+    animation-delay: 450ms;
+}
+
+.day:nth-child(2) .completedNode {
+    animation-delay: 500ms;
+}
+
+.day:nth-child(3) .completedNode {
+    animation-delay: 550ms;
+}
+
+.day:nth-child(4) .completedNode {
+    animation-delay: 600ms;
+}
+
+.day:nth-child(5) .completedNode {
+    animation-delay: 650ms;
+}
+
+.day:nth-child(6) .completedNode {
+    animation-delay: 700ms;
+}
+
+.checkIcon {
+    width: 12px;
+    height: 12px;
+}
+
+.todayNode {
+    width: 30px;
+    height: 30px;
+
+    margin-top: -4px;
+
+    border: 2px solid #f5bf3c;
+
+    color: #6d4311;
+
+    background:
+        radial-gradient(circle at 32% 25%,
+            #ffecad,
+            #eab034 58%,
+            #ab7114);
+
+    box-shadow:
+        0 0 0 4px rgba(231, 167, 32, 0.16),
+        0 0 19px rgba(239, 177, 40, 0.75),
+        inset 0 1px 3px rgba(255, 255, 255, 0.62);
+
+    cursor: pointer;
+
+    transition:
+        box-shadow 180ms ease,
+        transform 180ms ease,
+        background 300ms ease;
+
+    animation:
+        todayPulse 3.2s ease-in-out infinite;
+}
+
+.todayNode:hover,
+.todayNode:focus-visible {
+    outline: none;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 0 0 5px rgba(231, 167, 32, 0.2),
+        0 0 25px rgba(239, 177, 40, 0.9),
+        inset 0 1px 3px rgba(255, 255, 255, 0.62);
+}
+
+.todayNode:hover {
+    filter: brightness(1.06);
+}
+
+.todayNode:active {
+    transform: translateY(0) scale(0.97);
+}
+
+.todayNode:focus-visible {
+    outline: 2px solid #ffe38b;
+    outline-offset: 3px;
+}
+
+.todayNode:hover .giftIcon {
+    transform: scale(1.08) rotate(-3deg);
+}
+
+.giftIcon {
+    transition: transform 180ms ease;
+}
+
+@keyframes todayPulse {
+
+    0%,
+    100% {
+        box-shadow:
+            0 0 0 4px rgba(231, 167, 32, 0.14),
+            0 0 16px rgba(239, 177, 40, 0.52),
+            inset 0 1px 3px rgba(255, 255, 255, 0.62);
+    }
+
+    50% {
+        box-shadow:
+            0 0 0 5px rgba(231, 167, 32, 0.18),
+            0 0 21px rgba(239, 177, 40, 0.68),
+            inset 0 1px 3px rgba(255, 255, 255, 0.62);
+    }
+}
+
+.claimedNode {
+    color: #fff8dd;
+
+    background:
+        radial-gradient(circle at 32% 25%,
+            #fff0bd 0%,
+            #e8aa25 58%,
+            #a46c10 100%);
+}
+
+.giftIcon {
+    width: 15px;
+    height: 15px;
+}
+
+/* ========================================
+   GIFT ILLUSTRATION
+======================================== */
+
+.giftScene {
+    position: absolute;
+
+    right: -12px;
+    bottom: -100px;
+
+    width: 400px;
+    height: 400px;
+
+    z-index: 3;
+    pointer-events: none;
+
+    transform-origin: center bottom;
+
+    animation:
+        giftFloat 5s ease-in-out infinite;
+
+    transition:
+        filter 350ms ease,
+        transform 350ms cubic-bezier(.22, .7, .28, 1);
+}
+
+.giftImage {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    transform-origin: center bottom;
+
+    filter:
+        drop-shadow(0 10px 18px rgba(0, 0, 0, 0.25));
+
+    transition:
+        transform 350ms cubic-bezier(.22, .7, .28, 1),
+        filter 350ms ease;
+}
+
+.visual:hover .giftScene {
+    transform:
+        translate3d(0, -7px, 0) scale(1.015);
+
+    filter:
+        drop-shadow(0 0 18px rgba(246, 189, 61, 0.16));
+}
+
+.visual:hover .giftImage {
+    transform:
+        rotate(-1deg) scale(1.015);
+
+    filter:
+        drop-shadow(0 14px 24px rgba(0, 0, 0, 0.3)) drop-shadow(0 0 14px rgba(246, 189, 61, 0.12));
+}
+
+.giftClaimed {
+    animation:
+        giftClaimCelebration 850ms cubic-bezier(.22, .7, .28, 1) both;
+}
+
+@keyframes giftClaimCelebration {
+    0% {
+        transform:
+            translate3d(0, 0, 0) scale(1);
+        filter:
+            drop-shadow(0 10px 18px rgba(0, 0, 0, 0.25));
+    }
+
+    25% {
+        transform:
+            translate3d(0, -12px, 0) scale(1.035) rotate(-1deg);
+
+        filter:
+            drop-shadow(0 0 24px rgba(246, 189, 61, 0.38));
+    }
+
+    50% {
+        transform:
+            translate3d(0, -6px, 0) scale(1.02) rotate(1deg);
+
+        filter:
+            drop-shadow(0 0 32px rgba(246, 189, 61, 0.5));
+    }
+
+    75% {
+        transform:
+            translate3d(0, -3px, 0) scale(1.01) rotate(-0.5deg);
+    }
+
+    100% {
+        transform:
+            translate3d(0, 0, 0) scale(1) rotate(0deg);
+
+        filter:
+            drop-shadow(0 10px 18px rgba(0, 0, 0, 0.25));
+    }
+}
+
+.visual:has(.todayNode:hover) .giftScene {
+    transform:
+        translate3d(0, -8px, 0) scale(1.02);
+
+    filter:
+        drop-shadow(0 0 22px rgba(246, 189, 61, 0.2));
+}
+
+@keyframes giftFloat {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(0, -5px, 0);
+    }
+}
+
+/* ========================================
+   CLAIM CELEBRATION
+======================================== */
+
+.claimCelebration {
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+}
+
+.confetti {
+    position: absolute;
+
+    width: 4px;
+    height: 8px;
+
+    border-radius: 1px;
+
+    background: #f4bd3e;
+
+    animation:
+        confettiBurst 700ms ease-out both;
+}
+
+.confettiOne {
+    left: 18%;
+    top: 20%;
+}
+
+.confettiTwo {
+    left: 35%;
+    top: 5%;
+    transform: rotate(35deg);
+}
+
+.confettiThree {
+    left: 52%;
+    top: 0;
+    transform: rotate(70deg);
+}
+
+.confettiFour {
+    right: 21%;
+    top: 15%;
+    transform: rotate(20deg);
+}
+
+.confettiFive {
+    left: 12%;
+    top: 45%;
+    transform: rotate(70deg);
+}
+
+.confettiSix {
+    right: 13%;
+    top: 39%;
+    transform: rotate(25deg);
+}
+
+.confettiSeven {
+    left: 29%;
+    top: 38%;
+    transform: rotate(90deg);
+}
+
+.confettiEight {
+    right: 30%;
+    top: 4%;
+    transform: rotate(45deg);
+}
+
+/* ========================================
+   ANIMATIONS
+======================================== */
+
+@keyframes cardEnter {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes nodeEnter {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes breathe {
+
+    0%,
+    100% {
+        box-shadow:
+            0 0 0 4px rgba(231, 167, 32, 0.16),
+            0 0 16px rgba(239, 177, 40, 0.58),
+            inset 0 1px 3px rgba(255, 255, 255, 0.62);
+    }
+
+    50% {
+        box-shadow:
+            0 0 0 5px rgba(231, 167, 32, 0.2),
+            0 0 23px rgba(239, 177, 40, 0.78),
+            inset 0 1px 3px rgba(255, 255, 255, 0.62);
+    }
+}
+
+@keyframes coinFloatOne {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(-8deg);
+    }
+
+    50% {
+        transform: translateY(-5px) rotate(8deg);
+    }
+}
+
+@keyframes coinFloatTwo {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(8deg);
+    }
+
+    50% {
+        transform: translateY(-6px) rotate(-8deg);
+    }
+}
+
+@keyframes coinFloatThree {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(-5deg);
+    }
+
+    50% {
+        transform: translateY(-4px) rotate(7deg);
+    }
+}
+
+@keyframes confettiBurst {
+    from {
+        opacity: 1;
+        transform:
+            translate(0, 0) rotate(0deg);
+    }
+
+    to {
+        opacity: 0;
+        transform:
+            translate(calc(var(--x, 1) * 18px),
+                calc(var(--y, -1) * 25px)) rotate(160deg);
+    }
+}
+
+/* =========================================================
+   RESPONSIVE DAILY BONUS BANNER
+   ========================================================= */
+
+/* =========================================================
+   DESKTOP / LAPTOP
+   1200px+
+   Banner height target: 410px–450px
+   ========================================================= */
+
+@media (min-width: 1200px) {
+  .visual {
+    position: relative;
+    min-height: 410px;
+    height: 100%;
+    overflow: visible;
+  }
+
+  /*
+   * Reserve horizontal space for the gift.
+   *
+   * The card does NOT extend underneath the gift.
+   * This is the important change.
+   */
+  .card {
+    position: relative;
+    z-index: 2;
+
+    width: calc(100% - 340px);
+    max-width: none;
+
+    height: 310px;
+    min-height: 310px;
+
+    margin-left: 0;
+
+    transform: none;
+  }
+
+  /*
+   * Gift gets its own reserved visual area.
+   * It is NOT allowed to cover the card.
+   */
+  .giftScene {
+    position: absolute;
+
+    z-index: 3;
+
+    width: 340px;
+    height: 340px;
+
+    right: 0;
+    bottom: -15px;
+
+    display: block;
+
+    pointer-events: none;
+  }
+}
+
+
+/* =========================================================
+   TABLET
+   768px–1199px
+   Banner height target: 380px–540px
+   ========================================================= */
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .visual {
+    position: relative;
+
+    min-height: 380px;
+    height: 100%;
+
+    overflow: visible;
+  }
+
+  /*
+   * Card becomes slightly narrower so the gift
+   * always has its own visual territory.
+   */
+  .card {
+    position: relative;
+    z-index: 2;
+
+    width: calc(100% - 260px);
+    max-width: none;
+
+    height: 285px;
+    min-height: 285px;
+
+    transform: none;
+  }
+
+  .giftScene {
+    position: absolute;
+
+    z-index: 3;
+
+    width: 260px;
+    height: 260px;
+
+    right: -5px;
+    bottom: -10px;
+
+    display: block;
+
+    pointer-events: none;
+  }
+
+  /*
+   * Slightly reduce timeline spacing so all seven
+   * days remain comfortable at tablet widths.
+   */
+  .timeline {
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+
+  .track {
+    left: 7%;
+    right: 7%;
+  }
+
+  .dayLabel {
+    font-size: 8px;
+  }
+
+  .node {
+    width: 20px;
+    height: 20px;
+  }
+
+  .todayNode {
+    width: 27px;
+    height: 27px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   Below 768px
+   Banner height target: 330px–520px
+   ========================================================= */
+
+@media (max-width: 767px) {
+  .visual {
+    position: relative;
+
+    /*
+     * Give the card AND gift their own vertical space.
+     *
+     * This is much safer than putting the gift
+     * over the card.
+     */
+    min-height: 440px;
+
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    overflow: visible;
+  }
+
+  /*
+   * Card gets the entire available width.
+   */
+  .card {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    max-width: none;
+
+    height: 220px;
+    min-height: 220px;
+
+    margin: 0;
+
+    transform: none;
+  }
+
+  /*
+   * IMPORTANT:
+   *
+   * The gift is no longer absolutely positioned
+   * over the card on mobile.
+   *
+   * It gets its own space below the card.
+   */
+  .giftScene {
+    position: relative;
+
+    z-index: 3;
+
+    flex: 0 0 auto;
+
+    width: 190px;
+    height: 190px;
+
+    margin-left: auto;
+    margin-right: -5px;
+
+    margin-top: 4px;
+    margin-bottom: -25px;
+
+    display: block;
+
+    pointer-events: none;
+  }
+
+  /*
+   * Keep the timeline usable.
+   */
+  .timeline {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .track {
+    left: 5%;
+    right: 5%;
+  }
+
+  .day {
+    gap: 7px;
+  }
+
+  .dayLabel {
+    font-size: 7px;
+  }
+
+  .node {
+    width: 19px;
+    height: 19px;
+  }
+
+  .todayNode {
+    width: 26px;
+    height: 26px;
+    margin-top: -3px;
+  }
+
+  .checkIcon {
+    width: 10px;
+    height: 10px;
+  }
+
+  .header {
+    min-height: 35px;
+  }
+
+  .flameBadge {
+    width: 27px;
+    height: 27px;
+  }
+
+  .flameIcon {
+    width: 13px;
+    height: 13px;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   Below 480px
+   ========================================================= */
+
+@media (max-width: 480px) {
+  .visual {
+    min-height: 410px;
+  }
+
+  .card {
+    height: 205px;
+    min-height: 205px;
+
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  /*
+   * Slightly smaller gift, but still clearly visible.
+   */
+  .giftScene {
+    width: 165px;
+    height: 165px;
+
+    margin-right: -8px;
+    margin-top: 6px;
+  }
+
+  .headerIdentity {
+    gap: 7px;
+  }
+
+  .header h1 {
+    font-size: 10px;
+  }
+
+  .header p {
+    font-size: 7px;
+  }
+
+  .boost span {
+    font-size: 6px;
+  }
+
+  .boost strong {
+    font-size: 11px;
+  }
+
+  .divider {
+    margin: 8px 0 9px;
+  }
+
+  .day {
+    gap: 6px;
+  }
+
+  .dayLabel {
+    font-size: 6.5px;
+  }
+
+  .node {
+    width: 18px;
+    height: 18px;
+  }
+
+  .todayNode {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   Below 380px
+   ========================================================= */
+
+@media (max-width: 380px) {
+  .visual {
+    min-height: 390px;
+  }
+
+  .card {
+    height: 195px;
+    min-height: 195px;
+
+    padding: 12px 10px 12px;
+  }
+
+  .giftScene {
+    width: 145px;
+    height: 145px;
+
+    margin-right: -6px;
+  }
+
+  .header h1 {
+    font-size: 9px;
+  }
+
+  .header p {
+    font-size: 6.5px;
+  }
+
+  .boost strong {
+    font-size: 10px;
+  }
+
+  .dayLabel {
+    font-size: 6px;
+  }
+
+  .node {
+    width: 17px;
+    height: 17px;
+  }
+
+  .todayNode {
+    width: 23px;
+    height: 23px;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .day,
+  .todayNode,
+  .giftScene,
+  .confetti {
+    animation: none;
+  }
+
+  .trackCompleted,
+  .todayNode,
+  .giftScene,
+  .giftImage {
+    transition: none;
+  }
+}
