@@ -14,10 +14,62 @@ import styles from "./ContactBanner.module.css";
 const ContactBanner = () => {
   return (
     <section
-      className={styles.banner}
-      aria-labelledby="contact-banner-title"
+  className={styles.banner}
+  aria-labelledby="contact-banner-title"
+>
+  {/* =====================================================
+      BANNER BACKGROUND
+  ===================================================== */}
+  <div className={styles.bannerAtmosphere} aria-hidden="true">
+    <svg
+      className={styles.bannerWaves}
+      viewBox="0 0 1600 500"
+      preserveAspectRatio="none"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <div className={styles.content}>
+      <path
+        d="M-80 360
+           C120 210 250 470 470 320
+           C690 170 820 390 1040 245
+           C1250 105 1390 255 1680 80"
+        fill="none"
+        stroke="rgba(93, 151, 226, 0.20)"
+        strokeWidth="1.4"
+      />
+
+      <path
+        d="M-100 410
+           C130 255 280 500 500 355
+           C715 215 860 435 1080 285
+           C1290 145 1440 290 1700 115"
+        fill="none"
+        stroke="rgba(76, 137, 215, 0.13)"
+        strokeWidth="1"
+      />
+
+      <path
+        d="M-60 245
+           C130 110 280 315 475 190
+           C670 65 820 265 1025 145
+           C1230 25 1390 165 1660 -10"
+        fill="none"
+        stroke="rgba(126, 177, 235, 0.10)"
+        strokeWidth="1"
+      />
+
+      <path
+        d="M250 520
+           C430 350 590 510 760 390
+           C940 265 1080 450 1250 330
+           C1400 225 1510 300 1680 215"
+        fill="none"
+        stroke="rgba(68, 125, 204, 0.08)"
+        strokeWidth="1"
+      />
+    </svg>
+  </div>
+
+  <div className={styles.content}>
         {/* =====================================================
             LEFT CONTENT
         ===================================================== */}

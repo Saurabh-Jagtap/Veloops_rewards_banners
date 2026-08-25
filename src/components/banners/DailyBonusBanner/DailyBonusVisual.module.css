@@ -830,53 +830,53 @@
    ========================================================= */
 
 @media (min-width: 1200px) {
-  .visual {
-    position: relative;
-    min-height: 410px;
-    height: 100%;
-    overflow: visible;
-  }
+    .visual {
+        position: relative;
+        min-height: 410px;
+        height: 100%;
+        overflow: visible;
+    }
 
-  /*
+    /*
    * Reserve horizontal space for the gift.
    *
    * The card does NOT extend underneath the gift.
    * This is the important change.
    */
-  .card {
-    position: relative;
-    z-index: 2;
+    .card {
+        position: relative;
+        z-index: 2;
 
-    width: calc(100% - 340px);
-    max-width: none;
+        width: calc(100% - 340px);
+        max-width: none;
 
-    height: 310px;
-    min-height: 310px;
+        height: 310px;
+        min-height: 310px;
 
-    margin-left: 0;
+        margin-left: 0;
 
-    transform: none;
-  }
+        transform: none;
+    }
 
-  /*
+    /*
    * Gift gets its own reserved visual area.
    * It is NOT allowed to cover the card.
    */
-  .giftScene {
-    position: absolute;
+    .giftScene {
+        position: absolute;
 
-    z-index: 3;
+        z-index: 3;
 
-    width: 340px;
-    height: 340px;
+        width: 340px;
+        height: 340px;
 
-    right: 0;
-    bottom: -15px;
+        right: 0;
+        bottom: -15px;
 
-    display: block;
+        display: block;
 
-    pointer-events: none;
-  }
+        pointer-events: none;
+    }
 }
 
 
@@ -887,202 +887,181 @@
    ========================================================= */
 
 @media (min-width: 768px) and (max-width: 1199px) {
-  .visual {
-    position: relative;
+    .visual {
+        position: relative;
 
-    min-height: 380px;
-    height: 100%;
+        min-height: 380px;
+        height: 100%;
 
-    overflow: visible;
-  }
+        overflow: visible;
+    }
 
-  /*
+    /*
    * Card becomes slightly narrower so the gift
    * always has its own visual territory.
    */
-  .card {
-    position: relative;
-    z-index: 2;
+    .card {
+        position: relative;
+        z-index: 2;
 
-    width: calc(100% - 260px);
-    max-width: none;
+        width: calc(100% - 260px);
+        max-width: none;
 
-    height: 285px;
-    min-height: 285px;
+        height: 285px;
+        min-height: 285px;
 
-    transform: none;
-  }
+        transform: none;
+    }
 
-  .giftScene {
-    position: absolute;
+    .giftScene {
+        position: absolute;
 
-    z-index: 3;
+        z-index: 3;
 
-    width: 260px;
-    height: 260px;
+        width: 260px;
+        height: 260px;
 
-    right: -5px;
-    bottom: -10px;
+        right: -5px;
+        bottom: -10px;
 
-    display: block;
+        display: block;
 
-    pointer-events: none;
-  }
+        pointer-events: none;
+    }
 
-  /*
+    /*
    * Slightly reduce timeline spacing so all seven
    * days remain comfortable at tablet widths.
    */
-  .timeline {
-    padding-left: 2px;
-    padding-right: 2px;
-  }
+    .timeline {
+        padding-left: 2px;
+        padding-right: 2px;
+    }
 
-  .track {
-    left: 7%;
-    right: 7%;
-  }
+    .track {
+        left: 7%;
+        right: 7%;
+    }
 
-  .dayLabel {
-    font-size: 8px;
-  }
+    .dayLabel {
+        font-size: 8px;
+    }
 
-  .node {
-    width: 20px;
-    height: 20px;
-  }
+    .node {
+        width: 20px;
+        height: 20px;
+    }
 
-  .todayNode {
-    width: 27px;
-    height: 27px;
-  }
+    .todayNode {
+        width: 27px;
+        height: 27px;
+    }
 }
 
 
 /* =========================================================
    MOBILE
    Below 768px
-   Banner height target: 330px–520px
    ========================================================= */
 
 @media (max-width: 767px) {
-  .visual {
-    position: relative;
+    .visual {
+        position: relative;
+        min-height: 440px;
+        height: auto;
 
-    /*
-     * Give the card AND gift their own vertical space.
-     *
-     * This is much safer than putting the gift
-     * over the card.
-     */
-    min-height: 440px;
+        display: block;
 
-    height: auto;
+        overflow: visible;
+    }
 
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
+    .card {
+        position: relative;
+        z-index: 2;
 
-    overflow: visible;
-  }
+        width: 100%;
+        max-width: none;
 
-  /*
-   * Card gets the entire available width.
-   */
-  .card {
-    position: relative;
-    z-index: 2;
+        height: 220px;
+        min-height: 220px;
 
-    width: 100%;
-    max-width: none;
+        margin: 0;
 
-    height: 220px;
-    min-height: 220px;
+        transform: none;
+    }
 
-    margin: 0;
-
-    transform: none;
-  }
-
-  /*
-   * IMPORTANT:
-   *
-   * The gift is no longer absolutely positioned
-   * over the card on mobile.
-   *
-   * It gets its own space below the card.
-   */
-  .giftScene {
-    position: relative;
+    .giftScene {
+    position: absolute;
 
     z-index: 3;
-
-    flex: 0 0 auto;
 
     width: 190px;
     height: 190px;
 
-    margin-left: auto;
-    margin-right: -5px;
+    left: 50%;
+    right: auto;
 
-    margin-top: 4px;
-    margin-bottom: -25px;
+    bottom: 5px;
+
+    margin: 0;
+
+    transform: translateX(-50%);
 
     display: block;
-
     pointer-events: none;
   }
 
-  /*
-   * Keep the timeline usable.
-   */
-  .timeline {
-    padding-left: 0;
-    padding-right: 0;
+  .giftImage {
+    transform: translateX(-10px);
   }
 
-  .track {
-    left: 5%;
-    right: 5%;
-  }
+    .timeline {
+        padding-left: 0;
+        padding-right: 0;
+    }
 
-  .day {
-    gap: 7px;
-  }
+    .track {
+        left: 5%;
+        right: 5%;
+    }
 
-  .dayLabel {
-    font-size: 7px;
-  }
+    .day {
+        gap: 7px;
+    }
 
-  .node {
-    width: 19px;
-    height: 19px;
-  }
+    .dayLabel {
+        font-size: 7px;
+    }
 
-  .todayNode {
-    width: 26px;
-    height: 26px;
-    margin-top: -3px;
-  }
+    .node {
+        width: 19px;
+        height: 19px;
+    }
 
-  .checkIcon {
-    width: 10px;
-    height: 10px;
-  }
+    .todayNode {
+        width: 26px;
+        height: 26px;
+        margin-top: -3px;
+    }
 
-  .header {
-    min-height: 35px;
-  }
+    .checkIcon {
+        width: 10px;
+        height: 10px;
+    }
 
-  .flameBadge {
-    width: 27px;
-    height: 27px;
-  }
+    .header {
+        min-height: 35px;
+    }
 
-  .flameIcon {
-    width: 13px;
-    height: 13px;
-  }
+    .flameBadge {
+        width: 27px;
+        height: 27px;
+    }
+
+    .flameIcon {
+        width: 13px;
+        height: 13px;
+    }
 }
 
 
@@ -1092,70 +1071,77 @@
    ========================================================= */
 
 @media (max-width: 480px) {
-  .visual {
-    min-height: 410px;
-  }
+    .visual {
+        min-height: 410px;
+    }
 
-  .card {
-    height: 205px;
-    min-height: 205px;
+    .card {
+        height: 205px;
+        min-height: 205px;
 
-    padding-left: 12px;
-    padding-right: 12px;
-  }
+        padding-left: 12px;
+        padding-right: 12px;
+    }
 
-  /*
-   * Slightly smaller gift, but still clearly visible.
-   */
-  .giftScene {
+    .giftScene {
     width: 165px;
     height: 165px;
 
-    margin-right: -8px;
-    margin-top: 6px;
+    left: 50%;
+    right: auto;
+
+    bottom: 5px;
+
+    margin: 0;
+
+    transform: translateX(-50%);
   }
 
-  .headerIdentity {
-    gap: 7px;
+  .giftImage {
+    transform: translateX(-8px);
   }
 
-  .header h1 {
-    font-size: 10px;
-  }
+    .headerIdentity {
+        gap: 7px;
+    }
 
-  .header p {
-    font-size: 7px;
-  }
+    .header h1 {
+        font-size: 10px;
+    }
 
-  .boost span {
-    font-size: 6px;
-  }
+    .header p {
+        font-size: 7px;
+    }
 
-  .boost strong {
-    font-size: 11px;
-  }
+    .boost span {
+        font-size: 6px;
+    }
 
-  .divider {
-    margin: 8px 0 9px;
-  }
+    .boost strong {
+        font-size: 11px;
+    }
 
-  .day {
-    gap: 6px;
-  }
+    .divider {
+        margin: 8px 0 9px;
+    }
 
-  .dayLabel {
-    font-size: 6.5px;
-  }
+    .day {
+        gap: 6px;
+    }
 
-  .node {
-    width: 18px;
-    height: 18px;
-  }
+    .dayLabel {
+        font-size: 6.5px;
+    }
 
-  .todayNode {
-    width: 24px;
-    height: 24px;
-  }
+    .node {
+        width: 18px;
+        height: 18px;
+    }
+
+    .todayNode {
+        width: 24px;
+        height: 24px;
+    }
 }
 
 
@@ -1165,49 +1151,56 @@
    ========================================================= */
 
 @media (max-width: 380px) {
-  .visual {
-    min-height: 390px;
-  }
+    .visual {
+        min-height: 390px;
+    }
 
-  .card {
-    height: 195px;
-    min-height: 195px;
+    .card {
+        height: 195px;
+        min-height: 195px;
 
-    padding: 12px 10px 12px;
-  }
+        padding: 12px 10px 12px;
+    }
 
-  .giftScene {
+    .giftScene {
     width: 145px;
     height: 145px;
 
-    margin-right: -6px;
+    left: 50%;
+    right: auto;
+
+    bottom: 5px;
+
+    margin: 0;
+
+    transform: translateX(-50%);
   }
 
-  .header h1 {
-    font-size: 9px;
-  }
+    .header h1 {
+        font-size: 9px;
+    }
 
-  .header p {
-    font-size: 6.5px;
-  }
+    .header p {
+        font-size: 6.5px;
+    }
 
-  .boost strong {
-    font-size: 10px;
-  }
+    .boost strong {
+        font-size: 10px;
+    }
 
-  .dayLabel {
-    font-size: 6px;
-  }
+    .dayLabel {
+        font-size: 6px;
+    }
 
-  .node {
-    width: 17px;
-    height: 17px;
-  }
+    .node {
+        width: 17px;
+        height: 17px;
+    }
 
-  .todayNode {
-    width: 23px;
-    height: 23px;
-  }
+    .todayNode {
+        width: 23px;
+        height: 23px;
+    }
 }
 
 
@@ -1216,18 +1209,19 @@
    ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
-  .card,
-  .day,
-  .todayNode,
-  .giftScene,
-  .confetti {
-    animation: none;
-  }
 
-  .trackCompleted,
-  .todayNode,
-  .giftScene,
-  .giftImage {
-    transition: none;
-  }
+    .card,
+    .day,
+    .todayNode,
+    .giftScene,
+    .confetti {
+        animation: none;
+    }
+
+    .trackCompleted,
+    .todayNode,
+    .giftScene,
+    .giftImage {
+        transition: none;
+    }
 }

@@ -7,7 +7,6 @@ import {
 import { AnimatePresence, motion, type Variants } from "framer-motion";
 import styles from "./ContactBanner.module.css";
 import { useState } from "react";
-import Headset from "./Headset";
 
 const topics = [
   {
@@ -406,7 +405,12 @@ const ContactVisual = () => {
       ease: "easeInOut",
     }}
   >
-    <Headset size={280} /> 
+    <img
+      src="/headset.png"
+      alt=""
+      className={styles.headsetImage}
+      draggable={false}
+    />
   </motion.div>
 </div>
     </div>
