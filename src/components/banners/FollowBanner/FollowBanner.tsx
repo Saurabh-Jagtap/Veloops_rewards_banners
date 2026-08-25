@@ -115,11 +115,11 @@ const FollowBanner = () => {
           </a>
         </div>
 
-<div className={styles.rightSide}>
-  <FollowVisual isVisible={isVisible} />
-  <FollowReactions />
-</div>
-        
+        <div className={styles.rightSide}>
+          <FollowVisual isVisible={isVisible} />
+          <FollowReactions />
+        </div>
+
       </div>
     </section>
   );

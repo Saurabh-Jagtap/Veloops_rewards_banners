@@ -1,15 +1,35 @@
-.reactions {
+.reaction {
   position: absolute;
-  z-index: 5;
 
-  top: 0;
-  right: -35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  width: 190px;
-  height: 100%;
+  width: 58px;
+  height: 45px;
 
-  overflow: visible;
-  pointer-events: none;
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #9d59ee 0%,
+      #7630d3 55%,
+      #5520a8 100%
+    );
+
+  border: 1px solid rgba(205, 166, 255, 0.4);
+
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.28),
+    inset 0 -4px 8px rgba(40, 8, 91, 0.22),
+    0 9px 18px rgba(18, 5, 47, 0.42),
+    0 0 18px rgba(132, 53, 242, 0.32);
+
+  isolation: isolate;
+
+  pointer-events: auto;
+  cursor: pointer;
 }
 
 /* ============================================================
@@ -484,5 +504,365 @@
 
   .orbit {
     opacity: 0.45;
+  }
+}
+
+/* ============================================================
+   REACTION MOTION & INTERACTION
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   Ambient floating motion
+   ------------------------------------------------------------ */
+
+.reactionTop {
+  animation: reactionFloatTop 7s ease-in-out infinite;
+}
+
+.reactionUpper {
+  animation: reactionFloatUpper 8.5s ease-in-out infinite;
+  animation-delay: -2s;
+}
+
+.reactionCenter {
+  animation: reactionFloatCenter 7.5s ease-in-out infinite;
+  animation-delay: -3.5s;
+}
+
+.reactionBottom {
+  animation: reactionFloatBottom 9s ease-in-out infinite;
+  animation-delay: -5s;
+}
+
+
+/* Keep each card's original rotation while floating */
+
+@keyframes reactionFloatTop {
+  0%,
+  100% {
+    transform: rotate(10deg) translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: rotate(10deg) translate3d(0, -5px, 0);
+  }
+}
+
+@keyframes reactionFloatUpper {
+  0%,
+  100% {
+    transform: rotate(-7deg) translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: rotate(-7deg) translate3d(3px, -4px, 0);
+  }
+}
+
+@keyframes reactionFloatCenter {
+  0%,
+  100% {
+    transform: rotate(8deg) translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: rotate(8deg) translate3d(-3px, -6px, 0);
+  }
+}
+
+@keyframes reactionFloatBottom {
+  0%,
+  100% {
+    transform: rotate(14deg) translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: rotate(14deg) translate3d(2px, -5px, 0);
+  }
+}
+
+
+/* ------------------------------------------------------------
+   Soft card surface transition
+   ------------------------------------------------------------ */
+
+.reaction {
+  transition:
+    transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 260ms ease,
+    box-shadow 260ms ease,
+    border-color 260ms ease;
+}
+
+
+/* ------------------------------------------------------------
+   Hover states
+   ------------------------------------------------------------ */
+
+/* Top */
+
+.reactionTop:hover {
+  transform:
+    rotate(10deg)
+    translate3d(0, -7px, 0)
+    scale(1.06);
+
+  border-color: rgba(225, 197, 255, 0.65);
+
+  filter: brightness(1.08);
+
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.34),
+    0 12px 22px rgba(21, 4, 48, 0.46),
+    0 0 25px rgba(167, 77, 255, 0.52);
+}
+
+
+/* Upper */
+
+.reactionUpper:hover {
+  transform:
+    rotate(-7deg)
+    translate3d(0, -6px, 0)
+    scale(1.06);
+
+  border-color: rgba(225, 197, 255, 0.62);
+
+  filter: brightness(1.08);
+
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.32),
+    0 11px 21px rgba(19, 4, 48, 0.46),
+    0 0 23px rgba(122, 49, 237, 0.5);
+}
+
+
+/* Center */
+
+.reactionCenter:hover {
+  transform:
+    rotate(8deg)
+    translate3d(0, -8px, 0)
+    scale(1.07);
+
+  border-color: rgba(255, 190, 202, 0.75);
+
+  filter: brightness(1.08);
+
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.42),
+    0 15px 28px rgba(35, 4, 28, 0.52),
+    0 0 32px rgba(255, 54, 92, 0.5);
+}
+
+
+/* Bottom */
+
+.reactionBottom:hover {
+  transform:
+    rotate(14deg)
+    translate3d(0, -7px, 0)
+    scale(1.06);
+
+  border-color: rgba(225, 197, 255, 0.65);
+
+  filter: brightness(1.08);
+
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.36),
+    0 15px 27px rgba(19, 4, 48, 0.52),
+    0 0 29px rgba(132, 52, 241, 0.5);
+}
+
+
+/* ------------------------------------------------------------
+   Heart interaction
+   ------------------------------------------------------------ */
+
+.reaction:hover .heart {
+  animation: heartPulse 650ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes heartPulse {
+  0% {
+    transform: scale(1);
+  }
+
+  35% {
+    transform: scale(1.18);
+  }
+
+  60% {
+    transform: scale(0.94);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+/* ------------------------------------------------------------
+   Light sweep
+   ------------------------------------------------------------ */
+
+.reaction {
+  overflow: hidden;
+}
+
+.reaction::before {
+  position: absolute;
+  top: -20%;
+  left: -100%;
+
+  width: 55%;
+  height: 140%;
+
+  content: "";
+
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.18) 50%,
+    transparent 100%
+  );
+
+  transform: skewX(-18deg);
+
+  pointer-events: none;
+
+  transition: left 520ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reaction:hover::before {
+  left: 140%;
+}
+
+
+/* ------------------------------------------------------------
+   Ambient glow
+   ------------------------------------------------------------ */
+
+.ambientGlow {
+  animation: ambientReactionGlow 8s ease-in-out infinite;
+}
+
+@keyframes ambientReactionGlow {
+  0%,
+  100% {
+    opacity: 0.72;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.95;
+    transform: scale(1.04);
+  }
+}
+
+
+/* ------------------------------------------------------------
+   Particles
+   ------------------------------------------------------------ */
+
+.particleOne {
+  animation: reactionParticleOne 6s ease-in-out infinite;
+}
+
+.particleTwo {
+  animation: reactionParticleTwo 7s ease-in-out infinite;
+  animation-delay: -2s;
+}
+
+.particleThree {
+  animation: reactionParticleThree 8s ease-in-out infinite;
+  animation-delay: -3s;
+}
+
+.particleFour {
+  animation: reactionParticleFour 7.5s ease-in-out infinite;
+  animation-delay: -4s;
+}
+
+@keyframes reactionParticleOne {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: translate(0, 0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translate(-3px, -5px);
+  }
+}
+
+@keyframes reactionParticleTwo {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: translate(0, 0);
+  }
+
+  50% {
+    opacity: 0.9;
+    transform: translate(3px, -4px);
+  }
+}
+
+@keyframes reactionParticleThree {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: translate(0, 0);
+  }
+
+  50% {
+    opacity: 0.95;
+    transform: translate(-3px, 4px);
+  }
+}
+
+@keyframes reactionParticleFour {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: translate(0, 0);
+  }
+
+  50% {
+    opacity: 0.9;
+    transform: translate(3px, -3px);
+  }
+}
+
+
+/* ------------------------------------------------------------
+   Reduced motion
+   ------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  .reactionTop,
+  .reactionUpper,
+  .reactionCenter,
+  .reactionBottom,
+  .ambientGlow,
+  .particleOne,
+  .particleTwo,
+  .particleThree,
+  .particleFour {
+    animation: none;
+  }
+
+  .reaction:hover .heart {
+    animation: none;
+  }
+
+  .reaction {
+    transition: none;
+  }
+
+  .reaction::before {
+    display: none;
   }
 }

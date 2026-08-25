@@ -395,3 +395,620 @@
   .rewardPanel { padding-left: 10px; padding-right: 10px; }
   .taskRow { gap: 5px; }
 }
+
+/* ============================================================
+   MICRO INTERACTIONS & MOTION
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   Visual entrance
+   ------------------------------------------------------------ */
+
+.banner {
+  animation: visualEnter 650ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.banner.isVisible {
+  animation: visualEnter 650ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes visualEnter {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.985);
+    filter: blur(3px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+
+/* ------------------------------------------------------------
+   Header
+   ------------------------------------------------------------ */
+
+.headerTitle {
+  animation: headerReveal 700ms ease both;
+}
+
+@keyframes headerReveal {
+  from {
+    opacity: 0;
+    transform: translateX(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+/* Instagram icon — very subtle living glow */
+
+.instagramIcon {
+  animation: instagramPulse 3.6s ease-in-out infinite;
+}
+
+@keyframes instagramPulse {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 5px rgba(237, 65, 156, 0.45));
+  }
+
+  50% {
+    filter: drop-shadow(0 0 10px rgba(237, 65, 156, 0.75));
+  }
+}
+
+
+/* ------------------------------------------------------------
+   Live indicator
+   ------------------------------------------------------------ */
+
+.liveDot {
+  animation: livePulse 2s ease-in-out infinite;
+}
+
+@keyframes livePulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 7px #5ce6a2;
+  }
+
+  50% {
+    opacity: 0.7;
+    transform: scale(0.8);
+    box-shadow: 0 0 12px #5ce6a2;
+  }
+}
+
+
+/* ------------------------------------------------------------
+   Progress bar
+   ------------------------------------------------------------ */
+
+.progressValue {
+  position: relative;
+  overflow: hidden;
+}
+
+.progressValue::after {
+  position: absolute;
+  top: 0;
+  left: -35%;
+
+  width: 35%;
+  height: 100%;
+
+  content: "";
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    transparent
+  );
+
+  animation: progressShimmer 3.2s ease-in-out infinite;
+}
+
+@keyframes progressShimmer {
+  0% {
+    left: -35%;
+  }
+
+  45%,
+  100% {
+    left: 110%;
+  }
+}
+
+
+/* Completed indicators have a tiny breathing glow */
+
+.completed {
+  animation: completedPulse 3s ease-in-out infinite;
+}
+
+@keyframes completedPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 6px rgba(77, 227, 157, 0.28);
+  }
+
+  50% {
+    box-shadow: 0 0 10px rgba(77, 227, 157, 0.48);
+  }
+}
+
+
+
+/* Reward ambient animation — not a hover effect */
+.giftIcon {
+  animation: rewardFloat 3.4s ease-in-out infinite;
+}
+
+@keyframes rewardFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+
+/* ------------------------------------------------------------
+   Ambient background particles
+   ------------------------------------------------------------ */
+
+.orbOne {
+  animation: orbFloatOne 8s ease-in-out infinite;
+}
+
+.orbTwo {
+  animation: orbFloatTwo 10s ease-in-out infinite;
+}
+
+@keyframes orbFloatOne {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(-8px, -6px, 0);
+  }
+}
+
+@keyframes orbFloatTwo {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(6px, 5px, 0);
+  }
+}
+
+
+/* Tiny particle drift */
+
+.particleOne {
+  animation: particleFloatOne 4.5s ease-in-out infinite;
+}
+
+.particleTwo {
+  animation: particleFloatTwo 5.5s ease-in-out infinite;
+}
+
+.particleThree {
+  animation: particleFloatThree 6s ease-in-out infinite;
+}
+
+@keyframes particleFloatOne {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: translate(0, 0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translate(3px, -5px);
+  }
+}
+
+@keyframes particleFloatTwo {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: translate(0, 0);
+  }
+
+  50% {
+    opacity: 0.9;
+    transform: translate(-4px, -3px);
+  }
+}
+
+@keyframes particleFloatThree {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: translate(0, 0);
+  }
+
+  50% {
+    opacity: 0.95;
+    transform: translate(2px, -4px);
+  }
+}
+
+
+/* ------------------------------------------------------------
+   Reduced motion
+   ------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  .banner,
+  .banner.isVisible,
+  .instagramIcon,
+  .liveDot,
+  .progressValue::after,
+  .completed,
+  .giftIcon,
+  .orbOne,
+  .orbTwo,
+  .particleOne,
+  .particleTwo,
+  .particleThree {
+    animation: none;
+  }
+
+  .followButton,
+  .completeButton,
+  .taskRow,
+  .veLogo,
+  .giftIcon,
+  .rewardPanel strong,
+  .plus,
+  .arrowIcon {
+    transition: none;
+  }
+}
+
+/* ============================================================
+   CAMPAIGN INTERACTION STATE
+   These additions preserve the existing hover/motion system.
+   ============================================================ */
+
+/* Follow state */
+.followingButton {
+  border-color: rgba(84, 227, 161, 0.52);
+  color: #dffff0;
+  background: rgba(35, 133, 94, 0.28);
+}
+
+.followingButton .plus {
+  color: #63e6a7;
+}
+
+/* Interactive task rows use the existing .taskRow hover behavior. */
+.taskRow {
+  width: 100%;
+  border: 0;
+  padding: 3px 4px;
+  margin: -3px -4px;
+  border-radius: 5px;
+  background: transparent;
+  font-family: inherit;
+  color: inherit;
+  text-align: left;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: default;
+}
+
+.taskRowInteractive {
+  cursor: pointer;
+}
+
+.taskRow:disabled {
+  opacity: 1;
+}
+
+/* Small contextual feedback beneath the task list. */
+.taskHint {
+  min-height: 14px;
+  margin-top: 12px;
+  color: #9f8fb9;
+  font-size: 8px;
+  line-height: 1.35;
+  opacity: 0.9;
+  transition: color 180ms ease, opacity 180ms ease;
+}
+
+.taskRowDone .taskStatus {
+  animation: taskCompletePop 280ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes taskCompletePop {
+  0% {
+    opacity: 0.4;
+    transform: scale(0.75);
+  }
+
+  70% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Progress completion state */
+.rewardUnlocked .giftIcon {
+  filter:
+    drop-shadow(0 0 8px rgba(255, 190, 45, 0.72))
+    drop-shadow(0 0 17px rgba(255, 190, 45, 0.32));
+}
+
+.rewardUnlocked strong {
+  animation: rewardValueReveal 500ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes rewardValueReveal {
+  from {
+    opacity: 0.65;
+    transform: scale(0.94);
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.completeButtonReady {
+  border-color: rgba(230, 173, 255, 0.78);
+}
+
+.completeButtonCompleted {
+  border-color: rgba(91, 232, 166, 0.62);
+  color: #e8fff4;
+  background: linear-gradient(110deg, #267d5b, #39a875);
+  box-shadow:
+    0 7px 20px rgba(35, 137, 91, 0.3),
+    inset 0 1px rgba(255, 255, 255, 0.22);
+}
+
+.rewardCheck {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  font-size: 9px;
+  font-weight: 800;
+  background: rgba(255, 255, 255, 0.16);
+  animation: rewardCheckPop 360ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes rewardCheckPop {
+  from {
+    opacity: 0;
+    transform: scale(0.5) rotate(-15deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+
+.completeButton:disabled {
+  cursor: default;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .taskRowDone .taskStatus,
+  .rewardUnlocked strong,
+  .rewardCheck {
+    animation: none;
+  }
+
+  .taskHint {
+    transition: none;
+  }
+}
+
+/* ============================================================
+   REWARD CLAIM — PARTY POPPER EFFECT
+   ============================================================ */
+
+.rewardGift {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Keep the existing gift animation intact */
+.rewardGift .giftIcon {
+  position: relative;
+  z-index: 2;
+}
+
+/* Confetti container */
+.partyBurst {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+
+/* Individual confetti pieces */
+.confetti {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 7px;
+  border-radius: 1px;
+  opacity: 0;
+  transform-origin: center;
+  animation: confettiBurst 720ms cubic-bezier(0.16, 0.8, 0.3, 1) forwards;
+}
+
+/* Different directions */
+.confettiOne {
+  --x: -22px;
+  --y: -25px;
+  --rotate: -35deg;
+  background: #f5c84b;
+  animation-delay: 0ms;
+}
+
+.confettiTwo {
+  --x: 22px;
+  --y: -27px;
+  --rotate: 42deg;
+  background: #d768ff;
+  animation-delay: 20ms;
+}
+
+.confettiThree {
+  --x: -31px;
+  --y: -4px;
+  --rotate: 68deg;
+  background: #55e3a0;
+  animation-delay: 35ms;
+}
+
+.confettiFour {
+  --x: 31px;
+  --y: -7px;
+  --rotate: -55deg;
+  background: #ff82c7;
+  animation-delay: 45ms;
+}
+
+.confettiFive {
+  --x: -18px;
+  --y: 25px;
+  --rotate: 55deg;
+  background: #9c7cff;
+  animation-delay: 65ms;
+}
+
+.confettiSix {
+  --x: 19px;
+  --y: 27px;
+  --rotate: -40deg;
+  background: #f5c84b;
+  animation-delay: 80ms;
+}
+
+.confettiSeven {
+  --x: -39px;
+  --y: 17px;
+  --rotate: 25deg;
+  background: #55e3a0;
+  animation-delay: 95ms;
+}
+
+.confettiEight {
+  --x: 39px;
+  --y: 15px;
+  --rotate: -25deg;
+  background: #d768ff;
+  animation-delay: 110ms;
+}
+
+@keyframes confettiBurst {
+  0% {
+    opacity: 0;
+    transform:
+      translate(-50%, -50%)
+      translate(0, 0)
+      rotate(0deg)
+      scale(0.4);
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  65% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform:
+      translate(-50%, -50%)
+      translate(var(--x), var(--y))
+      rotate(var(--rotate))
+      scale(1);
+  }
+}
+
+/* Small celebratory lift on the gift itself */
+.rewardClaimed .giftIcon {
+  animation:
+    rewardClaimPop 520ms cubic-bezier(0.16, 1, 0.3, 1) both,
+    rewardFloat 3.4s ease-in-out 520ms infinite;
+}
+
+@keyframes rewardClaimPop {
+  0% {
+    transform: scale(1);
+  }
+
+  35% {
+    transform: scale(1.22) translateY(-3px);
+  }
+
+  65% {
+    transform: scale(0.94) translateY(1px);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .rewardClaimed .giftIcon {
+    animation: none;
+  }
+
+  .confetti {
+    animation: none;
+    display: none;
+  }
+}

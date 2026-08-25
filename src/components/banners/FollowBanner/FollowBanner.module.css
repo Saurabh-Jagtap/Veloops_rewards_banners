@@ -1,27 +1,156 @@
 .banner {
+  position: relative;
+  isolation: isolate;
   width: 100%;
   height: 430px;
   min-height: 410px;
   max-height: 450px;
-
   overflow: hidden;
 
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(153, 103, 255, 0.18);
   border-radius: var(--radius-banner);
 
+  color: #f4efff;
+
   background:
-    radial-gradient(circle at 72% 48%,
-      rgba(154, 126, 225, 0.08),
-      transparent 32%),
-    radial-gradient(circle at 25% 80%,
-      rgba(91, 125, 220, 0.045),
-      transparent 30%),
-    linear-gradient(135deg,
-      #0b0d18 0%,
-      #0f1020 52%,
-      #0a0d18 100%);
+    radial-gradient(
+      65% 100% at 78% 58%,
+      rgba(111, 55, 190, 0.16),
+      transparent 68%
+    ),
+
+    radial-gradient(
+      55% 90% at 18% 100%,
+      rgba(82, 47, 150, 0.07),
+      transparent 70%
+    ),
+
+    radial-gradient(
+      45% 70% at 58% 0%,
+      rgba(82, 55, 145, 0.045),
+      transparent 72%
+    ),
+
+    linear-gradient(
+      135deg,
+      #070913 0%,
+      #080916 45%,
+      #0b0819 72%,
+      #0d091b 100%
+    );
+
+  box-shadow:
+    0 24px 60px rgba(3, 2, 12, 0.45),
+    inset 0 1px rgba(255, 255, 255, 0.035),
+    0 0 32px rgba(128, 47, 221, 0.07);
+
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
 }
 
+.banner::before,
+.banner::after {
+  position: absolute;
+  z-index: -1;
+  content: "";
+  pointer-events: none;
+  border-radius: 50%;
+  transform: rotate(-8deg);
+}
+
+/* ============================================================
+   BACKGROUND WAVE 1
+   ============================================================ */
+
+.banner::before {
+  width: 900px;
+  height: 330px;
+
+  left: -190px;
+  top: 35px;
+
+  border: 1px solid rgba(139, 91, 220, 0.11);
+
+  box-shadow:
+    0 0 18px rgba(129, 78, 210, 0.045),
+    inset 0 0 18px rgba(129, 78, 210, 0.025);
+
+  opacity: 0.9;
+}
+
+
+/* ============================================================
+   BACKGROUND WAVE 2
+   ============================================================ */
+
+.banner::after {
+  width: 820px;
+  height: 300px;
+
+  right: -250px;
+  bottom: -120px;
+
+  border: 1px solid rgba(164, 92, 238, 0.13);
+
+  box-shadow:
+    0 0 22px rgba(145, 75, 225, 0.07),
+    inset 0 0 22px rgba(145, 75, 225, 0.025);
+
+  opacity: 0.95;
+}
+
+/* ============================================================
+   SUBTLE WAVE TEXTURE
+   ============================================================ */
+
+.banner {
+  background-image:
+    /* Fine flowing wave lines */
+    repeating-radial-gradient(
+      ellipse 85% 38% at 18% 55%,
+      transparent 0,
+      transparent 48px,
+      rgba(142, 92, 225, 0.035) 49px,
+      transparent 50px,
+      transparent 92px
+    ),
+
+    /* Secondary wave field */
+    repeating-radial-gradient(
+      ellipse 75% 34% at 82% 42%,
+      transparent 0,
+      transparent 55px,
+      rgba(170, 96, 240, 0.028) 56px,
+      transparent 57px,
+      transparent 105px
+    ),
+
+    /* Purple atmosphere */
+    radial-gradient(
+      65% 100% at 78% 58%,
+      rgba(111, 55, 190, 0.16),
+      transparent 68%
+    ),
+
+    radial-gradient(
+      55% 90% at 18% 100%,
+      rgba(82, 47, 150, 0.07),
+      transparent 70%
+    ),
+
+    radial-gradient(
+      45% 70% at 58% 0%,
+      rgba(82, 55, 145, 0.045),
+      transparent 72%
+    ),
+
+    linear-gradient(
+      135deg,
+      #070913 0%,
+      #080916 45%,
+      #0b0819 72%,
+      #0d091b 100%
+    );
+}
 .content {
   width: 100%;
   height: 100%;
@@ -2050,5 +2179,314 @@
   .cta svg,
   .channelPending {
     transition: none !important;
+  }
+}
+
+/* ==================================================
+   FOLLOW BANNER — SLOWER, MORE REFINED MOTION
+   ================================================== */
+
+/* --------------------------------------------------
+   LEFT SIDE ENTRANCE
+   -------------------------------------------------- */
+
+.copy > .eyebrow,
+.copy > h2,
+.copy > p,
+.copy > .stats,
+.copy > .cta {
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+
+/* Eyebrow */
+
+.copy > .eyebrow {
+  transition:
+    opacity 800ms ease,
+    transform 950ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+/* Heading */
+
+.copy > h2 {
+  transition:
+    opacity 950ms ease 140ms,
+    transform 1100ms cubic-bezier(0.22, 1, 0.36, 1) 140ms;
+}
+
+
+/* Description */
+
+.copy > p {
+  transition:
+    opacity 900ms ease 300ms,
+    transform 1000ms cubic-bezier(0.22, 1, 0.36, 1) 300ms;
+}
+
+
+/* Stats */
+
+.copy > .stats {
+  transition:
+    opacity 850ms ease 480ms,
+    transform 950ms cubic-bezier(0.22, 1, 0.36, 1) 480ms;
+}
+
+
+/* CTA */
+
+.copy > .cta {
+  transition:
+    opacity 850ms ease 650ms,
+    transform 1000ms cubic-bezier(0.22, 1, 0.36, 1) 650ms;
+}
+
+
+/* Activate left side */
+
+.isVisible .copy > .eyebrow,
+.isVisible .copy > h2,
+.isVisible .copy > p,
+.isVisible .copy > .stats,
+.isVisible .copy > .cta {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* --------------------------------------------------
+   RIGHT VISUAL — SLOWER AMBIENT MOTION
+   -------------------------------------------------- */
+
+.isVisible .visual {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+
+/* Instagram icon */
+
+.instagramIcon {
+  animation:
+    instagramPulse 6s ease-in-out infinite;
+}
+
+@keyframes instagramPulse {
+  0%,
+  100% {
+    filter:
+      drop-shadow(0 0 5px rgba(237, 65, 156, 0.42));
+  }
+
+  50% {
+    filter:
+      drop-shadow(0 0 10px rgba(237, 65, 156, 0.68));
+  }
+}
+
+
+/* Live indicator */
+
+.liveDot {
+  animation:
+    livePulseSlow 4s ease-in-out infinite;
+}
+
+@keyframes livePulseSlow {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.72;
+    transform: scale(0.86);
+  }
+}
+
+
+/* Progress shimmer */
+
+.progressValue::after {
+  animation:
+    progressShimmerSlow 6s ease-in-out infinite;
+}
+
+@keyframes progressShimmerSlow {
+  0% {
+    left: -35%;
+  }
+
+  45%,
+  100% {
+    left: 110%;
+  }
+}
+
+
+/* Completed task breathing */
+
+.completed {
+  animation:
+    completedPulseSlow 5s ease-in-out infinite;
+}
+
+@keyframes completedPulseSlow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 6px rgba(77, 227, 157, 0.25);
+  }
+
+  50% {
+    box-shadow:
+      0 0 10px rgba(77, 227, 157, 0.42);
+  }
+}
+
+
+/* Reward icon */
+
+.giftIcon {
+  animation:
+    rewardFloatSlow 5.5s ease-in-out infinite;
+}
+
+@keyframes rewardFloatSlow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+
+/* Background orbs */
+
+.orbOne {
+  animation:
+    orbFloatSlowOne 18s ease-in-out infinite;
+}
+
+.orbTwo {
+  animation:
+    orbFloatSlowTwo 22s ease-in-out infinite;
+}
+
+@keyframes orbFloatSlowOne {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(-8px, -6px, 0);
+  }
+}
+
+@keyframes orbFloatSlowTwo {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(6px, 5px, 0);
+  }
+}
+
+
+/* Particles */
+
+.particleOne {
+  animation:
+    particleFloatSlowOne 8s ease-in-out infinite;
+}
+
+.particleTwo {
+  animation:
+    particleFloatSlowTwo 10s ease-in-out infinite;
+}
+
+.particleThree {
+  animation:
+    particleFloatSlowThree 11s ease-in-out infinite;
+}
+
+@keyframes particleFloatSlowOne {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: translate(0, 0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translate(3px, -5px);
+  }
+}
+
+@keyframes particleFloatSlowTwo {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: translate(0, 0);
+  }
+
+  50% {
+    opacity: 0.85;
+    transform: translate(-4px, -3px);
+  }
+}
+
+@keyframes particleFloatSlowThree {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: translate(0, 0);
+  }
+
+  50% {
+    opacity: 0.9;
+    transform: translate(2px, -4px);
+  }
+}
+
+
+/* --------------------------------------------------
+   REDUCED MOTION
+   -------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .copy > .eyebrow,
+  .copy > h2,
+  .copy > p,
+  .copy > .stats,
+  .copy > .cta,
+  .visual {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .instagramIcon,
+  .liveDot,
+  .progressValue::after,
+  .completed,
+  .giftIcon,
+  .orbOne,
+  .orbTwo,
+  .particleOne,
+  .particleTwo,
+  .particleThree {
+    animation: none !important;
   }
 }
