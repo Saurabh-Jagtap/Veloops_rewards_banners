@@ -10,7 +10,6 @@ import {
 
 import { watchAdData } from "../../../data/watchAd";
 import styles from "./WatchAdBanner.module.css";
-import WatchAdIllustration from "./WatchAdIllustration";
 
 const WATCH_DURATION = 3000;
 
@@ -56,6 +55,33 @@ const WatchAdVisual = () => {
       ===================================================== */}
 
       <div className={styles.adScreen}>
+        <div className={styles.adBackground} aria-hidden="true">
+  <svg
+    className={styles.adWaves}
+    viewBox="0 0 800 400"
+    preserveAspectRatio="none"
+  >
+    <path
+      d="M-40 285 C120 220, 175 335, 330 265 S570 175, 840 230"
+      pathLength="1"
+    />
+
+    <path
+      d="M-60 325 C105 250, 205 360, 365 295 S610 215, 850 270"
+      pathLength="1"
+    />
+
+    <path
+      d="M-40 245 C100 190, 200 285, 350 230 S590 145, 830 200"
+      pathLength="1"
+    />
+  </svg>
+
+  <span className={`${styles.waveDot} ${styles.waveDotOne}`} />
+  <span className={`${styles.waveDot} ${styles.waveDotTwo}`} />
+  <span className={`${styles.waveDot} ${styles.waveDotThree}`} />
+</div>
+
         <div className={styles.adHeader}>
           <span>
             {isPlaying ? "Watching" : "Ad 1 of 3"}
@@ -74,10 +100,15 @@ const WatchAdVisual = () => {
         =================================================== */}
 
         <div className={styles.adContent}>
-          <div className={styles.adArt}>
-            <WatchAdIllustration />
+  <div className={styles.adArt}>
+    <img
+      src="/watch-ad.png"
+      alt=""
+      className={styles.adThumbnailImage}
+      aria-hidden="true"
+    />
 
-            <div className={styles.adControls}>
+    <div className={styles.adControls}>
               <button
                 type="button"
                 className={styles.playButton}

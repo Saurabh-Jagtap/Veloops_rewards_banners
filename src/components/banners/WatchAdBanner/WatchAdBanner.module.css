@@ -1,25 +1,128 @@
 .banner {
+  position: relative;
+  isolation: isolate;
+
   width: 100%;
   height: 430px;
+
   overflow: hidden;
 
-  border: 1px solid rgba(111, 140, 255, 0.18);
+  border: 1px solid rgba(69, 116, 190, 0.34);
   border-radius: var(--radius-banner);
 
   background:
-    radial-gradient(circle at 78% 48%,
-      rgba(43, 91, 210, 0.18),
-      transparent 34%),
-    radial-gradient(circle at 18% 70%,
-      rgba(35, 67, 150, 0.10),
-      transparent 32%),
-    linear-gradient(135deg,
-      #07101f 0%,
-      #09162c 48%,
-      #07101e 100%);
+    /* Main blue illumination behind the video */
+    radial-gradient(
+      58% 105% at 55% 50%,
+      rgba(12, 51, 112, 0.72) 0%,
+      rgba(7, 35, 80, 0.48) 38%,
+      rgba(3, 20, 48, 0.18) 66%,
+      transparent 82%
+    ),
+
+    /* Subtle blue light in the upper-left */
+    radial-gradient(
+      55% 100% at 8% 8%,
+      rgba(9, 35, 78, 0.48) 0%,
+      rgba(5, 25, 57, 0.24) 40%,
+      transparent 75%
+    ),
+
+    /* Deep right-side falloff */
+    radial-gradient(
+      48% 100% at 100% 50%,
+      rgba(1, 9, 25, 0.72) 0%,
+      rgba(2, 12, 31, 0.48) 48%,
+      transparent 80%
+    ),
+
+    /* Actual approved-design base */
+    linear-gradient(
+      135deg,
+      #030d20 0%,
+      #04132d 35%,
+      #051a38 58%,
+      #031127 78%,
+      #020b1c 100%
+    );
 
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.025);
+    inset 0 1px 0 rgba(255, 255, 255, 0.025),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.28);
+}
+
+/* =========================================================
+   WATCH ADS — BACKGROUND WAVES
+========================================================= */
+
+.banner::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  z-index: 0;
+
+  pointer-events: none;
+
+  opacity: 0.72;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 430' preserveAspectRatio='none'%3E%3Cpath d='M-40 300 C110 235 165 350 315 285 S535 170 710 235 S950 320 1240 190' fill='none' stroke='%234B91FF' stroke-opacity='.20' stroke-width='1.1'/%3E%3Cpath d='M-50 335 C100 270 185 380 335 315 S555 205 725 265 S980 345 1245 220' fill='none' stroke='%233E7FE5' stroke-opacity='.16' stroke-width='.9'/%3E%3Cpath d='M-30 260 C125 205 190 310 330 250 S545 145 700 205 S955 285 1235 155' fill='none' stroke='%23609DFF' stroke-opacity='.13' stroke-width='.8'/%3E%3C/svg%3E");
+
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+
+  transform-origin: center;
+}
+
+.banner::after {
+  content: "";
+
+  position: absolute;
+
+  width: 62%;
+  height: 72%;
+
+  right: -10%;
+  bottom: -24%;
+
+  z-index: 0;
+
+  pointer-events: none;
+
+  opacity: 0.58;
+
+  background-image:
+    radial-gradient(
+      circle,
+      rgba(86, 151, 255, 0.55) 0 1px,
+      transparent 1.4px
+    );
+
+  background-size: 11px 11px;
+
+  mask-image:
+    radial-gradient(
+      ellipse 72% 62% at 72% 62%,
+      black 0%,
+      rgba(0, 0, 0, 0.82) 34%,
+      rgba(0, 0, 0, 0.32) 62%,
+      transparent 82%
+    );
+
+  -webkit-mask-image:
+    radial-gradient(
+      ellipse 72% 62% at 72% 62%,
+      black 0%,
+      rgba(0, 0, 0, 0.82) 34%,
+      rgba(0, 0, 0, 0.32) 62%,
+      transparent 82%
+    );
+}
+
+.banner > * {
+  position: relative;
+  z-index: 1;
 }
 
 .content {
@@ -35,6 +138,7 @@
   gap: clamp(30px, 3.5vw, 52px);
 
   padding: 30px 42px;
+  z-index: 2;
 }
 
 /* =========================================================
@@ -325,7 +429,7 @@
   left: 18%;
 
   background:
-    rgba(50, 106, 236, 0.14);
+    rgba(44, 105, 220, 0.17);
 }
 
 .visualGlowSecondary {
@@ -336,7 +440,7 @@
   bottom: -20%;
 
   background:
-    rgba(57, 94, 180, 0.12);
+    rgba(48, 91, 180, 0.10);
 }
 
 
@@ -424,6 +528,191 @@
   font-weight: 600;
 }
 
+/* =========================================================
+   VIDEO BACKGROUND — WAVES + ACTIVITY DOTS
+========================================================= */
+
+.adBackground {
+  position: absolute;
+  inset: 0;
+
+  overflow: hidden;
+  pointer-events: none;
+
+  z-index: 0;
+
+  background:
+    /* Strong blue illumination behind the artwork */
+    radial-gradient(
+      72% 100% at 42% 42%,
+      rgba(18, 68, 158, 0.92) 0%,
+      rgba(11, 48, 119, 0.78) 28%,
+      rgba(5, 31, 79, 0.52) 52%,
+      transparent 78%
+    ),
+
+    /* Cooler illumination toward the upper-left */
+    radial-gradient(
+      65% 90% at 8% 8%,
+      rgba(8, 45, 103, 0.72) 0%,
+      rgba(3, 27, 67, 0.48) 35%,
+      transparent 72%
+    ),
+
+    /* Deep falloff on the right */
+    radial-gradient(
+      62% 100% at 100% 48%,
+      rgba(1, 10, 31, 0.96) 0%,
+      rgba(2, 14, 38, 0.88) 42%,
+      rgba(3, 19, 48, 0.55) 68%,
+      transparent 100%
+    ),
+
+    /* Overall base */
+    linear-gradient(
+      135deg,
+      #001133 0%,
+      #041b43 32%,
+      #061f4d 55%,
+      #020f2c 78%,
+      #01091d 100%
+    );
+}
+
+.adBackground::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      38% 55% at 48% 48%,
+      rgba(32, 88, 185, 0.20),
+      transparent 76%
+    );
+}
+
+/* ---------------------------------------------------------
+   FLOWING WAVE LINES
+--------------------------------------------------------- */
+
+.adWaves {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  opacity: 0.9;
+}
+
+.adWaves path {
+  fill: none;
+
+  stroke: rgba(76, 139, 255, 0.34);
+  stroke-width: 1.15;
+
+  vector-effect: non-scaling-stroke;
+
+  filter:
+    drop-shadow(0 0 5px rgba(70, 132, 255, 0.16));
+
+  stroke-dasharray: 0.8 0.2;
+
+  animation: waveFlow 12s linear infinite;
+}
+
+.adWaves path:nth-child(2) {
+  stroke: rgba(67, 128, 245, 0.25);
+  stroke-width: 0.9;
+
+  animation-duration: 15s;
+  animation-delay: -4s;
+}
+
+.adWaves path:nth-child(3) {
+  stroke: rgba(105, 159, 255, 0.20);
+  stroke-width: 0.8;
+
+  animation-duration: 18s;
+  animation-delay: -8s;
+}
+
+/* ---------------------------------------------------------
+   THREE ACTIVITY DOTS
+--------------------------------------------------------- */
+
+.waveDot {
+  position: absolute;
+
+  width: 4px;
+  height: 4px;
+
+  border-radius: 50%;
+
+  background: #8bb7ff;
+
+  box-shadow:
+    0 0 6px rgba(111, 170, 255, 0.85),
+    0 0 14px rgba(73, 132, 255, 0.42);
+}
+
+.waveDotOne {
+  top: 28%;
+  left: 22%;
+}
+
+.waveDotTwo {
+  top: 47%;
+  left: 69%;
+}
+
+.waveDotThree {
+  top: 68%;
+  left: 47%;
+
+  animation:
+    waveDotPulse 2.2s ease-in-out infinite;
+}
+
+/* ---------------------------------------------------------
+   ANIMATION
+--------------------------------------------------------- */
+
+@keyframes waveFlow {
+  from {
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    stroke-dashoffset: -1;
+  }
+}
+
+@keyframes waveDotPulse {
+  0%,
+  100% {
+    transform: scale(0.8);
+    opacity: 0.45;
+
+    box-shadow:
+      0 0 5px rgba(101, 158, 255, 0.45),
+      0 0 10px rgba(71, 126, 255, 0.18);
+  }
+
+  50% {
+    transform: scale(1.55);
+    opacity: 1;
+
+    box-shadow:
+      0 0 7px rgba(120, 176, 255, 0.9),
+      0 0 18px rgba(71, 126, 255, 0.55);
+  }
+}
+
 .rewardBadge {
   display: inline-flex;
   align-items: center;
@@ -465,6 +754,7 @@
   justify-content: center;
 
   overflow: hidden;
+  z-index: 2;
 }
 
 .adArt {
@@ -480,6 +770,49 @@
   justify-content: center;
 
   overflow: visible;
+}
+
+.adThumbnailImage {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: center;
+
+  display: block;
+
+  pointer-events: none;
+
+  transform: scale(1.02);
+
+  filter:
+    drop-shadow(0 18px 24px rgba(0, 0, 0, 0.28));
+
+  transition:
+    transform 450ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 450ms ease;
+}
+
+.adScreen:hover .adThumbnailImage {
+  transform: scale(1.045);
+
+  filter:
+    drop-shadow(0 20px 28px rgba(0, 0, 0, 0.34));
+}
+
+.isPlaying .adThumbnailImage {
+  transform: scale(1.035);
+
+  filter:
+    drop-shadow(0 20px 30px rgba(0, 0, 0, 0.34));
+}
+
+.adScreen:not(.isPlaying):not(.isCompleted) .playButton {
+  color: transparent;
+  filter: none;
 }
 
 .clapperboard {
@@ -980,6 +1313,7 @@
   color: rgba(255, 255, 255, 0.78);
 
   font-size: 0.62rem;
+  z-index: 4;
 }
 
 .videoMetaIcon {
@@ -1916,9 +2250,6 @@
 
 /* =========================================================
    MOBILE
-   540px → 431px
-
-   Stack video and earnings vertically.
 ========================================================= */
 
 @media (max-width: 540px) {
@@ -1962,11 +2293,6 @@
     line-height: 1.55;
   }
 
-  /*
-   * The three-step flow gets slightly smaller but
-   * remains horizontal so the communication hierarchy
-   * is preserved.
-   */
   .earningFlow {
     width: 100%;
     gap: 8px;
@@ -2001,9 +2327,6 @@
     margin-top: 18px;
   }
 
-  /*
-   * Video and earnings become vertical.
-   */
   .visual {
     width: 100%;
     height: auto;
@@ -2034,6 +2357,18 @@
   .adArt {
     width: 155px;
     height: 125px;
+  }
+
+  .adThumbnailImage {
+    transform: scale(1.06);
+  }
+
+  .adScreen:hover .adThumbnailImage {
+    transform: scale(1.08);
+  }
+
+  .isPlaying .adThumbnailImage {
+    transform: scale(1.07);
   }
 
   .clapperboard {
@@ -2210,6 +2545,18 @@
 
   .adScreen {
     height: 245px;
+  }
+
+  .adThumbnailImage {
+    transform: scale(1.04);
+  }
+
+  .adScreen:hover .adThumbnailImage {
+    transform: scale(1.06);
+  }
+
+  .isPlaying .adThumbnailImage {
+    transform: scale(1.05);
   }
 
   .earningsPanel {
