@@ -11,10 +11,6 @@ import {
 
 import styles from "./LeaderboardBanner.module.css";
 
-/* =========================================================
-   DATA
-   ========================================================= */
-
 interface PodiumEntry {
   rank: 1 | 2 | 3;
   name: string;
@@ -30,8 +26,6 @@ interface SupportingEntry {
   isCurrentUser?: boolean;
 }
 
-// Rendered left → right: silver, gold, bronze — gold stays
-// centered and dominant regardless of array order.
 const podium: PodiumEntry[] = [
   { rank: 2, name: "Priya K.", score: "9,210", tier: "silver" },
   { rank: 1, name: "Arlene M.", score: "12,450", tier: "gold" },
@@ -52,8 +46,6 @@ const supporting: SupportingEntry[] = [
 
 const currentUser = supporting.find((entry) => entry.isCurrentUser)!;
 
-// The row immediately above the current user — the subject of
-// the "preview the person above you" interaction.
 const rowAboveUser =
   supporting[supporting.findIndex((e) => e.isCurrentUser) - 1];
 
@@ -68,10 +60,6 @@ const progressPct = Math.min(
   100,
   Math.round((getScoreValue(currentUser.score) / GOAL_VE) * 100),
 );
-
-/* =========================================================
-   MOTION VARIANTS — small, cheap (opacity / x / y / scale)
-   ========================================================= */
 
 const containerVariants: Variants = {
   hidden: { opacity: 0, scale: 0.97, y: 18 },
@@ -128,8 +116,30 @@ const rowVariants: Variants = {
 const LeaderboardVisual = () => {
   const reduceMotion = useReducedMotion() ?? false;
   const [isAboveRowActive, setIsAboveRowActive] = useState(false);
+  const [selectedPlayerRank, setSelectedPlayerRank] = useState<number | null>(null);
+
+  const togglePlayerComparison = (rank: number) => {
+    setSelectedPlayerRank((current) =>
+      current === rank ? null : rank,
+    );
+  };
 
   const toggleAboveRow = () => setIsAboveRowActive((v) => !v);
+
+  const getPlayerComparison = (score: string) => {
+    const playerScore = getScoreValue(score);
+    const difference = playerScore - getScoreValue(currentUser.score);
+
+    if (difference > 0) {
+      return `${difference.toLocaleString()} VE ahead`;
+    }
+
+    if (difference < 0) {
+      return `${Math.abs(difference).toLocaleString()} VE behind`;
+    }
+
+    return "Same score";
+  };
 
   return (
     <motion.div
@@ -180,14 +190,15 @@ const LeaderboardVisual = () => {
             reduceMotion
               ? undefined
               : {
-                  boxShadow: [
-                    "0 0 0px rgba(243, 204, 110, 0)",
-                    "0 0 14px rgba(243, 204, 110, 0.18)",
-                    "0 0 0px rgba(243, 204, 110, 0)",
-                  ],
-                }
+                boxShadow: [
+                  "0 0 0px rgba(243, 204, 110, 0)",
+                  "0 0 14px rgba(243, 204, 110, 0.18)",
+                  "0 0 0px rgba(243, 204, 110, 0)",
+                ],
+              }
           }
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          whileHover={reduceMotion ? undefined : { scale: 1.04 }}
         >
           <Clock3 size={12} strokeWidth={2} aria-hidden="true" />
           <span>Ends in 5d 14h</span>
@@ -196,53 +207,88 @@ const LeaderboardVisual = () => {
 
       {/* ---------- Top 3 podium ---------- */}
       <motion.div className={styles.podium} variants={podiumListVariants}>
-        {podium.map((entry) => (
-          <motion.div
-            key={entry.rank}
-            className={`${styles.podiumBlock} ${
-              styles[
+        {podium.map((entry) => {
+          const isSelected = selectedPlayerRank === entry.rank;
+
+          return (
+            <motion.div
+              key={entry.rank}
+              className={`${styles.podiumBlock} ${styles[
                 `podiumBlock${entry.tier[0].toUpperCase()}${entry.tier.slice(1)}`
-              ]
-            }`}
-            variants={podiumBlockVariants}
-          >
-            {entry.tier === "gold" && (
-              <motion.div
-                className={styles.podiumTrophy}
-                animate={
-                  reduceMotion
-                    ? undefined
-                    : { y: [0, -3, 0] }
+                ]
+                } ${isSelected ? styles.podiumBlockSelected : ""}`}
+              variants={podiumBlockVariants}
+              whileHover={
+                reduceMotion
+                  ? undefined
+                  : {
+                    y: -3,
+                    scale: 1.015,
+                    transition: {
+                      duration: 0.22,
+                      ease: "easeOut",
+                    },
+                  }
+              }
+              role="button"
+              tabIndex={0}
+              aria-pressed={isSelected}
+              aria-label={`Compare ${entry.name} with your position`}
+              onClick={() => togglePlayerComparison(entry.rank)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  togglePlayerComparison(entry.rank);
                 }
-                transition={{
-                  duration: 4.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              >
-                <Trophy
-                  size={22}
-                  strokeWidth={1.6}
-                  fill="currentColor"
-                  aria-hidden="true"
-                />
-              </motion.div>
-            )}
+              }}
+            >
+              {entry.tier === "gold" && (
+                <motion.div
+                  className={styles.podiumTrophy}
+                  animate={
+                    reduceMotion
+                      ? undefined
+                      : { y: [0, -3, 0] }
+                  }
+                  transition={{
+                    duration: 4.5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                >
+                  <Trophy
+                    size={22}
+                    strokeWidth={1.6}
+                    fill="currentColor"
+                    aria-hidden="true"
+                  />
+                </motion.div>
+              )}
 
-            <span className={styles.podiumBadge}>{entry.rank}</span>
+              <span className={styles.podiumBadge}>
+                {entry.rank}
+              </span>
 
-            <div className={styles.podiumSlab}>
-              <strong>{entry.name}</strong>
-              <span>{entry.score} VE</span>
-            </div>
-          </motion.div>
-        ))}
+              <div className={styles.podiumSlab}>
+                <strong>{entry.name}</strong>
+
+                <span>
+                  {isSelected
+                    ? getPlayerComparison(entry.score)
+                    : `${entry.score} VE`}
+                </span>
+              </div>
+            </motion.div>
+          );
+        })}
       </motion.div>
 
       {/* ---------- Supporting rows (#4 / #5 You / #6) ---------- */}
       <motion.div className={styles.supportingRows} variants={rowListVariants}>
         {supporting.map((entry) => {
           const isAboveUser = entry.rank === rowAboveUser?.rank;
+          const isCurrentUser = Boolean(entry.isCurrentUser);
+          const isSelected = selectedPlayerRank === entry.rank;
 
           return (
             <motion.div
@@ -254,16 +300,26 @@ const LeaderboardVisual = () => {
                 isAboveUser && isAboveRowActive
                   ? styles.supportingRowActive
                   : "",
+                isSelected ? styles.supportingRowSelected : "",
               ]
                 .filter(Boolean)
                 .join(" ")}
               variants={rowVariants}
               whileHover={
-                isAboveUser
-                  ? { y: -2, transition: { duration: 0.16, ease: "easeOut" } }
-                  : undefined
+                reduceMotion
+                  ? undefined
+                  : { y: -2, transition: { duration: 0.18, ease: "easeOut" } }
               }
-              onClick={isAboveUser ? toggleAboveRow : undefined}
+              onClick={
+                isCurrentUser
+                  ? undefined
+                  : isAboveUser
+                    ? () => {
+                      toggleAboveRow();
+                      togglePlayerComparison(entry.rank);
+                    }
+                    : () => togglePlayerComparison(entry.rank)
+              }
               onMouseEnter={
                 isAboveUser ? () => setIsAboveRowActive(true) : undefined
               }
@@ -275,11 +331,11 @@ const LeaderboardVisual = () => {
               onKeyDown={
                 isAboveUser
                   ? (event) => {
-                      if (event.key === "Enter" || event.key === " ") {
-                        event.preventDefault();
-                        toggleAboveRow();
-                      }
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault();
+                      toggleAboveRow();
                     }
+                  }
                   : undefined
               }
               aria-expanded={isAboveUser ? isAboveRowActive : undefined}
@@ -306,7 +362,9 @@ const LeaderboardVisual = () => {
               )}
 
               <span className={styles.supportingScore}>
-                {entry.score} VE
+                {isSelected
+                  ? getPlayerComparison(entry.score)
+                  : `${entry.score} VE`}
               </span>
             </motion.div>
           );

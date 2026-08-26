@@ -1,5 +1,6 @@
 .banner {
   position: relative;
+  isolation: isolate;
 
   width: 100%;
   min-height: 410px;
@@ -8,20 +9,92 @@
 
   overflow: hidden;
 
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(217, 169, 58, 0.26);
   border-radius: var(--radius-banner);
 
   background:
-    radial-gradient(circle at 68% 42%,
-      rgba(217, 169, 58, 0.06),
-      transparent 28%),
-    radial-gradient(circle at 25% 70%,
-      rgba(55, 91, 160, 0.08),
-      transparent 32%),
-    linear-gradient(120deg,
-      #0b0e18 0%,
-      #0c101b 45%,
-      #0d1019 100%);
+    /* warm golden atmosphere on the right */
+    radial-gradient(ellipse 55% 100% at 92% 50%,
+      rgba(184, 125, 27, 0.18),
+      rgba(104, 68, 16, 0.08) 38%,
+      transparent 72%),
+
+    /* concentrated gold glow behind the visual */
+    radial-gradient(ellipse 38% 80% at 74% 48%,
+      rgba(217, 169, 58, 0.11),
+      transparent 68%),
+
+    /* subtle warm glow near bottom-right */
+    radial-gradient(ellipse 45% 65% at 88% 92%,
+      rgba(156, 94, 16, 0.12),
+      transparent 70%),
+
+    /* tiny scattered gold lights */
+    radial-gradient(circle at 35% 18%, rgba(255, 205, 92, 0.75) 0 1px, transparent 2px),
+    radial-gradient(circle at 42% 74%, rgba(255, 198, 72, 0.55) 0 1px, transparent 2px),
+    radial-gradient(circle at 57% 23%, rgba(255, 214, 111, 0.48) 0 1px, transparent 2px),
+    radial-gradient(circle at 66% 80%, rgba(255, 195, 64, 0.4) 0 1px, transparent 2px),
+    radial-gradient(circle at 78% 27%, rgba(255, 218, 125, 0.55) 0 1px, transparent 2px),
+    radial-gradient(circle at 91% 63%, rgba(255, 198, 74, 0.45) 0 1px, transparent 2px),
+
+    /* final warm-black base */
+    linear-gradient(115deg,
+      #090807 0%,
+      #0d0b08 34%,
+      #120e09 62%,
+      #1b1208 100%);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    inset 0 -1px 0 rgba(217, 169, 58, 0.08),
+    0 20px 55px rgba(0, 0, 0, 0.35);
+}
+
+/* =========================================================
+   LEADERBOARD AMBIENT GOLD WAVES
+   ========================================================= */
+
+.banner::before,
+.banner::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+
+  border: 1px solid rgba(214, 159, 45, 0.18);
+  border-radius: 50%;
+  transform: rotate(-12deg);
+}
+
+/* Large sweeping wave */
+.banner::before {
+  width: 78%;
+  height: 46%;
+
+  left: 22%;
+  top: 18%;
+
+  box-shadow:
+    0 0 18px rgba(217, 169, 58, 0.035),
+    inset 0 0 14px rgba(217, 169, 58, 0.02);
+
+  opacity: 0.9;
+}
+
+/* Lower secondary wave */
+.banner::after {
+  width: 70%;
+  height: 34%;
+
+  left: -5%;
+  top: 57%;
+
+  border-color: rgba(191, 133, 31, 0.13);
+
+  transform: rotate(-8deg);
+
+  box-shadow:
+    0 0 20px rgba(217, 169, 58, 0.025);
 }
 
 
@@ -30,6 +103,9 @@
    ========================================================= */
 
 .content {
+  position: relative;
+  z-index: 1;
+
   width: 100%;
   height: 100%;
   min-height: 0;
@@ -56,6 +132,30 @@
 .copy {
   width: 100%;
   max-width: 560px;
+  position: relative;
+  z-index: 2;
+}
+
+.copy::before {
+  content: "";
+  position: absolute;
+
+  width: 520px;
+  height: 180px;
+
+  left: 25%;
+  top: 20%;
+
+  border: 1px solid rgba(217, 169, 58, 0.12);
+  border-radius: 50%;
+
+  transform: rotate(-13deg);
+
+  pointer-events: none;
+  z-index: -1;
+
+  box-shadow:
+    0 0 24px rgba(217, 169, 58, 0.025);
 }
 
 .sectionNumber {
@@ -389,6 +489,19 @@
   box-shadow:
     0 22px 50px rgba(0, 0, 0, 0.32),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+  transition:
+    border-color 320ms ease,
+    box-shadow 320ms ease;
+}
+
+.visual:hover {
+  border-color: rgba(217, 169, 58, 0.4);
+
+  box-shadow:
+    0 24px 54px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 0 42px rgba(217, 169, 58, 0.07);
 }
 
 
@@ -415,6 +528,8 @@
 
   pointer-events: none;
   z-index: 0;
+
+  animation: goldGlowBreathe 9s ease-in-out infinite;
 }
 
 .risingPath {
@@ -429,6 +544,34 @@
   opacity: 0.8;
   pointer-events: none;
   z-index: 1;
+
+  animation: risingPathBreathe 7s ease-in-out infinite;
+}
+
+@keyframes goldGlowBreathe {
+
+  0%,
+  100% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes risingPathBreathe {
+
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+
+  50% {
+    opacity: 0.9;
+  }
 }
 
 
@@ -478,6 +621,12 @@
   font-weight: 600;
 
   white-space: nowrap;
+
+  transition: border-color 250ms ease;
+}
+
+.timer:hover {
+  border-color: rgba(243, 204, 110, 0.6);
 }
 
 
@@ -518,6 +667,14 @@
   box-shadow:
     0 14px 22px rgba(0, 0, 0, 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 0.16);
+
+  transition:
+    filter 260ms ease,
+    box-shadow 300ms ease;
+}
+
+.podiumBlock:hover {
+  filter: brightness(1.05);
 }
 
 .podiumBlock::before {
@@ -609,6 +766,13 @@
   z-index: 2;
 }
 
+.podiumBlockGold:hover {
+  box-shadow:
+    0 18px 34px rgba(198, 143, 30, 0.4),
+    0 0 44px rgba(255, 200, 90, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
 .podiumBlockGold .podiumBadge {
   background: linear-gradient(150deg, #3a2a0c, #17110a);
   color: #ffd873;
@@ -630,6 +794,12 @@
   filter: drop-shadow(0 0 10px rgba(255, 210, 110, 0.55));
 
   z-index: 2;
+
+  transition: filter 280ms ease;
+}
+
+.podiumBlockGold:hover .podiumTrophy {
+  filter: drop-shadow(0 0 16px rgba(255, 210, 110, 0.8));
 }
 
 
@@ -639,6 +809,13 @@
   height: 92px;
 
   background: linear-gradient(180deg, #7c8598 0%, #454b5c 55%, #2c3140 100%);
+}
+
+.podiumBlockSilver:hover {
+  box-shadow:
+    0 14px 22px rgba(0, 0, 0, 0.4),
+    0 0 22px rgba(180, 190, 210, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
 }
 
 .podiumBlockSilver .podiumBadge {
@@ -657,6 +834,13 @@
   height: 92px;
 
   background: linear-gradient(180deg, #d99a63 0%, #a85f2f 55%, #7a4520 100%);
+}
+
+.podiumBlockBronze:hover {
+  box-shadow:
+    0 14px 22px rgba(0, 0, 0, 0.4),
+    0 0 22px rgba(217, 154, 99, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
 }
 
 .podiumBlockBronze .podiumBadge {
@@ -712,12 +896,26 @@
     box-shadow 180ms ease;
 }
 
+.supportingRow:hover {
+  border-color: rgba(255, 255, 255, 0.14);
+
+  background: rgba(255, 255, 255, 0.045);
+}
+
 .supportingRowMe {
   border-color: rgba(217, 169, 58, 0.55);
 
   background: rgba(217, 169, 58, 0.1);
 
   box-shadow: 0 0 16px rgba(217, 169, 58, 0.1);
+}
+
+.supportingRowMe:hover {
+  border-color: rgba(217, 169, 58, 0.8);
+
+  background: rgba(217, 169, 58, 0.16);
+
+  box-shadow: 0 0 22px rgba(217, 169, 58, 0.2);
 }
 
 .supportingRowInteractive {
@@ -764,11 +962,21 @@
   font-family: var(--font-mono);
   font-size: 0.42rem;
   font-weight: 700;
+
+  transition: box-shadow 220ms ease;
+}
+
+.supportingRow:hover .supportingAvatar {
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.28);
 }
 
 .supportingRowMe .supportingAvatar {
   background: linear-gradient(150deg, #f6d375, #d79a2b);
   color: #4a340a;
+}
+
+.supportingRowMe:hover .supportingAvatar {
+  box-shadow: 0 0 10px rgba(243, 204, 110, 0.5);
 }
 
 .supportingName {
@@ -808,6 +1016,12 @@
   font-weight: 700;
 
   white-space: nowrap;
+
+  transition: color 200ms ease;
+}
+
+.supportingRow:hover .supportingScore {
+  color: #ffffff;
 }
 
 
@@ -852,6 +1066,12 @@
   font-family: var(--font-mono);
   font-size: 0.64rem;
   font-weight: 700;
+
+  transition: text-shadow 280ms ease;
+}
+
+.progressSection:hover .progressHeaderRow strong {
+  text-shadow: 0 0 10px rgba(243, 204, 110, 0.5);
 }
 
 .progressTrack {
@@ -866,6 +1086,8 @@
 }
 
 .progressFill {
+  position: relative;
+
   height: 100%;
 
   border-radius: inherit;
@@ -873,6 +1095,41 @@
   background: linear-gradient(90deg, #d9a93a, #ffd873);
 
   box-shadow: 0 0 10px rgba(243, 204, 110, 0.45);
+
+  overflow: hidden;
+
+  transition: box-shadow 300ms ease;
+}
+
+.progressSection:hover .progressFill {
+  box-shadow: 0 0 16px rgba(243, 204, 110, 0.7);
+}
+
+.progressFill::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(110deg,
+      transparent 20%,
+      rgba(255, 255, 255, 0.4) 45%,
+      transparent 70%);
+
+  transform: translateX(-100%);
+
+  animation: progressShimmer 6s ease-in-out infinite;
+}
+
+@keyframes progressShimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  35%,
+  100% {
+    transform: translateX(220%);
+  }
 }
 
 
@@ -880,33 +1137,41 @@
    RESPONSIVE
    ========================================================= */
 
-/* ---------------------------------------------------------
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+/* =========================================================
    COMPACT DESKTOP / LARGE TABLET
-   --------------------------------------------------------- */
+   901px - 1100px
+   ========================================================= */
 
 @media (max-width: 1100px) {
+  .banner {
+    min-height: 400px;
+    height: 420px;
+  }
+
   .content {
     grid-template-columns:
-      minmax(285px, 0.44fr) minmax(0, 0.56fr);
+      minmax(290px, 0.48fr) minmax(0, 0.52fr);
 
-    gap: 28px;
+    gap: 26px;
 
     padding: 26px 32px;
   }
 
   .copy h2 {
-    font-size:
-      clamp(2.15rem, 4vw, 2.8rem);
+    font-size: clamp(2.1rem, 4vw, 2.8rem);
   }
 
   .description {
-    max-width: 360px;
-
-    font-size: 0.88rem;
+    max-width: 370px;
+    font-size: 0.86rem;
   }
 
   .featureFlow {
-    gap: 12px;
+    gap: 11px;
   }
 
   .featureStep {
@@ -914,56 +1179,124 @@
   }
 
   .featureIcon {
-    width: 38px;
-    height: 38px;
-
-    border-radius: 11px;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
   }
 
   .featureLabel {
-    font-size: 0.7rem;
+    font-size: 0.68rem;
   }
 
   .featureSubLabel {
-    font-size: 0.62rem;
+    font-size: 0.59rem;
   }
 
   .featureDivider {
-    height: 28px;
+    height: 27px;
   }
 
+  .cta {
+    min-height: 43px;
+    margin-top: 19px;
+    font-size: 0.75rem;
+  }
+
+  /* RIGHT VISUAL */
+
   .visual {
-    height: 350px;
+    height: 340px;
+    border-radius: 14px;
+  }
+
+  .visualHeader {
+    padding: 12px 15px 0;
+  }
+
+  .visualTitle {
+    font-size: 0.7rem;
   }
 
   .podium {
-    padding-top: 42px;
+    padding: 40px 12px 0;
+    gap: 8px;
   }
 
   .podiumBlockGold {
-    height: 116px;
+    height: 108px;
   }
 
   .podiumBlockSilver,
   .podiumBlockBronze {
-    height: 84px;
+    height: 78px;
+  }
+
+  .podiumBadge {
+    width: 26px;
+    height: 26px;
+    font-size: 0.62rem;
+  }
+
+  .podiumSlab strong {
+    font-size: 0.66rem;
+  }
+
+  .podiumSlab span {
+    font-size: 0.58rem;
+  }
+
+  .supportingRows {
+    padding: 10px 12px 0;
+  }
+
+  .supportingRow {
+    height: 35px;
+    padding: 0 8px;
   }
 
   .supportingName {
-    font-size: 0.62rem;
+    font-size: 0.59rem;
+  }
+
+  .supportingScore {
+    font-size: 0.55rem;
+  }
+
+  .progressSection {
+    padding: 10px 13px 12px;
+  }
+
+  /* Keep decorative background proportional */
+  .banner::before {
+    width: 86%;
+    height: 42%;
+    left: 18%;
+    top: 21%;
+  }
+
+  .banner::after {
+    width: 78%;
+    height: 31%;
+    left: -8%;
+    top: 60%;
+  }
+
+  .copy::before {
+    width: 420px;
+    height: 155px;
   }
 }
 
 
-/* ---------------------------------------------------------
+/* =========================================================
    TABLET / SMALL LAPTOP
-   --------------------------------------------------------- */
+   761px - 900px
+   ========================================================= */
 
 @media (max-width: 900px) {
   .banner {
     height: auto;
-
-    min-height: 410px;
+    min-height: 400px;
     max-height: none;
   }
 
@@ -971,58 +1304,53 @@
     height: auto;
 
     grid-template-columns:
-      minmax(250px, 0.42fr) minmax(0, 0.58fr);
+      minmax(250px, 0.44fr) minmax(0, 0.56fr);
 
     align-items: center;
 
-    gap: 22px;
+    gap: 20px;
 
     padding: 24px 26px;
   }
 
   .copy h2 {
-    font-size:
-      clamp(2rem, 4.2vw, 2.55rem);
+    font-size: clamp(1.95rem, 4.5vw, 2.5rem);
   }
 
   .description {
     max-width: 320px;
 
-    margin-top: 16px;
+    margin-top: 15px;
 
-    font-size: 0.82rem;
-
+    font-size: 0.78rem;
     line-height: 1.55;
   }
 
   .featureFlow {
     width: 100%;
 
-    display: flex;
-    align-items: center;
+    gap: 7px;
 
-    gap: 8px;
-
-    margin-top: 19px;
+    margin-top: 18px;
   }
 
   .featureStep {
     flex: 1 1 0;
     min-width: 0;
 
-    display: flex;
-    align-items: center;
-
-    gap: 7px;
+    gap: 6px;
   }
 
   .featureIcon {
-    width: 34px;
-    height: 34px;
+    width: 32px;
+    height: 32px;
 
-    flex: 0 0 auto;
+    border-radius: 8px;
+  }
 
-    border-radius: 9px;
+  .featureIcon svg {
+    width: 15px;
+    height: 15px;
   }
 
   .featureText {
@@ -1040,82 +1368,96 @@
   }
 
   .featureLabel {
-    font-size: 0.66rem;
+    font-size: 0.62rem;
   }
 
   .featureSubLabel {
-    font-size: 0.57rem;
+    font-size: 0.54rem;
   }
 
   .featureDivider {
-    width: 1px;
-    height: 25px;
-
-    flex: 0 0 auto;
+    height: 23px;
   }
 
   .cta {
-    min-height: 43px;
+    min-height: 41px;
 
-    margin-top: 18px;
+    margin-top: 17px;
 
-    padding: 0 16px;
+    padding: 0 14px;
 
-    font-size: 0.76rem;
-  }
-
-  .visual {
-    height: 340px;
-
-    border-radius: 14px;
-  }
-
-  .visualHeader {
-    padding:
-      12px 15px 0;
-  }
-
-  .visualTitle {
     font-size: 0.72rem;
   }
 
-  .podium {
-    padding: 40px 12px 0;
+  /* RIGHT VISUAL */
 
-    gap: 8px;
+  .visual {
+    height: 320px;
+
+    border-radius: 13px;
+  }
+
+  .visualHeader {
+    padding: 11px 13px 0;
+  }
+
+  .visualTitle {
+    font-size: 0.66rem;
+  }
+
+  .timer {
+    padding: 3px 7px;
+    font-size: 0.52rem;
+  }
+
+  .podium {
+    padding: 36px 10px 0;
+    gap: 7px;
   }
 
   .podiumBlockGold {
-    height: 104px;
+    height: 98px;
   }
 
   .podiumBlockSilver,
   .podiumBlockBronze {
-    height: 76px;
+    height: 72px;
   }
 
   .podiumBadge {
-    width: 26px;
-    height: 26px;
+    width: 24px;
+    height: 24px;
+    font-size: 0.57rem;
+  }
 
-    font-size: 0.62rem;
+  .podiumTrophy {
+    top: -29px;
+  }
+
+  .podiumTrophy svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .podiumSlab {
+    padding: 3px 6px 9px;
   }
 
   .podiumSlab strong {
-    font-size: 0.68rem;
-  }
-
-  .podiumSlab span {
     font-size: 0.6rem;
   }
 
+  .podiumSlab span {
+    font-size: 0.53rem;
+  }
+
   .supportingRows {
-    padding: 10px 12px 0;
+    padding: 8px 10px 0;
+    gap: 6px;
   }
 
   .supportingRow {
-    height: 36px;
-
+    height: 32px;
     padding: 0 7px;
   }
 
@@ -1123,44 +1465,82 @@
     display: none;
   }
 
-  .supportingName {
-    font-size: 0.6rem;
+  .supportingAvatar {
+    width: 17px;
+    height: 17px;
+    font-size: 0.38rem;
   }
 
-  .supportingScore {
+  .supportingName {
     font-size: 0.56rem;
   }
 
+  .supportingScore {
+    font-size: 0.52rem;
+  }
+
   .progressSection {
-    padding: 10px 14px 12px;
+    padding: 8px 11px 10px;
+  }
+
+  .progressHeaderRow {
+    margin-bottom: 5px;
+  }
+
+  .progressHeaderRow span,
+  .progressHeaderRow strong {
+    font-size: 0.55rem;
+  }
+
+  .progressTrack {
+    height: 5px;
+  }
+
+  /* Background decoration */
+  .banner::before {
+    width: 100%;
+    height: 40%;
+    left: 10%;
+    top: 23%;
+  }
+
+  .banner::after {
+    width: 90%;
+    height: 28%;
+    left: -15%;
+    top: 62%;
+  }
+
+  .copy::before {
+    width: 360px;
+    height: 135px;
   }
 }
 
 
-/* ---------------------------------------------------------
+/* =========================================================
    TABLET PORTRAIT / LARGE PHONE
-   --------------------------------------------------------- */
+   561px - 760px
+   ========================================================= */
 
 @media (max-width: 760px) {
   .banner {
     height: auto;
-
     min-height: 0;
+    max-height: none;
 
-    overflow: visible;
+    overflow: hidden;
   }
 
   .content {
     display: flex;
-
     flex-direction: column;
 
     align-items: stretch;
 
-    gap: 30px;
+    gap: 28px;
 
-    padding:
-      28px 28px 26px;
+    padding: 28px 28px 26px;
   }
 
   .copy {
@@ -1169,27 +1549,26 @@
   }
 
   .copy h2 {
-    font-size:
-      clamp(2.35rem, 7vw, 3rem);
-
+    font-size: clamp(2.2rem, 7vw, 2.9rem);
     line-height: 0.98;
   }
 
   .description {
     max-width: 620px;
 
-    font-size: 0.88rem;
+    margin-top: 16px;
+
+    font-size: 0.86rem;
     line-height: 1.6;
   }
 
   .featureFlow {
     width: 100%;
-
     max-width: 600px;
 
-    gap: 14px;
+    gap: 12px;
 
-    margin-top: 21px;
+    margin-top: 20px;
   }
 
   .featureStep {
@@ -1197,41 +1576,160 @@
   }
 
   .featureIcon {
-    width: 40px;
-    height: 40px;
-
+    width: 38px;
+    height: 38px;
     border-radius: 10px;
   }
 
   .featureLabel {
-    font-size: 0.7rem;
+    font-size: 0.68rem;
   }
 
   .featureSubLabel {
-    font-size: 0.6rem;
+    font-size: 0.58rem;
   }
 
   .featureDivider {
-    height: 30px;
+    height: 28px;
   }
 
   .cta {
-    margin-top: 20px;
+    margin-top: 19px;
   }
+
+  /* -------------------------
+     RIGHT VISUAL
+     ------------------------- */
 
   .visual {
     width: 100%;
-
-    height: 400px;
+    height: 390px;
 
     flex-shrink: 0;
+
+    border-radius: 14px;
+  }
+
+  .visualHeader {
+    padding: 12px 14px 0;
+  }
+
+  .visualTitle {
+    font-size: 0.7rem;
+  }
+
+  .timer {
+    font-size: 0.54rem;
+  }
+
+  .podium {
+    padding: 38px 16px 0;
+    gap: 8px;
+  }
+
+  .podiumBlock {
+    max-width: 130px;
+  }
+
+  .podiumBlockGold {
+    height: 105px;
+  }
+
+  .podiumBlockSilver,
+  .podiumBlockBronze {
+    height: 78px;
+  }
+
+  .podiumBadge {
+    width: 25px;
+    height: 25px;
+
+    font-size: 0.6rem;
+  }
+
+  .podiumTrophy {
+    top: -32px;
+  }
+
+  .podiumTrophy svg {
+    width: 19px;
+    height: 19px;
+  }
+
+  .podiumSlab strong {
+    font-size: 0.65rem;
+  }
+
+  .podiumSlab span {
+    font-size: 0.56rem;
+  }
+
+  .supportingRows {
+    padding: 10px 14px 0;
+    gap: 7px;
+  }
+
+  .supportingRow {
+    height: 34px;
+    padding: 0 8px;
+  }
+
+  .supportingRank {
+    display: inline;
+    font-size: 0.5rem;
+  }
+
+  .supportingName {
+    font-size: 0.59rem;
+  }
+
+  .supportingScore {
+    font-size: 0.55rem;
+  }
+
+  .progressSection {
+    padding: 10px 14px 12px;
+  }
+
+  /* Keep gold background decoration visible,
+     but prevent it from overpowering mobile content. */
+
+  .banner::before {
+    width: 130%;
+    height: 34%;
+
+    left: -10%;
+    top: 30%;
+
+    opacity: 0.7;
+  }
+
+  .banner::after {
+    width: 120%;
+    height: 26%;
+
+    left: -25%;
+    top: 64%;
+
+    opacity: 0.6;
+  }
+
+  .copy::before {
+    width: 420px;
+    height: 150px;
+
+    left: 15%;
+    top: 20%;
+
+    opacity: 0.7;
   }
 }
 
 
-/* ---------------------------------------------------------
+/* =========================================================
    MOBILE
-   --------------------------------------------------------- */
+   391px - 560px
+   ========================================================= */
 
 @media (max-width: 560px) {
   .banner {
@@ -1251,7 +1749,6 @@
 
   .sectionNumber {
     gap: 7px;
-
     margin-bottom: 13px;
   }
 
@@ -1260,19 +1757,16 @@
   }
 
   .sectionDot {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
   }
 
   .eyebrow {
-    font-size: 0.57rem;
-
+    font-size: 0.56rem;
     letter-spacing: 0.1em;
   }
 
   .copy h2 {
-    font-size:
-      clamp(2.05rem, 10vw, 2.65rem);
-
+    font-size: clamp(2rem, 10vw, 2.55rem);
     line-height: 0.98;
   }
 
@@ -1281,22 +1775,16 @@
 
     margin-top: 13px;
 
-    font-size: 0.8rem;
-
+    font-size: 0.78rem;
     line-height: 1.55;
   }
 
   .featureFlow {
     width: 100%;
 
-    display: flex;
-    align-items: center;
-
     gap: 6px;
 
     margin-top: 17px;
-
-    justify-content: stretch;
   }
 
   .featureStep {
@@ -1315,6 +1803,11 @@
     border-radius: 8px;
   }
 
+  .featureIcon svg {
+    width: 14px;
+    height: 14px;
+  }
+
   .featureText {
     min-width: 0;
   }
@@ -1330,20 +1823,16 @@
   }
 
   .featureLabel {
-    font-size: 0.62rem;
+    font-size: 0.61rem;
   }
 
   .featureSubLabel {
-    margin-top: 0;
-
-    font-size: 0.52rem;
+    font-size: 0.51rem;
   }
 
   .featureDivider {
     width: 1px;
-    height: 25px;
-
-    flex: 0 0 auto;
+    height: 24px;
   }
 
   .cta {
@@ -1353,12 +1842,10 @@
 
     margin-top: 16px;
 
-    padding:
-      0 17px;
+    padding: 0 17px;
 
-    font-size: 0.74rem;
+    font-size: 0.73rem;
   }
-
 
   /* -------------------------
      RIGHT SIDE
@@ -1366,19 +1853,17 @@
 
   .visual {
     height: auto;
-
-    min-height: 480px;
+    min-height: 470px;
 
     border-radius: 13px;
   }
 
   .visualHeader {
-    padding:
-      11px 13px 0;
+    padding: 11px 13px 0;
   }
 
   .visualTitle {
-    font-size: 0.66rem;
+    font-size: 0.64rem;
   }
 
   .timer {
@@ -1386,11 +1871,8 @@
 
     padding: 3px 7px;
 
-    font-size: 0.52rem;
-
-    white-space: nowrap;
+    font-size: 0.5rem;
   }
-
 
   /* -------------------------
      PODIUM
@@ -1402,24 +1884,28 @@
     gap: 6px;
   }
 
+  .podiumBlock {
+    max-width: 105px;
+  }
+
   .podiumBlockGold {
     height: 92px;
   }
 
   .podiumBlockSilver,
   .podiumBlockBronze {
-    height: 68px;
+    height: 67px;
   }
 
   .podiumBadge {
-    width: 24px;
-    height: 24px;
+    width: 23px;
+    height: 23px;
 
-    font-size: 0.58rem;
+    font-size: 0.56rem;
   }
 
   .podiumTrophy {
-    top: -30px;
+    top: -29px;
   }
 
   .podiumTrophy svg {
@@ -1427,14 +1913,17 @@
     height: 17px;
   }
 
+  .podiumSlab {
+    padding: 3px 5px 8px;
+  }
+
   .podiumSlab strong {
-    font-size: 0.62rem;
+    font-size: 0.59rem;
   }
 
   .podiumSlab span {
-    font-size: 0.55rem;
+    font-size: 0.52rem;
   }
-
 
   /* -------------------------
      SUPPORTING ROWS
@@ -1445,43 +1934,90 @@
 
     gap: 6px;
 
-    padding: 10px 12px 0;
+    padding: 9px 11px 0;
   }
 
   .supportingRow {
-    height: 36px;
+    width: 100%;
+    height: 34px;
+  }
+
+  .supportingRank {
+    display: none;
   }
 
   .supportingName {
-    font-size: 0.64rem;
+    font-size: 0.61rem;
   }
 
   .supportingScore {
-    font-size: 0.6rem;
+    font-size: 0.57rem;
   }
-
 
   /* -------------------------
      PROGRESS
      ------------------------- */
 
   .progressSection {
-    padding: 10px 13px 12px;
+    padding: 10px 12px 12px;
+  }
+
+  .progressHeaderRow {
+    gap: 8px;
   }
 
   .progressHeaderRow span {
-    font-size: 0.6rem;
+    font-size: 0.57rem;
   }
 
   .progressHeaderRow strong {
-    font-size: 0.6rem;
+    font-size: 0.57rem;
+  }
+
+  .progressTrack {
+    height: 5px;
+  }
+
+  /* -------------------------
+     BACKGROUND DETAIL
+     ------------------------- */
+
+  .banner::before {
+    width: 170%;
+    height: 31%;
+
+    left: -35%;
+    top: 35%;
+
+    opacity: 0.55;
+  }
+
+  .banner::after {
+    width: 150%;
+    height: 23%;
+
+    left: -30%;
+    top: 67%;
+
+    opacity: 0.45;
+  }
+
+  .copy::before {
+    width: 360px;
+    height: 130px;
+
+    left: 5%;
+    top: 18%;
+
+    opacity: 0.45;
   }
 }
 
 
-/* ---------------------------------------------------------
+/* =========================================================
    SMALL PHONE
-   --------------------------------------------------------- */
+   <=390px
+   ========================================================= */
 
 @media (max-width: 390px) {
   .content {
@@ -1500,45 +2036,31 @@
   }
 
   .eyebrow {
-    font-size: 0.53rem;
+    font-size: 0.52rem;
   }
 
   .copy h2 {
-    font-size:
-      clamp(1.9rem, 10.5vw, 2.35rem);
+    font-size: clamp(1.85rem, 10.5vw, 2.3rem);
   }
 
   .description {
     margin-top: 11px;
-
-    font-size: 0.75rem;
+    font-size: 0.73rem;
   }
 
   .featureFlow {
     gap: 5px;
-
     margin-top: 15px;
   }
 
   .featureStep {
-    flex: 1 1 0;
-    min-width: 0;
-
     gap: 5px;
-  }
-
-  .featureLabel,
-  .featureSubLabel {
-    overflow: hidden;
-
-    white-space: nowrap;
-    text-overflow: ellipsis;
   }
 
   .featureIcon {
     width: 29px;
     height: 29px;
-    flex: 0 0 auto;
+
     border-radius: 7px;
   }
 
@@ -1548,15 +2070,15 @@
   }
 
   .featureLabel {
-    font-size: 0.57rem;
+    font-size: 0.56rem;
   }
 
   .featureSubLabel {
-    font-size: 0.47rem;
+    font-size: 0.46rem;
   }
 
   .featureDivider {
-    height: 22px;
+    height: 21px;
   }
 
   .cta {
@@ -1564,36 +2086,38 @@
 
     margin-top: 14px;
 
-    padding:
-      0 15px;
+    padding: 0 15px;
 
-    font-size: 0.7rem;
+    font-size: 0.69rem;
   }
-
 
   /* -------------------------
      RIGHT SIDE
      ------------------------- */
 
   .visual {
-    min-height: 460px;
+    min-height: 450px;
   }
 
   .visualHeader {
-    padding:
-      10px 11px 0;
+    padding: 10px 11px 0;
   }
 
   .visualTitle {
-    font-size: 0.61rem;
+    font-size: 0.59rem;
   }
 
   .timer {
-    font-size: 0.47rem;
+    font-size: 0.46rem;
   }
 
   .podium {
     padding: 30px 8px 0;
+    gap: 5px;
+  }
+
+  .podiumBlock {
+    max-width: 90px;
   }
 
   .podiumBlockGold {
@@ -1602,14 +2126,14 @@
 
   .podiumBlockSilver,
   .podiumBlockBronze {
-    height: 62px;
+    height: 61px;
   }
 
   .podiumBadge {
-    width: 22px;
-    height: 22px;
+    width: 21px;
+    height: 21px;
 
-    font-size: 0.55rem;
+    font-size: 0.53rem;
   }
 
   .podiumTrophy {
@@ -1622,44 +2146,67 @@
   }
 
   .podiumSlab strong {
-    font-size: 0.58rem;
+    font-size: 0.55rem;
   }
 
   .podiumSlab span {
-    font-size: 0.52rem;
+    font-size: 0.49rem;
   }
 
   .supportingRows {
-    padding: 8px 10px 0;
+    padding: 8px 9px 0;
   }
 
   .supportingRow {
-    height: 34px;
-
-    padding: 0 8px;
+    height: 32px;
+    padding: 0 7px;
   }
 
   .supportingName {
-    font-size: 0.6rem;
+    font-size: 0.57rem;
   }
 
   .supportingScore {
-    font-size: 0.56rem;
+    font-size: 0.53rem;
   }
 
   .supportingGap {
-    font-size: 0.48rem;
+    font-size: 0.45rem;
   }
 
   .progressSection {
-    padding: 9px 11px 10px;
+    padding: 8px 10px 10px;
+  }
+
+  .progressHeaderRow span,
+  .progressHeaderRow strong {
+    font-size: 0.53rem;
+  }
+
+  /* Background becomes quieter on very small screens */
+
+  .banner::before {
+    width: 190%;
+    left: -45%;
+    opacity: 0.38;
+  }
+
+  .banner::after {
+    width: 175%;
+    left: -40%;
+    opacity: 0.3;
+  }
+
+  .copy::before {
+    opacity: 0.25;
   }
 }
 
 
-/* ---------------------------------------------------------
+/* =========================================================
    VERY SMALL PHONES
-   --------------------------------------------------------- */
+   <=340px
+   ========================================================= */
 
 @media (max-width: 340px) {
   .content {
@@ -1668,38 +2215,35 @@
   }
 
   .copy h2 {
-    font-size: 1.8rem;
+    font-size: 1.78rem;
   }
 
   .copy p {
-    font-size: 0.71rem;
-  }
-
-  .featureSubLabel {
-    display: none;
+    font-size: 0.7rem;
   }
 
   .featureFlow {
     width: 100%;
-    gap: 7px;
+    gap: 6px;
   }
 
   .featureStep {
     flex: 1 1 0;
-
     min-width: 0;
-
-    gap: 5px;
+    gap: 4px;
   }
 
   .featureText {
     min-width: 0;
   }
 
+  .featureSubLabel {
+    display: none;
+  }
+
   .featureIcon {
     width: 27px;
     height: 27px;
-
     flex: 0 0 auto;
   }
 
@@ -1708,36 +2252,79 @@
 
     overflow: hidden;
 
-    font-size: 0.55rem;
+    font-size: 0.53rem;
 
     white-space: nowrap;
     text-overflow: ellipsis;
   }
 
   .featureDivider {
-    height: 20px;
+    height: 19px;
   }
 
   .cta {
     width: 100%;
   }
 
+  /* -------------------------
+     RIGHT VISUAL
+     ------------------------- */
+
   .visual {
-    min-height: 440px;
+    min-height: 435px;
   }
 
   .timer span {
     display: none;
   }
 
+  .podium {
+    padding: 28px 6px 0;
+  }
+
+  .podiumBlock {
+    max-width: 82px;
+  }
+
+  .podiumBlockGold {
+    height: 80px;
+  }
+
+  .podiumBlockSilver,
+  .podiumBlockBronze {
+    height: 58px;
+  }
+
   .podiumSlab strong {
-    font-size: 0.55rem;
+    font-size: 0.52rem;
+  }
+
+  .podiumSlab span {
+    font-size: 0.47rem;
+  }
+
+  .supportingRows {
+    padding: 7px 8px 0;
+  }
+
+  .supportingRow {
+    height: 30px;
+    padding: 0 6px;
+  }
+
+  .supportingName {
+    font-size: 0.54rem;
   }
 
   .supportingScore {
-    font-size: 0.53rem;
+    font-size: 0.5rem;
+  }
+
+  .progressSection {
+    padding: 7px 9px 9px;
   }
 }
+
 
 /* =========================================================
    REDUCED MOTION
@@ -1746,11 +2333,61 @@
 @media (prefers-reduced-motion: reduce) {
 
   .cta,
-  .cta svg {
-    transition: none;
-  }
-
+  .cta svg,
   .supportingRow {
     transition: none;
   }
+
+  .visualGoldGlow,
+  .risingPath,
+  .progressFill::after {
+    animation: none;
+  }
+
+  .visual,
+  .timer,
+  .podiumBlock,
+  .podiumTrophy,
+  .supportingAvatar,
+  .supportingScore,
+  .progressFill,
+  .progressHeaderRow strong {
+    transition: none;
+  }
+}
+
+/* =========================================================
+   PLAYER COMPARISON INTERACTION
+   ========================================================= */
+
+.podiumBlockSelected {
+  filter: brightness(1.08);
+
+  box-shadow:
+    0 18px 34px rgba(0, 0, 0, 0.42),
+    0 0 34px rgba(243, 204, 110, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.podiumBlock:focus-visible {
+  outline: 2px solid rgba(243, 204, 110, 0.8);
+  outline-offset: 3px;
+}
+
+.supportingRowSelected {
+  border-color: rgba(217, 169, 58, 0.65);
+
+  background: rgba(217, 169, 58, 0.12);
+
+  box-shadow:
+    0 0 18px rgba(217, 169, 58, 0.14);
+}
+
+.supportingRowSelected .supportingAvatar {
+  box-shadow:
+    0 0 10px rgba(243, 204, 110, 0.42);
+}
+
+.supportingRowSelected .supportingScore {
+  color: #f3cc6e;
 }

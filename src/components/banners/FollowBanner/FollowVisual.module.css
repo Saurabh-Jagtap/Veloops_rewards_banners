@@ -416,25 +416,62 @@
   box-shadow: 0 0 7px #c99aff;
 }
 
-.particleOne { left: 31%; top: 27%; }
-.particleTwo { right: 20%; bottom: 22%; width: 2px; height: 2px; }
-.particleThree { left: 8%; bottom: 14%; width: 2px; height: 2px; }
+.particleOne {
+  left: 31%;
+  top: 27%;
+}
+
+.particleTwo {
+  right: 20%;
+  bottom: 22%;
+  width: 2px;
+  height: 2px;
+}
+
+.particleThree {
+  left: 8%;
+  bottom: 14%;
+  width: 2px;
+  height: 2px;
+}
 
 @media (max-width: 620px) {
-  .banner { min-height: auto; }
-  .content { grid-template-columns: 1fr; }
+  .banner {
+    min-height: auto;
+  }
+
+  .content {
+    grid-template-columns: 1fr;
+  }
+
   .profilePanel,
-  .progressPanel { border-right: 0; border-bottom: 1px solid rgba(165, 115, 255, 0.22); }
-  .profilePanel { min-height: 210px; }
+  .progressPanel {
+    border-right: 0;
+    border-bottom: 1px solid rgba(165, 115, 255, 0.22);
+  }
+
+  .profilePanel {
+    min-height: 210px;
+  }
+
   .progressPanel,
-  .rewardPanel { min-height: 190px; }
+  .rewardPanel {
+    min-height: 190px;
+  }
 }
 
 @media (min-width: 621px) and (max-width: 760px) {
+
   .profilePanel,
   .progressPanel,
-  .rewardPanel { padding-left: 10px; padding-right: 10px; }
-  .taskRow { gap: 5px; }
+  .rewardPanel {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .taskRow {
+    gap: 5px;
+  }
 }
 
 /* ============================================================
@@ -496,6 +533,7 @@
 }
 
 @keyframes instagramPulse {
+
   0%,
   100% {
     filter: drop-shadow(0 0 5px rgba(237, 65, 156, 0.45));
@@ -516,6 +554,7 @@
 }
 
 @keyframes livePulse {
+
   0%,
   100% {
     opacity: 1;
@@ -550,12 +589,10 @@
 
   content: "";
 
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.35),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.35),
+      transparent);
 
   animation: progressShimmer 3.2s ease-in-out infinite;
 }
@@ -579,6 +616,7 @@
 }
 
 @keyframes completedPulse {
+
   0%,
   100% {
     box-shadow: 0 0 6px rgba(77, 227, 157, 0.28);
@@ -597,6 +635,7 @@
 }
 
 @keyframes rewardFloat {
+
   0%,
   100% {
     transform: translateY(0);
@@ -621,6 +660,7 @@
 }
 
 @keyframes orbFloatOne {
+
   0%,
   100% {
     transform: translate3d(0, 0, 0);
@@ -632,6 +672,7 @@
 }
 
 @keyframes orbFloatTwo {
+
   0%,
   100% {
     transform: translate3d(0, 0, 0);
@@ -658,6 +699,7 @@
 }
 
 @keyframes particleFloatOne {
+
   0%,
   100% {
     opacity: 0.45;
@@ -671,6 +713,7 @@
 }
 
 @keyframes particleFloatTwo {
+
   0%,
   100% {
     opacity: 0.35;
@@ -684,6 +727,7 @@
 }
 
 @keyframes particleFloatThree {
+
   0%,
   100% {
     opacity: 0.4;
@@ -702,6 +746,7 @@
    ------------------------------------------------------------ */
 
 @media (prefers-reduced-motion: reduce) {
+
   .banner,
   .banner.isVisible,
   .instagramIcon,
@@ -835,8 +880,7 @@
 /* Progress completion state */
 .rewardUnlocked .giftIcon {
   filter:
-    drop-shadow(0 0 8px rgba(255, 190, 45, 0.72))
-    drop-shadow(0 0 17px rgba(255, 190, 45, 0.32));
+    drop-shadow(0 0 8px rgba(255, 190, 45, 0.72)) drop-shadow(0 0 17px rgba(255, 190, 45, 0.32));
 }
 
 .rewardUnlocked strong {
@@ -903,6 +947,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .taskRowDone .taskStatus,
   .rewardUnlocked strong,
   .rewardCheck {
@@ -1024,10 +1069,7 @@
   0% {
     opacity: 0;
     transform:
-      translate(-50%, -50%)
-      translate(0, 0)
-      rotate(0deg)
-      scale(0.4);
+      translate(-50%, -50%) translate(0, 0) rotate(0deg) scale(0.4);
   }
 
   15% {
@@ -1041,10 +1083,7 @@
   100% {
     opacity: 0;
     transform:
-      translate(-50%, -50%)
-      translate(var(--x), var(--y))
-      rotate(var(--rotate))
-      scale(1);
+      translate(-50%, -50%) translate(var(--x), var(--y)) rotate(var(--rotate)) scale(1);
   }
 }
 
