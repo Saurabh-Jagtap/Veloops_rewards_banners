@@ -6,112 +6,10 @@ import {
 import {
   motion,
   useReducedMotion,
-  type Variants,
 } from "framer-motion";
 
 import styles from "./LeaderboardBanner.module.css";
-
-interface PodiumEntry {
-  rank: 1 | 2 | 3;
-  name: string;
-  score: string;
-  tier: "gold" | "silver" | "bronze";
-}
-
-interface SupportingEntry {
-  rank: number;
-  name: string;
-  initials: string;
-  score: string;
-  isCurrentUser?: boolean;
-}
-
-const podium: PodiumEntry[] = [
-  { rank: 2, name: "Priya K.", score: "9,210", tier: "silver" },
-  { rank: 1, name: "Arlene M.", score: "12,450", tier: "gold" },
-  { rank: 3, name: "Robert C.", score: "7,310", tier: "bronze" },
-];
-
-const supporting: SupportingEntry[] = [
-  { rank: 4, name: "Jayden R.", initials: "JR", score: "6,240" },
-  {
-    rank: 5,
-    name: "You",
-    initials: "YO",
-    score: "4,650",
-    isCurrentUser: true,
-  },
-  { rank: 6, name: "Neha T.", initials: "NT", score: "3,120" },
-];
-
-const currentUser = supporting.find((entry) => entry.isCurrentUser)!;
-
-const rowAboveUser =
-  supporting[supporting.findIndex((e) => e.isCurrentUser) - 1];
-
-const getScoreValue = (score: string) => Number(score.replace(/,/g, ""));
-
-const gapAboveUser = rowAboveUser
-  ? getScoreValue(rowAboveUser.score) - getScoreValue(currentUser.score)
-  : 0;
-
-const GOAL_VE = 10000;
-const progressPct = Math.min(
-  100,
-  Math.round((getScoreValue(currentUser.score) / GOAL_VE) * 100),
-);
-
-const containerVariants: Variants = {
-  hidden: { opacity: 0, scale: 0.97, y: 18 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: [0.22, 1, 0.36, 1],
-      staggerChildren: 0.1,
-      delayChildren: 0.08,
-    },
-  },
-};
-
-const fadeUpVariants: Variants = {
-  hidden: { opacity: 0, y: 10 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.4, ease: "easeOut" },
-  },
-};
-
-const podiumListVariants: Variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
-};
-
-const podiumBlockVariants: Variants = {
-  hidden: { opacity: 0, y: 16 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
-  },
-};
-
-const rowListVariants: Variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.06 } },
-};
-
-const rowVariants: Variants = {
-  hidden: { opacity: 0, y: 8 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.3, ease: "easeOut" },
-  },
-};
+import { containerVariants, currentUser, fadeUpVariants, gapAboveUser, getScoreValue, GOAL_VE, podium, podiumBlockVariants, podiumListVariants, progressPct, rowAboveUser, rowListVariants, rowVariants, supporting } from "../../../data/leaderboard";
 
 const LeaderboardVisual = () => {
   const reduceMotion = useReducedMotion() ?? false;
@@ -215,7 +113,7 @@ const LeaderboardVisual = () => {
               key={entry.rank}
               className={`${styles.podiumBlock} ${styles[
                 `podiumBlock${entry.tier[0].toUpperCase()}${entry.tier.slice(1)}`
-                ]
+              ]
                 } ${isSelected ? styles.podiumBlockSelected : ""}`}
               variants={podiumBlockVariants}
               whileHover={

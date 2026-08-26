@@ -90,9 +90,13 @@
     min-height: 0;
 
     display: grid;
-    grid-template-columns: minmax(0, 0.34fr) minmax(0, 0.66fr);
+
+    grid-template-columns:
+        minmax(0, 0.32fr)
+        minmax(0, 0.68fr);
+
     align-items: center;
-    gap: 32px;
+    gap: 28px;
 
     padding: 30px 42px;
 }

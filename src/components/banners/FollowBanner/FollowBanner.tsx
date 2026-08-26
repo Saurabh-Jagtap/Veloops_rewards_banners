@@ -1,32 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, Gift, MessageCircle, UserPlus } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import FollowVisual from "./FollowVisual";
 import styles from "./FollowBanner.module.css";
 import FollowReactions from "./FollowReactions";
-
-const FEATURES = [
-  {
-    icon: UserPlus,
-    title: "Follow",
-    description: "Stay connected",
-    tone: styles.featureFollow,
-  },
-  {
-    icon: MessageCircle,
-    title: "Engage",
-    description: "Interact",
-    tone: styles.featureEngage,
-  },
-  {
-    icon: Gift,
-    title: "Earn Rewards",
-    description: "Get rewarded",
-    tone: styles.featureEarn,
-  },
-];
+import { FEATURES } from "../../../data/follow";
 
 const FollowBanner = () => {
   const bannerRef = useRef<HTMLElement>(null);

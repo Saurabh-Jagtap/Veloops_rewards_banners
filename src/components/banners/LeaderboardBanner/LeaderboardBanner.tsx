@@ -1,35 +1,10 @@
 import { Fragment } from "react";
-import {
-  ArrowRight,
-  Trophy,
-  TrendingUp,
-  Users,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
 import LeaderboardVisual from "./LeaderboardVisual";
 import styles from "./LeaderboardBanner.module.css";
-
-const features = [
-  {
-    icon: Users,
-    title: "Compete",
-    subtitle: "Rise through ranks",
-    variant: "blue",
-  },
-  {
-    icon: Trophy,
-    title: "Earn More",
-    subtitle: "Unlock rewards",
-    variant: "gold",
-  },
-  {
-    icon: TrendingUp,
-    title: "Stay Ahead",
-    subtitle: "Keep your edge",
-    variant: "purple",
-  },
-];
+import { features } from "../../../data/leaderboard";
 
 const LeaderboardBanner = () => {
   return (
