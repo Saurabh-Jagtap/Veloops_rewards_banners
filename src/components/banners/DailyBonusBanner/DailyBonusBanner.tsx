@@ -1,8 +1,16 @@
-import { ArrowRight, Flame } from "lucide-react";
+import { ArrowRight, Check, Flame } from "lucide-react";
 import DailyBonusVisual from "./DailyBonusVisual";
 import styles from "./DailyBonusBanner.module.css";
+import { useState } from "react";
 
 const DailyBonusBanner = () => {
+    const [claimed, setClaimed] = useState(false);
+
+    const handleClaim = () => {
+        if (claimed) return;
+
+        setClaimed(true);
+    };
     return (
         <section
             className={styles.banner}
@@ -65,15 +73,20 @@ const DailyBonusBanner = () => {
                     </p>
 
                     <div className={styles.actionsRow}>
-                        <a href="#" className={styles.cta}>
-                            <span>Claim Bonus Now</span>
+                        <button
+                            type="button"
+                            className={`${styles.cta} ${claimed ? styles.ctaClaimed : ""}`}
+                            onClick={handleClaim}
+                            disabled={claimed}
+                        >
+                            <span>{claimed ? "Bonus Claimed" : "Claim Bonus Now"}</span>
 
-                            <ArrowRight
-                                size={18}
-                                strokeWidth={2}
-                                aria-hidden="true"
-                            />
-                        </a>
+                            {claimed ? (
+                                <Check size={18} strokeWidth={2.2} aria-hidden="true" />
+                            ) : (
+                                <ArrowRight size={18} strokeWidth={2} aria-hidden="true" />
+                            )}
+                        </button>
 
                         <div className={styles.statsBlock}>
                             <div className={styles.statsItem}>
@@ -85,7 +98,9 @@ const DailyBonusBanner = () => {
                                         className={styles.statsFlameIcon}
                                         aria-hidden="true"
                                     />
-                                    <span className={styles.statsValue}>7</span>
+                                    <span className={styles.statsValue}>
+                                        {claimed ? 8 : 7}
+                                    </span>
                                 </span>
 
                                 <span className={styles.statsLabel}>Day Streak</span>
@@ -104,7 +119,10 @@ const DailyBonusBanner = () => {
                     </div>
                 </div>
 
-                <DailyBonusVisual />
+                <DailyBonusVisual
+                    claimed={claimed}
+                    onClaim={handleClaim}
+                />
             </div>
         </section>
     );

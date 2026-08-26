@@ -389,101 +389,56 @@
    RESPONSIVE
    ============================================================ */
 
+/* ------------------------------------------------------------
+   TABLET / SMALL DESKTOP
+   ------------------------------------------------------------ */
+
 @media (max-width: 900px) {
-  .reactions {
-    width: 31%;
-  }
-
-  .reactionCenter {
-    right: 5%;
-  }
-
-  .reactionBottom {
-    right: 22%;
+  .reaction {
+    scale: 0.90;
   }
 }
+
+
+/* ------------------------------------------------------------
+   SMALL TABLET
+   ------------------------------------------------------------ */
 
 @media (max-width: 760px) {
-  .reactions {
-    width: 34%;
-  }
-
-  .reactionTop {
-    right: 15%;
-  }
-
-  .reactionUpper {
-    right: 34%;
-  }
-
-  .reactionCenter {
-    right: 4%;
-  }
-
-  .reactionBottom {
-    right: 18%;
+  .reaction {
+    scale: 0.82;
   }
 }
+
+
+/* ------------------------------------------------------------
+   MOBILE
+   ------------------------------------------------------------ */
 
 @media (max-width: 620px) {
-
-  /*
-   * At this point FollowVisual becomes full-width.
-   * Keep the illustration compact rather than letting
-   * it dominate the campaign card.
-   */
-  .reactions {
-    width: 38%;
-  }
-
-  .reactionTop {
-    transform: rotate(10deg) scale(0.85);
-  }
-
-  .reactionUpper {
-    transform: rotate(-7deg) scale(0.85);
-  }
-
-  .reactionCenter {
-    transform: rotate(8deg) scale(0.85);
+  .reaction {
+    scale: 0.74;
   }
 
   .reactionBottom {
-    transform: rotate(14deg) scale(0.85);
+    right: 8px;
+    bottom: 125px;
   }
 }
 
+
+/* ------------------------------------------------------------
+   SMALL MOBILE
+   ------------------------------------------------------------ */
+
 @media (max-width: 430px) {
-  .reactions {
-    width: 42%;
-  }
-
-  .reactionTop {
-    right: 12%;
-    top: 8%;
-
-    transform: rotate(10deg) scale(0.72);
-  }
-
-  .reactionUpper {
-    right: 32%;
-    top: 26%;
-
-    transform: rotate(-7deg) scale(0.72);
-  }
-
-  .reactionCenter {
-    right: 1%;
-    top: 39%;
-
-    transform: rotate(8deg) scale(0.72);
+  .reaction {
+    scale: 0.66;
   }
 
   .reactionBottom {
-    right: 17%;
-    bottom: 10%;
-
-    transform: rotate(14deg) scale(0.72);
+    right: 6px;
+    bottom: 105px;
   }
 
   .orbit {

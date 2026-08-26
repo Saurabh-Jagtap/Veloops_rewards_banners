@@ -282,6 +282,24 @@
     transform: translateX(3px);
 }
 
+.cta:disabled {
+    cursor: default;
+}
+
+.ctaClaimed {
+    background: linear-gradient(135deg,
+            #e8c75b 0%,
+            #cda83b 100%);
+
+    border-color: rgba(240, 200, 79, 0.65);
+}
+
+.ctaClaimed:hover {
+    transform: none;
+    filter: none;
+    box-shadow: 0 8px 25px rgba(230, 194, 96, 0.1);
+}
+
 .statsBlock {
     display: flex;
     align-items: center;

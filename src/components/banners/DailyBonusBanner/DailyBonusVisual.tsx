@@ -1,12 +1,18 @@
-import { useState } from "react";
 import styles from "./DailyBonusVisual.module.css";
 import { FlameIcon } from "./FlameIcon";
 import { days } from "../../../data/dailybonus";
 import { CheckIcon } from "./CheckIcon";
 import { GiftIcon } from "./GiftIcon";
 
-export default function DailyBonusVisual() {
-    const [claimed, setClaimed] = useState(false);
+type DailyBonusVisualProps = {
+    claimed: boolean;
+    onClaim: () => void;
+};
+
+export default function DailyBonusVisual({
+    claimed,
+    onClaim,
+}: DailyBonusVisualProps) {
 
     return (
         <div className={styles.visual}>
@@ -76,7 +82,7 @@ export default function DailyBonusVisual() {
                                                     ? styles.claimedNode
                                                     : ""
                                                 }`}
-                                            onClick={() => setClaimed(true)}
+                                            onClick={onClaim}
                                             aria-label={
                                                 isClaimedToday
                                                     ? "Sunday streak claimed"
@@ -104,6 +110,19 @@ export default function DailyBonusVisual() {
                     </div>
                 </div>
             </section>
+
+            {claimed && (
+                <div className={styles.claimCelebration} aria-hidden="true">
+                    <span className={`${styles.confetti} ${styles.confettiOne}`} />
+                    <span className={`${styles.confetti} ${styles.confettiTwo}`} />
+                    <span className={`${styles.confetti} ${styles.confettiThree}`} />
+                    <span className={`${styles.confetti} ${styles.confettiFour}`} />
+                    <span className={`${styles.confetti} ${styles.confettiFive}`} />
+                    <span className={`${styles.confetti} ${styles.confettiSix}`} />
+                    <span className={`${styles.confetti} ${styles.confettiSeven}`} />
+                    <span className={`${styles.confetti} ${styles.confettiEight}`} />
+                </div>
+            )}
 
             {/* Gift illustration */}
             <div className={`${styles.giftScene} ${claimed ? styles.giftClaimed : ""}`} aria-hidden="true">
