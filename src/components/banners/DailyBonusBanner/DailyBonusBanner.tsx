@@ -1,10 +1,34 @@
 import { ArrowRight, Check, Flame } from "lucide-react";
 import DailyBonusVisual from "./DailyBonusVisual";
 import styles from "./DailyBonusBanner.module.css";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const DailyBonusBanner = () => {
     const [claimed, setClaimed] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
+    const bannerRef = useRef<HTMLElement | null>(null);
+
+    useEffect(() => {
+        const banner = bannerRef.current;
+
+        if (!banner) return;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                    observer.disconnect();
+                }
+            },
+            {
+                threshold: 0.2,
+            }
+        );
+
+        observer.observe(banner);
+
+        return () => observer.disconnect();
+    }, []);
 
     const handleClaim = () => {
         if (claimed) return;
@@ -13,7 +37,8 @@ const DailyBonusBanner = () => {
     };
     return (
         <section
-            className={styles.banner}
+            ref={bannerRef}
+            className={`${styles.banner} ${isVisible ? styles.isVisible : ""}`}
             aria-labelledby="daily-bonus-banner-title"
         >
             {/* ambient decorative curves / particles */}
@@ -122,6 +147,7 @@ const DailyBonusBanner = () => {
                 <DailyBonusVisual
                     claimed={claimed}
                     onClaim={handleClaim}
+                    isVisible={isVisible}
                 />
             </div>
         </section>

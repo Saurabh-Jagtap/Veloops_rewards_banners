@@ -242,6 +242,10 @@
 
     transform-origin: left center;
 
+    transform: scaleX(0);
+}
+
+.isVisible .trackCompleted {
     animation:
         streakProgress 900ms cubic-bezier(.22, .7, .28, 1) 350ms both;
 }
@@ -281,6 +285,11 @@
 
     min-width: 0;
 
+    opacity: 0;
+    transform: translateY(5px) scale(0.94);
+}
+
+.isVisible .day {
     animation:
         dayReveal 420ms cubic-bezier(.22, .7, .28, 1) both;
 }
@@ -542,14 +551,13 @@
     z-index: 3;
     pointer-events: none;
 
-    transform-origin: center bottom;
+    opacity: 1;
+}
 
+.isVisible .giftImage {
     animation:
-        giftFloat 5s ease-in-out infinite;
-
-    transition:
-        filter 350ms ease,
-        transform 350ms cubic-bezier(.22, .7, .28, 1);
+        dailyBonusGiftEnter 900ms cubic-bezier(0.22, 1, 0.36, 1) 320ms both,
+        giftFloat 5s ease-in-out 1.3s infinite;
 }
 
 .giftImage {
@@ -562,6 +570,9 @@
 
     transform-origin: center bottom;
 
+    opacity: 0;
+    transform: scale(0.94);
+
     filter:
         drop-shadow(0 10px 18px rgba(0, 0, 0, 0.25));
 
@@ -570,7 +581,7 @@
         filter 350ms ease;
 }
 
-.visual:hover .giftScene {
+.visual:hover .giftImage {
     transform:
         translate3d(0, -7px, 0) scale(1.015);
 
@@ -629,7 +640,7 @@
     }
 }
 
-.visual:has(.todayNode:hover) .giftScene {
+.visual:has(.todayNode:hover) .giftImage {
     transform:
         translate3d(0, -8px, 0) scale(1.02);
 
@@ -641,11 +652,23 @@
 
     0%,
     100% {
-        transform: translateY(-50%);
+        transform: translateY(0) scale(1);
     }
 
     50% {
-        transform: translateY(calc(-50% - 5px));
+        transform: translateY(-5px) scale(1);
+    }
+}
+
+@keyframes dailyBonusGiftEnter {
+    from {
+        opacity: 0;
+        transform: scale(0.94);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
     }
 }
 
@@ -859,8 +882,6 @@
     .giftScene {
         position: absolute;
 
-        z-index: 3;
-
         width: 340px;
         height: 340px;
 
@@ -868,14 +889,7 @@
         right: 0;
         bottom: auto;
 
-        margin: 0;
-
-        display: block;
-
-        pointer-events: none;
-
-        animation:
-            giftFloat 5s ease-in-out infinite;
+        transform: translateY(-50%);
     }
 }
 
@@ -925,10 +939,6 @@
         pointer-events: none;
     }
 
-    /*
-   * Slightly reduce timeline spacing so all seven
-   * days remain comfortable at tablet widths.
-   */
     .timeline {
         padding-left: 2px;
         padding-right: 2px;

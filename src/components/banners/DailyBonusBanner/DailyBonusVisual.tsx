@@ -7,15 +7,19 @@ import { GiftIcon } from "./GiftIcon";
 type DailyBonusVisualProps = {
     claimed: boolean;
     onClaim: () => void;
+    isVisible: boolean;
 };
 
 export default function DailyBonusVisual({
     claimed,
     onClaim,
+    isVisible
 }: DailyBonusVisualProps) {
 
     return (
-        <div className={styles.visual}>
+        <div
+            className={`${styles.visual} ${isVisible ? styles.isVisible : ""}`}
+        >
             <section
                 className={styles.card}
                 aria-label="Daily streak rewards"

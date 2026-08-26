@@ -105,6 +105,11 @@
 ================================================== */
 
 .content {
+    opacity: 0;
+    transform: translateY(18px);
+}
+
+.isVisible .content {
     animation: dailyBonusContentEnter 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
@@ -129,6 +134,11 @@
     min-width: 0;
     max-width: 500px;
 
+    opacity: 0;
+    transform: translateY(14px);
+}
+
+.isVisible .copy {
     animation: dailyBonusCopyEnter 700ms cubic-bezier(0.22, 1, 0.36, 1) 100ms both;
 }
 
@@ -218,6 +228,12 @@
     gap: 16px;
 
     margin-top: 24px;
+
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.isVisible .actionsRow {
     animation: dailyBonusActionsEnter 600ms cubic-bezier(0.22, 1, 0.36, 1) 260ms both;
 }
 
@@ -385,6 +401,12 @@
     align-items: center;
 
     isolation: isolate;
+
+    opacity: 0;
+    transform: translateY(16px) scale(0.985);
+}
+
+.visual.isVisible {
     animation: dailyBonusVisualEnter 750ms cubic-bezier(0.22, 1, 0.36, 1) 180ms both;
 }
 
