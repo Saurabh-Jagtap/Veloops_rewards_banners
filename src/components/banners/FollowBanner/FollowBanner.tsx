@@ -88,11 +88,13 @@ const FollowBanner = () => {
             ))}
           </ul>
 
-          <a href="#" className={styles.cta}>
-            <span>Explore Campaigns</span>
+          <div className={styles.ctaEntrance}>
+            <a href="#" className={styles.cta}>
+              <span>Explore Campaigns</span>
 
-            <ArrowRight size={18} aria-hidden="true" />
-          </a>
+              <ArrowRight size={18} aria-hidden="true" />
+            </a>
+          </div>
         </div>
 
         <div className={styles.rightSide}>

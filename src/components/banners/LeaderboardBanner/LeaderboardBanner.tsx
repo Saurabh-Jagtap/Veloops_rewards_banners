@@ -175,18 +175,37 @@ const LeaderboardBanner = () => {
               CTA
           ================================================= */}
 
-          <button
-            type="button"
-            className={styles.cta}
-          >
-            <span>View Leaderboard</span>
+          <motion.div
+  className={styles.ctaEntrance}
+  variants={{
+    hidden: {
+      opacity: 0,
+      y: 10,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut",
+      },
+    },
+  }}
+>
+  <button
+    type="button"
+    className={styles.cta}
+  >
+    <span>View Leaderboard</span>
 
-            <ArrowRight
-              size={17}
-              strokeWidth={2}
-              aria-hidden="true"
-            />
-          </button>
+    <ArrowRight
+      size={17}
+      strokeWidth={2}
+      aria-hidden="true"
+    />
+  </button>
+</motion.div>
+
         </motion.div>
 
         {/* =====================================================

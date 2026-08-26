@@ -8,11 +8,43 @@ import {
 import WatchAdVisual from "./WatchAdVisual";
 
 import styles from "./WatchAdBanner.module.css";
+import { useEffect, useRef, useState } from "react";
 
 const WatchAdBanner = () => {
+  const bannerRef = useRef<HTMLElement | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const banner = bannerRef.current;
+
+    if (!banner) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      {
+        threshold: 0.2,
+      }
+    );
+
+    observer.observe(banner);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <section
-      className={styles.banner}
+      ref={bannerRef}
+      className={`${styles.banner} ${isVisible ? styles.isVisible : ""
+        }`}
       aria-labelledby="watch-ad-title"
     >
       <div className={styles.content}>

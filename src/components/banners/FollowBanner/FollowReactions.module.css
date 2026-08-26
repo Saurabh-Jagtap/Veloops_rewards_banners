@@ -11,12 +11,10 @@
   border-radius: 14px;
 
   background:
-    linear-gradient(
-      145deg,
+    linear-gradient(145deg,
       #9d59ee 0%,
       #7630d3 55%,
-      #5520a8 100%
-    );
+      #5520a8 100%);
 
   border: 1px solid rgba(205, 166, 255, 0.4);
 
@@ -48,12 +46,10 @@
   border-radius: 50%;
 
   background:
-    radial-gradient(
-      circle,
+    radial-gradient(circle,
       rgba(143, 67, 255, 0.26) 0%,
       rgba(109, 44, 214, 0.12) 35%,
-      transparent 72%
-    );
+      transparent 72%);
 
   filter: blur(18px);
 }
@@ -93,8 +89,7 @@
   height: 120px;
 
   transform:
-    rotate(-25deg)
-    scaleY(0.82);
+    rotate(-25deg) scaleY(0.82);
 
   opacity: 0.55;
 }
@@ -181,12 +176,10 @@
    * Gives the card its chunky 3D appearance.
    */
   background:
-    linear-gradient(
-      145deg,
+    linear-gradient(145deg,
       #9d59ee 0%,
       #7630d3 55%,
-      #5520a8 100%
-    );
+      #5520a8 100%);
 
   border: 1px solid rgba(205, 166, 255, 0.4);
 
@@ -233,8 +226,7 @@
   height: 23px;
 
   filter:
-    drop-shadow(0 1px 2px rgba(34, 9, 68, 0.28))
-    drop-shadow(0 0 5px rgba(255, 255, 255, 0.14));
+    drop-shadow(0 1px 2px rgba(34, 9, 68, 0.28)) drop-shadow(0 0 5px rgba(255, 255, 255, 0.14));
 }
 
 
@@ -254,12 +246,10 @@
   transform: rotate(10deg);
 
   background:
-    linear-gradient(
-      145deg,
+    linear-gradient(145deg,
       #b06af0 0%,
       #8442d6 58%,
-      #6229ae 100%
-    );
+      #6229ae 100%);
 
   box-shadow:
     inset 0 1px 1px rgba(255, 255, 255, 0.3),
@@ -289,12 +279,10 @@
   transform: rotate(-7deg);
 
   background:
-    linear-gradient(
-      145deg,
+    linear-gradient(145deg,
       #873ce0 0%,
       #6622c2 60%,
-      #4c179e 100%
-    );
+      #4c179e 100%);
 
   box-shadow:
     inset 0 1px 1px rgba(255, 255, 255, 0.25),
@@ -324,12 +312,10 @@
   transform: rotate(8deg);
 
   background:
-    linear-gradient(
-      145deg,
+    linear-gradient(145deg,
       #ff5571 0%,
       #f2385b 48%,
-      #d9274d 100%
-    );
+      #d9274d 100%);
 
   border-color: rgba(255, 160, 177, 0.55);
 
@@ -353,8 +339,7 @@
   height: 34px;
 
   filter:
-    drop-shadow(0 2px 2px rgba(173, 24, 53, 0.22))
-    drop-shadow(0 0 7px rgba(255, 255, 255, 0.16));
+    drop-shadow(0 2px 2px rgba(173, 24, 53, 0.22)) drop-shadow(0 0 7px rgba(255, 255, 255, 0.16));
 }
 
 
@@ -374,12 +359,10 @@
   transform: rotate(14deg);
 
   background:
-    linear-gradient(
-      145deg,
+    linear-gradient(145deg,
       #9751f0 0%,
       #7430d5 53%,
-      #5421a9 100%
-    );
+      #5421a9 100%);
 
   box-shadow:
     inset 0 1px 2px rgba(255, 255, 255, 0.32),
@@ -443,6 +426,7 @@
 }
 
 @media (max-width: 620px) {
+
   /*
    * At this point FollowVisual becomes full-width.
    * Keep the illustration compact rather than letting
@@ -538,6 +522,7 @@
 /* Keep each card's original rotation while floating */
 
 @keyframes reactionFloatTop {
+
   0%,
   100% {
     transform: rotate(10deg) translate3d(0, 0, 0);
@@ -549,6 +534,7 @@
 }
 
 @keyframes reactionFloatUpper {
+
   0%,
   100% {
     transform: rotate(-7deg) translate3d(0, 0, 0);
@@ -560,6 +546,7 @@
 }
 
 @keyframes reactionFloatCenter {
+
   0%,
   100% {
     transform: rotate(8deg) translate3d(0, 0, 0);
@@ -571,6 +558,7 @@
 }
 
 @keyframes reactionFloatBottom {
+
   0%,
   100% {
     transform: rotate(14deg) translate3d(0, 0, 0);
@@ -603,9 +591,7 @@
 
 .reactionTop:hover {
   transform:
-    rotate(10deg)
-    translate3d(0, -7px, 0)
-    scale(1.06);
+    rotate(10deg) translate3d(0, -7px, 0) scale(1.06);
 
   border-color: rgba(225, 197, 255, 0.65);
 
@@ -622,9 +608,7 @@
 
 .reactionUpper:hover {
   transform:
-    rotate(-7deg)
-    translate3d(0, -6px, 0)
-    scale(1.06);
+    rotate(-7deg) translate3d(0, -6px, 0) scale(1.06);
 
   border-color: rgba(225, 197, 255, 0.62);
 
@@ -641,9 +625,7 @@
 
 .reactionCenter:hover {
   transform:
-    rotate(8deg)
-    translate3d(0, -8px, 0)
-    scale(1.07);
+    rotate(8deg) translate3d(0, -8px, 0) scale(1.07);
 
   border-color: rgba(255, 190, 202, 0.75);
 
@@ -660,9 +642,7 @@
 
 .reactionBottom:hover {
   transform:
-    rotate(14deg)
-    translate3d(0, -7px, 0)
-    scale(1.06);
+    rotate(14deg) translate3d(0, -7px, 0) scale(1.06);
 
   border-color: rgba(225, 197, 255, 0.65);
 
@@ -720,12 +700,10 @@
 
   content: "";
 
-  background: linear-gradient(
-    105deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.18) 50%,
-    transparent 100%
-  );
+  background: linear-gradient(105deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.18) 50%,
+      transparent 100%);
 
   transform: skewX(-18deg);
 
@@ -748,6 +726,7 @@
 }
 
 @keyframes ambientReactionGlow {
+
   0%,
   100% {
     opacity: 0.72;
@@ -785,6 +764,7 @@
 }
 
 @keyframes reactionParticleOne {
+
   0%,
   100% {
     opacity: 0.45;
@@ -798,6 +778,7 @@
 }
 
 @keyframes reactionParticleTwo {
+
   0%,
   100% {
     opacity: 0.35;
@@ -811,6 +792,7 @@
 }
 
 @keyframes reactionParticleThree {
+
   0%,
   100% {
     opacity: 0.4;
@@ -824,6 +806,7 @@
 }
 
 @keyframes reactionParticleFour {
+
   0%,
   100% {
     opacity: 0.35;
@@ -842,6 +825,7 @@
    ------------------------------------------------------------ */
 
 @media (prefers-reduced-motion: reduce) {
+
   .reactionTop,
   .reactionUpper,
   .reactionCenter,

@@ -13,31 +13,23 @@
   color: #f4efff;
 
   background:
-    radial-gradient(
-      65% 100% at 78% 58%,
+    radial-gradient(65% 100% at 78% 58%,
       rgba(111, 55, 190, 0.16),
-      transparent 68%
-    ),
+      transparent 68%),
 
-    radial-gradient(
-      55% 90% at 18% 100%,
+    radial-gradient(55% 90% at 18% 100%,
       rgba(82, 47, 150, 0.07),
-      transparent 70%
-    ),
+      transparent 70%),
 
-    radial-gradient(
-      45% 70% at 58% 0%,
+    radial-gradient(45% 70% at 58% 0%,
       rgba(82, 55, 145, 0.045),
-      transparent 72%
-    ),
+      transparent 72%),
 
-    linear-gradient(
-      135deg,
+    linear-gradient(135deg,
       #070913 0%,
       #080916 45%,
       #0b0819 72%,
-      #0d091b 100%
-    );
+      #0d091b 100%);
 
   box-shadow:
     0 24px 60px rgba(3, 2, 12, 0.45),
@@ -105,52 +97,41 @@
 .banner {
   background-image:
     /* Fine flowing wave lines */
-    repeating-radial-gradient(
-      ellipse 85% 38% at 18% 55%,
+    repeating-radial-gradient(ellipse 85% 38% at 18% 55%,
       transparent 0,
       transparent 48px,
       rgba(142, 92, 225, 0.035) 49px,
       transparent 50px,
-      transparent 92px
-    ),
+      transparent 92px),
 
     /* Secondary wave field */
-    repeating-radial-gradient(
-      ellipse 75% 34% at 82% 42%,
+    repeating-radial-gradient(ellipse 75% 34% at 82% 42%,
       transparent 0,
       transparent 55px,
       rgba(170, 96, 240, 0.028) 56px,
       transparent 57px,
-      transparent 105px
-    ),
+      transparent 105px),
 
     /* Purple atmosphere */
-    radial-gradient(
-      65% 100% at 78% 58%,
+    radial-gradient(65% 100% at 78% 58%,
       rgba(111, 55, 190, 0.16),
-      transparent 68%
-    ),
+      transparent 68%),
 
-    radial-gradient(
-      55% 90% at 18% 100%,
+    radial-gradient(55% 90% at 18% 100%,
       rgba(82, 47, 150, 0.07),
-      transparent 70%
-    ),
+      transparent 70%),
 
-    radial-gradient(
-      45% 70% at 58% 0%,
+    radial-gradient(45% 70% at 58% 0%,
       rgba(82, 55, 145, 0.045),
-      transparent 72%
-    ),
+      transparent 72%),
 
-    linear-gradient(
-      135deg,
+    linear-gradient(135deg,
       #070913 0%,
       #080916 45%,
       #0b0819 72%,
-      #0d091b 100%
-    );
+      #0d091b 100%);
 }
+
 .content {
   width: 100%;
   height: 100%;
@@ -235,10 +216,6 @@
 
   font-family: var(--font-display);
 
-  /*
-   * Larger now that the headline is intentionally
-   * two lines, matching Watch Ad / Contact.
-   */
   font-size: clamp(3rem, 4vw, 3.45rem);
 
   font-weight: 700;
@@ -566,6 +543,7 @@
   position: relative;
   min-width: 0;
 }
+
 /* ============================================================
    RESPONSIVE SYSTEM
    ============================================================ */
@@ -596,11 +574,6 @@
 
   .copy h2 {
     font-size: clamp(2.55rem, 4.5vw, 3.15rem);
-  }
-
-  .copy>p {
-    max-width: 410px;
-    font-size: 0.84rem;
   }
 
   /* Features */
@@ -867,18 +840,8 @@
       26px 24px 28px;
   }
 
-  .copy h2 {
-    font-size: clamp(2.5rem, 8vw, 3rem);
-  }
-
-  .copy>p {
-    max-width: 600px;
-  }
-
   /* ----------------------------------------------------------
      FEATURES
-
-     Keep them in one row while possible.
   ---------------------------------------------------------- */
 
   .features {
@@ -1076,18 +1039,9 @@
     line-height: 0.97;
   }
 
-  .copy>p {
-    margin-top: 15px;
-
-    font-size: 0.8rem;
-    line-height: 1.55;
-  }
 
   /* ----------------------------------------------------------
      FEATURES
-
-     At this width the feature descriptions are no longer
-     useful. Keep the title and icon.
   ---------------------------------------------------------- */
 
   .features {
@@ -1163,8 +1117,6 @@
 
   /* ----------------------------------------------------------
      CAMPAIGN HEADER
-
-     Header becomes two rows.
   ---------------------------------------------------------- */
 
   .campaignHeader {
@@ -1329,10 +1281,6 @@
 
   .copy h2 {
     font-size: clamp(2.05rem, 10.5vw, 2.55rem);
-  }
-
-  .copy>p {
-    font-size: 0.76rem;
   }
 
   .cta {
@@ -1552,18 +1500,8 @@
     font-size: clamp(1.9rem, 11vw, 2.3rem);
   }
 
-  .copy>p {
-    margin-top: 13px;
-
-    font-size: 0.72rem;
-    line-height: 1.5;
-  }
-
   /* ----------------------------------------------------------
      FEATURES
-
-     On very narrow screens, show only the icons and
-     feature title. The descriptions were already hidden.
   ---------------------------------------------------------- */
 
   .features {
@@ -1818,14 +1756,8 @@
     font-size: 1.78rem;
   }
 
-  .copy>p {
-    font-size: 0.68rem;
-  }
-
   /* ----------------------------------------------------------
      FEATURES
-
-     Icons + very compact labels.
   ---------------------------------------------------------- */
 
   .features {
@@ -2043,10 +1975,6 @@
     font-size: 1.62rem;
   }
 
-  .copy>p {
-    font-size: 0.64rem;
-  }
-
   .features {
     margin-top: 13px;
   }
@@ -2183,89 +2111,105 @@
 }
 
 /* ==================================================
-   FOLLOW BANNER — SLOWER, MORE REFINED MOTION
-   ================================================== */
+   FOLLOW BANNER — ENTRANCE
+================================================== */
 
 /* --------------------------------------------------
-   LEFT SIDE ENTRANCE
-   -------------------------------------------------- */
+   WHOLE CONTENT
+-------------------------------------------------- */
 
-.copy > .eyebrow,
-.copy > h2,
-.copy > p,
-.copy > .stats,
-.copy > .cta {
+.content {
   opacity: 0;
   transform: translateY(18px);
-}
 
-
-/* Eyebrow */
-
-.copy > .eyebrow {
   transition:
-    opacity 800ms ease,
-    transform 950ms cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 700ms ease,
+    transform 750ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-
-/* Heading */
-
-.copy > h2 {
-  transition:
-    opacity 950ms ease 140ms,
-    transform 1100ms cubic-bezier(0.22, 1, 0.36, 1) 140ms;
-}
-
-
-/* Description */
-
-.copy > p {
-  transition:
-    opacity 900ms ease 300ms,
-    transform 1000ms cubic-bezier(0.22, 1, 0.36, 1) 300ms;
-}
-
-
-/* Stats */
-
-.copy > .stats {
-  transition:
-    opacity 850ms ease 480ms,
-    transform 950ms cubic-bezier(0.22, 1, 0.36, 1) 480ms;
-}
-
-
-/* CTA */
-
-.copy > .cta {
-  transition:
-    opacity 850ms ease 650ms,
-    transform 1000ms cubic-bezier(0.22, 1, 0.36, 1) 650ms;
-}
-
-
-/* Activate left side */
-
-.isVisible .copy > .eyebrow,
-.isVisible .copy > h2,
-.isVisible .copy > p,
-.isVisible .copy > .stats,
-.isVisible .copy > .cta {
+.isVisible .content {
   opacity: 1;
   transform: translateY(0);
 }
 
 
 /* --------------------------------------------------
-   RIGHT VISUAL — SLOWER AMBIENT MOTION
-   -------------------------------------------------- */
+   LEFT COPY
+-------------------------------------------------- */
 
-.isVisible .visual {
+.copy {
+  opacity: 0;
+  transform: translateY(14px);
+
+  transition:
+    opacity 700ms ease 100ms,
+    transform 750ms cubic-bezier(0.22, 1, 0.36, 1) 100ms;
+}
+
+.isVisible .copy {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* --------------------------------------------------
+   FEATURES
+-------------------------------------------------- */
+
+.features {
+  opacity: 0;
+  transform: translateY(8px);
+
+  transition:
+    opacity 600ms ease 260ms,
+    transform 650ms cubic-bezier(0.22, 1, 0.36, 1) 260ms;
+}
+
+.isVisible .features {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* --------------------------------------------------
+   CTA
+-------------------------------------------------- */
+
+.ctaEntrance {
+  opacity: 0;
+  transform: translateY(10px);
+
+  transition:
+    opacity 600ms ease 360ms,
+    transform 650ms cubic-bezier(0.22, 1, 0.36, 1) 360ms;
+}
+
+.isVisible .ctaEntrance {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --------------------------------------------------
+   RIGHT VISUAL
+-------------------------------------------------- */
+
+.rightSide {
+  opacity: 0;
+  transform: translateY(16px) scale(0.985);
+
+  transition:
+    opacity 750ms ease 180ms,
+    transform 800ms cubic-bezier(0.22, 1, 0.36, 1) 180ms;
+}
+
+.isVisible .rightSide {
   opacity: 1;
   transform: translateY(0) scale(1);
 }
 
+/* --------------------------------------------------
+   RIGHT VISUAL — SLOWER AMBIENT MOTION
+   -------------------------------------------------- */
 
 /* Instagram icon */
 
@@ -2275,6 +2219,7 @@
 }
 
 @keyframes instagramPulse {
+
   0%,
   100% {
     filter:
@@ -2296,6 +2241,7 @@
 }
 
 @keyframes livePulseSlow {
+
   0%,
   100% {
     opacity: 1;
@@ -2336,6 +2282,7 @@
 }
 
 @keyframes completedPulseSlow {
+
   0%,
   100% {
     box-shadow:
@@ -2357,6 +2304,7 @@
 }
 
 @keyframes rewardFloatSlow {
+
   0%,
   100% {
     transform: translateY(0);
@@ -2381,6 +2329,7 @@
 }
 
 @keyframes orbFloatSlowOne {
+
   0%,
   100% {
     transform: translate3d(0, 0, 0);
@@ -2392,6 +2341,7 @@
 }
 
 @keyframes orbFloatSlowTwo {
+
   0%,
   100% {
     transform: translate3d(0, 0, 0);
@@ -2421,6 +2371,7 @@
 }
 
 @keyframes particleFloatSlowOne {
+
   0%,
   100% {
     opacity: 0.4;
@@ -2434,6 +2385,7 @@
 }
 
 @keyframes particleFloatSlowTwo {
+
   0%,
   100% {
     opacity: 0.35;
@@ -2447,6 +2399,7 @@
 }
 
 @keyframes particleFloatSlowThree {
+
   0%,
   100% {
     opacity: 0.35;
@@ -2465,12 +2418,18 @@
    -------------------------------------------------- */
 
 @media (prefers-reduced-motion: reduce) {
-  .copy > .eyebrow,
-  .copy > h2,
-  .copy > p,
-  .copy > .stats,
-  .copy > .cta,
   .visual {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .content,
+  .copy,
+  .features,
+  .copy>.cta,
+  .rightSide {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;

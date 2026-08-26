@@ -638,6 +638,7 @@
 }
 
 @keyframes giftFloat {
+
     0%,
     100% {
         transform: translateY(-50%);
@@ -986,29 +987,29 @@
     }
 
     .giftScene {
-    position: absolute;
+        position: absolute;
 
-    z-index: 3;
+        z-index: 3;
 
-    width: 190px;
-    height: 190px;
+        width: 190px;
+        height: 190px;
 
-    left: 50%;
-    right: auto;
+        left: 50%;
+        right: auto;
 
-    bottom: 5px;
+        bottom: 5px;
 
-    margin: 0;
+        margin: 0;
 
-    transform: translateX(-50%);
+        transform: translateX(-50%);
 
-    display: block;
-    pointer-events: none;
-  }
+        display: block;
+        pointer-events: none;
+    }
 
-  .giftImage {
-    transform: translateX(-10px);
-  }
+    .giftImage {
+        transform: translateX(-10px);
+    }
 
     .timeline {
         padding-left: 0;
@@ -1079,22 +1080,22 @@
     }
 
     .giftScene {
-    width: 165px;
-    height: 165px;
+        width: 165px;
+        height: 165px;
 
-    left: 50%;
-    right: auto;
+        left: 50%;
+        right: auto;
 
-    bottom: 5px;
+        bottom: 5px;
 
-    margin: 0;
+        margin: 0;
 
-    transform: translateX(-50%);
-  }
+        transform: translateX(-50%);
+    }
 
-  .giftImage {
-    transform: translateX(-8px);
-  }
+    .giftImage {
+        transform: translateX(-8px);
+    }
 
     .headerIdentity {
         gap: 7px;
@@ -1158,18 +1159,18 @@
     }
 
     .giftScene {
-    width: 145px;
-    height: 145px;
+        width: 145px;
+        height: 145px;
 
-    left: 50%;
-    right: auto;
+        left: 50%;
+        right: auto;
 
-    bottom: 5px;
+        bottom: 5px;
 
-    margin: 0;
+        margin: 0;
 
-    transform: translateX(-50%);
-  }
+        transform: translateX(-50%);
+    }
 
     .header h1 {
         font-size: 9px;

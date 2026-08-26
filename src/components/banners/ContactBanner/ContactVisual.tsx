@@ -1,5 +1,5 @@
-import {Send} from "lucide-react";
-import { AnimatePresence, motion} from "framer-motion";
+import { Send } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 import styles from "./ContactBanner.module.css";
 import { useState } from "react";
 import { headerVariants, messageVariants, supportWindowVariants, topics, topicVariants } from "../../../data/contact";
@@ -258,31 +258,31 @@ const ContactVisual = () => {
         </div>
       </motion.div>
 
-{/* ================= SUPPORT AGENT ================= */}
-<div
-  className={styles.supportAgentIllustration}
-  aria-hidden="true"
->
-  <motion.div
-    className={styles.supportAgentFloat}
-    animate={{
-      y: [0, -4, 0],
-      rotateZ: [0, 0.35, 0],
-    }}
-    transition={{
-      duration: 5.5,
-      repeat: Infinity,
-      ease: "easeInOut",
-    }}
-  >
-    <img
-      src="/headset.png"
-      alt=""
-      className={styles.headsetImage}
-      draggable={false}
-    />
-  </motion.div>
-</div>
+      {/* ================= SUPPORT AGENT ================= */}
+      <div
+        className={styles.supportAgentIllustration}
+        aria-hidden="true"
+      >
+        <motion.div
+          className={styles.supportAgentFloat}
+          animate={{
+            y: [0, -4, 0],
+            rotateZ: [0, 0.35, 0],
+          }}
+          transition={{
+            duration: 5.5,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        >
+          <img
+            src="/headset.png"
+            alt=""
+            className={styles.headsetImage}
+            draggable={false}
+          />
+        </motion.div>
+      </div>
     </div>
   );
 };
